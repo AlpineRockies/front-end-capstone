@@ -8,7 +8,8 @@
     "node": ">=16.13.0"
   },
   "scripts": {
-    "start": "webpack --mode=development -w"
+    "start": "webpack --mode=development -w",
+    "dev": "webpack-dev-server"
   },
   "dependencies": {
     "axios": "^0.26.1",
