@@ -1,13 +1,11 @@
-# Project Name
+# Project Atelier
 
-> Project description
+> Project Atelier
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/AlpineRockies/front-end-capstone.git
+
 
 ## Table of Contents
 
