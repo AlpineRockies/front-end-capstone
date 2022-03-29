@@ -1,17 +1,33 @@
 {
-  "name": "",
+  "name": "project_atelier",
   "version": "1.0.0",
   "description": "",
-  "author": "",
-  "license": "",
+  "author": "AlbertaRockies Team",
+  "license": "MIT",
   "engines": {
-    "node": ">=6.13.0"
+    "node": ">=16.13.0"
   },
   "scripts": {
+    "start": "webpack --mode=development -w"
   },
   "dependencies": {
+    "axios": "^0.26.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-modal": "^3.14.4"
   },
   "devDependencies": {
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+    "@babel/core": "^7.17.8",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "babel-loader": "^8.2.4",
+    "css-loader": "^6.7.1",
+    "eslint": "^8.12.0",
+    "eslint-config-airbnb-babel": "^0.2.1",
+    "nodemon": "^2.0.15",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
   }
 }
