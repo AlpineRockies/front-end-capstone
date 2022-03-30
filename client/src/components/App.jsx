@@ -11,7 +11,16 @@ class App extends Component {
     }
   }
 
-
+  //example
+  componentDidMount() {
+    axios.get(`/products`)
+      .then((response) => {
+        console.log('in client', response);
+      })
+      .catch((err) => {
+        console.log('err in client', err);
+      });
+  }
 
   render() {
     return (<div className="app">Team Alpine Rockies!</div>);
