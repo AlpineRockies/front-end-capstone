@@ -11,25 +11,24 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.all('/*', (req, res) => {
+  console.log(`serving ${req.method}`);
   const { method, url, body: data } = req;
   const options = {
     method,
     url,
     headers: { Authorization: process.env.APITOKEN },
     data,
+    params: req.query,
   };
-
-  console.log('i am in server req', options);
 
   options.url = `${process.env.APIURL}${url}`;
 
   return axios(options)
     .then((response) => {
       res.status(200).send(response.data);
-      console.log('hit in server', response.data);
     })
     .catch((err) => {
-      console.log('Err in server request handler all', err);
+      res.status(500).send(err);
     });
 });
 
