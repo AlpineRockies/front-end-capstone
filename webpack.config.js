@@ -27,6 +27,6 @@ module.exports = {
       directory: path.join(__dirname, '/client/dist'),
     },
     compress: true,
-    port: process.env.PORT,
+    port: process.env.PORT || 3000,
   },
 };
