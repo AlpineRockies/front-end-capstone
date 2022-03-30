@@ -9,6 +9,7 @@
   },
   "scripts": {
     "start": "webpack --mode=development -w",
+    "build": "webpack --mode=production",
     "dev": "webpack-dev-server"
   },
   "dependencies": {
