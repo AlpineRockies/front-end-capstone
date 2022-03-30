@@ -12,7 +12,8 @@
   "scripts": {
     "start": "webpack --mode=development -w",
     "build": "webpack --mode=production",
-    "dev": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "test": "jest"
   },
   "dependencies": {
     "axios": "^0.26.1",
@@ -30,6 +31,7 @@
     "eslint": "^8.12.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-babel": "^0.2.1",
+    "jest": "^27.5.1",
     "nodemon": "^2.0.15",
     "style-loader": "^3.3.1",
     "webpack": "^5.70.0",
