@@ -24,3 +24,6 @@ coverage
 build/
 dist/
 
+#ignored files
+.env
+
