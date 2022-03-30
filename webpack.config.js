@@ -1,4 +1,5 @@
 const path = require('path');
+require('dotenv').config();
 
 module.exports = {
   mode: 'development',
@@ -26,6 +27,6 @@ module.exports = {
       directory: path.join(__dirname, '/client/dist'),
     },
     compress: true,
-    port: 3000,
+    port: process.env.PORT,
   },
 };
