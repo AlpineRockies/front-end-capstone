@@ -31,7 +31,16 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 From within the root directory:
 
 ```sh
-npm install -g webpack
 npm install
 ```
 
+### Testing
+
+This project uses the Jest JavaScript testing framework.
+
+Jest will run tests for any file with the format `*.test.js`
+
+To run tests from within the root directory:
+```sh
+npm test
+```
