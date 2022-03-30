@@ -10,7 +10,7 @@ class App extends Component {
   componentDidMount() {}
 
   render() {
-    return (<div className="app">Team Alpine Rockies!</div>);
+    return (<div className="app">Hello World</div>);
   }
 }
 

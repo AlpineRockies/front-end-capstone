@@ -2,10 +2,8 @@
   "name": "project_atelier",
   "version": "1.0.0",
   "description": "",
-  "author": "AlpineRockies Team : Alisha Barraw, Stephanie Yeong, Addison Hernandez, Will Atwood",
+  "author": "AlbertaRockies Team",
   "license": "MIT",
-  "repository": "https://github.com/AlpineRockies/front-end-capstone",
-  "main": "client/src/index.js",
   "engines": {
     "node": ">=16.13.0"
   },
