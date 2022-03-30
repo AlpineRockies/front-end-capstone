@@ -7,27 +7,22 @@ class App extends Component {
     super(props);
 
     this.state = {
-      data: []
-    }
+      data: [],
+    };
   }
 
-<<<<<<< HEAD
-  getData(){
-    axios.get()
-  }
-  componentDidMount() {}
-=======
-  //example
+  // example
   componentDidMount() {
-    axios.get(`/products`)
+    const random = Math.floor(Math.random() * (38321 - 37311) + 37311);
+    console.log(random);
+    axios.get(`/products/${random}`)
       .then((response) => {
-        console.log('in client', response);
+        this.setState({ data: response.data });
       })
       .catch((err) => {
         console.log('err in client', err);
       });
   }
->>>>>>> 92579b09d6211c6d31ab0b68c0405942d45309ab
 
   render() {
     return (<div className="app">Team Alpine Rockies!</div>);
