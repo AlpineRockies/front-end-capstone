@@ -1,4 +1,5 @@
 const path = require('path');
+require('dotenv').config();
 
 module.exports = {
   mode: 'development',
@@ -20,12 +21,5 @@ module.exports = {
       },
     ],
   },
-  devtool: 'eval-cheap-module-source-map'
-  devServer: {
-    static: {
-      directory: path.join(__dirname, '/client/dist'),
-    },
-    compress: true,
-    port: 3000,
-  },
+  devtool: 'eval-cheap-module-source-map',
 };

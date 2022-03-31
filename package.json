@@ -10,9 +10,9 @@
     "node": ">=16.13.0"
   },
   "scripts": {
-    "start": "webpack --mode=development -w",
     "build": "webpack --mode=production",
-    "dev": "webpack-dev-server",
+    "client-dev": "webpack --config ./webpack.config.js --mode development -w",
+    "server-dev" : "nodemon server/index.js",
     "test": "jest"
   },
   "dependencies": {
