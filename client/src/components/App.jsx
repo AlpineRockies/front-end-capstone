@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Overview from './Overview/Overview.jsx';
 // Here is out base App component.
 // Notice we are NOT using jsx here. This is because we have not set up babel yet.
 class App extends Component {
@@ -7,13 +8,19 @@ class App extends Component {
     super(props);
 
     this.state = {
-      data: []
-    }
+      data: [],
+    };
   }
 
-  //example
+  getData() {
+    axios.get();
+  }
+
+  componentDidMount() {}
+
+  // example
   componentDidMount() {
-    axios.get(`/products`)
+    axios.get('/products')
       .then((response) => {
         console.log('in client', response);
       })
@@ -23,7 +30,12 @@ class App extends Component {
   }
 
   render() {
-    return (<div className="app">Team Alpine Rockies!</div>);
+    return (
+      <div className="app">
+        Team Alpine Rockies!
+        <Overview />
+      </div>
+    );
   }
 }
 
