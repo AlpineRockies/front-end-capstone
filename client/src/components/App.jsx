@@ -12,13 +12,17 @@ class App extends Component {
     };
   }
 
+  getData() {
+    axios.get();
+  }
+
+  componentDidMount() {}
+
   // example
   componentDidMount() {
-    const random = Math.floor(Math.random() * (38321 - 37311) + 37311);
-    console.log(random);
-    axios.get(`/products/${random}/styles`)
+    axios.get('/products')
       .then((response) => {
-        this.setState({ data: response.data });
+        console.log('in client', response);
       })
       .catch((err) => {
         console.log('err in client', err);
