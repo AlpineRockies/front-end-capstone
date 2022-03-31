@@ -12,12 +12,6 @@ class App extends Component {
     };
   }
 
-  getData() {
-    axios.get();
-  }
-
-  componentDidMount() {}
-
   // example
   componentDidMount() {
     axios.get('/products')

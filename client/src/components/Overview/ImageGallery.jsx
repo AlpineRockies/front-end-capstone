@@ -4,7 +4,6 @@ class ImageGallery extends React.Component{
   constructor(){
     super();
   }
-  }
 
   render(){
   return(

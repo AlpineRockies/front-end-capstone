@@ -1,15 +1,14 @@
-import React from 'react'
+import React from 'react';
 
-class AddToCart extends React.Component{
-  constructor(){
+class AddToCart extends React.Component {
+  constructor() {
     super();
   }
-  }
 
-  render(){
-  return(
-    
-  )
+  render() {
+    return (
+      <div>Hello World</div>
+    );
   }
 }
 
