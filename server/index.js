@@ -12,23 +12,35 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.all('/*', (req, res) => {
-  console.log(`serving ${req.method}`);
-  const { method, url, body: data } = req;
-  const options = {
+  const {
     method,
     url,
+    body: data,
+    query: params,
+  } = req;
+
+  if (url === '/favicon.ico') {
+    return res.status(204).end();
+  }
+
+  const optionsUrl = `${process.env.APIURL}${url.split('?')[0]}`;
+
+  console.log(`Serving ${req.method} to ${url}`);
+
+  const options = {
+    method,
+    url: optionsUrl,
     headers: { Authorization: process.env.APITOKEN },
     data,
-    params: req.query,
+    params,
   };
-
-  options.url = `${process.env.APIURL}${url}`;
 
   return axios(options)
     .then((response) => {
       res.status(200).send(response.data);
     })
     .catch((err) => {
+      console.error(err);
       res.status(500).send(err);
     });
 });
