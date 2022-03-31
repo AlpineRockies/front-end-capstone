@@ -1,11 +1,11 @@
-// import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
-// function RatingReviews() {
+function RatingReviews() {
 
 
-//   return (
-//     <h2>in rating reviews</h2>
-//   )
-// }
+  return (
+    <h2>in rating reviews</h2>
+  )
+}
 
-// export default RatingReviews;
+export default RatingReviews;
