@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './style.css';
+import ProductInfo from './ProductInfo.jsx';
 
 class Overview extends Component {
   constructor() {
@@ -42,6 +43,7 @@ class Overview extends Component {
         <div className="ov-selection">
           <div className="ov-productInfo">
             <h3>Info</h3>
+            <ProductInfo description={this.state.data}/>
           </div>
           <div className="ov-styles">
             <h3>Styles</h3>
