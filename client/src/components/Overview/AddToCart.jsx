@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import Heart from "react-animated-heart";
 
 function AddToCart() {
   const [isClick, setClick] = useState(false);
   return (
     <div>
-      <select name="size" id="size">
+      <select name="size" id="size" className="ov-sizes">
         <option>select a size</option>
         <option value="xs">xs</option>
         <option value="s">s</option>
@@ -12,7 +13,7 @@ function AddToCart() {
         <option value="l">l</option>
         <option value="xl">xl</option>
       </select>
-      <select name="size" id="size">
+      <select name="size" id="size" className="ov-qty">
         <option>qty</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -21,8 +22,10 @@ function AddToCart() {
         <option value="5">5</option>
       </select>
      <br></br>
-      <button>add to cart</button>
-
+      <button className="ov-checkoutButton">add to cart</button>
+      <div className="App">
+      <Heart isClick={isClick} onClick={() => setClick(!isClick)} />
+    </div>
       </div>
   );
 }

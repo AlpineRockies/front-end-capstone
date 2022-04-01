@@ -1,9 +1,10 @@
 import React from 'react';
+import { Carousel } from 'react-carousel-minimal';
 
 function ImageGallery(props) {
   let loadingOrImage;
   if (props.styles.results !== undefined) {
-    loadingOrImage = <img className="largePicture" src={props.styles.results[0].photos[0].url} />;
+    loadingOrImage = props.styles.results.map((image) => <img className="largePicture" id={image.style_id} src={image.photos[0].url} />);
   }
   return (
     <div>
