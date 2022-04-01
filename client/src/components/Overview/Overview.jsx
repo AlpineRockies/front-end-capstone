@@ -46,10 +46,10 @@ class Overview extends Component {
         <div className="ov-selection">
           <div className="ov-productInfo">
             <h3>Info</h3>
-            <ProductInfo description={this.state.data} />
+            <ProductInfo description={this.state.data} styles={this.state.styles} />
           </div>
           <div className="ov-styles">
-            <h3>Styles</h3>
+            <p>Styles</p>
             <StyleSelector styles={this.state.styles} />
           </div>
           <div className="ov-checkout">
