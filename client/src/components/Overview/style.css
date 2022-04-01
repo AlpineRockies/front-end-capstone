@@ -7,7 +7,7 @@
   border:  5px solid green;
   border-radius: 20px;
   height:  800px;
-  width: 700px;
+  width: 66%;
   margin: 10px;
 }
 
@@ -15,26 +15,37 @@
   border: 5px solid red;
   border-radius: 20px;
   height:  800px;
-  width: 700px;
+  width: 34%;
+  margin: 10px;
+  padding: 10px;
 }
 
 .ov-productInfo {
-  border: 5px solid rgb(66, 170, 196);
-  border-radius: 20px;
-  height:  265px;
+  height:  250px;
   width: 700px;
 }
 
 .ov-checkout {
-  border: 5px solid rgb(226, 223, 15);
-  border-radius: 20px;
   height:  250px;
   width: 700px;
 }
 
 .ov-styles {
-  border: 5px solid purple;
-  border-radius: 20px;
-  height:  265px;
+  height:  250px;
   width: 700px;
+}
+
+.thumbnails {
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+  padding: 5px;
+}
+
+.largePicture {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+  height: 500px;
 }

@@ -1,16 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react';
 
-class AddToCart extends React.Component{
-  constructor(){
-    super();
-  }
-  }
+function AddToCart() {
+  const [isClick, setClick] = useState(false);
+  return (
+    <div>
+      <select name="size" id="size">
+        <option>select a size</option>
+        <option value="xs">xs</option>
+        <option value="s">s</option>
+        <option value="m">m</option>
+        <option value="l">l</option>
+        <option value="xl">xl</option>
+      </select>
+      <select name="size" id="size">
+        <option>qty</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+     <br></br>
+      <button>add to cart</button>
 
-  render(){
-  return(
-    
-  )
-  }
+      </div>
+  );
 }
 
 export default AddToCart;
