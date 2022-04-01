@@ -1,36 +1,31 @@
-import React, { Component } from 'react';
+/* eslint-disable import/extensions */
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Overview from './Overview/Overview.jsx';
-// Here is out base App component.
-// Notice we are NOT using jsx here. This is because we have not set up babel yet.
-class App extends Component {
-  constructor(props) {
-    super(props);
+import QuestionAnswers from './QuestionAnswers/QuestionAnswers.jsx';
+import RatingReviews from './RatingReviews/RatingReviews.jsx';
+import RelatedItems from './RelatedItems/RelatedItems.jsx';
 
-    this.state = {
-      data: [],
-    };
-  }
+function App() {
+  const [product, setProduct] = useState(38321);
 
-  // example
-  componentDidMount() {
-    axios.get('/products')
-      .then((response) => {
-        console.log('in client', response);
-      })
-      .catch((err) => {
-        console.log('err in client', err);
-      });
-  }
+  useEffect(() => {
+    // axios
+    //   .get('/products')
+    //   .then((results) => setData(results))
+    //   .catch(console.error);
+    setProduct(38321);
+  });
 
-  render() {
-    return (
-      <div className="app">
-        Team Alpine Rockies!
-        <Overview />
-      </div>
-    );
-  }
+  return (
+    <div className="app">
+      <h1>Team Alpine Rockies!</h1>
+      <Overview />
+      <RelatedItems />
+      <QuestionAnswers />
+      <RatingReviews />
+    </div>
+  );
 }
 
 export default App;

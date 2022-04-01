@@ -1,4 +1,4 @@
-import { React } from "react";
+import React from "react";
 
 function RelatedItems(props) {
   return <div className="releatedItems">ReleatedItems</div>;

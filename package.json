@@ -12,7 +12,7 @@
   "scripts": {
     "build": "webpack --mode=production",
     "client-dev": "webpack --config ./webpack.config.js --mode development -w",
-    "server-dev" : "nodemon server/index.js",
+    "server-dev": "nodemon server/index.js",
     "test": "jest"
   },
   "dependencies": {
@@ -20,13 +20,16 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "react": "^17.0.2",
+    "react-animated-heart": "^0.0.7-alpha.1",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
     "react-modal": "^3.14.4"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
+    "@types/brainhubeu__react-carousel": "^2.0.5",
     "babel-loader": "^8.2.4",
     "css-loader": "^6.7.1",
     "eslint": "^8.12.0",
