@@ -7,8 +7,6 @@ import QAListEntry from './QAListEntry';
 function QAList() {
   const { productId } = useContext(ProductContext);
 
-  console.log(productId);
-
   const [questions, setQuestions] = useState(() => []);
   const [render, setRender] = useState(() => (
     <p className="loading">Loading ...</p>
