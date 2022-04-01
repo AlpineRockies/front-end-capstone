@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './style.css';
 import ProductInfo from './ProductInfo.jsx';
+import AddToCart from './AddToCart.jsx';
+import ImageGallery from './ImageGallery.jsx';
+import StyleSelector from './StyleSelector.jsx';
 
 class Overview extends Component {
   constructor() {
@@ -13,7 +16,6 @@ class Overview extends Component {
     };
   }
 
-  // example
   componentDidMount() {
     const random = Math.floor(Math.random() * (38321 - 37311) + 37311);
     console.log(random);
@@ -38,18 +40,21 @@ class Overview extends Component {
     return (
       <div className="ov-overview">
         <div className="ov-imageGallery">
-        <h3>Images</h3>
+          <h3>Images</h3>
+          <ImageGallery styles={this.state.styles} />
         </div>
         <div className="ov-selection">
           <div className="ov-productInfo">
             <h3>Info</h3>
-            <ProductInfo description={this.state.data}/>
+            <ProductInfo description={this.state.data} />
           </div>
           <div className="ov-styles">
             <h3>Styles</h3>
+            <StyleSelector styles={this.state.styles} />
           </div>
           <div className="ov-checkout">
             <h3>Checkout</h3>
+            <AddToCart />
           </div>
         </div>
       </div>

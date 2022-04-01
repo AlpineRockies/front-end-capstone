@@ -1,16 +1,17 @@
-import React from 'react'
+import React from 'react';
 
-class ImageGallery extends React.Component{
-  constructor(){
-    super();
+function ImageGallery(props) {
+  let loadingOrImage;
+  if (props.styles.results !== undefined) {
+    loadingOrImage = <img className="largePicture" src={props.styles.results[0].photos[0].url} />;
   }
-  }
+  return (
+    <div>
+      <div>Hello World</div>
+      <p>{loadingOrImage}</p>
 
-  render(){
-  return(
-
-  )
-  }
+    </div>
+  );
 }
 
 export default ImageGallery;
