@@ -3,10 +3,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import ReviewList from './ReviewList.jsx';
 import WriteReview from './WriteReview.jsx'
-import { ProductIDContext } from '../App.jsx';
+//import { ProductIDContext } from '../App.jsx';
+import ProductContext from '../Context.jsx';
 
 function RatingReviews() {
-  const productID = useContext(ProductIDContext);
+  const { productId } = useContext(ProductContext);
+  console.log('i am prouct id in RR', productId);
 
   const [sortView, setSortView] = useState('relevant');
   const [sortedList, setSortedList] = useState([]);
@@ -16,7 +18,7 @@ function RatingReviews() {
 
   useEffect(() => {
     axios
-      .get(`reviews?product_id=${productID}&sort=${sortView}&page=${pageUrl}&count=${countUrl}`)
+      .get(`reviews?product_id=${productId}&sort=${sortView}&page=${pageUrl}&count=${countUrl}`)
       .then((results) => {
         setSortedList(results.data.results);
       })
