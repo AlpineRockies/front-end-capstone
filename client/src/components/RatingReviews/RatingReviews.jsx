@@ -2,13 +2,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import ReviewList from './ReviewList.jsx';
-import WriteReview from './WriteReview.jsx'
-//import { ProductIDContext } from '../App.jsx';
+import WriteReview from './WriteReview.jsx';
 import ProductContext from '../Context.jsx';
 
 function RatingReviews() {
   const { productId } = useContext(ProductContext);
-  console.log('i am prouct id in RR', productId);
 
   const [sortView, setSortView] = useState('relevant');
   const [sortedList, setSortedList] = useState([]);
@@ -67,7 +65,7 @@ function RatingReviews() {
 
       <div className="RR-write-review">
         <button className="RR-write-review-button" type="button" onClick={handleWriteReviewClick}>Write Review</button>
-        <WriteReview showWriteReview={showWriteReview} setShowWriteReview={setShowWriteReview} />
+        <WriteReview showWriteReview={showWriteReview} setShowWriteReview={setShowWriteReview} productId={productId}/>
       </div>
 
     </div>
