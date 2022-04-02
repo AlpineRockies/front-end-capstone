@@ -4,13 +4,16 @@ function Items (props) {
   console.log(props);
 
 
+
   return (
-    <li>
-      <img src={props.url} />
-      <p>Category</p>
+    <div className="ri-item" onClick={() => props.handleClick(props.id)}>
+      <span>
+      <img className="ri-thumbnails" src={props.url} />
+      </span>
+      <h3>Category</h3>
       <p>Name: - {props.name}</p>
-      <p>{props.original_price}</p>
-    </li>
+      <p>Price: {props.original_price}</p>
+    </div>
   )
 
 }

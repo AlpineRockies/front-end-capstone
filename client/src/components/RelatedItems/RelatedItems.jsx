@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Items from './Items.jsx';
+import './style.css';
+import Related from './Related.jsx';
+import Comparison from './Comparison.jsx';
+
 
 class RelatedItems extends Component {
   constructor(props) {
@@ -8,11 +11,17 @@ class RelatedItems extends Component {
     this.state = {
       relatedItems: [],
     };
+
   }
 
   componentDidMount() {
     console.log('[componentDidMount] RelatedItems');
     this.getRelatedData();
+  }
+
+  handleClick(event) {
+    console.log("[RelatedItems] handleClick :", event);
+    //feed this item back to app for reload of Overview
   }
 
   getRelatedData() {
@@ -45,24 +54,21 @@ class RelatedItems extends Component {
       });
   }
 
-
-
   render() {
     const { relatedItems } = this.state;
-    if (relatedItems && relatedItems.length !== 0) {
-      return (
-        <ul className="ri-items">
-          {relatedItems.map((item) => (
-            <Items className="ri_eachitem"
-              url={item.results[0].photos[0].thumbnail_url}
-              name={item.results[0].name}
-              original_price={item.results[0].original_price}
-               />
-          ))}
-        </ul>
-      );
-    }
-    return <p>Please Wait</p>;
+    return (
+      <div className="ri-parent">
+        <div className="ri-relateditems">
+          <h3>Related Items</h3>
+          <Related
+            relatedItems={relatedItems}
+            handleClick={this.handleClick} />
+        </div>
+        <div className="ri-comparison">
+          <Comparison />
+        </div>
+      </div>
+    );
   }
 }
 
