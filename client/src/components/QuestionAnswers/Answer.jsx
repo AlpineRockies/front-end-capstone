@@ -2,20 +2,21 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 
+// eslint-disable-next-line import/no-unresolved
+import { compareHelpfulness } from 'Utilities';
+
 function Answer({ answers }) {
-  const [shownAnswerCount, setShownAnswerCount] = useState(() => 2);
-  const [showMore, setShowMore] = useState(() => true);
+  const [shownAnswerCount, setShownAnswerCount] = useState(2);
+  const [showMore, setShowMore] = useState(true);
 
   const answerStyle = {
     display: 'flex',
   };
 
-  const sortedAnswers = Object.values(answers).sort(
-    (a, b) => b.helpfulness - a.helpfulness,
-  );
+  const sortedAnswers = Object.values(answers).sort(compareHelpfulness);
 
   const handleMoreAnswers = () => {
-    setShownAnswerCount(() => (showMore ? sortedAnswers.length : 2));
+    setShownAnswerCount(showMore ? sortedAnswers.length : 2);
     setShowMore((moreOrLess) => !moreOrLess);
   };
 

@@ -1,5 +1,8 @@
 import axios from 'axios';
 import React, { useContext, useState, useEffect } from 'react';
+
+// eslint-disable-next-line import/no-unresolved
+import { compareHelpfulness } from 'Utilities';
 import ProductContext from '../Context';
 import QAListEntry from './QAListEntry';
 
@@ -12,13 +15,15 @@ function QAList() {
   const [shownQuestionCount, setShownQuestionCount] = useState(initialQuestionCount);
   const [renderedItems, setRenderedItems] = useState(<p className="loading">Loading ...</p>);
 
+  const handleMoreQuestions = () => setShownQuestionCount(questions.length);
+
   // get list of questions
   useEffect(() => {
     axios
       .get(`/qa/questions?product_id=${productId}`)
       .then((response) => response.data.results)
       .then((newQuestions) => {
-        setQuestions(newQuestions);
+        setQuestions(newQuestions.sort(compareHelpfulness));
         setShownQuestionCount(initialQuestionCount);
       })
       // eslint-disable-next-line no-console
@@ -38,9 +43,6 @@ function QAList() {
     }
   }, [questions, shownQuestionCount]);
 
-  const handleMoreQuestions = () => setShownQuestionCount(questions.length);
-
-  // map over list of questions and render a list entry for each
   return (
     <div className="QA-list">
       {renderedItems}
