@@ -3,6 +3,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import ReviewList from './ReviewList.jsx';
 import WriteReview from './WriteReview.jsx';
+import Breakdown from './Breakdown.jsx';
+
 import ProductContext from '../Context.jsx';
 
 function RatingReviews() {
@@ -16,7 +18,9 @@ function RatingReviews() {
 
   useEffect(() => {
     axios
-      .get(`reviews?product_id=${productId}&sort=${sortView}&page=${pageUrl}&count=${countUrl}`)
+      .get(
+        `reviews?product_id=${productId}&sort=${sortView}&page=${pageUrl}&count=${countUrl}`
+      )
       .then((results) => {
         setSortedList(results.data.results);
       })
@@ -36,7 +40,6 @@ function RatingReviews() {
   const handleMoreReviewsClick = (event) => {
     event.preventDefault();
     setCountUrl(countUrl + 2);
-    console.log(sortedList);
   };
 
   const handleWriteReviewClick = (event) => {
@@ -45,29 +48,46 @@ function RatingReviews() {
   };
 
   return (
-    <div className="RR-review-list">
+    <div className='RR-review-list'>
       <h2>Rating And Reviews</h2>
+
+      <Breakdown productId={productId} />
 
       <form onClick={handleViewClick}>
         <label>
           Sort:
           <select value={sortView} onChange={handleViewChange}>
-            <option value="relevant">Relevant</option>
-            <option value="newest">Newest</option>
-            <option value="helpful">Helpful</option>
+            <option value='relevant'>Relevant</option>
+            <option value='newest'>Newest</option>
+            <option value='helpful'>Helpful</option>
           </select>
         </label>
       </form>
 
       <ReviewList sortedList={sortedList} />
 
-      <button className="RR-more-reviews-button" type="button" onClick={handleMoreReviewsClick}>More Reviews</button>
+      <button
+        className='RR-more-reviews-button'
+        type='button'
+        onClick={handleMoreReviewsClick}
+      >
+        More Reviews
+      </button>
 
-      <div className="RR-write-review">
-        <button className="RR-write-review-button" type="button" onClick={handleWriteReviewClick}>Write Review</button>
-        <WriteReview showWriteReview={showWriteReview} setShowWriteReview={setShowWriteReview} productId={productId}/>
+      <div className='RR-write-review'>
+        <button
+          className='RR-write-review-button'
+          type='button'
+          onClick={handleWriteReviewClick}
+        >
+          Write Review
+        </button>
+        <WriteReview
+          showWriteReview={showWriteReview}
+          setShowWriteReview={setShowWriteReview}
+          productId={productId}
+        />
       </div>
-
     </div>
   );
 }
