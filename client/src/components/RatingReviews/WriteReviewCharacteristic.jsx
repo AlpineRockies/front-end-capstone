@@ -63,7 +63,7 @@ function WriteReviewCharacteristic() {
   ];
 
   const handleChange = (event) => {
-    console.log('hit', event.target.value);
+    //console.log('hit', event.target.value);
   };
 
   return (

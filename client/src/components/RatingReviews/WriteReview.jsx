@@ -9,12 +9,12 @@ function WriteReview({ showWriteReview, setShowWriteReview, productId }) {
   const [recommend, setRecommend] = useState(null);
 
   const handleReivewInput = (event) => {
-    console.log('in onchange write', event.target.value);
+    //console.log('in onchange write', event.target.value);
   };
 
   const handleReviewInputSubmit = (event) => {
     event.preventDefault();
-    console.log('hit in handle submit');
+    //console.log('hit in handle submit');
 
     setShowWriteReview(false);
   };
