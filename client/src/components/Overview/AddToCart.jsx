@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Heart from "react-animated-heart";
 
 function AddToCart() {
   const [isClick, setClick] = useState(false);
@@ -23,9 +22,6 @@ function AddToCart() {
       </select>
      <br></br>
       <button className="ov-checkoutButton">add to cart</button>
-      <div className="App">
-      <Heart isClick={isClick} onClick={() => setClick(!isClick)} />
-    </div>
       </div>
   );
 }
