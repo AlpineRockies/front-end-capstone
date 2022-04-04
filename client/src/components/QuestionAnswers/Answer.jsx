@@ -1,52 +1,47 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import moment from 'moment';
+import axios from 'axios';
 
-// eslint-disable-next-line import/no-unresolved
-import { compareHelpfulness } from 'Utilities';
+function Answer({ answer }) {
+  const [markedHelpful, setMarkedHelpful] = useState(false);
 
-function Answer({ answers }) {
-  const [shownAnswerCount, setShownAnswerCount] = useState(2);
-  const [showMore, setShowMore] = useState(true);
+  const handleMarkHelpful = (answerId) => markedHelpful || axios
+    .put(`/qa/answers/${answerId}/helpful`)
+    .then(() => setMarkedHelpful(true))
+    // eslint-disable-next-line no-console
+    .catch(console.error);
 
-  const answerStyle = {
-    display: 'flex',
-  };
-
-  const sortedAnswers = Object.values(answers).sort(compareHelpfulness);
-
-  const handleMoreAnswers = () => {
-    setShownAnswerCount(showMore ? sortedAnswers.length : 2);
-    setShowMore((moreOrLess) => !moreOrLess);
+  const handleKeyDown = ({ key }) => {
+    if (key === 'Enter' || key === ' ') {
+      handleMarkHelpful();
+    }
   };
 
   return (
-    <div className="qa-answer" style={answerStyle}>
-      <span>
-        <strong>A: </strong>
+    <span key={answer.id}>
+      <span>{answer.body}</span>
+      <br />
+      <span>by </span>
+      {answer.answerer_name}
+      <span>, </span>
+      {moment(answer.date).format('MMM Do, YYYY')}
+      <span> | Helpful? </span>
+      <span
+        onClick={() => handleMarkHelpful(answer.id)}
+        role="button"
+        tabIndex={-1}
+        onKeyDown={handleKeyDown}
+        style={{ cursor: 'pointer' }}
+      >
+        <u>Yes</u>
+        {` (${markedHelpful ? answer.helpfulness + 1 : answer.helpfulness})`}
       </span>
-      <span>
-        {sortedAnswers.slice(0, shownAnswerCount).map((answer) => (
-          <span key={answer.id}>
-            <span>{answer.body}</span>
-            <br />
-            <span>by </span>
-            {answer.answerer_name}
-            <span>, </span>
-            {moment(answer.date).format('MMM Do, YYYY')}
-            <span> | Helpful? </span>
-            <u>Yes</u>
-            {` (${answer.helpfulness}) | `}
-            <u>Report</u>
-            <br />
-            <br />
-          </span>
-        ))}
-        <button onClick={handleMoreAnswers} type="button">
-          {showMore ? 'See more answers' : 'Collapse'}
-        </button>
-      </span>
-    </div>
+      {' | '}
+      <u>Report</u>
+      <br />
+      <br />
+    </span>
   );
 }
 
