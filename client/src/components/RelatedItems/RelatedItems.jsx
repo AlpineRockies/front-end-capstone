@@ -30,7 +30,7 @@ class RelatedItems extends React.Component {
     axios
       .get(`/products/${product_id}/related`)
       .then((test) => {
-        console.log('test', test);
+        // console.log('test', test);
         return test;
       })
       .then((response) =>
@@ -46,7 +46,7 @@ class RelatedItems extends React.Component {
         )
       )
       .then((arr) => {
-        console.log('array ', arr);
+        // console.log('array ', arr);
         this.setState({
           relatedItems: arr,
         });
@@ -57,7 +57,7 @@ class RelatedItems extends React.Component {
   }
 
   getYourOutfit = (event) => {
-    console.log("[getYourOutfit] ReleatedItems.jsx", event);
+    // console.log("[getYourOutfit] ReleatedItems.jsx", event);
     // axios
     //   .get(`/products/${product_id}/styles`)
     //   .then((response) => response.data)

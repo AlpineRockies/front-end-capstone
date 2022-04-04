@@ -37,7 +37,7 @@ function Related({ relatedItems, handleClick }) {
 
         {relatedItems.map((ea, idx) => (
           <div key={idx}>
-            {console.log('Testing', ea.product_id)}
+            {/* {console.log('Testing', ea.product_id)} */}
             {arr.includes(idx) && (
               <div className="ri-container">
                 <img
@@ -63,17 +63,3 @@ function Related({ relatedItems, handleClick }) {
 }
 
 export default Related;
-
-// {
-//   relatedItems.map((item, index) => {
-//     <Items
-//       key={item.product_id}
-//       className="ri_eachitem"
-//       url={item.results[0].photos[0].thumbnail_url}
-//       name={item.results[0].name}
-//       id={item.product_id}
-//       original_price={item.results[0].original_price}
-//       handleClick={handleClick}
-//     />;
-//   });
-// }
