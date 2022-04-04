@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 
-function AddToCart() {
-  const [isClick, setClick] = useState(false);
+function AddToCart(props) {
+  // if (props.styles.results !== undefined) {
+
+  // }
   return (
     <div>
       <select name="size" id="size" className="ov-sizes">
@@ -20,9 +22,9 @@ function AddToCart() {
         <option value="4">4</option>
         <option value="5">5</option>
       </select>
-     <br></br>
+      <br />
       <button className="ov-checkoutButton">add to cart</button>
-      </div>
+    </div>
   );
 }
 
