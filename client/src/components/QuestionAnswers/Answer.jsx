@@ -1,10 +1,23 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import moment from 'moment';
 
+// eslint-disable-next-line import/no-unresolved
+import { compareHelpfulness } from 'Utilities';
+
 function Answer({ answers }) {
+  const [shownAnswerCount, setShownAnswerCount] = useState(2);
+  const [showMore, setShowMore] = useState(true);
+
   const answerStyle = {
     display: 'flex',
+  };
+
+  const sortedAnswers = Object.values(answers).sort(compareHelpfulness);
+
+  const handleMoreAnswers = () => {
+    setShownAnswerCount(showMore ? sortedAnswers.length : 2);
+    setShowMore((moreOrLess) => !moreOrLess);
   };
 
   return (
@@ -13,14 +26,14 @@ function Answer({ answers }) {
         <strong>A: </strong>
       </span>
       <span>
-        {Object.values(answers).map((answer) => (
+        {sortedAnswers.slice(0, shownAnswerCount).map((answer) => (
           <span key={answer.id}>
             <span>{answer.body}</span>
             <br />
             <span>by </span>
             {answer.answerer_name}
             <span>, </span>
-            {moment(answer.date).format()}
+            {moment(answer.date).format('MMM Do, YYYY')}
             <span> | Helpful? </span>
             <u>Yes</u>
             {` (${answer.helpfulness}) | `}
@@ -29,6 +42,9 @@ function Answer({ answers }) {
             <br />
           </span>
         ))}
+        <button onClick={handleMoreAnswers} type="button">
+          {showMore ? 'See more answers' : 'Collapse'}
+        </button>
       </span>
     </div>
   );

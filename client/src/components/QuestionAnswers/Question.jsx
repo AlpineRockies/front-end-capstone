@@ -1,10 +1,25 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
-function Question({ questionBody, questionHelpfulness }) {
+function Question({ questionId, questionBody, questionHelpfulness }) {
+  const [markedHelpful, setMarkedHelpful] = useState(false);
+
   const questionStyle = {
     display: 'flex',
     justifyContent: 'space-between',
+  };
+
+  const handleMarkHelpful = () => markedHelpful || axios
+    .put(`/qa/questions/${questionId}/helpful`)
+    .then(() => setMarkedHelpful(true))
+    // eslint-disable-next-line no-console
+    .catch(console.error);
+
+  const handleKeyDown = ({ key }) => {
+    if (key === 'Enter' || key === ' ') {
+      handleMarkHelpful();
+    }
   };
 
   return (
@@ -16,8 +31,17 @@ function Question({ questionBody, questionHelpfulness }) {
       <span>
         Helpful?
         {' '}
-        <u>Yes</u>
-        {` (${questionHelpfulness}) | `}
+        <span
+          onClick={handleMarkHelpful}
+          role="button"
+          tabIndex={-1}
+          onKeyDown={handleKeyDown}
+          style={{ cursor: 'pointer' }}
+        >
+          <u>Yes</u>
+          {` (${markedHelpful ? questionHelpfulness + 1 : questionHelpfulness})`}
+        </span>
+        {' | '}
         <u>Add Answer</u>
       </span>
     </div>

@@ -6,6 +6,7 @@ import Answer from './Answer';
 
 function QAListEntry({ questionData }) {
   const {
+    question_id: questionId,
     question_body: questionBody,
     // question_date: questionDate,
     // asker_name: askerName,
@@ -17,6 +18,7 @@ function QAListEntry({ questionData }) {
   return (
     <div className="qa-list-entry">
       <Question
+        questionId={questionId}
         questionBody={questionBody}
         questionHelpfulness={questionHelpfulness}
       />
