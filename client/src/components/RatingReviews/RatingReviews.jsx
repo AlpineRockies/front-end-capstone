@@ -51,7 +51,7 @@ function RatingReviews() {
     <div className='RR-review-list'>
       <h2>Rating And Reviews</h2>
 
-      <Breakdown productId={productId} />
+      {/* <Breakdown productId={productId} /> */}
 
       <form onClick={handleViewClick}>
         <label>

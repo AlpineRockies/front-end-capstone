@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { HiThumbUp, HiThumbDown } from 'react-icons/hi';
 import { FaStar } from 'react-icons/fa';
+import WriteReviewCharacteristic from './WriteReviewCharacteristic.jsx'
 
 function WriteReview({ showWriteReview, setShowWriteReview, productId }) {
   const [reviewInputData, setReviewInputData] = useState([]);
@@ -18,10 +19,27 @@ function WriteReview({ showWriteReview, setShowWriteReview, productId }) {
     setShowWriteReview(false);
   };
 
+  const handleStarCharacteristic = (star) => {
+    if (star === 1) {
+      return 'Poor';
+    } else if (star === 2) {
+      return 'Fair';
+    } else if (star === 3) {
+      return 'Average';
+    } else if (star === 4) {
+      return 'Good';
+    } else if (star === 5) {
+      return 'Great'
+    } else {
+      '';
+    }
+  };
+
   return (
     <div className='RR-wr-form'>
       {showWriteReview ? (
         <form>
+          <h4>Write Your Review</h4>
           <div className='RR-wr-exit'>
             <button
               className='RR-wr-exit-button'
@@ -46,6 +64,18 @@ function WriteReview({ showWriteReview, setShowWriteReview, productId }) {
                   </label>
                 );
               })}
+              <div className='RR-wr-star-characteristic'>{handleStarCharacteristic(starRating)}</div>
+            </div>
+
+            <div className='RR-wr-recommend'>
+              <span>Would you recommend?</span>
+                <label><HiThumbUp onClick={() => setRecommend(true)} /></label>
+                <label><HiThumbDown onClick={() => setRecommend(false)} /></label>
+            </div>
+
+
+            <div className='RR-wr-characteristic'>
+              <WriteReviewCharacteristic />
             </div>
 
             <div className='RR-wr-name'>
@@ -77,11 +107,6 @@ function WriteReview({ showWriteReview, setShowWriteReview, productId }) {
               />
             </div>
 
-            <div className='RR-wr-recommend'>
-              <span>Would you recommend?</span>
-                <label><HiThumbUp onClick={() => setRecommend(true)} /></label>
-                <label><HiThumbDown onClick={() => setRecommend(false)} /></label>
-            </div>
 
 
           </div>
