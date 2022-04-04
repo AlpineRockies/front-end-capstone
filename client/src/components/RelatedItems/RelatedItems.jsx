@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Items from './Items.jsx';
+import './style.css';
+import Related from './Related.jsx';
+import Comparison from './Comparison.jsx';
 
-class RelatedItems extends Component {
+class RelatedItems extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       relatedItems: [],
+      outfit: [],
     };
   }
 
@@ -15,11 +18,19 @@ class RelatedItems extends Component {
     this.getRelatedData();
   }
 
-  getRelatedData() {
+  handleClick = (event) => {
+    console.log('[RelatedItems] handleClick :', event);
+    // feed this item back to app for reload of Overview
+    this.getYourOutfit(event);
+  }
+
+
+
+  getRelatedData(product_id = 38013) {
     axios
-      .get('/products/38321/related')
+      .get(`/products/${product_id}/related`)
       .then((test) => {
-        console.log('test', test);
+        // console.log('test', test);
         return test;
       })
       .then((response) =>
@@ -35,7 +46,7 @@ class RelatedItems extends Component {
         )
       )
       .then((arr) => {
-        console.log('array ', arr);
+        // console.log('array ', arr);
         this.setState({
           relatedItems: arr,
         });
@@ -45,24 +56,31 @@ class RelatedItems extends Component {
       });
   }
 
-
+  getYourOutfit = (event) => {
+    // console.log("[getYourOutfit] ReleatedItems.jsx", event);
+    // axios
+    //   .get(`/products/${product_id}/styles`)
+    //   .then((response) => response.data)
+    //   .then((prod) => {
+    //     console.log('YOUR OUTFIT: ', prod);
+    //   })
+    //   .catch((err) => console.log(err));
+  }
 
   render() {
     const { relatedItems } = this.state;
-    if (relatedItems && relatedItems.length !== 0) {
-      return (
-        <ul className="ri-items">
-          {relatedItems.map((item) => (
-            <Items className="ri_eachitem"
-              url={item.results[0].photos[0].thumbnail_url}
-              name={item.results[0].name}
-              original_price={item.results[0].original_price}
-               />
-          ))}
-        </ul>
-      );
-    }
-    return <p>Please Wait</p>;
+    return (
+      <div className="ri-parent">
+        <div className="ri-relateditems">
+          <h3>Related Items</h3>
+          <Related relatedItems={relatedItems} handleClick={this.handleClick} />
+        </div>
+        <div className="ri-comparison">
+          <h3>Comparison</h3>
+          <Comparison />
+        </div>
+      </div>
+    );
   }
 }
 
