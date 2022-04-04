@@ -4,7 +4,7 @@ function StyleSelector(props) {
   console.log('hello ', props.styles.results);
   let loadingOrImage;
   if (props.styles.results !== undefined) {
-    loadingOrImage = props.styles.results.map((image) => <span><img className="thumbnails" id={image.style_id} src={image.photos[0].thumbnail_url} /></span>);
+    loadingOrImage = props.styles.results.map((image, index) => <span><img className="thumbnails" key={index} src={image.photos[0].thumbnail_url} /></span>);
   }
 
   return (

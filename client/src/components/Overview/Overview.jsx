@@ -23,13 +23,9 @@ class Overview extends Component {
       .then((response) => {
         this.setState({ data: response.data });
       })
-      .catch((err) => {
-        console.log('err in client', err);
-      });
-
-    axios.get(`/products/${random}/styles`)
-      .then((response) => {
-        this.setState({ styles: response.data });
+      .then(() => axios.get(`/products/${random}/styles`, {}))
+      .then((item) => {
+        if (item.data.results !== undefined) { this.setState({ styles: item.data }); }
       })
       .catch((err) => {
         console.log('err in client', err);
