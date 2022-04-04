@@ -1,9 +1,16 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import { MdOutlineAddBox } from 'react-icons/md'
 
 function Comparison(props) {
+
+
+  const [arr, setArr] = useState([])
+
+
+
   return (
     <div>
-      <h3>Comparison</h3>
+      <MdOutlineAddBox className="comp-additem" />
     </div>
   );
 }

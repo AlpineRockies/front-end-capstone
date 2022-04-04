@@ -18,4 +18,4 @@ function Items (props) {
 
 }
 
-export default Items;
+//export default Items;
