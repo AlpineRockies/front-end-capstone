@@ -27,7 +27,7 @@ function Overview() {
   }, [productId]);
 
   useEffect(() => {
-    Promis.all(
+    Promise.all(
       axios
         .get(`/products/${productId}`)
         .then((res) => setDescription(res.data))
