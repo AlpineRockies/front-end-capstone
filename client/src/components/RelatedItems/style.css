@@ -114,7 +114,7 @@
 }
 
 .comp-additem {
-  position: absolute;
+  position: static;
   font-size: 6rem;
   color: rebeccapurple;
 }
