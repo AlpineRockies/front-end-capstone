@@ -1,32 +1,43 @@
 /* eslint-disable import/extensions */
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import ReviewList from './ReviewList.jsx';
-import WriteReview from './WriteReview.jsx';
-import Breakdown from './Breakdown.jsx';
+import ReviewList from './ReviewList';
+import WriteReview from './WriteReview';
+import Breakdown from './Breakdown';
 
-import ProductContext from '../Context.jsx';
+import ProductContext from '../Context';
 
 function RatingReviews() {
   const { productId } = useContext(ProductContext);
 
   const [sortView, setSortView] = useState('relevant');
-  const [sortedList, setSortedList] = useState([]);
+  const [sortedList, setSortedList] = useState(sortedList);
   const [pageUrl, setPageUrl] = useState(1);
   const [countUrl, setCountUrl] = useState(2);
   const [showWriteReview, setShowWriteReview] = useState(false);
+  const [metaData, setMetaData] = useState(metaData);
+
+  const fetchDataRR = () => {
+    const reviewAPI = `reviews?product_id=${productId}&sort=${sortView}&page=${pageUrl}&count=${countUrl}`;
+    const metaDataAPI = `reviews/meta?product_id=${productId}`;
+
+    const getReviewAPI = axios.get(reviewAPI);
+    const getMetaDataAPI = axios.get(metaDataAPI);
+
+    axios.all([getReviewAPI, getMetaDataAPI])
+      .then(
+        axios.spread((...allData) => {
+          setSortedList(allData[0].data.results);
+          setMetaData(allData[1].data);
+        })
+      )
+      .catch((err) => {
+        console.log('err in RR GET', err);
+      });
+  };
 
   useEffect(() => {
-    axios
-      .get(
-        `reviews?product_id=${productId}&sort=${sortView}&page=${pageUrl}&count=${countUrl}`
-      )
-      .then((results) => {
-        setSortedList(results.data.results);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    fetchDataRR();
   }, [sortView, countUrl]);
 
   const handleViewChange = (event) => {
@@ -51,7 +62,7 @@ function RatingReviews() {
     <div className='RR-review-list'>
       <h2>Rating And Reviews</h2>
 
-      {/* <Breakdown productId={productId} /> */}
+      {metaData && <Breakdown metaData={metaData} />}
 
       <form onClick={handleViewClick}>
         <label>
@@ -64,7 +75,7 @@ function RatingReviews() {
         </label>
       </form>
 
-      <ReviewList sortedList={sortedList} />
+      {sortedList && <ReviewList sortedList={sortedList} />}
 
       <button
         className='RR-more-reviews-button'
@@ -82,11 +93,12 @@ function RatingReviews() {
         >
           Write Review
         </button>
-        <WriteReview
+          {metaData &&  <WriteReview
           showWriteReview={showWriteReview}
           setShowWriteReview={setShowWriteReview}
           productId={productId}
-        />
+          metaData={metaData}
+        />}
       </div>
     </div>
   );
