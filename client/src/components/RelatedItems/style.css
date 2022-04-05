@@ -104,6 +104,15 @@
   user-select: none;
 }
 
+.ri-star {
+  position: absolute;
+  top: 1px;
+  right: 50px;
+  font-size: 3rem;
+  z-index: 10;
+  cursor: pointer;
+}
+
 .comp-additem {
   position: absolute;
   font-size: 6rem;
