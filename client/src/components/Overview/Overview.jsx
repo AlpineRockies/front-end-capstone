@@ -1,61 +1,62 @@
-import React, { Component } from 'react';
+/* eslint-disable arrow-body-style */
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  Component,
+} from 'react';
 import axios from 'axios';
 import './style.css';
-import ProductInfo from './ProductInfo.jsx';
-import AddToCart from './AddToCart.jsx';
-import ImageGallery from './ImageGallery.jsx';
-import StyleSelector from './StyleSelector.jsx';
+import ProductInfo from './ProductInfo';
+import AddToCart from './AddToCart';
+import ImageGallery from './ImageGallery';
+import StyleSelector from './StyleSelector';
 
-class Overview extends Component {
-  constructor() {
-    super();
+function Overview() {
+  const random = Math.floor(Math.random() * (38321 - 37311) + 37311);
+  const [productId, setProductId] = useState(random);
+  const [styles, setStyles] = useState([]);
+  const [description, setDescription] = useState([]);
+  const [count, setCount] = useState(0);
 
-    this.state = {
-      data: [],
-      styles: [],
-    };
-  }
+  useEffect(() => {
+    axios
+      .get(`/products/${productId}/styles`)
+      .then((res) => setStyles(res.data.results))
+      .catch((err) => console.error(err));
+  }, [productId]);
 
-  componentDidMount() {
-    const random = Math.floor(Math.random() * (38321 - 37311) + 37311);
-    // console.log(random);
-    axios.get(`/products/${random}`)
-      .then((response) => {
-        this.setState({ data: response.data });
-      })
-      .then(() => axios.get(`/products/${random}/styles`, {}))
-      .then((item) => {
-        if (item.data.results !== undefined) { this.setState({ styles: item.data }); }
-      })
-      .catch((err) => {
-        console.log('err in client', err);
-      });
-  }
+  useEffect(() => {
+    Promise.all(
+      axios
+        .get(`/products/${productId}`)
+        .then((res) => setDescription(res.data))
+        .catch((err) => console.log(err)),
+    );
+  }, [productId]);
 
-  render() {
-    return (
-      <div className="ov-overview">
-        <div className="ov-imageGallery">
-          <h3>Images</h3>
-          <ImageGallery styles={this.state.styles} />
+  return (
+    <div className="ov-overview">
+      <div className="ov-imageGallery">
+        <h3>Images</h3>
+        <ImageGallery styles={styles} count={count} />
+      </div>
+      <div className="ov-selection">
+        <div className="ov-productInfo">
+          <h3>Info</h3>
+          <ProductInfo styles={styles} />
         </div>
-        <div className="ov-selection">
-          <div className="ov-productInfo">
-            <h3>Info</h3>
-            <ProductInfo description={this.state.data} styles={this.state.styles} />
-          </div>
-          <div className="ov-styles">
-            <p>Styles</p>
-            <StyleSelector styles={this.state.styles} />
-          </div>
-          <div className="ov-checkout">
-            <h3>Checkout</h3>
-            <AddToCart styles={this.state.styles}/>
-          </div>
+        <div className="ov-styles">
+          <p>Styles</p>
+          <StyleSelector styles={styles} />
+        </div>
+        <div className="ov-checkout">
+          <h3>Checkout</h3>
+          <AddToCart styles={styles} />
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default Overview;
