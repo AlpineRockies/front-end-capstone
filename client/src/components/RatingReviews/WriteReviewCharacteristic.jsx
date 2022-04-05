@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 function WriteReviewCharacteristic({ handleCharacteristic, metaData }) {
   const [characteristicWR, setCharacteristicWR] = useState(characteristicWR);
@@ -56,10 +56,6 @@ function WriteReviewCharacteristic({ handleCharacteristic, metaData }) {
     { type: fitArr, header: 'Fit', index: '19' },
   ];
 
-  useEffect(() => {
-    handleCharacteristic(characteristicWR);
-  }, [characteristicWR]);
-
   const characteristicObj = {};
   const handleSetCharacteristicChange = (event) => {
     for (let i = 0; i < arrAllCharacteristic.length; i++) {
@@ -74,6 +70,7 @@ function WriteReviewCharacteristic({ handleCharacteristic, metaData }) {
           }
           if (i === arrAllCharacteristic.length - 1) {
             setCharacteristicWR(characteristicObj);
+            handleCharacteristic?.(characteristicObj);
           }
         }
       }
