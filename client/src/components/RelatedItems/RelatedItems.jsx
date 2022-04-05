@@ -3,9 +3,10 @@ import axios from 'axios';
 import _ from 'underscore';
 import './style.css';
 import Related from './Related';
-import Comparison from './Comparison';
+import YourOutfit from './YourOutfit';
 
 export const CombinedAPIDetails = React.createContext();
+export const YourOutfitContext = React.createContext();
 
 function RelatedItems() {
   const [productId, setProductId] = useState(38013);
@@ -13,7 +14,8 @@ function RelatedItems() {
   const [relatedItemsImg, setRelatedItemsImg] = useState([]);
   const [relatedItemsDetails, setRelatedItemsDetails] = useState([]);
   const [combinedAPIDetails, setCombinedAPIDetails] = useState([]);
-  const [outfit, setOutfit] = useState([]);
+  const [yourOutfitId, setYourOutfitId] = useState();
+  const [yourOutfit, setYourOutfit] = useState([]);
 
   useEffect(() => {
     axios
@@ -46,24 +48,52 @@ function RelatedItems() {
     ).then((res) => setRelatedItemsDetails(res));
   }, [relatedItems]);
 
+
+
+  // useEffect(() => {
+  //   const getRiImages = relatedItems.map(
+  //     (product) => `/products/${product}/styles`
+  //   );
+  //   const getRiDetails = relatedItems.map((product) => `products/${product}`);
+  //   console.log('test Mapping area: ', getRiImages, getRiDetails);
+
+  //   axios
+  //     .all(getRiImages.map((endpoint) => axios.get(endpoint)))
+  //     .then(data => setRelatedItemsImg([...relatedItemsImg, ...data.data]))
+  //     .then(() => console.log("relatedItemsImg",relatedItemsImg))
+  //     .then(
+  //       axios
+  //       .all(getRiDetails.map((endpoint) => axios.get(endpoint)))
+  //       .then(data => setRelatedItemsDetails([...relatedItemsDetails, ...data.data]))
+  //       .catch(err => console.log(err))
+  //     )
+  //     .catch(err => console.log(err))
+  // }, [relatedItems]);
+
   useEffect(() => {
-    const accArr = []
-    for (let i = 0; i < relatedItems.length; i += 1) {
-      accArr.push(_.extend(relatedItemsImg[i], relatedItemsDetails[i]));
+    console.log('RelatedItems: ', relatedItems)
+    const accArr = _.map(relatedItems, (ea, index) =>
+      _.extend(relatedItemsImg[index], relatedItemsDetails[index])
+    );
+    setCombinedAPIDetails(accArr);
+  }, [relatedItemsDetails]);
+
+  useEffect(() => {
+    console.log('outfitID ', yourOutfitId);
+    if (yourOutfitId) {
+      const getYOImages = axios.get(`/products/${yourOutfitId}/styles`);
+      const getYODetails = axios.get(`/products/${yourOutfitId}`);
+      axios
+        .all([getYOImages, getYODetails])
+        .then((response) =>
+          setYourOutfit([
+            ...yourOutfit,
+            { ...response[0].data, ...response[1].data },
+          ])
+        )
+        .catch((err) => console.log(err));
     }
-    setCombinedAPIDetails(accArr)
-  }, [relatedItemsDetails])
-
-  const handleClick = (event) => {
-    // under construction
-    console.log('[RelatedItems] handleClick :', event);
-    // feed this item back to app for reload of Overview
-    getYourOutfit(event);
-  };
-
-  const getYourOutfit = (event) => {
-    console.log('[getYourOutfit] ReleatedItems.jsx', event);
-  };
+  }, [yourOutfitId]);
 
   return (
     <div className="ri-parent">
@@ -73,9 +103,11 @@ function RelatedItems() {
           <Related setProductId={setProductId} />
         </CombinedAPIDetails.Provider>
       </div>
-      <div className="ri-comparison">
-        <h3>Comparison</h3>
-        <Comparison />
+      <div className="ri-youroutfit">
+        <h3>Your Outfit</h3>
+        <YourOutfitContext.Provider value={yourOutfit}>
+          <YourOutfit setYourOutfitId={setYourOutfitId} productId={productId} />
+        </YourOutfitContext.Provider>
       </div>
     </div>
   );
