@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import moment from 'moment';
 
 function ReviewEntry({ eachReview }) {
+  console.log('each', eachReview)
   return (
     <div className='RR-review-entry'>
       <div className='RR-review-header'>
@@ -20,6 +21,7 @@ function ReviewEntry({ eachReview }) {
         <p>Helpfulness?</p>
         {eachReview.helpfulness}
       </div>
+      <br></br>
     </div>
   );
 }
