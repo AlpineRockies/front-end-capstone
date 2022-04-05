@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import ReviewEntry from './ReviewEntry.jsx';
+import ReviewEntry from './ReviewEntry';
 
 function ReviewList({ sortedList }) {
   return (

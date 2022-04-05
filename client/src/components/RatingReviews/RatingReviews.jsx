@@ -1,11 +1,11 @@
 /* eslint-disable import/extensions */
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import ReviewList from './ReviewList.jsx';
-import WriteReview from './WriteReview.jsx';
-import Breakdown from './Breakdown.jsx';
+import ReviewList from './ReviewList';
+import WriteReview from './WriteReview';
+import Breakdown from './Breakdown';
 
-import ProductContext from '../Context.jsx';
+import ProductContext from '../Context';
 
 function RatingReviews() {
   const { productId } = useContext(ProductContext);

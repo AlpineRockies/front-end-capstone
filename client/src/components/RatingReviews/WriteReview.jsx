@@ -3,7 +3,7 @@ import axios from 'axios';
 import { HiThumbUp, HiThumbDown } from 'react-icons/hi';
 import { FaStar } from 'react-icons/fa';
 import WriteReviewCharacteristic from './WriteReviewCharacteristic';
-import WriteReviewStar from './WriteReviewStar.jsx';
+import WriteReviewStar from './WriteReviewStar';
 
 function WriteReview({
   showWriteReview,
