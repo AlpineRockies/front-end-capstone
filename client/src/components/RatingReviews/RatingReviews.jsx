@@ -11,7 +11,7 @@ function RatingReviews() {
   const { productId } = useContext(ProductContext);
 
   const [sortView, setSortView] = useState('relevant');
-  const [sortedList, setSortedList] = useState([]);
+  const [sortedList, setSortedList] = useState(sortedList);
   const [pageUrl, setPageUrl] = useState(1);
   const [countUrl, setCountUrl] = useState(2);
   const [showWriteReview, setShowWriteReview] = useState(false);
@@ -62,7 +62,7 @@ function RatingReviews() {
     <div className='RR-review-list'>
       <h2>Rating And Reviews</h2>
 
-      <Breakdown metaData={metaData} />
+      {metaData && <Breakdown metaData={metaData} />}
 
       <form onClick={handleViewClick}>
         <label>
@@ -75,7 +75,7 @@ function RatingReviews() {
         </label>
       </form>
 
-      <ReviewList sortedList={sortedList} />
+      {sortedList && <ReviewList sortedList={sortedList} />}
 
       <button
         className='RR-more-reviews-button'
@@ -93,12 +93,12 @@ function RatingReviews() {
         >
           Write Review
         </button>
-        <WriteReview
+          {metaData &&  <WriteReview
           showWriteReview={showWriteReview}
           setShowWriteReview={setShowWriteReview}
           productId={productId}
           metaData={metaData}
-        />
+        />}
       </div>
     </div>
   );

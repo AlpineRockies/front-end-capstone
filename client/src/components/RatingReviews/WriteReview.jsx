@@ -3,8 +3,14 @@ import axios from 'axios';
 import { HiThumbUp, HiThumbDown } from 'react-icons/hi';
 import { FaStar } from 'react-icons/fa';
 import WriteReviewCharacteristic from './WriteReviewCharacteristic';
+import WriteReviewStar from './WriteReviewStar.jsx';
 
-function WriteReview({ showWriteReview, setShowWriteReview, productId, metaData }) {
+function WriteReview({
+  showWriteReview,
+  setShowWriteReview,
+  productId,
+  metaData,
+}) {
   const [starRating, setStarRating] = useState(0);
   const [summaryRating, setSummaryRating] = useState(null);
   const [bodyRating, setBodyRating] = useState(null);
@@ -39,32 +45,11 @@ function WriteReview({ showWriteReview, setShowWriteReview, productId, metaData 
       })
       .catch((err) => {
         console.log('err', err);
-      })
-
-    // axios.post('/reviews', {body: JSON.stringify(query)})
-    // .then((response) => {
-    //   console.log('review post', response);
-    // })
-    // .catch((err) => {
-    //   console.log('err', err);
-    // })
-
+      });
   };
 
-  const handleStarCharacteristic = (star) => {
-    if (star === 1) {
-      return 'Poor';
-    } else if (star === 2) {
-      return 'Fair';
-    } else if (star === 3) {
-      return 'Average';
-    } else if (star === 4) {
-      return 'Good';
-    } else if (star === 5) {
-      return 'Great';
-    } else {
-      ('');
-    }
+  const handleStar = (star) => {
+    setStarRating(star);
   };
 
   const handleCharacteristic = (characteristics) => {
@@ -72,38 +57,25 @@ function WriteReview({ showWriteReview, setShowWriteReview, productId, metaData 
   };
 
   return (
-    <div className='RR-wr-form'>
+    <div className="RR-wr-form">
       {showWriteReview ? (
         <form onSubmit={handleReviewInputSubmit}>
           <h4>Write Your Review</h4>
-          <div className='RR-wr-exit'>
+          <div className="RR-wr-exit">
             <button
-              className='RR-wr-exit-button'
-              type='button'
+              className="RR-wr-exit-button"
+              type="button"
               onClick={() => setShowWriteReview(false)}
             >
               X
             </button>
           </div>
 
-          <div className='RR-wr-content'>
-            <div className='RR-wr-stars'>
-              {[...Array(5)].map((star, count) => {
-                count++;
-                return (
-                  <label key={count}>
-                    <FaStar
-                      value={count}
-                      onClick={() => setStarRating(count)}
-                    />
-                  </label>
-                );
-              })}
-              <div className='RR-wr-star-characteristic'>
-                {handleStarCharacteristic(starRating)}
-              </div>
+          <div className="RR-wr-content">
+            <div className="RR-wr-stars">
+              <WriteReviewStar handleStar={handleStar} />
             </div>
-            <div className='RR-wr-recommend'>
+            <div className="RR-wr-recommend">
               <span>Would you recommend?</span>
               <label>
                 <HiThumbUp onClick={() => setRecommendRating(true)} />
@@ -112,61 +84,60 @@ function WriteReview({ showWriteReview, setShowWriteReview, productId, metaData 
                 <HiThumbDown onClick={() => setRecommendRating(false)} />
               </label>
             </div>
-            <div className='RR-wr-characteristic'>
+            <div className="RR-wr-characteristic">
               <WriteReviewCharacteristic
                 handleCharacteristic={handleCharacteristic}
                 metaData={metaData}
               />
             </div>
-            <div className='RR-wr-name'>
+            <div className="RR-wr-name">
               <input
-                placeholder='Name'
-                type='text'
-                name='name'
+                placeholder="Name"
+                type="text"
+                name="name"
                 onChange={(event) => setNameRating(event.target.value)}
               />
             </div>
-            <div className='RR-wr-email'>
+            <div className="RR-wr-email">
               <input
-                placeholder='Email'
-                type='text'
-                name='email'
+                placeholder="Email"
+                type="text"
+                name="email"
                 onChange={(event) => setEmailRating(event.target.value)}
               />
             </div>
-            <div className='RR-wr-summary'>
+            <div className="RR-wr-summary">
               <input
-                placeholder='Summary'
-                type='text'
-                name='summary'
-                maxLength= '60'
+                placeholder="Summary"
+                type="text"
+                name="summary"
+                maxLength="60"
                 onChange={(event) => setSummaryRating(event.target.value)}
               />
             </div>
-            <div className='RR-wr-body'>
+            <div className="RR-wr-body">
               <input
-                placeholder='Review'
-                type='text'
-                name='body'
-                maxLength= '250'
+                placeholder="Review"
+                type="text"
+                name="body"
+                maxLength="250"
                 onChange={(event) => setBodyRating(event.target.value)}
               />
             </div>
-            <div className='RR-wr-photo'>
+            <div className="RR-wr-photo">
               <input
-                placeholder='Link to photos'
-                type='text'
-                name='photo'
-                onChange={(event) => setPhotoRating([...photoRating, event.target.value])}
+                placeholder="Link to photos"
+                type="text"
+                name="photo"
+                onChange={(event) =>
+                  setPhotoRating([...photoRating, event.target.value])
+                }
               />
             </div>
             // inner break for content
           </div>
 
-          <button
-            className='RR-wr-submit-button'
-            type='submit'
-          >
+          <button className="RR-wr-submit-button" type="submit">
             Submit Review
           </button>
         </form>
