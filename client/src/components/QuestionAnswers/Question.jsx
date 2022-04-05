@@ -60,6 +60,8 @@ function Question({ questionId, questionBody, questionHelpfulness }) {
       <AddAnswerModal
         showModal={showAddAnswer}
         onClose={() => setShowAddAnswer(false)}
+        // TODO: get product name
+        productData={{ productName: 'placeholder name', questionBody }}
       />
     </>
   );
