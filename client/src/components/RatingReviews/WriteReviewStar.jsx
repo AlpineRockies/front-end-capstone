@@ -27,13 +27,14 @@ function WriteReviewStar({ handleStar }) {
 
   return (
     <div className="RR-wrs-star">
-      {[...Array(5)].map((star, count) => {
-        return (
-          <label key={count}>
-            <FaStar value={count} onClick={() => handleSetStarChange(count)} />
-          </label>
-        );
-      })}
+      {[...Array(5)].map((star, count) => (
+        <label key={count}>
+          <FaStar
+            value={count}
+            onClick={() => handleSetStarChange(count + 1)}
+          />
+        </label>
+      ))}
       <div className="RR-wr-star-characteristic">
         {handleStarCharacteristic(starWR)}
       </div>

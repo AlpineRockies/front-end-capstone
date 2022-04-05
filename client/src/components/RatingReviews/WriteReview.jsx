@@ -10,6 +10,7 @@ function WriteReview({
   productId,
   metaData,
 }) {
+
   const [starRating, setStarRating] = useState(0);
   const [summaryRating, setSummaryRating] = useState(null);
   const [bodyRating, setBodyRating] = useState(null);
@@ -49,6 +50,7 @@ function WriteReview({
 
   const handleStar = (star) => {
     setStarRating(star);
+    console.log('wr', star)
   };
 
   const handleCharacteristic = (characteristics) => {

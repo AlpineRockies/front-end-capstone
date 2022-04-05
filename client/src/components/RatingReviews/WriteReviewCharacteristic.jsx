@@ -88,21 +88,17 @@ function WriteReviewCharacteristic({ handleCharacteristic, metaData }) {
             >
               <span>{eachCharacteristic.header}</span>
               <div className="RR-wrc-each-choice">
-                {eachCharacteristic.type.map((choice) => {
-                  return (
-                    <label key={choice.id}>
-                      <input
-                        value={choice.id}
-                        name={eachCharacteristic.header}
-                        type="radio"
-                        onChange={(event) =>
-                          handleSetCharacteristicChange(event)
-                        }
-                      />
-                      {choice.des}
-                    </label>
-                  );
-                })}
+                {eachCharacteristic.type.map((choice) => (
+                  <label key={choice.id}>
+                    <input
+                      value={choice.id}
+                      name={eachCharacteristic.header}
+                      type="radio"
+                      onChange={(event) => handleSetCharacteristicChange(event)}
+                    />
+                    {choice.des}
+                  </label>
+                ))}
               </div>
             </div>
           );
