@@ -1,55 +1,78 @@
-import React, { useState } from 'react';
-import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
+import React, { useState, useEffect, useContext } from 'react';
+import {
+  FaArrowAltCircleRight,
+  FaArrowAltCircleLeft,
+  FaStar,
+} from 'react-icons/fa';
+import { CombinedAPIDetails } from './RelatedItems';
 
-function Related({ relatedItems, handleClick }) {
-  const [arr, setArr] = useState([0, 1, 2, 3]);
-  const length = relatedItems.length;
+function Related({ setProductId }) {
+  const combinedAPIDetails = useContext(CombinedAPIDetails);
+
+  const referenceArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+  const [shownImagesArray, setShownImagesArray] = useState([]);
+  const [shownImagesOffset, setShownImagesOffset] = useState(0);
+  useEffect(() => {
+    setShownImagesArray([0, 1, 2, 3]);
+    setShownImagesOffset(0);
+  }, [combinedAPIDetails]);
+
+  if (!combinedAPIDetails || combinedAPIDetails.length === 0) {
+    return <div>Sorry, no data to display. Please wait.</div>;
+  }
+  const length = combinedAPIDetails.length;
+
+  const visibleSlide = () => {
+    setShownImagesArray(
+      referenceArray.slice(shownImagesOffset, shownImagesOffset + 4)
+    );
+  };
 
   const nextSlide = () => {
-    setArr(
-      arr[3] !== length - 1
-        ? [arr[0] + 1, arr[0] + 2, arr[0] + 3, arr[0] + 4]
-        : [length - 4, length - 3, length - 2, length - 1]
-    );
+    if (shownImagesOffset < length - 4) {
+      setShownImagesOffset((prevState) => prevState + 1);
+    }
+    visibleSlide();
   };
 
   const prevSlide = () => {
-    setArr(
-      arr[0] === 0
-        ? [0, 1, 2, 3]
-        : [arr[3] - 4, arr[3] - 3, arr[3] - 2, arr[3] - 1]
-    );
+    if (shownImagesOffset > 0) {
+      setShownImagesOffset((prevState) => prevState - 1);
+    }
+    visibleSlide();
   };
-
-  if (!Array.isArray(relatedItems) || length <= 0) {
-    return <div>Sorry, no data to display. Please wait.</div>;
-  }
 
   return (
     <div>
       <section className="ri-slider">
-        {arr[0] !== 0 ? (
+        {shownImagesArray[0] !== 0 ? (
           <FaArrowAltCircleLeft className="left-arrow" onClick={prevSlide} />
         ) : null}
-        {arr[3] !== length - 1 ? (
+        {shownImagesArray[3] < length - 1 ? (
           <FaArrowAltCircleRight className="right-arrow" onClick={nextSlide} />
         ) : null}
 
-        {relatedItems.map((ea, idx) => (
+        {combinedAPIDetails.map((ea, idx) => (
           <div key={idx}>
             {/* {console.log('Testing', ea.product_id)} */}
-            {arr.includes(idx) && (
+            {shownImagesArray.includes(idx) && (
               <div className="ri-container">
+                <a href="https://amazon.com">
+                  <FaStar className="ri-star" />
+                </a>
                 <img
+                  role="button"
                   className="ri-image"
                   src={ea.results[0].photos[0].thumbnail_url}
                   alt="clothing"
                   key={ea.product_id}
-                  onClick={() => handleClick(ea.product_id)}
+                  onClick={() => setProductId(ea.product_id)}
+                  onKeyDown={() => setProductId(ea.product_id)}
                 />
                 <ul className="bottom-left">
-                  <li>Catergory</li>
-                  <li>Product_Description</li>
+                  <li>Category: {ea.category}</li>
+                  <li>Name: {ea.name}</li>
                   <li>{ea.results[0].original_price}</li>
                   <li>STARS</li>
                 </ul>
