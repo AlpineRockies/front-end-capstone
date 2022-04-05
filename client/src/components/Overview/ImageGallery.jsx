@@ -10,7 +10,7 @@ import {
 import PropTypes from 'prop-types';
 
 function ImageGallery(props) {
-  const { styles, count, counter } = props;
+  const { styles, count } = props;
   // const [
   //   count,
   //   // setCount
@@ -31,7 +31,7 @@ function ImageGallery(props) {
       <div className="ov-galleryMain" />
       <FaArrowLeft className="ov-Left" />
       {mainImage}
-      <FaArrowRight className="ov-Right" onClick={counter} />
+      <FaArrowRight className="ov-Right" />
     </div>
   );
 }
