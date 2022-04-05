@@ -4,13 +4,11 @@ import {
   FaArrowAltCircleLeft,
   FaStar,
 } from 'react-icons/fa';
-// import { CombinedAPIDetails } from './RelatedItems';
+
 import ProductContext from '../Context';
 
 function Related() {
-  // const combinedAPIDetails = useContext(CombinedAPIDetails);
   const { setProductId, joinedAPIDetails } = useContext(ProductContext)
-
   const referenceArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   const [shownImagesArray, setShownImagesArray] = useState([]);
