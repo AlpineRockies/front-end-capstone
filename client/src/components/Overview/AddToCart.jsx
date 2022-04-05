@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
+import React, {
+// useState,
+// useEffect,
+// useContext
+} from 'react';
+import PropTypes from 'prop-types';
 
 function AddToCart(props) {
   // if (props.styles.results !== undefined) {
 
   // }
+  // eslint-disable-next-line no-unused-vars
+  const { styles } = props;
+
   return (
     <div>
       <select name="size" id="size" className="ov-sizes">
@@ -23,9 +31,23 @@ function AddToCart(props) {
         <option value="5">5</option>
       </select>
       <br />
-      <button className="ov-checkoutButton">add to cart</button>
+      <button className="ov-checkoutButton" type="button">add to cart</button>
     </div>
   );
 }
+
+AddToCart.propTypes = {
+  styles: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+    PropTypes.array,
+  ]),
+};
+
+AddToCart.defaultProps = {
+  styles: [],
+};
 
 export default AddToCart;

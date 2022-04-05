@@ -1,17 +1,39 @@
-import React from 'react';
+/* eslint-disable react/no-array-index-key */
+import React, {
+// useState,
+// useEffect,
+// useContext
+} from 'react';
+import PropTypes from 'prop-types';
 
 function StyleSelector(props) {
-  // console.log('hello ', props.styles.results);
+  const { styles } = props;
   let stylesThumbnail;
-  if (props.styles.results !== undefined) {
-    stylesThumbnail = props.styles.results.map((image, index) => <span><img className="thumbnails" key={index} src={image.photos[0].thumbnail_url} /></span>);
+
+  if (styles !== undefined) {
+    stylesThumbnail = styles.map((image, index) => <span><img alt="placeholder text" className="thumbnails" key={index} src={image.photos[0].thumbnail_url} /></span>);
   }
 
   return (
     <div>
-      <p>{stylesThumbnail}</p>
+      {/* <p onClick={(e) => setCount(e.target.value)}>{stylesThumbnail}</p> */}
+      {stylesThumbnail}
     </div>
   );
 }
+
+StyleSelector.propTypes = {
+  styles: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+    PropTypes.array,
+  ]),
+};
+
+StyleSelector.defaultProps = {
+  styles: [],
+};
 
 export default StyleSelector;
