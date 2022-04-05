@@ -1,19 +1,23 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { FaArrowAltCircleRight, FaArrowAltCircleLeft, FaStar } from 'react-icons/fa';
-import { CombinedAPIDetails } from './RelatedItemsHooks';
+import {
+  FaArrowAltCircleRight,
+  FaArrowAltCircleLeft,
+  FaStar,
+} from 'react-icons/fa';
+import { CombinedAPIDetails } from './RelatedItems';
 
 function Related({ setProductId }) {
   const combinedAPIDetails = useContext(CombinedAPIDetails);
 
   const referenceArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  useEffect(() => {
-    console.log("componentDidMout time????")
-    setShownImagesArray([0, 1, 2, 3]);
-    setShownImagesOffset(0)
-  }, [combinedAPIDetails]);
 
   const [shownImagesArray, setShownImagesArray] = useState([]);
   const [shownImagesOffset, setShownImagesOffset] = useState(0);
+  useEffect(() => {
+    setShownImagesArray([0, 1, 2, 3]);
+    setShownImagesOffset(0);
+  }, [combinedAPIDetails]);
+
   if (!combinedAPIDetails || combinedAPIDetails.length === 0) {
     return <div>Sorry, no data to display. Please wait.</div>;
   }
@@ -39,10 +43,6 @@ function Related({ setProductId }) {
     visibleSlide();
   };
 
-  if (!Array.isArray(combinedAPIDetails) || length <= 0) {
-    return <div>Sorry, no data to display. Please wait.</div>;
-  }
-
   return (
     <div>
       <section className="ri-slider">
@@ -59,7 +59,7 @@ function Related({ setProductId }) {
             {shownImagesArray.includes(idx) && (
               <div className="ri-container">
                 <a href="https://amazon.com">
-                <FaStar className="ri-star" />
+                  <FaStar className="ri-star" />
                 </a>
                 <img
                   role="button"
@@ -71,7 +71,7 @@ function Related({ setProductId }) {
                   onKeyDown={() => setProductId(ea.product_id)}
                 />
                 <ul className="bottom-left">
-                  <li>Catergory: {ea.category}</li>
+                  <li>Category: {ea.category}</li>
                   <li>Name: {ea.name}</li>
                   <li>{ea.results[0].original_price}</li>
                   <li>STARS</li>

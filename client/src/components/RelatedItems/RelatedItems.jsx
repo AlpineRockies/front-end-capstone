@@ -1,87 +1,84 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import _ from 'underscore';
 import './style.css';
 import Related from './Related.jsx';
 import Comparison from './Comparison.jsx';
 
-class RelatedItems extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      relatedItems: [],
-      outfit: [],
-    };
-  }
+export const CombinedAPIDetails = React.createContext();
 
-  componentDidMount() {
-    console.log('[componentDidMount] RelatedItems');
-    this.getRelatedData();
-  }
+function RelatedItems() {
+  const [productId, setProductId] = useState(38013);
+  const [relatedItems, setRelatedItems] = useState([]);
+  const [relatedItemsImg, setRelatedItemsImg] = useState([]);
+  const [relatedItemsDetails, setRelatedItemsDetails] = useState([]);
+  const [combinedAPIDetails, setCombinedAPIDetails] = useState([]);
+  const [outfit, setOutfit] = useState([]);
 
-  handleClick = (event) => {
+  useEffect(() => {
+    axios
+      .get(`/products/${productId}/related`)
+      .then((res) => setRelatedItems(res.data))
+      .catch((err) => console.error(err));
+  }, [productId]);
+
+  useEffect(() => {
+    Promise.all(
+      relatedItems.map((product) =>
+        axios
+          .get(`/products/${product}/styles`)
+          .then((response) => response.data)
+          .catch((err) => <div>There was an API error: {err}</div>)
+      )
+    )
+      .then((response) => setRelatedItemsImg(response))
+      .catch((err) => console.error(err));
+  }, [relatedItems]);
+
+  useEffect(() => {
+    Promise.all(
+      relatedItems.map((product) =>
+        axios
+          .get(`/products/${product}`)
+          .then((response) => response.data)
+          .catch((err) => console.error(err))
+      )
+    ).then((res) => setRelatedItemsDetails(res));
+  }, [relatedItems]);
+
+  useEffect(() => {
+    const accArr = []
+    for (let i = 0; i < relatedItems.length; i += 1) {
+      accArr.push(_.extend(relatedItemsImg[i], relatedItemsDetails[i]));
+    }
+    setCombinedAPIDetails(accArr)
+  }, [relatedItemsDetails])
+
+  const handleClick = (event) => {
+    // under construction
     console.log('[RelatedItems] handleClick :', event);
     // feed this item back to app for reload of Overview
-    this.getYourOutfit(event);
-  }
+    getYourOutfit(event);
+  };
 
+  const getYourOutfit = (event) => {
+    console.log('[getYourOutfit] ReleatedItems.jsx', event);
+  };
 
-
-  getRelatedData(product_id = 38013) {
-    axios
-      .get(`/products/${product_id}/related`)
-      .then((test) => {
-        console.log('test', test);
-        return test;
-      })
-      .then((response) =>
-        Promise.all(
-          response.data.map((product_id) =>
-            axios
-              .get(`/products/${product_id}/styles`)
-              .then((response) => response.data)
-              .catch((err) => {
-                console.log(err);
-              })
-          )
-        )
-      )
-      .then((arr) => {
-        // console.log('array ', arr);
-        this.setState({
-          relatedItems: arr,
-        });
-      })
-      .catch((err) => {
-        console.log('err', err);
-      });
-  }
-
-  getYourOutfit = (event) => {
-    // console.log("[getYourOutfit] ReleatedItems.jsx", event);
-    // axios
-    //   .get(`/products/${product_id}/styles`)
-    //   .then((response) => response.data)
-    //   .then((prod) => {
-    //     console.log('YOUR OUTFIT: ', prod);
-    //   })
-    //   .catch((err) => console.log(err));
-  }
-
-  render() {
-    const { relatedItems } = this.state;
-    return (
-      <div className="ri-parent">
-        <div className="ri-relateditems">
-          <h3>Related Items</h3>
-          <Related relatedItems={relatedItems} handleClick={this.handleClick} />
-        </div>
-        <div className="ri-comparison">
-          <h3>Comparison</h3>
-          <Comparison />
-        </div>
+  return (
+    <div className="ri-parent">
+      <div className="ri-relateditems">
+        <h3>Related Items</h3>
+        <CombinedAPIDetails.Provider value={combinedAPIDetails}>
+          <Related setProductId={setProductId} />
+        </CombinedAPIDetails.Provider>
       </div>
-    );
-  }
+      <div className="ri-comparison">
+        <h3>Comparison</h3>
+        <Comparison />
+      </div>
+    </div>
+  );
 }
 
 export default RelatedItems;
