@@ -30,7 +30,7 @@ class RelatedItems extends React.Component {
     axios
       .get(`/products/${product_id}/related`)
       .then((test) => {
-        // console.log('test', test);
+        console.log('test', test);
         return test;
       })
       .then((response) =>
