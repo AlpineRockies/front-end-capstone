@@ -18,18 +18,14 @@ class Overview extends Component {
 
   componentDidMount() {
     const random = Math.floor(Math.random() * (38321 - 37311) + 37311);
-    console.log(random);
+    // console.log(random);
     axios.get(`/products/${random}`)
       .then((response) => {
         this.setState({ data: response.data });
       })
-      .catch((err) => {
-        console.log('err in client', err);
-      });
-
-    axios.get(`/products/${random}/styles`)
-      .then((response) => {
-        this.setState({ styles: response.data });
+      .then(() => axios.get(`/products/${random}/styles`, {}))
+      .then((item) => {
+        if (item.data.results !== undefined) { this.setState({ styles: item.data }); }
       })
       .catch((err) => {
         console.log('err in client', err);
@@ -54,7 +50,7 @@ class Overview extends Component {
           </div>
           <div className="ov-checkout">
             <h3>Checkout</h3>
-            <AddToCart />
+            <AddToCart styles={this.state.styles}/>
           </div>
         </div>
       </div>
