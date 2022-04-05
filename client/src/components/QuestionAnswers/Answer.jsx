@@ -3,46 +3,73 @@ import React, { useState } from 'react';
 import moment from 'moment';
 import axios from 'axios';
 
-function Answer({ answer }) {
+export default function Answer({ answer }) {
   const [markedHelpful, setMarkedHelpful] = useState(false);
+  const [reported, setReported] = useState(false);
 
-  const handleMarkHelpful = (answerId) => markedHelpful || axios
-    .put(`/qa/answers/${answerId}/helpful`)
+  const {
+    id,
+    body,
+    answerer_name: answererName,
+    date,
+    helpfulness,
+  } = answer;
+
+  const handleMarkHelpful = () => markedHelpful || axios
+    .put(`/qa/answers/${id}/helpful`)
     .then(() => setMarkedHelpful(true))
     // eslint-disable-next-line no-console
     .catch(console.error);
 
-  const handleKeyDown = ({ key }) => {
+  const handleReportAnswer = () => reported || axios
+    .put(`/qa/answers/${id}/report`)
+    .then(() => setReported(true))
+    // eslint-disable-next-line no-console
+    .catch(console.error);
+
+  const handleKeyDown = (event) => {
+    const { key } = event;
+
     if (key === 'Enter' || key === ' ') {
-      handleMarkHelpful();
+      if (/Yes/.test(event.target.value)) {
+        handleMarkHelpful();
+      } else {
+        handleReportAnswer();
+      }
     }
   };
 
   return (
-    <span key={answer.id}>
-      <span>{answer.body}</span>
+    <span key={id}>
+      <span>{body}</span>
       <br />
       <span>by </span>
-      {answer.answerer_name}
+      {answererName}
       <span>, </span>
-      {moment(answer.date).format('MMM Do, YYYY')}
+      {moment(date).format('MMM Do, YYYY')}
       <span> | Helpful? </span>
       <span
-        onClick={() => handleMarkHelpful(answer.id)}
+        onClick={handleMarkHelpful}
         role="button"
         tabIndex={-1}
         onKeyDown={handleKeyDown}
         style={{ cursor: 'pointer' }}
       >
         <u>Yes</u>
-        {` (${markedHelpful ? answer.helpfulness + 1 : answer.helpfulness})`}
+        {` (${markedHelpful ? helpfulness + 1 : helpfulness})`}
       </span>
       {' | '}
-      <u>Report</u>
+      <span
+        onClick={handleReportAnswer}
+        role="button"
+        tabIndex={-1}
+        onKeyDown={handleKeyDown}
+        style={{ cursor: 'pointer', textDecoration: 'underline' }}
+      >
+        {reported ? 'Reported' : 'Report'}
+      </span>
       <br />
       <br />
     </span>
   );
 }
-
-export default Answer;
