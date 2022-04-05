@@ -5,8 +5,6 @@ import './style.css';
 import Related from './Related.jsx';
 import Comparison from './Comparison.jsx';
 
-// export const RelatedItemsImg = React.createContext();
-// export const RelatedItemsDetails = React.createContext();
 export const CombinedAPIDetails = React.createContext();
 
 function RelatedItemsHooks() {
@@ -54,7 +52,6 @@ function RelatedItemsHooks() {
       accArr.push(_.extend(relatedItemsImg[i], relatedItemsDetails[i]));
     }
     setCombinedAPIDetails(accArr)
-    console.log(accArr, combinedAPIDetails)
 
   }, [relatedItemsDetails])
 
@@ -67,13 +64,7 @@ function RelatedItemsHooks() {
 
   const getYourOutfit = (event) => {
     console.log('[getYourOutfit] ReleatedItems.jsx', event);
-    // axios
-    //   .get(`/products/${product_id}/styles`)
-    //   .then((response) => response.data)
-    //   .then((prod) => {
-    //     console.log('YOUR OUTFIT: ', prod);
-    //   })
-    //   .catch((err) => console.log(err));
+
   };
 
   return (
