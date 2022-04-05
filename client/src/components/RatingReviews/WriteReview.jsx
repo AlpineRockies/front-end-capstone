@@ -50,7 +50,6 @@ function WriteReview({
 
   const handleStar = (star) => {
     setStarRating(star);
-    console.log('wr', star)
   };
 
   const handleCharacteristic = (characteristics) => {
