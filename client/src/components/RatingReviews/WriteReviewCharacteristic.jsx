@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-function WriteReviewCharacteristic() {
-  const [sizeWR, setSizeWR] = useState(0);
-  const [widthWR, setWidthWR] = useState(0);
-  const [comfortWR, setComfortWR] = useState(0);
-  const [qualityWR, setQualityWR] = useState(0);
-  const [lengthWR, setLengthWR] = useState(0);
-  const [fitWR, setFitWR] = useState(0);
+function WriteReviewCharacteristic({ handleCharacteristic, metaData }) {
+  const [characteristicWR, setCharacteristicWR] = useState(characteristicWR);
+  const metaCharacteristic = metaData.characteristics;
 
   const sizeArr = [
     { id: 1, des: 'A size too small' },
@@ -51,37 +47,60 @@ function WriteReviewCharacteristic() {
     { id: 5, des: 'Runs long' },
   ];
 
-  // const arrAll = [sizeArr, widthArr, comfortArr, qualityArr, lengthArr, fitArr];
-
-  const arrAll = [
-    { type: sizeArr, header: 'Size' },
-    { type: widthArr, header: 'Width' },
-    { type: comfortArr, header: 'Comfort' },
-    { type: qualityArr, header: 'Quality' },
-    { type: lengthArr, header: 'Length' },
-    { type: fitArr, header: 'Fit' },
+  const arrAllCharacteristic = [
+    { type: sizeArr, header: 'Size', index: '14' },
+    { type: widthArr, header: 'Width', index: '15' },
+    { type: comfortArr, header: 'Comfort', index: '16' },
+    { type: qualityArr, header: 'Quality', index: '17' },
+    { type: lengthArr, header: 'Length', index: '18' },
+    { type: fitArr, header: 'Fit', index: '19' },
   ];
 
-  const handleChange = (event) => {
-    //console.log('hit', event.target.value);
+  useEffect(() => {
+    handleCharacteristic(characteristicWR);
+  }, [characteristicWR]);
+
+  const characteristicObj = {};
+  const handleSetCharacteristicChange = (event) => {
+    for (let i = 0; i < arrAllCharacteristic.length; i++) {
+      if (arrAllCharacteristic[i].header === event.target.name) {
+        if (metaCharacteristic[event.target.name] !== undefined) {
+          if (
+            characteristicObj[metaCharacteristic[event.target.name].id] ===
+            undefined
+          ) {
+            characteristicObj[metaCharacteristic[event.target.name].id] =
+              parseInt(event.target.value);
+          }
+          if (i === arrAllCharacteristic.length - 1) {
+            setCharacteristicWR(characteristicObj);
+          }
+        }
+      }
+    }
   };
 
   return (
-    <div className='RR-wrc'>
-      <div className='RR-wrc-allArr'>
-        {arrAll.map((eachCharacteristic) => {
+    <div className="RR-wrc">
+      <div className="RR-wrc-allArr">
+        {arrAllCharacteristic.map((eachCharacteristic) => {
           return (
-            <div className='RR-wrc-each-type' key={JSON.stringify(eachCharacteristic)}>
+            <div
+              className="RR-wrc-each-type"
+              key={JSON.stringify(eachCharacteristic)}
+            >
               <span>{eachCharacteristic.header}</span>
-              <div className='RR-wrc-each-choice'>
+              <div className="RR-wrc-each-choice">
                 {eachCharacteristic.type.map((choice) => {
                   return (
                     <label key={choice.id}>
                       <input
                         value={choice.id}
-                        name={choice.des}
-                        type='radio'
-                        onChange={(event) => handleChange(event)}
+                        name={eachCharacteristic.header}
+                        type="radio"
+                        onChange={(event) =>
+                          handleSetCharacteristicChange(event)
+                        }
                       />
                       {choice.des}
                     </label>

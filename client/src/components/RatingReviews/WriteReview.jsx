@@ -1,22 +1,54 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { HiThumbUp, HiThumbDown } from 'react-icons/hi';
 import { FaStar } from 'react-icons/fa';
-import WriteReviewCharacteristic from './WriteReviewCharacteristic.jsx'
+import WriteReviewCharacteristic from './WriteReviewCharacteristic';
 
-function WriteReview({ showWriteReview, setShowWriteReview, productId }) {
-  const [reviewInputData, setReviewInputData] = useState([]);
+function WriteReview({ showWriteReview, setShowWriteReview, productId, metaData }) {
   const [starRating, setStarRating] = useState(0);
-  const [recommend, setRecommend] = useState(null);
+  const [summaryRating, setSummaryRating] = useState(null);
+  const [bodyRating, setBodyRating] = useState(null);
+  const [recommendRating, setRecommendRating] = useState(null);
+  const [nameRating, setNameRating] = useState(null);
+  const [emailRating, setEmailRating] = useState(null);
+  const [photoRating, setPhotoRating] = useState([]);
+  const [characteristicRating, setCharacteristicRating] = useState(null);
 
-  const handleReivewInput = (event) => {
-    //console.log('in onchange write', event.target.value);
+  const query = {
+    product_id: productId,
+    rating: starRating,
+    summary: summaryRating,
+    body: bodyRating,
+    recommend: recommendRating,
+    name: nameRating,
+    email: emailRating,
+    photos: photoRating,
+    characteristics: characteristicRating,
   };
 
   const handleReviewInputSubmit = (event) => {
     event.preventDefault();
-    //console.log('hit in handle submit');
 
-    setShowWriteReview(false);
+    axios({
+      method: 'post',
+      url: '/reviews',
+      data: query,
+    })
+      .then((response) => {
+        console.log('review post', response);
+      })
+      .catch((err) => {
+        console.log('err', err);
+      })
+
+    // axios.post('/reviews', {body: JSON.stringify(query)})
+    // .then((response) => {
+    //   console.log('review post', response);
+    // })
+    // .catch((err) => {
+    //   console.log('err', err);
+    // })
+
   };
 
   const handleStarCharacteristic = (star) => {
@@ -29,16 +61,20 @@ function WriteReview({ showWriteReview, setShowWriteReview, productId }) {
     } else if (star === 4) {
       return 'Good';
     } else if (star === 5) {
-      return 'Great'
+      return 'Great';
     } else {
-      '';
+      ('');
     }
+  };
+
+  const handleCharacteristic = (characteristics) => {
+    setCharacteristicRating(characteristics);
   };
 
   return (
     <div className='RR-wr-form'>
       {showWriteReview ? (
-        <form>
+        <form onSubmit={handleReviewInputSubmit}>
           <h4>Write Your Review</h4>
           <div className='RR-wr-exit'>
             <button
@@ -51,7 +87,6 @@ function WriteReview({ showWriteReview, setShowWriteReview, productId }) {
           </div>
 
           <div className='RR-wr-content'>
-
             <div className='RR-wr-stars'>
               {[...Array(5)].map((star, count) => {
                 count++;
@@ -64,61 +99,76 @@ function WriteReview({ showWriteReview, setShowWriteReview, productId }) {
                   </label>
                 );
               })}
-              <div className='RR-wr-star-characteristic'>{handleStarCharacteristic(starRating)}</div>
+              <div className='RR-wr-star-characteristic'>
+                {handleStarCharacteristic(starRating)}
+              </div>
             </div>
-
             <div className='RR-wr-recommend'>
               <span>Would you recommend?</span>
-                <label><HiThumbUp onClick={() => setRecommend(true)} /></label>
-                <label><HiThumbDown onClick={() => setRecommend(false)} /></label>
+              <label>
+                <HiThumbUp onClick={() => setRecommendRating(true)} />
+              </label>
+              <label>
+                <HiThumbDown onClick={() => setRecommendRating(false)} />
+              </label>
             </div>
-
-
             <div className='RR-wr-characteristic'>
-              <WriteReviewCharacteristic />
+              <WriteReviewCharacteristic
+                handleCharacteristic={handleCharacteristic}
+                metaData={metaData}
+              />
             </div>
-
             <div className='RR-wr-name'>
               <input
                 placeholder='Name'
                 type='text'
-                onChange={(event) => handleReivewInput(event)}
+                name='name'
+                onChange={(event) => setNameRating(event.target.value)}
               />
             </div>
             <div className='RR-wr-email'>
               <input
                 placeholder='Email'
                 type='text'
-                onChange={(event) => handleReivewInput(event)}
+                name='email'
+                onChange={(event) => setEmailRating(event.target.value)}
               />
             </div>
             <div className='RR-wr-summary'>
               <input
                 placeholder='Summary'
                 type='text'
-                onChange={(event) => handleReivewInput(event)}
+                name='summary'
+                maxLength= '60'
+                onChange={(event) => setSummaryRating(event.target.value)}
               />
             </div>
-            <div className='RR-wr-review'>
+            <div className='RR-wr-body'>
               <input
                 placeholder='Review'
                 type='text'
-                onChange={(event) => handleReivewInput(event)}
+                name='body'
+                maxLength= '250'
+                onChange={(event) => setBodyRating(event.target.value)}
               />
             </div>
-
-
-
+            <div className='RR-wr-photo'>
+              <input
+                placeholder='Link to photos'
+                type='text'
+                name='photo'
+                onChange={(event) => setPhotoRating([...photoRating, event.target.value])}
+              />
+            </div>
+            // inner break for content
           </div>
 
           <button
             className='RR-wr-submit-button'
-            type='button'
-            onClick={handleReviewInputSubmit}
+            type='submit'
           >
             Submit Review
           </button>
-
         </form>
       ) : null}
     </div>
