@@ -1,53 +1,75 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import moment from 'moment';
+import axios from 'axios';
 
-// eslint-disable-next-line import/no-unresolved
-import { compareHelpfulness } from 'Utilities';
+export default function Answer({ answer }) {
+  const [markedHelpful, setMarkedHelpful] = useState(false);
+  const [reported, setReported] = useState(false);
 
-function Answer({ answers }) {
-  const [shownAnswerCount, setShownAnswerCount] = useState(2);
-  const [showMore, setShowMore] = useState(true);
+  const {
+    id,
+    body,
+    answerer_name: answererName,
+    date,
+    helpfulness,
+  } = answer;
 
-  const answerStyle = {
-    display: 'flex',
-  };
+  const handleMarkHelpful = () => markedHelpful || axios
+    .put(`/qa/answers/${id}/helpful`)
+    .then(() => setMarkedHelpful(true))
+    // eslint-disable-next-line no-console
+    .catch(console.error);
 
-  const sortedAnswers = Object.values(answers).sort(compareHelpfulness);
+  const handleReportAnswer = () => reported || axios
+    .put(`/qa/answers/${id}/report`)
+    .then(() => setReported(true))
+    // eslint-disable-next-line no-console
+    .catch(console.error);
 
-  const handleMoreAnswers = () => {
-    setShownAnswerCount(showMore ? sortedAnswers.length : 2);
-    setShowMore((moreOrLess) => !moreOrLess);
+  const handleKeyDown = (event) => {
+    const { key } = event;
+
+    if (key === 'Enter' || key === ' ') {
+      if (/Yes/.test(event.target.value)) {
+        handleMarkHelpful();
+      } else {
+        handleReportAnswer();
+      }
+    }
   };
 
   return (
-    <div className="qa-answer" style={answerStyle}>
-      <span>
-        <strong>A: </strong>
+    <span key={id}>
+      <span>{body}</span>
+      <br />
+      <span>by </span>
+      {answererName}
+      <span>, </span>
+      {moment(date).format('MMM Do, YYYY')}
+      <span> | Helpful? </span>
+      <span
+        onClick={handleMarkHelpful}
+        role="button"
+        tabIndex={-1}
+        onKeyDown={handleKeyDown}
+        style={{ cursor: 'pointer' }}
+      >
+        <u>Yes</u>
+        {` (${markedHelpful ? helpfulness + 1 : helpfulness})`}
       </span>
-      <span>
-        {sortedAnswers.slice(0, shownAnswerCount).map((answer) => (
-          <span key={answer.id}>
-            <span>{answer.body}</span>
-            <br />
-            <span>by </span>
-            {answer.answerer_name}
-            <span>, </span>
-            {moment(answer.date).format('MMM Do, YYYY')}
-            <span> | Helpful? </span>
-            <u>Yes</u>
-            {` (${answer.helpfulness}) | `}
-            <u>Report</u>
-            <br />
-            <br />
-          </span>
-        ))}
-        <button onClick={handleMoreAnswers} type="button">
-          {showMore ? 'See more answers' : 'Collapse'}
-        </button>
+      {' | '}
+      <span
+        onClick={handleReportAnswer}
+        role="button"
+        tabIndex={-1}
+        onKeyDown={handleKeyDown}
+        style={{ cursor: 'pointer', textDecoration: 'underline' }}
+      >
+        {reported ? 'Reported' : 'Report'}
       </span>
-    </div>
+      <br />
+      <br />
+    </span>
   );
 }
-
-export default Answer;
