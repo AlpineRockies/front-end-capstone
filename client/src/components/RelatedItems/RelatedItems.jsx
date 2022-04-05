@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import _ from 'underscore';
 import './style.css';
-import Related from './Related.jsx';
-import Comparison from './Comparison.jsx';
+import Related from './Related';
+import Comparison from './Comparison';
 
 export const CombinedAPIDetails = React.createContext();
 
