@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { HiThumbUp, HiThumbDown } from 'react-icons/hi';
 import WriteReviewCharacteristic from './WriteReviewCharacteristic';
 import WriteReviewStar from './WriteReviewStar';
+import { HiThumbUp, HiThumbDown } from 'react-icons/hi';
 
 function WriteReview({
   showWriteReview,

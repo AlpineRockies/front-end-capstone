@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { FaStar } from 'react-icons/fa';
 import { ratingPercentage } from 'Utilities';
+import { FaStar } from 'react-icons/fa';
 
 function Breakdown({ metaData }) {
   const [mdCharArray, setMDCharArray] = useState(null);
