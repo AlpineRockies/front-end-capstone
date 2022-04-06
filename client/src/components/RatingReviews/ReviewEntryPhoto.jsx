@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 function ReviewEntryPhoto({ photos }) {
   //console.log('arr photos', photos);
+  const [photoModal, setPhotoModal] = useState(false);
 
   const imgThumb = {
     height: '60px',
@@ -12,7 +13,11 @@ function ReviewEntryPhoto({ photos }) {
   };
 
   const imgExpand = {
-
+    borderRadius: '10px',
+    maxHeight: '600px',
+    maxWidth: '800px',
+    margin: 'auto',
+    backdropFilter: 'blur( 2.5px )',
   };
 
   return (
