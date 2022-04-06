@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable arrow-body-style */
 import React, {
   useState,
@@ -13,11 +14,11 @@ import ImageGallery from './ImageGallery';
 import StyleSelector from './StyleSelector';
 
 function Overview() {
-  const random = Math.floor(Math.random() * (38321 - 37311) + 37311);
-  const [productId, setProductId] = useState(random);
+  const [productId, setProductId] = useState(Math.floor(Math.random() * (38321 - 37311) + 37311));
   const [styles, setStyles] = useState([]);
   const [description, setDescription] = useState([]);
   const [count, setCount] = useState(0);
+  const [thumbnailIndex, setThumbnailIndex] = useState(0);
 
   useEffect(() => {
     axios
@@ -31,30 +32,37 @@ function Overview() {
       axios
         .get(`/products/${productId}`)
         .then((res) => setDescription(res.data))
-        .catch((err) => console.log(err)),
+        .catch((err) => console.error(err)),
     );
   }, [productId]);
 
   return (
     <div className="ov-overview">
-      <div className="ov-imageGallery">
-        <h3>Images</h3>
-        <ImageGallery styles={styles} count={count} />
+      <div className="ov-gallery">
+        <ImageGallery styles={styles} count={count} setCount={setCount} />
       </div>
-      <div className="ov-selection">
-        <div className="ov-productInfo">
-          <h3>Info</h3>
-          <ProductInfo styles={styles} />
-        </div>
-        <div className="ov-styles">
-          <p>Styles</p>
-          <StyleSelector styles={styles} />
-        </div>
-        <div className="ov-checkout">
-          <h3>Checkout</h3>
-          <AddToCart styles={styles} />
-        </div>
+      <div className="ov-cart">
+        <ProductInfo styles={styles} description={description} />
+        <StyleSelector styles={styles} />
+        <AddToCart styles={styles} />
       </div>
+      <div className="ov-description">
+        {/* Extract to component */}
+        <span className="ov-description-details">
+          <h5>{description.slogan}</h5>
+          <p>{description.description}</p>
+        </span>
+        <span className="ov-description-ul">
+          <ul>
+            <li>GMO and Pesticide-free</li>
+            <br />
+            <li>Made with 100% Genetic Modification</li>
+            <br />
+            <li> This is 100% Made up</li>
+          </ul>
+        </span>
+      </div>
+      {/* End Extraction */}
     </div>
   );
 }

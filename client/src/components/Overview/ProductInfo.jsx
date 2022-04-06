@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react/prop-types */
 /* eslint-disable arrow-body-style */
 /* eslint-disable react/destructuring-assignment */
 import React, {
@@ -5,64 +7,53 @@ import React, {
 // useEffect,
 // useContext
 } from 'react';
-import axios from 'axios';
 import { FaFacebook, FaPinterest } from 'react-icons/fa';
-// eslint-disable-next-line import/no-unresolved
-import { CgTwitter } from 'react-icons/Cg';
+import { CgTwitter } from 'react-icons/cg';
 import PropTypes from 'prop-types';
 
-class ProductInfo extends React.Component {
-  constructor(props) {
-    super(props);
+function ProductInfo(props) {
+  const { styles, description } = props;
 
-    this.state = {
-      description: [],
-    };
-  }
-
-  componentDidMount() {
-    // eslint-disable-next-line react/destructuring-assignment
-    axios.get('/products/37311')
-      .then((response) => {
-        this.setState(() => {
-          return { description: response.data };
-        });
-      })
-      .catch((err) => {
-        console.log('err in client', err);
-      });
-  }
-  // const [data, setData] = useState([])
-
-  // useEffect(() => {
-  //   axios
-  //     .get("'/products/37311'")
-  //     .then(response => set(response.data));
-  // }, []);
-
-  render() {
-    const { description } = this.state;
-    // eslint-disable-next-line no-unused-vars
-    const { styles } = this.props;
-    return (
-      <div>
-        <p>stars and review</p>
-        <p>
-          {description && description.category}
-        </p>
-        <p>{description && description.name}</p>
-        <div>
-          {/* {styles[0].original_price} */}
-          {' '}
-        </div>
-        <div className="SocialMedia">
-          <FaFacebook className="Facebook" />
-          <CgTwitter className="Twitter" />
-          <FaPinterest className="Pinterest" />
-        </div>
+  return (
+    <div className="ov-product-info">
+      {/* Extract to component */}
+      <span className="ov-review-stars">
+        ✭ ✩ ✩ ✩ ✩
+      </span>
+      &ensp;
+      <span className="ov-review-link">
+        <a href="#">Read all reviews</a>
+      </span>
+      {/* End Extraction */}
+      <br />
+      <br />
+      <br />
+      {/* Change to Uppercase */}
+      {description.category && description.category.toUpperCase()}
+      {/* <h1>{description && description.name}</h1> */}
+      <br />
+      <br />
+      <br />
+      <div className="ov-product-name">Expanded Product Name</div>
+      <br />
+      <p>
+        $
+        {styles[0] && styles[0].original_price}
+      </p>
+      {/* Extract to component */}
+      <div className="social-media">
+      &emsp;
+        <FaFacebook className="Facebook" />
+        {' '}
+&emsp;
+        <CgTwitter className="Twitter" />
+&emsp;
+        <FaPinterest className="Pinterest" />
       </div>
-    );
-  }
+      <br />
+      {/* End extraction */}
+    </div>
+  );
 }
 
 ProductInfo.propTypes = {
