@@ -1,109 +1,183 @@
 .ov-overview {
+  display: grid;
+  grid-template-areas:
+  'gallery gallery gallery gallery cart cart'
+  'info info info info info info';
+  grid-template-rows: 70% 30%;
+  min-width: 100%;
+  height: 93vh;
+  border: 1px solid black;
+}
+
+.ov-gallery {
+  border:  1px solid green;
+  grid-area: gallery;
+  width: 725px;
+}
+
+.ov-cart {
+  border: 1px solid red;
+  margin: 30px 25px 35px;
+  width: 375px;
+  grid-area: cart;
+}
+
+.ov-description {
+  grid-area: info;
+  border: 1px solid blue;
   display: flex;
   flex-direction: row;
 }
 
-.ov-imageGallery {
-  border:  5px solid green;
-  border-radius: 20px;
-  height:  90vh;
-  width: 80%;
-  margin: 5px;
+.ov-description-details {
+  grid-area: details;
+  overflow-wrap: wrap;
+  width: 65%;
+
 }
 
-.ov-selection {
-  border: 5px solid red;
-  border-radius: 20px;
-  height:  95vh;
-  width: 20%;
-  margin: 10px;
-  padding-left: 10px;
-  line-height: 10px;
+.ov-description p {
+  font-size: x-small;
 }
 
-.ov-productInfo {
-  height:  250px;
-  width: 700px;
+.ov-description-ul {
+  grid-area: checklist;
+  font-size: x-small;
+  border-left: 1px solid purple;
+  width: 35%;
+  padding-top: 20px;
 }
 
-.ov-checkout {
-  height:  33.3%;
-  width: 90%;
+.ov-description ul {
+  list-style-type: none;
 }
 
-.ov-styles {
-  display: flex;
-  flex-wrap: wrap;
-  height: 33.3%;
-  width: 100%;
-}
-.thumbnails {
-  height: 60px;
-  width: 60px;
-  border-radius: 50px;
-  padding: 10px;
-  flex: 1 20%;
+.ov-description li:before {
+  content: '✓';
 }
 
-.mainImage{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 1050px;
-  height: 700px;
+li.ov-description:not(:last-child) {
+  margin-bottom: 30px;
 }
 
-.ov-sizes, .ov-qty {
-font-size: 30px;
-margin: 10px;
+.ov-product-info {
+  font-size: x-small;
+  line-height:  10px;
 }
 
-.ov-checkoutButton {
-  font-size: 32px;
-margin: 10px;
+.ov-product-name {
+  font-size: x-large;
+  font-weight: bolder;
 }
 
-.ov-imageContainer {
+.ov-review-stars {
+  font-size: medium;
+}
+
+.ov-review-link {
+  font-size: xx-small;
+}
+
+.social-media {
   display: flex;
   flex-direction: row;
-}
-
-.thumbnailGallery {
-  height: 80px;
-  width: 80px;
-  padding-left: 20px;
-  margin-bottom: 5px;
-  margin-right: 5px;
-  float: left;
-  position: relative;
-}
-
-.ov-galleryThumbnails {
-  display: flex;
-  flex-direction: column;
-  -webkit-line-clamp: 7;
-}
-
-.SocialMedia {
-  display: flex;
-  flex-direction: row;
-  margin-top: 30px;
 }
 
 .Facebook, .Twitter, .Pinterest {
-  height: 30px;
-  width: 30px;
-  color: green;
+  height: 25px;
+  width: 25px;
+  /* color: green; */
 }
 
-.ov-galleryMain {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.ov-style-selector {
+  font-size: x-small;
+  width: 280px;
+  /* border: 1px solid gray; */
 }
 
-
-.ov-up, .ov-down, .ov-Left, .ov-Right {
- margin: auto;
- display: block;
+.ov-style-selector-thumbnails {
+  height: 60px;
+  width: 60px;
+  border-radius: 50px;
+  padding: 5px;
+  flex: 1 20%;
 }
+
+.ov-style-sizes {
+  width: 190px;
+  height: 40px;
+  font-size: xx-small;
+  }
+
+  .ov-style-qty {
+    width: 75px;
+    height: 40px;
+  }
+
+  .ov-checkout-button {
+    width: 190px;
+    height: 40px;
+    font-size: xx-small;
+    /* remove when global button style is changed */
+    border: 1px solid black !important;
+    background-color: white !important;
+    text-align: left !important;
+    }
+
+    .ov-left-icon{
+      position: absolute;
+      right: 88%;
+      top: 47%;
+      margin-top: -2.5em;
+    }
+
+    .ov-right-icon {
+      position: absolute;
+      right: 39%;
+      top: 47%;
+      margin-top: -2.5em;
+    }
+
+    .ov-up-icon, .ov-down-icon {
+      margin: auto;
+      display: block;
+     }
+
+     .ov-img-carousel {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .ov-thumbnail-img-nav {
+      display: flex;
+      flex-direction: column;
+      -webkit-line-clamp: 7;
+    }
+
+    .ov-main-img-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+     .ov-main-img{
+      display: block;
+      width: 75%;
+      height: 600px;
+      padding-top: 5px;
+      margin-left: 40px;
+    }
+
+    .ov-main-img:hover {
+      cursor: zoom-in;
+    }
+
+    .ov-thumbnail-gallery {
+      height: 75px;
+      width: 75px;
+      padding-left: 20px;
+      margin-bottom: 5px;
+      margin-right: 5px;
+      float: left;
+      position: relative;
+    }
