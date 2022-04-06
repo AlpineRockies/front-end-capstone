@@ -23,6 +23,16 @@ export function capitalize(string) {
 }
 
 export function ratingPercentage(numFalse, numTrue) {
+  if (Number.isNaN(numFalse) || Number.isNaN(numTrue)) {
+    return 0;
+  }
   const totalNumberReviews = numFalse + numTrue;
-  return Math.floor((numTrue / totalNumberReviews) * 100);
+
+  if (totalNumberReviews === 0) {
+    return 0;
+  }
+
+  const finalPercent = Math.floor((numTrue / totalNumberReviews) * 100);
+
+  return finalPercent;
 }
