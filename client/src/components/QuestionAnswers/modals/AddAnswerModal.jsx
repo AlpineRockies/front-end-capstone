@@ -47,14 +47,13 @@ export default function AddAnswerModal({ showModal, onClose, productData }) {
     if (formRef.current.reportValidity()) {
       axios
         .post(`/qa/questions/${questionId}/answers`, {
-          data: {
-            body: newAnswerBody,
-            name: newAnswerName,
-            email: newAnswerEmail,
-            photos: newAnswerPhotos,
-          },
+          body: newAnswerBody,
+          name: newAnswerName,
+          email: newAnswerEmail,
+          photos: newAnswerPhotos,
         })
-        .then((res) => console.log(res, res.status, res.data));
+        // eslint-disable-next-line no-console
+        .catch(console.error);
     }
   };
 
