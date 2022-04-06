@@ -28,7 +28,6 @@ function QAList() {
     // eslint-disable-next-line no-console
     .catch(console.error);
 
-  // get initial list of questions when productId changes
   useEffect(() => {
     fetchQuestions(initialQuestionCount)
       .then(() => setShownQuestionCount(initialQuestionCount))
@@ -36,7 +35,6 @@ function QAList() {
       .catch(console.error);
   }, [productId]);
 
-  // fetch more questions when shown question count changes
   useEffect(() => {
     if (shownQuestionCount !== initialQuestionCount) {
       // eslint-disable-next-line no-console
@@ -44,7 +42,6 @@ function QAList() {
     }
   }, [shownQuestionCount]);
 
-  // update rendered questions
   useEffect(() => {
     if (questions && questions.length) {
       const renderedQuestions = questions.slice(0, shownQuestionCount);
