@@ -34,7 +34,8 @@ export default function AddAnswerModal({ showModal, onClose, productData }) {
 
   const handleUploadPhotos = () => {};
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
     // validate inputs. inputs are invalid if:
     // - any mandatory fields are blank
     // - email address is not in the correct format
@@ -45,51 +46,55 @@ export default function AddAnswerModal({ showModal, onClose, productData }) {
     <>
       <div style={overlayStyle} />
       <div style={modalStyle}>
-        <button type="button" onClick={onClose}>
-          Close
-        </button>
-        <h2>Submit your Answer</h2>
-        <h3>{`${productName}: ${questionBody}`}</h3>
-        <label htmlFor="your-answer">Your Answer *</label>
-        <br />
-        <textarea id="your-answer" name="your-answer" maxLength={1000} required />
-        <br />
-        <label htmlFor="your-nickname">What is your nickname *</label>
-        <br />
-        <input
-          type="text"
-          id="your-nickname"
-          name="your-nickname"
-          maxLength={60}
-          placeholder="Example: jack543!"
-          required
-        />
-        <br />
-        <span>
-          <em>For privacy reasons, do not use your full name or email address</em>
-        </span>
-        <br />
-        <label htmlFor="your-email">Your email *</label>
-        <br />
-        <input
-          type="email"
-          id="your-email"
-          name="your-email"
-          maxLength={60}
-          placeholder="Example: jack@email.com"
-          required
-        />
-        <br />
-        <span>
-          <em>For authentication reasons, you will not be emailed</em>
-        </span>
-        <br />
-        <button type="button" onClick={handleUploadPhotos}>
-          Upload your photos
-        </button>
-        <button type="button" onClick={handleSubmit}>
-          Submit answer
-        </button>
+        <form style={{ display: 'grid' }}>
+          <button type="button" onClick={onClose}>
+            Close
+          </button>
+          <h2>Submit your Answer</h2>
+          <h3>{`${productName}: ${questionBody}`}</h3>
+          <label htmlFor="your-answer" style={{ display: 'contents' }}>
+            Your Answer *
+            <br />
+            <textarea name="your-answer" rows={5} maxLength={1000} required />
+          </label>
+          <br />
+          <label htmlFor="your-nickname" style={{ display: 'contents' }}>
+            What is your nickname *
+            <br />
+            <input
+              type="text"
+              name="your-nickname"
+              maxLength={60}
+              placeholder="Example: jack543!"
+              required
+            />
+          </label>
+          <br />
+          <span style={{ fontSize: '.87em' }}>
+            <em>For privacy reasons, do not use your full name or email address</em>
+          </span>
+          <br />
+          <label htmlFor="your-email" style={{ display: 'contents' }}>
+            Your email *
+            <br />
+            <input
+              type="email"
+              name="your-email"
+              maxLength={60}
+              placeholder="Example: jack@email.com"
+              required
+            />
+          </label>
+          <br />
+          <span style={{ fontSize: '.87em' }}>
+            <em>For authentication reasons, you will not be emailed</em>
+          </span>
+          <br />
+          <button type="button" onClick={handleUploadPhotos}>
+            Upload your photos
+          </button>
+          <input type="submit" onClick={(e) => handleSubmit(e)} value="Submit answer" />
+        </form>
       </div>
     </>,
     // TODO: why does ESLint think `document` is undefined?
