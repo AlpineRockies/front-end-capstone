@@ -10,6 +10,8 @@ import ProductContext from './Context';
 function App() {
   const [productId, setProductId] = useState(38321);
   const [productInfo, setProductInfo] = useState({});
+  const [yourOutfit, setYourOutfit] = useState([]);
+  const [joinedAPIDetails, setJoinedAPIDetails] = useState([])
 
   const memoizedState = useMemo(
     () => ({
@@ -17,8 +19,12 @@ function App() {
       setProductId,
       productInfo,
       setProductInfo,
+      yourOutfit,
+      setYourOutfit,
+      joinedAPIDetails,
+      setJoinedAPIDetails,
     }),
-    [productId, productInfo],
+    [productId, productInfo, yourOutfit, joinedAPIDetails],
   );
 
   // update the context store when a new product is selected
