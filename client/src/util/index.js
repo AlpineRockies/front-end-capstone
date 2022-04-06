@@ -21,3 +21,8 @@ export function compareHelpfulness(itemOne, itemTwo) {
 export function capitalize(string) {
   return string[0].toUpperCase() + string.slice(1);
 }
+
+export function ratingPercentage(numFalse, numTrue) {
+  const totalNumberReviews = numFalse + numTrue;
+  return Math.floor((numTrue / totalNumberReviews) * 100);
+}

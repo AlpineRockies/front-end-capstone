@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function WriteReviewCharacteristic({ handleCharacteristic, metaData }) {
   const [characteristicWR, setCharacteristicWR] = useState(characteristicWR);
@@ -68,10 +68,11 @@ function WriteReviewCharacteristic({ handleCharacteristic, metaData }) {
             characteristicObj[metaCharacteristic[event.target.name].id] =
               parseInt(event.target.value);
           }
-          if (i === arrAllCharacteristic.length - 1) {
-            setCharacteristicWR(characteristicObj);
-            handleCharacteristic?.(characteristicObj);
-          }
+        }
+        if (i === arrAllCharacteristic.length - 1) {
+          setCharacteristicWR(characteristicObj);
+
+          handleCharacteristic?.(characteristicObj);
         }
       }
     }
@@ -80,33 +81,27 @@ function WriteReviewCharacteristic({ handleCharacteristic, metaData }) {
   return (
     <div className="RR-wrc">
       <div className="RR-wrc-allArr">
-        {arrAllCharacteristic.map((eachCharacteristic) => {
-          return (
-            <div
-              className="RR-wrc-each-type"
-              key={JSON.stringify(eachCharacteristic)}
-            >
-              <span>{eachCharacteristic.header}</span>
-              <div className="RR-wrc-each-choice">
-                {eachCharacteristic.type.map((choice) => {
-                  return (
-                    <label key={choice.id}>
-                      <input
-                        value={choice.id}
-                        name={eachCharacteristic.header}
-                        type="radio"
-                        onChange={(event) =>
-                          handleSetCharacteristicChange(event)
-                        }
-                      />
-                      {choice.des}
-                    </label>
-                  );
-                })}
-              </div>
+        {arrAllCharacteristic.map((eachCharacteristic) => (
+          <div
+            className="RR-wrc-each-type"
+            key={JSON.stringify(eachCharacteristic)}
+          >
+            <span>{eachCharacteristic.header}</span>
+            <div className="RR-wrc-each-choice">
+              {eachCharacteristic.type.map((choice) => (
+                <label key={choice.id}>
+                  <input
+                    value={choice.id}
+                    name={eachCharacteristic.header}
+                    type="radio"
+                    onChange={(event) => handleSetCharacteristicChange(event)}
+                  />
+                  {choice.des}
+                </label>
+              ))}
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
     </div>
   );

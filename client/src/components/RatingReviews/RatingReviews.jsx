@@ -24,7 +24,8 @@ function RatingReviews() {
     const getReviewAPI = axios.get(reviewAPI);
     const getMetaDataAPI = axios.get(metaDataAPI);
 
-    axios.all([getReviewAPI, getMetaDataAPI])
+    axios
+      .all([getReviewAPI, getMetaDataAPI])
       .then(
         axios.spread((...allData) => {
           setSortedList(allData[0].data.results);
@@ -59,7 +60,7 @@ function RatingReviews() {
   };
 
   return (
-    <div className='RR-review-list'>
+    <div className="RR-review-list">
       <h2>Rating And Reviews</h2>
 
       {metaData && <Breakdown metaData={metaData} />}
@@ -68,9 +69,9 @@ function RatingReviews() {
         <label>
           Sort:
           <select value={sortView} onChange={handleViewChange}>
-            <option value='relevant'>Relevant</option>
-            <option value='newest'>Newest</option>
-            <option value='helpful'>Helpful</option>
+            <option value="relevant">Relevant</option>
+            <option value="newest">Newest</option>
+            <option value="helpful">Helpful</option>
           </select>
         </label>
       </form>
@@ -78,27 +79,29 @@ function RatingReviews() {
       {sortedList && <ReviewList sortedList={sortedList} />}
 
       <button
-        className='RR-more-reviews-button'
-        type='button'
+        className="RR-more-reviews-button"
+        type="button"
         onClick={handleMoreReviewsClick}
       >
         More Reviews
       </button>
 
-      <div className='RR-write-review'>
+      <div className="RR-write-review">
         <button
-          className='RR-write-review-button'
-          type='button'
+          className="RR-write-review-button"
+          type="button"
           onClick={handleWriteReviewClick}
         >
           Write Review
         </button>
-          {metaData &&  <WriteReview
-          showWriteReview={showWriteReview}
-          setShowWriteReview={setShowWriteReview}
-          productId={productId}
-          metaData={metaData}
-        />}
+        {metaData && (
+          <WriteReview
+            showWriteReview={showWriteReview}
+            setShowWriteReview={setShowWriteReview}
+            productId={productId}
+            metaData={metaData}
+          />
+        )}
       </div>
     </div>
   );
