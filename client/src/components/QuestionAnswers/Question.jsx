@@ -1,11 +1,15 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
+
 import AddAnswerModal from './modals/AddAnswerModal';
+import ProductContext from '../Context';
 
 function Question({ questionId, questionBody, questionHelpfulness }) {
   const [markedHelpful, setMarkedHelpful] = useState(false);
   const [showAddAnswer, setShowAddAnswer] = useState(false);
+
+  const productName = useContext(ProductContext).productInfo.name;
 
   const questionStyle = {
     display: 'flex',
@@ -60,6 +64,7 @@ function Question({ questionId, questionBody, questionHelpfulness }) {
       <AddAnswerModal
         showModal={showAddAnswer}
         onClose={() => setShowAddAnswer(false)}
+        productData={{ productName, questionId, questionBody }}
       />
     </>
   );

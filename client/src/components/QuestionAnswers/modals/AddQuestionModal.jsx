@@ -1,20 +1,20 @@
-/* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { createPortal } from 'react-dom';
 import axios from 'axios';
 
-export default function AddAnswerModal({ showModal, onClose, productData }) {
+import ProductContext from '../../Context';
+
+export default function AddQuestionModal({ showModal, onClose }) {
   if (!showModal) {
     return null;
   }
 
   const formRef = React.createRef();
-  const { productName, questionId, questionBody } = productData;
 
-  const [newAnswerBody, setNewAnswerBody] = useState('');
-  const [newAnswerName, setNewAnswerName] = useState('');
-  const [newAnswerEmail, setNewAnswerEmail] = useState('');
-  const [newAnswerPhotos, setNewAnswerPhotos] = useState([]);
+  const [newQuestionBody, setNewQuestionBody] = useState('');
+  const [newQuestionName, setNewQuestionName] = useState('');
+  const [newQuestionEmail, setNewQuestionEmail] = useState('');
+  const { productId, productInfo } = useContext(ProductContext);
 
   const modalStyle = {
     position: 'fixed',
@@ -39,18 +39,16 @@ export default function AddAnswerModal({ showModal, onClose, productData }) {
     zIndex: 254,
   };
 
-  const handleUploadPhotos = () => { /* TODO: */ };
-
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if (formRef.current.reportValidity()) {
       axios
-        .post(`/qa/questions/${questionId}/answers`, {
-          body: newAnswerBody,
-          name: newAnswerName,
-          email: newAnswerEmail,
-          photos: newAnswerPhotos,
+        .post('/qa/questions', {
+          body: newQuestionBody,
+          name: newQuestionName,
+          email: newQuestionEmail,
+          product_id: productId,
         })
         .then(() => onClose())
         // eslint-disable-next-line no-console
@@ -66,17 +64,17 @@ export default function AddAnswerModal({ showModal, onClose, productData }) {
           <button type="button" onClick={onClose}>
             Close
           </button>
-          <h2>Submit your Answer</h2>
-          <h3>{`${productName}: ${questionBody}`}</h3>
-          <label htmlFor="your-answer" style={{ display: 'contents' }}>
-            Your Answer *
+          <h2>Ask Your Question</h2>
+          <h3>{`About the ${productInfo.name}`}</h3>
+          <label htmlFor="your-question" style={{ display: 'contents' }}>
+            Your Question *
             <br />
             <textarea
-              name="your-answer"
+              name="your-question"
               rows={5}
               maxLength={1000}
-              value={newAnswerBody}
-              onChange={(e) => setNewAnswerBody(e.target.value)}
+              value={newQuestionBody}
+              onChange={(e) => setNewQuestionBody(e.target.value)}
               required
             />
           </label>
@@ -89,8 +87,8 @@ export default function AddAnswerModal({ showModal, onClose, productData }) {
               name="your-nickname"
               maxLength={60}
               placeholder="Example: jack543!"
-              value={newAnswerName}
-              onChange={(e) => setNewAnswerName(e.target.value)}
+              value={newQuestionName}
+              onChange={(e) => setNewQuestionName(e.target.value)}
               required
             />
           </label>
@@ -106,8 +104,8 @@ export default function AddAnswerModal({ showModal, onClose, productData }) {
               name="your-email"
               maxLength={60}
               placeholder="Example: jack@email.com"
-              value={newAnswerEmail}
-              onChange={(e) => setNewAnswerEmail(e.target.value)}
+              value={newQuestionEmail}
+              onChange={(e) => setNewQuestionEmail(e.target.value)}
               required
             />
           </label>
@@ -115,11 +113,8 @@ export default function AddAnswerModal({ showModal, onClose, productData }) {
             <em>For authentication reasons, you will not be emailed</em>
           </span>
           <br />
-          <button type="button" onClick={handleUploadPhotos}>
-            Upload your photos
-          </button>
           <button type="button" onClick={(e) => handleSubmit(e)}>
-            Submit answer
+            Submit Question
           </button>
         </form>
       </div>

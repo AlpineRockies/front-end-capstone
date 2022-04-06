@@ -44,9 +44,11 @@ function QAListEntry({ questionData }) {
         {sortedAnswers.slice(0, shownAnswerCount).map((answer) => (
           <Answer key={answer.id} answer={answer} />
         ))}
-        <button onClick={handleMoreAnswers} type="button">
-          {showMoreAnswers ? 'See more answers' : 'Collapse'}
-        </button>
+        {sortedAnswers.length > 2 && (
+          <button onClick={handleMoreAnswers} type="button">
+            {showMoreAnswers ? 'See more answers' : 'Collapse'}
+          </button>
+        )}
       </div>
     </div>
   );
