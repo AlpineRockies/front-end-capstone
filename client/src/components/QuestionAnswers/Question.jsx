@@ -64,7 +64,7 @@ function Question({ questionId, questionBody, questionHelpfulness }) {
       <AddAnswerModal
         showModal={showAddAnswer}
         onClose={() => setShowAddAnswer(false)}
-        productData={{ productName, questionBody }}
+        productData={{ productName, questionId, questionBody }}
       />
     </>
   );
