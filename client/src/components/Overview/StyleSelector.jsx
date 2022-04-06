@@ -11,12 +11,16 @@ function StyleSelector(props) {
   let stylesThumbnail;
 
   if (styles !== undefined) {
-    stylesThumbnail = styles.map((image, index) => <span><img alt="placeholder text" className="thumbnails" key={index} src={image.photos[0].thumbnail_url} /></span>);
+    stylesThumbnail = styles.map((image, index) => <span><img alt="placeholder text" className="ov-style-selector-thumbnails" key={index} src={image.photos[0].thumbnail_url} /></span>);
   }
 
   return (
-    <div>
-      {/* <p onClick={(e) => setCount(e.target.value)}>{stylesThumbnail}</p> */}
+    <div className="ov-style-selector">
+      <b>{'STYLE > '}</b>
+      {' '}
+      {styles[0] && styles[0].name.toUpperCase()}
+      <br />
+      <br />
       {stylesThumbnail}
     </div>
   );

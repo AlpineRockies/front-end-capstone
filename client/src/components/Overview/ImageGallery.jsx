@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-unused-prop-types */
 /* eslint-disable react/no-array-index-key */
 import React, {
 // useState,
@@ -10,7 +12,7 @@ import {
 import PropTypes from 'prop-types';
 
 function ImageGallery(props) {
-  const { styles, count } = props;
+  const { styles, count, setCount } = props;
   // const [
   //   count,
   //   // setCount
@@ -18,27 +20,55 @@ function ImageGallery(props) {
   let galleryThumbnails;
   let mainImage;
   if (styles[count]) {
-    galleryThumbnails = styles.map((image, index) => <img alt="placeholder text" className="thumbnailGallery" key={index} src={image.photos[0].thumbnail_url} />);
-    mainImage = <img alt="placeholder text" className="mainImage" key={count} src={styles[count].photos[0].url} />;
+    if (count < 7) {
+      galleryThumbnails = styles.slice(0, 6).map((image, index) => <img alt="a beautiful flower" className="ov-thumbnail-gallery" key={index} src={image.photos[0].thumbnail_url} />);
+    } else {
+      galleryThumbnails = styles.slice(count - 6, count).map((image, index) => <img alt="a playfull cat" className="ov-thumbnail-gallery" key={index} src={image.photos[0].thumbnail_url} />);
+    }
+    mainImage = <img alt="placeholder text" className="ov-main-img" key={count} src={styles[count].photos[0].url} />;
   }
+
+  let leftRight;
+  if (count === 0) {
+    leftRight = (
+      <>
+        {mainImage}
+        <FaArrowRight className="ov-right-icon" onClick={() => setCount(count + 1)} />
+      </>
+    );
+  } else if (count === styles.length - 1) {
+    leftRight = (
+      <>
+        <FaArrowLeft className="ov-left-icon" onClick={() => setCount(count - 1)} />
+        ;
+        {mainImage}
+      </>
+    );
+  } else {
+    leftRight = (
+      <>
+        <FaArrowLeft className="ov-left-icon" onClick={() => setCount(count - 1)} />
+        { mainImage}
+        <FaArrowRight className="ov-right-icon" onClick={() => setCount(count + 1)} />
+      </>
+    );
+  }
+
   return (
-    <div className="ov-imageContainer">
-      <div className="ov-galleryThumbnails">
-        <FaArrowUp className="ov-up" />
+    <div className="ov-img-carousel">
+      <div className="ov-thumbnail-img-nav">
+        <FaArrowUp className="ov-up-icon" />
         {galleryThumbnails}
-        <FaArrowDown className="ov-down" />
+        <FaArrowDown className="ov-down-icon" />
       </div>
-      <div className="ov-galleryMain" />
-      <FaArrowLeft className="ov-Left" />
-      {mainImage}
-      <FaArrowRight className="ov-Right" />
+      <div className="ov-main-img-nav" />
+      {leftRight}
     </div>
   );
 }
 
 ImageGallery.propTypes = {
   count: PropTypes.number,
-  counter: PropTypes.func.isRequired,
   styles: PropTypes.oneOfType([
     PropTypes.object,
     PropTypes.string,

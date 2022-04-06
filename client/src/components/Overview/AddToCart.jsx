@@ -3,36 +3,34 @@ import React, {
 // useEffect,
 // useContext
 } from 'react';
+// import Select from 'react-select';
 import PropTypes from 'prop-types';
 
 function AddToCart(props) {
-  // if (props.styles.results !== undefined) {
-
-  // }
-  // eslint-disable-next-line no-unused-vars
   const { styles } = props;
-
+  for (const [key, value] of Object.entries(styles[0] && styles[0].skus)) {
+    console.log(`value: ${value}`);
   return (
-    <div>
-      <select name="size" id="size" className="ov-sizes">
-        <option>select a size</option>
-        <option value="xs">xs</option>
-        <option value="s">s</option>
-        <option value="m">m</option>
-        <option value="l">l</option>
-        <option value="xl">xl</option>
-      </select>
-      <select name="size" id="size" className="ov-qty">
-        <option>qty</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
+    <>
+      <span>
+        <select className="ov-style-sizes">
+          <option value="Select a size">
+            SELECT A SIZE
+          </option>
+        </select>
+        {' '}
+        <select className="ov-style-qty">
+          <option value="1">
+            1
+          </option>
+        </select>
+      </span>
       <br />
-      <button className="ov-checkoutButton" type="button">add to cart</button>
-    </div>
+      <br />
+      <button className="ov-checkout-button" type="button">
+        ADD TO CART  &emsp; &emsp; &emsp; &emsp; &ensp; ➕
+      </button>
+    </>
   );
 }
 
