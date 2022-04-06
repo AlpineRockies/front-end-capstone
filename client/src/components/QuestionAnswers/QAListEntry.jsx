@@ -1,19 +1,34 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
+
+// eslint-disable-next-line import/no-unresolved
+import { compareHelpfulness } from 'Utilities';
 
 import Question from './Question';
 import Answer from './Answer';
 
 function QAListEntry({ questionData }) {
+  const [shownAnswerCount, setShownAnswerCount] = useState(2);
+  const [showMoreAnswers, setShowMoreAnswers] = useState(true);
+
   const {
     question_id: questionId,
     question_body: questionBody,
-    // question_date: questionDate,
-    // asker_name: askerName,
     question_helpfulness: questionHelpfulness,
-    // reported,
     answers,
   } = questionData;
+
+  const answerStyle = {
+    display: 'inline-flex',
+    flexDirection: 'column',
+  };
+
+  const sortedAnswers = Object.values(answers).sort(compareHelpfulness);
+
+  const handleMoreAnswers = () => {
+    setShownAnswerCount(showMoreAnswers ? sortedAnswers.length : 2);
+    setShowMoreAnswers((showMore) => !showMore);
+  };
 
   return (
     <div className="qa-list-entry">
@@ -22,7 +37,17 @@ function QAListEntry({ questionData }) {
         questionBody={questionBody}
         questionHelpfulness={questionHelpfulness}
       />
-      <Answer answers={answers} />
+      <span>
+        <strong>A: </strong>
+      </span>
+      <div className="qa-answer" style={answerStyle}>
+        {sortedAnswers.slice(0, shownAnswerCount).map((answer) => (
+          <Answer key={answer.id} answer={answer} />
+        ))}
+        <button onClick={handleMoreAnswers} type="button">
+          {showMoreAnswers ? 'See more answers' : 'Collapse'}
+        </button>
+      </div>
     </div>
   );
 }
