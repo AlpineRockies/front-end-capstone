@@ -41,7 +41,7 @@ function ReviewEntry({ eachReview }) {
         {eachReview.photos[0] && <ReviewPhotos photos={eachReview.photos} />}
       </div>
       <div className="RR-review-header">
-        Rating = {eachReview.rating}
+        <ReviewEntryStar rating={eachReview.rating} />
         <p>Summary: {eachReview.summary}</p>
         <p>Date: {moment(eachReview.date).format('MMM Do YY')}</p>
       </div>
