@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import _ from 'underscore';
 import './style.css';
-import Related from './Related.jsx';
-import Comparison from './Comparison.jsx';
+import Related from './Related';
+import YourOutfit from './YourOutfit';
+import ProductContext from '../Context';
 
-export const CombinedAPIDetails = React.createContext();
 
 function RelatedItems() {
-  const [productId, setProductId] = useState(38013);
+  const { productId, yourOutfit, setYourOutfit, setJoinedAPIDetails } =
+    useContext(ProductContext);
+
   const [relatedItems, setRelatedItems] = useState([]);
   const [relatedItemsImg, setRelatedItemsImg] = useState([]);
   const [relatedItemsDetails, setRelatedItemsDetails] = useState([]);
-  const [combinedAPIDetails, setCombinedAPIDetails] = useState([]);
-  const [outfit, setOutfit] = useState([]);
+  const [yourOutfitId, setYourOutfitId] = useState();
 
   useEffect(() => {
     axios
@@ -47,35 +48,37 @@ function RelatedItems() {
   }, [relatedItems]);
 
   useEffect(() => {
-    const accArr = []
-    for (let i = 0; i < relatedItems.length; i += 1) {
-      accArr.push(_.extend(relatedItemsImg[i], relatedItemsDetails[i]));
+    const accArr = _.map(relatedItems, (ea, index) =>
+      _.extend(relatedItemsImg[index], relatedItemsDetails[index])
+    );
+    setJoinedAPIDetails(accArr);
+  }, [relatedItemsDetails]);
+
+  useEffect(() => {
+    if (yourOutfitId) {
+      const getYOImages = axios.get(`/products/${yourOutfitId}/styles`);
+      const getYODetails = axios.get(`/products/${yourOutfitId}`);
+      axios
+        .all([getYOImages, getYODetails])
+        .then((response) =>
+          setYourOutfit([
+            ...yourOutfit,
+            { ...response[0].data, ...response[1].data },
+          ])
+        )
+        .catch((err) => console.log(err));
     }
-    setCombinedAPIDetails(accArr)
-  }, [relatedItemsDetails])
-
-  const handleClick = (event) => {
-    // under construction
-    console.log('[RelatedItems] handleClick :', event);
-    // feed this item back to app for reload of Overview
-    getYourOutfit(event);
-  };
-
-  const getYourOutfit = (event) => {
-    console.log('[getYourOutfit] ReleatedItems.jsx', event);
-  };
+  }, [yourOutfitId]);
 
   return (
     <div className="ri-parent">
       <div className="ri-relateditems">
         <h3>Related Items</h3>
-        <CombinedAPIDetails.Provider value={combinedAPIDetails}>
-          <Related setProductId={setProductId} />
-        </CombinedAPIDetails.Provider>
+        <Related />
       </div>
-      <div className="ri-comparison">
-        <h3>Comparison</h3>
-        <Comparison />
+      <div className="ri-youroutfit">
+        <h3>Your Outfit</h3>
+        <YourOutfit setYourOutfitId={setYourOutfitId} />
       </div>
     </div>
   );
