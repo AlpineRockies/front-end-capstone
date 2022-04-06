@@ -5,18 +5,19 @@ import React, { useContext, useState, useEffect } from 'react';
 import { compareHelpfulness } from 'Utilities';
 import ProductContext from '../Context';
 import QAListEntry from './QAListEntry';
+import AddQuestionModal from './modals/AddQuestionModal';
 
 function QAList() {
   const { productId } = useContext(ProductContext);
 
-  // TODO: Clarify BRD initial question display count
-  // Section 1.3.1: "on page load up to four questions should be displayed"
-  // Section 1.3.4: "The list will by default only display up to 2 questions asked"
-  const initialQuestionCount = 4;
+  // § 1.3.1: "on page load up to four questions should be displayed"
+  // § 1.3.4: "The list will by default only display up to 2 questions asked"
+  const initialQuestionCount = 2;
 
   const [questions, setQuestions] = useState([]);
   const [shownQuestionCount, setShownQuestionCount] = useState(initialQuestionCount);
   const [renderedItems, setRenderedItems] = useState(<p className="loading">Loading ...</p>);
+  const [showAddQuestion, setShowAddQuestion] = useState(false);
 
   const handleMoreQuestions = () => setShownQuestionCount((count) => count + 2);
 
@@ -37,40 +38,41 @@ function QAList() {
 
   // fetch more questions when shown question count changes
   useEffect(() => {
-    if (shownQuestionCount === initialQuestionCount) {
-      return;
+    if (shownQuestionCount !== initialQuestionCount) {
+      // eslint-disable-next-line no-console
+      fetchQuestions(shownQuestionCount).catch(console.error);
     }
-
-    // eslint-disable-next-line no-console
-    fetchQuestions(shownQuestionCount).catch(console.error);
   }, [shownQuestionCount]);
 
   // update rendered questions
   useEffect(() => {
-    // TODO: Do I need this check?
-    // What if a pruduct just doesn't have any questions yet?
-    if (!questions || !questions.length) {
-      return;
+    if (questions && questions.length) {
+      const renderedQuestions = questions.slice(0, shownQuestionCount);
+
+      setRenderedItems(
+        renderedQuestions.map((question) => (
+          <QAListEntry key={question.question_id} questionData={question} />
+        )),
+      );
     }
-
-    const renderedQuestions = questions.slice(0, shownQuestionCount);
-
-    setRenderedItems(
-      renderedQuestions.map((question) => (
-        <QAListEntry key={question.question_id} questionData={question} />
-      )),
-    );
   }, [questions]);
 
   return (
-    <div className="QA-list">
-      {renderedItems}
-      {shownQuestionCount <= questions.length ? (
-        <button type="button" onClick={handleMoreQuestions}>
-          More Answered Questions
-        </button>
-      ) : null}
-    </div>
+    <>
+      <div className="QA-list">
+        {renderedItems}
+        {shownQuestionCount <= questions.length ? (
+          <button type="button" onClick={handleMoreQuestions}>
+            More Answered Questions
+          </button>
+        ) : null}
+        <button type="button" onClick={() => setShowAddQuestion(true)}>Add a question</button>
+      </div>
+      <AddQuestionModal
+        showModal={showAddQuestion}
+        onClose={() => setShowAddQuestion(false)}
+      />
+    </>
   );
 }
 
