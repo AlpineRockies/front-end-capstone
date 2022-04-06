@@ -5,7 +5,8 @@ import React, { useContext, useState, useEffect } from 'react';
 import { compareHelpfulness } from 'Utilities';
 import ProductContext from '../Context';
 import QAListEntry from './QAListEntry';
-import AddQuestionModal from './modals/AddQuestionModal';
+import AddQuestionModal from '../modals/AddQuestionModal';
+import Modal from '../modals/Modal';
 
 function QAList() {
   const { productId } = useContext(ProductContext);
@@ -65,9 +66,10 @@ function QAList() {
         ) : null}
         <button type="button" onClick={() => setShowAddQuestion(true)}>Add a question</button>
       </div>
-      <AddQuestionModal
+      <Modal
         showModal={showAddQuestion}
         onClose={() => setShowAddQuestion(false)}
+        ModalForm={AddQuestionModal}
       />
     </>
   );

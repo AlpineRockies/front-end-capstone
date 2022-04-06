@@ -2,8 +2,9 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
 
-import AddAnswerModal from './modals/AddAnswerModal';
+import AddAnswerModal from '../modals/AddAnswerModal';
 import ProductContext from '../Context';
+import Modal from '../modals/Modal';
 
 function Question({ questionId, questionBody, questionHelpfulness }) {
   const [markedHelpful, setMarkedHelpful] = useState(false);
@@ -61,10 +62,11 @@ function Question({ questionId, questionBody, questionHelpfulness }) {
         </span>
       </div>
       {/* TODO: is this the best place for the modal? */}
-      <AddAnswerModal
+      <Modal
         showModal={showAddAnswer}
         onClose={() => setShowAddAnswer(false)}
-        productData={{ productName, questionId, questionBody }}
+        ModalForm={AddAnswerModal}
+        formData={{ productName, questionId, questionBody }}
       />
     </>
   );
