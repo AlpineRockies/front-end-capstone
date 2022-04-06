@@ -57,7 +57,7 @@ function Breakdown({ metaData }) {
                 </label>
               ))}
               {eachStar.valueObj} Stars
-              <br></br>
+              <br />
             </label>
           ))}
       </div>
@@ -74,7 +74,7 @@ function Breakdown({ metaData }) {
                 readOnly
               />
               <output>{Math.floor(eachChar.valueObj.value)}</output>
-              <br></br>
+              <br />
             </label>
           ))}
       </div>
