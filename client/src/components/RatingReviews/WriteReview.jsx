@@ -158,7 +158,6 @@ function WriteReview({
                     }
                   />
                 </div>
-                // inner break for content
               </div>
               <button className="RR-wr-submit-button" type="submit">
                 Submit Review
