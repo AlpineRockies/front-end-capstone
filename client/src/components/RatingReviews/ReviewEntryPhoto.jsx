@@ -1,20 +1,7 @@
 import React, { useState } from 'react';
 
-function ReviewEntryPhoto({ photos }) {
-  console.log('arr photos', photos);
+function ReviewEntryPhoto({ photo }) {
   const [photoModal, setPhotoModal] = useState(false);
-
-  // const handleEachPhoto = (arrayPhotos) => {
-  //   arrayPhotos.map((eachPhoto) =>
-  //     setPhoto(eachPhoto.url)
-  //   )
-  // }
-
-  const photo = photos.map((eachPhoto) => {
-    return (
-      eachPhoto.url
-    )
-  })
 
   const imgThumb = {
     height: '60px',
@@ -58,18 +45,21 @@ function ReviewEntryPhoto({ photos }) {
   return (
     <div className="RR-entry-photo">
       <div>
-        <img src={photo}></img>
-
+        <img src={photo} style={imgThumb} onClick={() => setPhotoModal(true)} />
       </div>
-      {/* <div>
-        {photos.map((eachPic, i) =>
-          <div key={eachPic.id}>
-            <img src={eachPic.url} style={imgThumb} onClick={() => setPhotoModal(true)}/>
-            {photoModal &&  <img src={eachPic.url} style={imgExpand} onClick={() => setPhotoModal(false)}/>}
+      <div>
+        {photoModal ? (
+          <div style={overlayStyle}>
+            <div style={modalStyle}>
+              <img
+                src={photo}
+                style={imgExpand}
+                onClick={() => setPhotoModal(false)}
+              />
+            </div>
           </div>
-        )}
-      </div> */}
-
+        ) : null}
+      </div>
     </div>
   );
 }
