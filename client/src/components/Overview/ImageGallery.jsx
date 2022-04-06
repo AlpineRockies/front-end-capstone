@@ -21,7 +21,7 @@ function ImageGallery(props) {
   let mainImage;
   if (styles[count]) {
     if (count < 7) {
-      galleryThumbnails = styles.slice(count, count + 6).map((image, index) => <img alt="a beautiful flower" className="ov-thumbnail-gallery" key={index} src={image.photos[0].thumbnail_url} />);
+      galleryThumbnails = styles.slice(0, 6).map((image, index) => <img alt="a beautiful flower" className="ov-thumbnail-gallery" key={index} src={image.photos[0].thumbnail_url} />);
     } else {
       galleryThumbnails = styles.slice(count - 6, count).map((image, index) => <img alt="a playfull cat" className="ov-thumbnail-gallery" key={index} src={image.photos[0].thumbnail_url} />);
     }
