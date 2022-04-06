@@ -10,6 +10,12 @@ function ReviewEntryPhoto({ photos }) {
   //   )
   // }
 
+  const photo = photos.map((eachPhoto) => {
+    return (
+      eachPhoto.url
+    )
+  })
+
   const imgThumb = {
     height: '60px',
     width: '60px',
@@ -52,16 +58,17 @@ function ReviewEntryPhoto({ photos }) {
   return (
     <div className="RR-entry-photo">
       <div>
+        <img src={photo}></img>
 
       </div>
-      <div>
+      {/* <div>
         {photos.map((eachPic, i) =>
           <div key={eachPic.id}>
             <img src={eachPic.url} style={imgThumb} onClick={() => setPhotoModal(true)}/>
             {photoModal &&  <img src={eachPic.url} style={imgExpand} onClick={() => setPhotoModal(false)}/>}
           </div>
         )}
-      </div>
+      </div> */}
 
     </div>
   );
