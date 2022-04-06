@@ -30,8 +30,8 @@ function Breakdown({ metaData }) {
   };
 
   const handleRecommended = () => {
-    const recFalse = Number(mdRecArray[0].valueObj);
-    const recTrue = Number(mdRecArray[1].valueObj);
+    const recFalse = Number(mdRecArray[0]?.valueObj);
+    const recTrue = Number(mdRecArray[1]?.valueObj);
     return ratingPercentage(recFalse, recTrue) + '% Recommended';
   };
 
