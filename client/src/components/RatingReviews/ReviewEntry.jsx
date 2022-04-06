@@ -12,7 +12,7 @@ function ReviewEntry({ eachReview }) {
   return (
     <div className="RR-review-entry">
       <div className="RR-review-photos">
-        {eachReview.photos[0] && <ReviewEntryPhoto photos={eachReview.photos}/> }
+        {eachReview.photos[0] && <ReviewEntryPhoto photos={eachReview.photos} /> }
       </div>
       <div className="RR-review-header">
         Rating = {eachReview.rating}
