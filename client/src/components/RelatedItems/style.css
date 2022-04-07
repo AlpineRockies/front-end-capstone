@@ -171,3 +171,76 @@
   font-size: 6rem;
   color: rebeccapurple;
 }
+
+.ri-modal-Background {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0, 0, 0.35);
+  backdrop-filter: blur(4px);
+  position:fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 254;
+}
+
+.ri-modal-Container {
+  width: 500px;
+  height: 500px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.ri-modal-Title {
+  display: inline-block;
+  text-align: center;
+  margin-top: 10px;
+  color: black
+}
+
+.ri-modal-Title-Close-Button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ri-modal-Title-CloseButton button {
+  background-color: transparent;
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.ri-modal-Container .ri-modal-Body {
+  flex: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.0rem;
+  text-align: center;
+  color: black
+}
+
+.ri-modal-Container .ri-modal-Footer {
+  flex: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ri-modal-Container .ri-modal-Footer button {
+  width: 150px;
+  height: 45px;
+  margin: 10px;
+  border: none;
+  background-color: cornflowerblue;
+  color: white;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+}
