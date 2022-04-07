@@ -1,9 +1,12 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
+// eslint-disable-next-line import/no-unresolved
+import { escapeValue } from 'Utilities';
+
 function Search({ onSearch }) {
   const handleChange = (event) => {
-    const newQuery = event.target.value;
+    const newQuery = escapeValue(event.target.value);
 
     if (newQuery.length > 2) {
       onSearch(newQuery);

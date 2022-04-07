@@ -21,7 +21,7 @@ export default function AddQuestionModal({ onClose }) {
           body: newQuestionBody,
           name: newQuestionName,
           email: newQuestionEmail,
-          product_id: productId,
+          product_id: +productId,
         })
         .then(() => onClose())
         // eslint-disable-next-line no-console

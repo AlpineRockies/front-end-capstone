@@ -34,7 +34,7 @@ function Question({ questionId, questionBody, questionHelpfulness }) {
       <div className="qa-question" style={questionStyle}>
         <span>
           <strong>Q: </strong>
-          {questionBody}
+          <strong>{questionBody}</strong>
         </span>
         <span>
           Helpful?
