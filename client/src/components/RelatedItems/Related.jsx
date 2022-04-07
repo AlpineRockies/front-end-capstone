@@ -4,15 +4,19 @@ import {
   FaArrowAltCircleLeft,
   FaStar,
 } from 'react-icons/fa';
+import ComparisonModal from './ComparisonModal';
 
 import ProductContext from '../Context';
 
 function Related() {
-  const { setProductId, joinedAPIDetails } = useContext(ProductContext)
+  const { setProductId, joinedAPIDetails } = useContext(ProductContext);
   const referenceArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   const [shownImagesArray, setShownImagesArray] = useState([]);
   const [shownImagesOffset, setShownImagesOffset] = useState(0);
+  const [selectedComparisonItem, setSelectedComparisonItem] = useState();
+  const [openModal, setOpenModal] = useState(false);
+
   useEffect(() => {
     setShownImagesArray([0, 1, 2, 3]);
     setShownImagesOffset(0);
@@ -43,8 +47,16 @@ function Related() {
     visibleSlide();
   };
 
+  const handleModalClick = (e) => {
+    setOpenModal(!openModal);
+    setSelectedComparisonItem(e);
+  }
+
   return (
     <div>
+      <div>
+        {openModal && <ComparisonModal setOpenModal={setOpenModal} selectedComparisonItem={selectedComparisonItem}/>}
+      </div>
       <section className="ri-slider">
         {shownImagesArray[0] !== 0 ? (
           <FaArrowAltCircleLeft className="left-arrow" onClick={prevSlide} />
@@ -58,9 +70,11 @@ function Related() {
             {/* {console.log('Testing', ea.product_id)} */}
             {shownImagesArray.includes(idx) && (
               <div className="ri-container">
-                <a href="https://amazon.com">
-                  <FaStar className="ri-star" />
-                </a>
+                <FaStar
+                  //onClick={() => setOpenModal(!openModal)}
+                  onClick={(e) => handleModalClick(ea.product_id)}
+                  className="ri-star"
+                />
                 <img
                   role="button"
                   className="ri-image"
