@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import _ from 'underscore';
 import { FaStar } from 'react-icons/fa';
 
 function WriteReviewStar({ handleStar }) {
@@ -27,11 +28,11 @@ function WriteReviewStar({ handleStar }) {
 
   return (
     <div className="RR-wrs-star">
-      {[...Array(5)].map((star, count) => (
+      {_.range(1, 6).map((count) => (
         <label key={count}>
           <FaStar
             value={count}
-            onClick={() => handleSetStarChange(count + 1)}
+            onClick={() => handleSetStarChange(count)}
           />
         </label>
       ))}

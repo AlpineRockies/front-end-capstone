@@ -1,9 +1,9 @@
 /* eslint-disable import/extensions */
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import ReviewList from './ReviewList';
-import WriteReview from './WriteReview';
-import Breakdown from './Breakdown';
+import ReviewList from './Reviews/ReviewList';
+import WriteReview from './WriteReview/WriteReview';
+import Breakdown from './Breakdown/Breakdown';
 
 import ProductContext from '../Context';
 
