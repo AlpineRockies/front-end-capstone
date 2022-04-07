@@ -14,7 +14,8 @@ import ImageGallery from './ImageGallery';
 import StyleSelector from './StyleSelector';
 
 function Overview() {
-  const [productId, setProductId] = useState(Math.floor(Math.random() * (38321 - 37311) + 37311));
+  // const [productId, setProductId] = useState(Math.floor(Math.random() * (38321 - 37311) + 37311));
+  const [productId, setProductId] = useState(38108)
   const [styles, setStyles] = useState([]);
   const [description, setDescription] = useState([]);
   const [count, setCount] = useState(0);
@@ -28,12 +29,10 @@ function Overview() {
   }, [productId]);
 
   useEffect(() => {
-    Promise.all(
-      axios
-        .get(`/products/${productId}`)
-        .then((res) => setDescription(res.data))
-        .catch((err) => console.error(err)),
-    );
+    axios
+      .get(`/products/${productId}`)
+      .then((res) => setDescription(res.data))
+      .catch((err) => console.error(err));
   }, [productId]);
 
   return (

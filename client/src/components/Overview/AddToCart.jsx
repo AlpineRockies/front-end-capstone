@@ -7,11 +7,27 @@ import React, {
 import PropTypes from 'prop-types';
 
 function AddToCart(props) {
+  // if (props.styles.results !== undefined) {
+
+  // }
+  // eslint-disable-next-line no-unused-vars
   const { styles } = props;
-  for (const [key, value] of Object.entries(styles[0] && styles[0].skus)) {
-    console.log(`value: ${value}`);
+  // const sizes = [{ label: 'pick a size' }, { label: 's' }];
+  // const qty = [{ label: 'how many do you want?' }, { label: '1' }];
   return (
     <>
+      {/* <div className="ov-dropdown-sizes">
+
+        <select> */}
+      {/* {styles[0].skus.map((option) => {
+            <option value={option.size}>{option.size}</option>
+          })} */}
+      {/* <Select options={sizes} />
+        </select>
+      </div>
+      <div className="ov-qty">
+        <Select options={qty} />
+      </div> */}
       <span>
         <select className="ov-style-sizes">
           <option value="Select a size">
