@@ -37,14 +37,16 @@ export function ratingPercentage(numFalse, numTrue) {
   return finalPercent;
 }
 
+/**
+ * @param {Object} question - Question object from the API server
+ * @param {String} filter - query to filter Q&A results
+ * @returns {Boolean} `true` if `filter` is in the question's body or any associated answer's body
+ */
 export function questionFilterTest(question, filter) {
-  const { question_body: questionBody, answers } = question;
+  const { question_body: body, answers } = question;
   const filterRE = new RegExp(filter, 'i');
 
-  return (
-    filterRE.test(questionBody) ||
-    _.some(answers, (answer) => filterRE.test(answer.body))
-  );
+  return filterRE.test(body) || _.some(answers, (answer) => filterRE.test(answer.body));
 }
 
 export function starFillPercentage(num) {
@@ -57,4 +59,8 @@ export function starFillPercentage(num) {
   return fillPercentage;
 }
 
-export const escapeValue = _.template('<%- value %>');
+/**
+ * @param {String} value Raw user input string
+ * @returns {String} html-safe escaped string
+ */
+export const escapeValue = (value) => _.template('<%- value %>')({ value });

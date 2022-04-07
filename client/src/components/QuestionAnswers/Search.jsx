@@ -6,7 +6,7 @@ import { escapeValue } from 'Utilities';
 
 function Search({ onSearch }) {
   const handleChange = (event) => {
-    const newQuery = escapeValue({ value: event.target.value });
+    const newQuery = escapeValue(event.target.value);
 
     if (newQuery.length > 2) {
       onSearch(newQuery);
