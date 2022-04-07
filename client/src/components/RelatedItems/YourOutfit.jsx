@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import _ from 'underscore';
 import {
   FaPlusSquare,
   FaArrowAltCircleLeft,
@@ -8,7 +9,19 @@ import {
 import ProductContext from '../Context';
 
 function YourOutfit({ setYourOutfitId }) {
-  const { productId, yourOutfit, setProductId } = useContext(ProductContext);
+  const { productId, yourOutfit, setYourOutfit, setProductId } =
+    useContext(ProductContext);
+
+  const removeItem = (product) => {
+    const copyYourOutfit = yourOutfit.slice();
+    setYourOutfit(
+      copyYourOutfit.filter((item) => {
+        if (item.id !== Number(product)) {
+          return item;
+        }
+      })
+    );
+  };
 
   return (
     <div>
@@ -22,16 +35,26 @@ function YourOutfit({ setYourOutfitId }) {
         </div>
         {yourOutfit.length > 0 &&
           yourOutfit.map((product, index) => (
-            <div key={index}>
-              <div className="yo-container">
-                <img
-                  className="yo-image"
-                  src={product.results[0].photos[0].thumbnail_url}
-                  alt="clothing"
-                  key={product.product_id}
-                  onClick={() => setProductId(product.product_id)}
-                  onKeyDown={() => setProductId(product.product_id)}
-                />
+            <div key={index} className="yo-container">
+              <div className="yo-item-Close-Button">
+                <button
+                  type="button"
+                  onClick={() => removeItem(product.product_id)}
+                >
+                  X
+                </button>
+              </div>
+              <div>
+                <div>
+                  <img
+                    className="yo-image"
+                    src={product.results[0].photos[0].thumbnail_url}
+                    alt="clothing"
+                    key={product.product_id}
+                    onClick={() => setProductId(product.product_id)}
+                    onKeyDown={() => setProductId(product.product_id)}
+                  />
+                </div>
               </div>
             </div>
           ))}

@@ -48,9 +48,8 @@ function Related() {
   };
 
   const handleModalClick = (e) => {
-    console.log('handlClick ', e)
     setOpenModal(!openModal);
-    setSelectedComparisonItem(e)
+    setSelectedComparisonItem(e);
   }
 
   return (
