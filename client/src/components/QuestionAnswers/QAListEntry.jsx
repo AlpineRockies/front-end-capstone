@@ -18,6 +18,10 @@ function QAListEntry({ questionData }) {
     answers,
   } = questionData;
 
+  const entryStyle = {
+    marginBottom: '1em',
+  };
+
   const answerStyle = {
     display: 'inline-flex',
     flexDirection: 'column',
@@ -31,7 +35,7 @@ function QAListEntry({ questionData }) {
   };
 
   return (
-    <div className="qa-list-entry">
+    <div className="qa-list-entry" style={entryStyle}>
       <Question
         questionId={questionId}
         questionBody={questionBody}
