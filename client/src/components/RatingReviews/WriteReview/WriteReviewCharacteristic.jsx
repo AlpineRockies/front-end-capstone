@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { arrAllCharacteristic } from '../Breakdown/BreakdownCharacteristic.jsx'
+import { arrAllCharacteristic } from '../Breakdown/BreakdownCharacteristic'
 
 function WriteReviewCharacteristic({ handleCharacteristic, metaData }) {
   const [characteristicWR, setCharacteristicWR] = useState(characteristicWR);

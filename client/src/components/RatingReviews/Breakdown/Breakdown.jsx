@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ReviewEntryStar from '../Reviews/ReviewEntryStar.jsx';
+import { arrAllCharacteristic } from './BreakdownCharacteristic';
 import { ratingPercentage } from 'Utilities';
 import { FaStar } from 'react-icons/fa';
 
@@ -36,6 +37,18 @@ function Breakdown({ metaData }) {
     return ratingPercentage(recFalse, recTrue) + '% Recommended';
   };
 
+  const handleDesDisplay = (characteristic, value) => {
+    for (let i = 0; i < arrAllCharacteristic.length; i++) {
+      if (arrAllCharacteristic[i].header === characteristic) {
+        for (let j = 0; j < arrAllCharacteristic[i].type.length; j++) {
+          if (arrAllCharacteristic[i].type[j].id === value) {
+            return arrAllCharacteristic[i].type[j].des;
+          }
+        }
+      }
+    }
+  };
+
   return (
     <div className="RR-breakdown">
       <div className="RR-breakdown-invoke">
@@ -62,7 +75,9 @@ function Breakdown({ metaData }) {
         {mdCharArray &&
           mdCharArray.map((eachChar) => (
             <label key={eachChar.name}>
-              {eachChar.name}
+              <output>{eachChar.name} feedback is {Math.floor(eachChar.valueObj.value)}</output>
+              <br /> <br />
+              {handleDesDisplay(eachChar.name, 1)}
               <input
                 type="range"
                 min="0"
@@ -70,8 +85,8 @@ function Breakdown({ metaData }) {
                 value={Math.floor(eachChar.valueObj.value)}
                 readOnly
               />
-              <output>{Math.floor(eachChar.valueObj.value)}</output>
-              <br />
+              {handleDesDisplay(eachChar.name, 5)}
+              <br /> <br />
             </label>
           ))}
       </div>
