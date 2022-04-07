@@ -5,6 +5,7 @@ import {
   FaStar,
 } from 'react-icons/fa';
 import ComparisonModal from './ComparisonModal';
+import ReviewEntryStar from '../RatingReviews/Reviews/ReviewEntryStar'
 
 import ProductContext from '../Context';
 
@@ -50,12 +51,19 @@ function Related() {
   const handleModalClick = (e) => {
     setOpenModal(!openModal);
     setSelectedComparisonItem(e);
-  }
+  };
+
+  console.log('JOINEDAPIDETAILS: ', joinedAPIDetails)
 
   return (
     <div>
       <div>
-        {openModal && <ComparisonModal setOpenModal={setOpenModal} selectedComparisonItem={selectedComparisonItem}/>}
+        {openModal && (
+          <ComparisonModal
+            setOpenModal={setOpenModal}
+            selectedComparisonItem={selectedComparisonItem}
+          />
+        )}
       </div>
       <section className="ri-slider">
         {shownImagesArray[0] !== 0 ? (
@@ -67,28 +75,44 @@ function Related() {
 
         {joinedAPIDetails.map((ea, idx) => (
           <div key={idx}>
-            {/* {console.log('Testing', ea.product_id)} */}
             {shownImagesArray.includes(idx) && (
               <div className="ri-container">
                 <FaStar
-                  //onClick={() => setOpenModal(!openModal)}
-                  onClick={(e) => handleModalClick(ea.product_id)}
+                  onClick={() => handleModalClick(ea.product_id)}
                   className="ri-star"
                 />
                 <img
                   role="button"
                   className="ri-image"
-                  src={ea.results[0].photos[0].thumbnail_url}
+                  src={ea.results[0] && ea.results[0].photos[0].thumbnail_url}
                   alt="clothing"
                   key={ea.product_id}
                   onClick={() => setProductId(ea.product_id)}
                   onKeyDown={() => setProductId(ea.product_id)}
                 />
                 <ul className="bottom-left">
-                  <li>Category: {ea.category}</li>
-                  <li>Name: {ea.name}</li>
-                  <li>{ea.results[0].original_price}</li>
-                  <li>STARS</li>
+                  <li>
+                    Category:
+                    {ea.category}
+                  </li>
+                  <li>
+                    Name:
+                    {ea.name}
+                  </li>
+                  {ea.results[0].sale_price ? (
+                    <>
+                      <li style={{ textDecorationLine: 'line-through' }}>
+                        {ea.results[0].original_price}
+                      </li>
+                      <li style={{ color: 'red', font_size: '1.2rem' }}>
+                        <span>OnSale!! </span>
+                        {ea.results[0].sale_price}
+                      </li>
+                    </>
+                  ) : (
+                    <li>{ea.results[0].original_price}</li>
+                  )}
+                  <li><ReviewEntryStar rating={ea.aveRating} /></li>
                 </ul>
               </div>
             )}

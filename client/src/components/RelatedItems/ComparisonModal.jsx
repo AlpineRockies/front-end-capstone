@@ -23,7 +23,7 @@ function Comparison({ setOpenModal, selectedComparisonItem }) {
             product.features.map((item) => {
               if (item.feature) {
                 if (item.value) {
-                  return item.feature + ' : ' + item.value;
+                  return `${item.feature} : ${item.value}`;
                 }
                 return item.feature;
               }
@@ -41,7 +41,7 @@ function Comparison({ setOpenModal, selectedComparisonItem }) {
         productInfo.features.map((item) => {
           if (item.feature) {
             if (item.value) {
-              return item.feature + ' : ' + item.value;
+              return `${item.feature} : ${item.value}`;
             }
             return item.feature;
           }
@@ -80,40 +80,42 @@ function Comparison({ setOpenModal, selectedComparisonItem }) {
         </div>
         <div className="ri-modal-Body">
           <table>
-            <tr>
-              <th>{compareItemName}</th>
-              <th>Feature/Value</th>
-              <th>{productInfo.name}</th>
-            </tr>
-            {similarFeatures.map((item, index) => (
-              <tr key={index}>
-                <td>
-                  <FaCheck />
-                </td>
-                <td>{item}</td>
-                <td>
-                  <FaCheck />
-                </td>
+            <tbody>
+              <tr>
+                <th>{compareItemName}</th>
+                <th>Feature/Value</th>
+                <th>{productInfo.name}</th>
               </tr>
-            ))}
-            {selectedItemFeatures.map((item, index) => (
-              <tr key={index}>
-                <td>
-                  <FaCheck />
-                </td>
-                <td>{item}</td>
-                <td></td>
-              </tr>
-            ))}
-            {productFeatures.map((item, index) => (
-              <tr key={index}>
-                <td></td>
-                <td>{item}</td>
-                <td>
-                  <FaCheck />
-                </td>
-              </tr>
-            ))}
+              {similarFeatures.map((item, index) => (
+                <tr key={index}>
+                  <td>
+                    <FaCheck />
+                  </td>
+                  <td>{item}</td>
+                  <td>
+                    <FaCheck />
+                  </td>
+                </tr>
+              ))}
+              {selectedItemFeatures.map((item, index) => (
+                <tr key={index}>
+                  <td>
+                    <FaCheck />
+                  </td>
+                  <td>{item}</td>
+                  <td></td>
+                </tr>
+              ))}
+              {productFeatures.map((item, index) => (
+                <tr key={index}>
+                  <td></td>
+                  <td>{item}</td>
+                  <td>
+                    <FaCheck />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
         <div className="ri-modal-Footer">

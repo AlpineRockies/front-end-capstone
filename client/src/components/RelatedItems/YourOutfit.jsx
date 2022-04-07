@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React, { useContext } from 'react';
-import {
-  FaPlusSquare,
-} from 'react-icons/fa';
+import React, { useEffect, useContext } from 'react';
+import _ from 'underscore';
+import { FaPlusSquare } from 'react-icons/fa';
 
 import ProductContext from '../Context';
 
@@ -15,13 +14,24 @@ function YourOutfit({ setYourOutfitId }) {
     setYourOutfit(copyYourOutfit.filter((item) => item.id !== Number(product)));
   };
 
+  const addYourOutfit = (product) => {
+    if (!_.some(yourOutfit, (item) => item.id === +product)) {
+      setYourOutfitId(product);
+    }
+  };
+
+
+  useEffect(() => {
+    localStorage.setItem('yourOutfit', JSON.stringify(yourOutfit))
+  }, [yourOutfit])
+
   return (
     <div>
       <section className="yo-slider">
         <div className="yo-button-container">
           <FaPlusSquare
             className="yo-additem"
-            onClick={() => setYourOutfitId(productId)}
+            onClick={() => addYourOutfit(productId)}
           />
           <h3>Add to Your Outfit!</h3>
         </div>
@@ -40,7 +50,7 @@ function YourOutfit({ setYourOutfitId }) {
                 <div>
                   <img
                     className="yo-image"
-                    src={product.results[0].photos[0].thumbnail_url}
+                    src={product.results[0] && product.results[0].photos[0].thumbnail_url}
                     alt="clothing"
                     key={product.product_id}
                     onClick={() => setProductId(product.product_id)}
