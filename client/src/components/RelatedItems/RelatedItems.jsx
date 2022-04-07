@@ -17,7 +17,6 @@ function RelatedItems() {
   const [yourOutfitId, setYourOutfitId] = useState();
 
 
-
   useEffect(() => {
     axios
       .get(`/products/${productId}/related`)

@@ -15,11 +15,7 @@ function YourOutfit({ setYourOutfitId }) {
   const removeItem = (product) => {
     const copyYourOutfit = yourOutfit.slice();
     setYourOutfit(
-      copyYourOutfit.filter((item) => {
-        if (item.id !== Number(product)) {
-          return item;
-        }
-      })
+      copyYourOutfit.filter((item) => (item.id !== Number(product)))
     );
   };
 

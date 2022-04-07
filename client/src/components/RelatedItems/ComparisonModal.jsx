@@ -24,12 +24,10 @@ function Comparison({ setOpenModal, selectedComparisonItem }) {
               if (item.feature) {
                 if (item.value) {
                   return item.feature + ' : ' + item.value;
-                } else {
-                  return item.feature;
                 }
-              } else if (item.value) {
-                return item.value;
+                return item.feature;
               }
+              return item.value;
             })
           ),
         ]);
@@ -44,18 +42,16 @@ function Comparison({ setOpenModal, selectedComparisonItem }) {
           if (item.feature) {
             if (item.value) {
               return item.feature + ' : ' + item.value;
-            } else {
-              return item.feature;
             }
-          } else if (item.value) {
-            return item.value;
+            return item.feature;
           }
+          return item.value;
         })
       ),
     ];
 
     // check for any similar items in both arrays
-    const copyCompareItemFeatures = compareItemFeatures.slice()
+    const copyCompareItemFeatures = compareItemFeatures.slice();
     const similarFeaturesArray = [];
     _.each(productFeaturesArray, (feature1, index1) => {
       _.each(copyCompareItemFeatures, (feature2, index2) => {
@@ -70,7 +66,6 @@ function Comparison({ setOpenModal, selectedComparisonItem }) {
     setProductFeatures(productFeaturesArray);
     setSelectedItemFeatures(copyCompareItemFeatures);
   }, [compareItemFeatures]);
-
 
   return (
     <div className="ri-modal-Background">
