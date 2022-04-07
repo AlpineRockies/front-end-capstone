@@ -28,11 +28,11 @@ function WriteReviewStar({ handleStar }) {
 
   return (
     <div className="RR-wrs-star">
-      {_.range(5).map((star, count) => (
+      {_.range(1, 6).map((count) => (
         <label key={count}>
           <FaStar
             value={count}
-            onClick={() => handleSetStarChange(count + 1)}
+            onClick={() => handleSetStarChange(count)}
           />
         </label>
       ))}
