@@ -1,4 +1,4 @@
-// Utilities and helper functions go here
+import _ from 'underscore';
 
 /**
  * Helper function to compare the helpfulness rating of two items.
@@ -35,4 +35,11 @@ export function ratingPercentage(numFalse, numTrue) {
   const finalPercent = Math.floor((numTrue / totalNumberReviews) * 100);
 
   return finalPercent;
+}
+
+export function questionFilterTest(question, filter) {
+  const { question_body: questionBody, answers } = question;
+  const filterRE = new RegExp(filter, 'i');
+
+  return filterRE.test(questionBody) || _.some(answers, (answer) => filterRE.test(answer.body));
 }

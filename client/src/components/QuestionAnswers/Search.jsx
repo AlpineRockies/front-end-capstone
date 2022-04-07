@@ -1,17 +1,14 @@
-import React, { useState, useContext } from 'react';
-import ProductContext from '../Context';
+/* eslint-disable react/prop-types */
+import React from 'react';
 
-function Search() {
-  const { productId } = useContext(ProductContext);
-  const [query, setQuery] = useState(() => '');
-
+function Search({ onSearch }) {
   const handleChange = (event) => {
     const newQuery = event.target.value;
 
-    setQuery(newQuery);
-
     if (newQuery.length > 2) {
-      // filter the Q&A list
+      onSearch(newQuery);
+    } else {
+      onSearch('');
     }
   };
 
