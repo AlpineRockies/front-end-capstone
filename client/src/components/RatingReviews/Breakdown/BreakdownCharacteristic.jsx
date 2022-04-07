@@ -1,5 +1,3 @@
-import React from 'react';
-
 const sizeArr = [
   { id: 1, des: 'A size too small' },
   { id: 2, des: '1/2 a size too small' },
