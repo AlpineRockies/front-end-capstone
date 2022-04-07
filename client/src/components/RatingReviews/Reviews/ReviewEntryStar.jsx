@@ -11,7 +11,7 @@ function ReviewEntryStar({ rating }) {
   return (
     <div>
       {_.range(1, 6).map((count) => (
-        <FaStar key={count} color={inputStar > count ? 'green' : 'grey'} />
+        <FaStar key={count} color={inputStar >= count ? 'green' : 'grey'} />
       ))}
     </div>
   );
