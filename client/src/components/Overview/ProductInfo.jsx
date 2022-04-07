@@ -13,7 +13,31 @@ import PropTypes from 'prop-types';
 
 function ProductInfo(props) {
   const { styles, description } = props;
-
+  let price;
+  if (styles[0] && styles[0].sale_price !== null) {
+    price = (
+      <span className="ov-price">
+        <p style={{ color: 'red' }}>
+          $
+          {styles[0].sale_price}
+        </p>
+        &ensp;
+        <p style={{ textDecorationLine: 'line-through', textDecorationStyle: 'solid' }}>
+          $
+          {styles[0].original_price}
+        </p>
+      </span>
+    );
+  } else {
+    price = (
+      <span>
+        <p>
+          $
+          {styles[0] && styles[0].original_price}
+        </p>
+      </span>
+    );
+  }
   return (
     <div className="ov-product-info">
       {/* Extract to component */}
@@ -37,18 +61,16 @@ function ProductInfo(props) {
       <div className="ov-product-name">Expanded Product Name</div>
       <br />
       <p>
-        $
-        {styles[0] && styles[0].original_price}
+        {price}
       </p>
       {/* Extract to component */}
       <div className="social-media">
       &emsp;
-        <FaFacebook className="Facebook" />
-        {' '}
+        <FaFacebook className="Facebook" onClick={() => window.open('https://www.facebook.com', '_black')} />
 &emsp;
-        <CgTwitter className="Twitter" />
+        <CgTwitter className="Twitter" onClick={() => window.open('https://www.twitter.com', '_black')} />
 &emsp;
-        <FaPinterest className="Pinterest" />
+        <FaPinterest className="Pinterest" onClick={() => window.open('https://www.pinterest.com', '_black')} />
       </div>
       <br />
       {/* End extraction */}
