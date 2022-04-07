@@ -4,10 +4,11 @@ import {
   FaArrowAltCircleLeft,
   FaStar,
 } from 'react-icons/fa';
-import ComparisonModal from './ComparisonModal';
-import ReviewEntryStar from '../RatingReviews/Reviews/ReviewEntryStar'
+import ComparisonModal from '../Modal/ComparisonModal';
+import ReviewEntryStar from '../../RatingReviews/Reviews/ReviewEntryStar'
+import ProductCard from './ProductCard';
 
-import ProductContext from '../Context';
+import ProductContext from '../../Context';
 
 function Related() {
   const { setProductId, joinedAPIDetails } = useContext(ProductContext);
@@ -57,6 +58,7 @@ function Related() {
 
   return (
     <div>
+      <ProductCard />
       <div>
         {openModal && (
           <ComparisonModal

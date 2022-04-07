@@ -3,7 +3,7 @@ import React, { useEffect, useContext } from 'react';
 import _ from 'underscore';
 import { FaPlusSquare } from 'react-icons/fa';
 
-import ProductContext from '../Context';
+import ProductContext from '../../Context';
 
 function YourOutfit({ setYourOutfitId }) {
   const { productId, yourOutfit, setYourOutfit, setProductId } =

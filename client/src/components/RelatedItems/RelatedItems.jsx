@@ -3,8 +3,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import _ from 'underscore';
 import './style.css';
-import Related from './Related';
-import YourOutfit from './YourOutfit';
+import Related from './RelatedProducts/Related';
+import YourOutfit from './YourOutfit/YourOutfit';
 import ProductContext from '../Context';
 
 function RelatedItems() {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import './style.css';
-import ProductContext from '../Context';
+import '../style.css';
+import ProductContext from '../../Context';
 import _ from 'underscore';
 import { FaCheck } from 'react-icons/fa';
 
