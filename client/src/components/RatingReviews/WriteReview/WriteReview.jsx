@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import WriteReviewCharacteristic from './WriteReviewCharacteristic';
 import WriteReviewStar from './WriteReviewStar';
+import { escapeValue } from 'Utilities';
 import { HiThumbUp, HiThumbDown } from 'react-icons/hi';
+
 
 function WriteReview({
   showWriteReview,
@@ -120,7 +122,7 @@ function WriteReview({
                     placeholder="Name"
                     type="text"
                     name="name"
-                    onChange={(event) => setNameRating(event.target.value)}
+                    onChange={(event) => setNameRating(escapeValue(event.target.value))}
                   />
                 </div>
                 <div className="RR-wr-email">
@@ -128,7 +130,7 @@ function WriteReview({
                     placeholder="Email"
                     type="text"
                     name="email"
-                    onChange={(event) => setEmailRating(event.target.value)}
+                    onChange={(event) => setEmailRating(escapeValue(event.target.value))}
                   />
                 </div>
                 <div className="RR-wr-summary">
@@ -137,7 +139,7 @@ function WriteReview({
                     type="text"
                     name="summary"
                     maxLength="60"
-                    onChange={(event) => setSummaryRating(event.target.value)}
+                    onChange={(event) => setSummaryRating(escapeValue(event.target.value))}
                   />
                 </div>
                 <div className="RR-wr-body">
@@ -146,7 +148,7 @@ function WriteReview({
                     type="text"
                     name="body"
                     maxLength="250"
-                    onChange={(event) => setBodyRating(event.target.value)}
+                    onChange={(event) => setBodyRating(escapeValue(event.target.value))}
                   />
                 </div>
                 <div className="RR-wr-photo">
@@ -155,7 +157,7 @@ function WriteReview({
                     type="text"
                     name="photo"
                     onChange={(event) =>
-                      setPhotoRating([...photoRating, event.target.value])
+                      setPhotoRating([...photoRating, escapeValue(event.target.value)])
                     }
                   />
                 </div>
