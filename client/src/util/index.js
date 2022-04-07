@@ -56,3 +56,5 @@ export function starFillPercentage(num) {
 
   return fillPercentage;
 }
+
+export const escapeValue = _.template('<%- value %>');
