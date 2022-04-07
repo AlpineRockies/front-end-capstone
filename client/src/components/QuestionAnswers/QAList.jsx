@@ -64,7 +64,7 @@ function QAList({ filter }) {
       <div className="QA-list">
         {renderedItems}
         {shownQuestionCount <= questions.length ? (
-          <button type="button" onClick={setShownQuestionCount((count) => count + 2)}>
+          <button type="button" onClick={() => setShownQuestionCount((count) => count + 2)}>
             More Answered Questions
           </button>
         ) : null}
