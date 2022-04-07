@@ -9,7 +9,7 @@ function QuestionAnswers() {
 
   const qaMainStyle = {
     position: 'relative',
-    left: '5%',
+    left: '50%',
     transform: 'translateX(-50%)',
     maxWidth: '960px',
     width: '87vw',
