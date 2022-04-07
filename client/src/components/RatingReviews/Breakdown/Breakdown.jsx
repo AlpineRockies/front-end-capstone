@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReviewEntryStar from '../Reviews/ReviewEntryStar.jsx';
 import { ratingPercentage } from 'Utilities';
 import { FaStar } from 'react-icons/fa';
 
@@ -45,19 +46,15 @@ function Breakdown({ metaData }) {
       <div className="RR-breakdown-recommend">
         {mdRecArray && handleRecommended()}
       </div>
-
+      <br /> <br />
       <div className="RR-breakdown-star">
         {mdStarArray &&
           mdStarArray.map((eachStar) => (
             <label key={JSON.stringify(eachStar)}>
               {eachStar.name} Star
-              {[...Array(Number(eachStar.name))].map((numStars, i) => (
-                <label key={i}>
-                  <FaStar value={numStars} />
-                </label>
-              ))}
-              {eachStar.valueObj} Stars
-              <br />
+              <ReviewEntryStar rating={Number(eachStar.name)} />
+              {eachStar.valueObj} Reviews
+              <br /> <br />
             </label>
           ))}
       </div>

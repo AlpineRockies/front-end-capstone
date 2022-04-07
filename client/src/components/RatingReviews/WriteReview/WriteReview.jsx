@@ -42,6 +42,7 @@ function WriteReview({
       .then((response) => {
         console.log('review post', response);
       })
+      .then(() => setShowWriteReview(false))
       .catch((err) => {
         console.log('err', err);
       });
@@ -72,7 +73,7 @@ function WriteReview({
     width: '45rem',
     maxWidth: 'calc(100vw - 2rem)',
     maxHeight: 'calc(100vh - 2rem)',
-    overflowY: 'auto',
+    overflow: 'auto',
     position: 'relative',
     border: '1px solid #ccc',
     borderRadius: '0.3rem',

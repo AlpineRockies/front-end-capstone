@@ -36,7 +36,7 @@ function ReviewEntryPhoto({ photo }) {
     width: '45rem',
     maxWidth: 'calc(100vw - 2rem)',
     maxHeight: 'calc(100vh - 2rem)',
-    overflowY: 'auto',
+    overflow: 'auto',
     position: 'relative',
     border: '1px solid #ccc',
     borderRadius: '0.3rem',
