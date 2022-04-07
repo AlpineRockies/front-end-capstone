@@ -1,9 +1,7 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useContext } from 'react';
-import _ from 'underscore';
 import {
   FaPlusSquare,
-  FaArrowAltCircleLeft,
-  FaArrowAltCircleRight,
 } from 'react-icons/fa';
 
 import ProductContext from '../Context';
@@ -14,9 +12,7 @@ function YourOutfit({ setYourOutfitId }) {
 
   const removeItem = (product) => {
     const copyYourOutfit = yourOutfit.slice();
-    setYourOutfit(
-      copyYourOutfit.filter((item) => (item.id !== Number(product)))
-    );
+    setYourOutfit(copyYourOutfit.filter((item) => item.id !== Number(product)));
   };
 
   return (
