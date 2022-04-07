@@ -4,7 +4,7 @@ import { arrAllCharacteristic } from './BreakdownCharacteristic';
 import { ratingPercentage } from 'Utilities';
 import { FaStar } from 'react-icons/fa';
 
-function Breakdown({ metaData }) {
+function Breakdown({ metaData, handleStarReviewClick }) {
   const [mdCharArray, setMDCharArray] = useState(null);
   const [mdStarArray, setMDStarArray] = useState(null);
   const [mdRecArray, setMDRecArray] = useState(null);
@@ -49,6 +49,11 @@ function Breakdown({ metaData }) {
     }
   };
 
+  const handleStarBreakdownClick = (star) => {
+    event.preventDefault();
+    handleStarReviewClick(Number(star))
+  };
+
   return (
     <div className="RR-breakdown">
       <div className="RR-breakdown-invoke">
@@ -65,7 +70,10 @@ function Breakdown({ metaData }) {
           mdStarArray.map((eachStar) => (
             <label key={JSON.stringify(eachStar)}>
               {eachStar.name} Star
-              <ReviewEntryStar rating={Number(eachStar.name)} />
+              <span onClick={() => handleStarBreakdownClick(eachStar.name)}>
+                {' '}
+                <ReviewEntryStar rating={Number(eachStar.name)} />
+              </span>
               {eachStar.valueObj} Reviews
               <br /> <br />
             </label>
@@ -75,7 +83,10 @@ function Breakdown({ metaData }) {
         {mdCharArray &&
           mdCharArray.map((eachChar) => (
             <label key={eachChar.name}>
-              <output>{eachChar.name} feedback is {Math.floor(eachChar.valueObj.value)}</output>
+              <output>
+                {eachChar.name} feedback is{' '}
+                {Math.floor(eachChar.valueObj.value)}
+              </output>
               <br /> <br />
               {handleDesDisplay(eachChar.name, 1)}
               <input

@@ -4,15 +4,17 @@ import { starFillPercentage } from 'Utilities';
 import { FaStar, FaStarHalf } from 'react-icons/fa';
 
 function ReviewEntryStar({ rating }) {
-  const [inputStar, setInputStar] = useState(rating);
-
-  // console.log(starFillPercentage(rating));
+  const starsInner = {
+    background: `linear-gradient(100deg, #ff0000 ${starFillPercentage(rating)}%, #0000ff ${100 - starFillPercentage(rating)}%)`,
+  };
 
   return (
     <div>
-      {_.range(1, 6).map((count) => (
-        <FaStar key={count} color={inputStar >= count ? 'green' : 'grey'} />
-      ))}
+      <span style={starsInner}>
+        {_.range(1, 6).map((count) => (
+          <FaStar key={count} />
+        ))}
+      </span>
     </div>
   );
 }

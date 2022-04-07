@@ -5,7 +5,6 @@ import WriteReviewStar from './WriteReviewStar';
 import { escapeValue } from 'Utilities';
 import { HiThumbUp, HiThumbDown } from 'react-icons/hi';
 
-
 function WriteReview({
   showWriteReview,
   setShowWriteReview,
@@ -44,7 +43,6 @@ function WriteReview({
       .then((response) => {
         console.log('review post', response);
       })
-      .then(() => setShowWriteReview(false))
       .catch((err) => {
         console.log('err', err);
       });
@@ -75,7 +73,7 @@ function WriteReview({
     width: '45rem',
     maxWidth: 'calc(100vw - 2rem)',
     maxHeight: 'calc(100vh - 2rem)',
-    overflow: 'auto',
+    overflowY: 'auto',
     position: 'relative',
     border: '1px solid #ccc',
     borderRadius: '0.3rem',
@@ -157,7 +155,7 @@ function WriteReview({
                     type="text"
                     name="photo"
                     onChange={(event) =>
-                      setPhotoRating([...photoRating, escapeValue(event.target.value)])
+                      setPhotoRating([...photoRating, event.target.value])
                     }
                   />
                 </div>

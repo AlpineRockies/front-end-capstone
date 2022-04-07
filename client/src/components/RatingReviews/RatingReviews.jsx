@@ -12,6 +12,7 @@ function RatingReviews() {
 
   const [sortView, setSortView] = useState('relevant');
   const [sortedList, setSortedList] = useState(sortedList);
+  const [sortStarFilter, setSortStarFilter] = useState(0);
   const [pageUrl, setPageUrl] = useState(1);
   const [countUrl, setCountUrl] = useState(2);
   const [showWriteReview, setShowWriteReview] = useState(false);
@@ -59,11 +60,15 @@ function RatingReviews() {
     setShowWriteReview((value) => !value);
   };
 
+  const handleStarReviewClick = (event) => {
+    setSortStarFilter(event);
+  };
+
   return (
     <div className="RR-review-list">
       <h2>Rating And Reviews</h2>
 
-      {metaData && <Breakdown metaData={metaData} />}
+      {metaData && <Breakdown metaData={metaData} handleStarReviewClick={handleStarReviewClick}/>}
 
       <form onClick={handleViewClick}>
         <label>
@@ -76,7 +81,7 @@ function RatingReviews() {
         </label>
       </form>
 
-      {sortedList && <ReviewList sortedList={sortedList} />}
+      {sortedList && <ReviewList sortedList={sortedList} sortStarFilter={sortStarFilter}/>}
 
       <button
         className="RR-more-reviews-button"
