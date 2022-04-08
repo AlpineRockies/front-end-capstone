@@ -8,9 +8,13 @@ import RatingReviews from './RatingReviews/RatingReviews';
 import ProductContext from './Context';
 
 function App() {
-  const [productId, setProductId] = useState(38321);
+  const [productId, setProductId] = useState(38320);
   const [productInfo, setProductInfo] = useState({});
-  const [yourOutfit, setYourOutfit] = useState([]);
+  const [yourOutfit, setYourOutfit] = useState(() => {
+    const savedYourOutfit = localStorage.getItem('yourOutfit');
+    const initialYourOutfit = JSON.parse(savedYourOutfit);
+    return initialYourOutfit || [];
+  });
   const [joinedAPIDetails, setJoinedAPIDetails] = useState([])
 
   const memoizedState = useMemo(
