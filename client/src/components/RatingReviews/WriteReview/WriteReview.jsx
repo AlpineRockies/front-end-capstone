@@ -3,7 +3,6 @@ import axios from 'axios';
 import WriteReviewCharacteristic from './WriteReviewCharacteristic';
 import WriteReviewStar from './WriteReviewStar';
 import { escapeValue } from 'Utilities';
-import { HiThumbUp, HiThumbDown } from 'react-icons/hi';
 
 function WriteReview({
   showWriteReview,
