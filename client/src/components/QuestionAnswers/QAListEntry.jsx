@@ -19,12 +19,21 @@ function QAListEntry({ questionData }) {
   } = questionData;
 
   const entryStyle = {
-    marginBottom: '1em',
+    marginBottom: '.5em',
   };
 
   const answerStyle = {
     display: 'inline-flex',
     flexDirection: 'column',
+  };
+
+  const moreAnswersStyle = {
+    border: '1px solid gray',
+    maxWidth: '300px',
+    textTransform: 'capitalize',
+    cursor: 'pointer',
+    padding: '.5em',
+    backgroundColor: '#fff',
   };
 
   const sortedAnswers = Object.values(answers).sort(compareHelpfulness);
@@ -49,11 +58,12 @@ function QAListEntry({ questionData }) {
           <Answer key={answer.id} answer={answer} />
         ))}
         {sortedAnswers.length > 2 && (
-          <button onClick={handleMoreAnswers} type="button">
+          <button onClick={handleMoreAnswers} type="button" style={moreAnswersStyle}>
             {showMoreAnswers ? 'See more answers' : 'Collapse'}
           </button>
         )}
       </div>
+      <hr style={{ border: '1px solid lightgray' }} />
     </div>
   );
 }
