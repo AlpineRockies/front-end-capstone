@@ -22,26 +22,35 @@ function QAList({ filter }) {
   const [renderedItems, setRenderedItems] = useState(<p className="loading">Loading ...</p>);
   const [showAddQuestion, setShowAddQuestion] = useState(false);
 
+  const buttonStyle = {
+    border: '1px solid gray',
+    maxWidth: '300px',
+    textTransform: 'capitalize',
+    cursor: 'pointer',
+    padding: '1em',
+    marginRight: '1rem',
+    backgroundColor: '#fff',
+  };
+
   const fetchQuestions = (questionCount) => axios
     .get(`/qa/questions?product_id=${productId}&count=${questionCount}`)
     .then((response) => response.data.results)
-    .then((newQuestions) => setQuestions(newQuestions.sort(compareHelpfulness)))
+    .then((newQuestions) => {
+      setQuestions(newQuestions.sort(compareHelpfulness));
+
+      if (questionCount <= newQuestions.length) {
+        fetchQuestions(questionCount + 42);
+      }
+    })
     // eslint-disable-next-line no-console
     .catch(console.error);
 
   useEffect(() => {
-    fetchQuestions(initialQuestionCount)
+    fetchQuestions(42)
       .then(() => setShownQuestionCount(initialQuestionCount))
       // eslint-disable-next-line no-console
       .catch(console.error);
   }, [productId]);
-
-  useEffect(() => {
-    if (shownQuestionCount !== initialQuestionCount) {
-      // eslint-disable-next-line no-console
-      fetchQuestions(shownQuestionCount).catch(console.error);
-    }
-  }, [shownQuestionCount]);
 
   useEffect(() => {
     if (questions && questions.length) {
@@ -57,18 +66,22 @@ function QAList({ filter }) {
         )),
       );
     }
-  }, [questions, filter]);
+  }, [questions, shownQuestionCount, filter]);
 
   return (
     <>
       <div className="QA-list">
         {renderedItems}
-        {shownQuestionCount <= questions.length ? (
-          <button type="button" onClick={() => setShownQuestionCount((count) => count + 2)}>
+        {shownQuestionCount < questions.length ? (
+          <button
+            type="button"
+            onClick={() => setShownQuestionCount((count) => count + 2)}
+            style={buttonStyle}
+          >
             More Answered Questions
           </button>
         ) : null}
-        <button type="button" onClick={() => setShowAddQuestion(true)}>
+        <button type="button" onClick={() => setShowAddQuestion(true)} style={buttonStyle}>
           Add a question
         </button>
       </div>
