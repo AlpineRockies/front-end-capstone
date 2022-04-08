@@ -32,7 +32,7 @@ export default function AddQuestionModal({ onClose }) {
   return (
     <form style={{ display: 'grid' }} ref={formRef} onSubmit={(e) => e.preventDefault()}>
       <button type="button" onClick={onClose}>
-        Close
+        ✖️
       </button>
       <h2>Ask Your Question</h2>
       <h3>{`About the ${productInfo.name}`}</h3>

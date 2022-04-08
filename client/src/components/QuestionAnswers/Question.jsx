@@ -15,6 +15,7 @@ function Question({ questionId, questionBody, questionHelpfulness }) {
   const questionStyle = {
     display: 'flex',
     justifyContent: 'space-between',
+    marginBottom: '.5em',
   };
 
   const handleMarkHelpful = () => markedHelpful || axios
