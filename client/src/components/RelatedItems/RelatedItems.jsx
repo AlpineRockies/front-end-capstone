@@ -106,11 +106,3 @@ function RelatedItems() {
 }
 
 export default RelatedItems;
-
-
-
-// const aveRating = _.map(relatedReviews, (product) => ({
-//   aveRating:
-//     _.reduce(product.results, (sum, num) => (sum + num.rating), 0) /
-//     product.results.length,
-// }));
