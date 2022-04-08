@@ -1,8 +1,10 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable no-return-assign */
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import _ from 'underscore';
 import './style.css';
+import { aveRating } from 'Utilities';
 import Related from './RelatedProducts/Related';
 import YourOutfit from './YourOutfit/YourOutfit';
 import ProductContext from '../Context';
@@ -56,18 +58,15 @@ function RelatedItems() {
   }, [relatedItems]);
 
   useEffect(() => {
-    const aveRating = _.map(relatedReviews, (product) => ({
-      aveRating:
-        _.reduce(product.results, (sum, num) => (sum + num.rating), 0) /
-        product.results.length,
-    }));
+    const aveRatingArray = _.map(relatedReviews, (product) => (
+      { aveRating: aveRating(product.results) }));
 
     const accArr = _.map(relatedItems, (ea, index) =>
       _.extend(
         {},
         relatedItemsImg[index],
         relatedItemsDetails[index],
-        aveRating[index],
+        aveRatingArray[index],
       )
     );
     setJoinedAPIDetails(accArr);
@@ -81,14 +80,10 @@ function RelatedItems() {
       axios
         .all([getYOImages, getYODetails, getYOReviews])
         .then((response) => {
-          const aveRating = {
-            aveRating: _.reduce(response[2].data.results, (sum, num) => (
-              sum + num.rating
-            ), 0) / response[2].data.results.length
-          }
+          const ratingsArray = response[2].data.results;
           setYourOutfit([
             ...yourOutfit,
-            { ...response[0].data, ...response[1].data, ...aveRating },
+            { ...response[0].data, ...response[1].data, ...{ aveRating: aveRating(ratingsArray) } },
           ]);
         })
         .catch((err) => console.log(err));
@@ -97,12 +92,13 @@ function RelatedItems() {
 
   return (
     <div className="ri-parent">
+      <p className="headerText"> Related Items </p>
       <div className="ri-relateditems">
-        <h3>Related Items</h3>
+
         <Related />
       </div>
+      <p className="headerText">Your Outfit</p>
       <div className="ri-youroutfit">
-        <h3>Your Outfit</h3>
         <YourOutfit setYourOutfitId={setYourOutfitId} />
       </div>
     </div>

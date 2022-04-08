@@ -46,7 +46,10 @@ export function questionFilterTest(question, filter) {
   const { question_body: body, answers } = question;
   const filterRE = new RegExp(filter, 'i');
 
-  return filterRE.test(body) || _.some(answers, (answer) => filterRE.test(answer.body));
+  return (
+    filterRE.test(body) ||
+    _.some(answers, (answer) => filterRE.test(answer.body))
+  );
 }
 
 export function starFillPercentage(num) {
@@ -64,3 +67,12 @@ export function starFillPercentage(num) {
  * @returns {String} html-safe escaped string
  */
 export const escapeValue = (value) => _.template('<%- value %>')({ value });
+
+/**
+ *
+ * @param {Array} array Array of ratings for a product
+ * @returns Average rating for current product
+ */
+export const aveRating = (array) => (
+  _.reduce(array, (sum, num) => sum + num.rating, 0) / array.length
+);

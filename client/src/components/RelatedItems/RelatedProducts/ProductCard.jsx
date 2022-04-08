@@ -8,7 +8,7 @@ import '../style.css'
 function ProductCard({ handleModalClick, product }) {
   const { setProductId } = useContext(ProductContext);
   return (
-    <div>
+    <div className="ri-product-card">
       <FaStar
         onClick={() => handleModalClick(product.product_id)}
         className="ri-star"

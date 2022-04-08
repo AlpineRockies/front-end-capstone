@@ -1,18 +1,21 @@
 .ri-parent {
   display: flex;
   flex-direction: column;
+  background-color: #5e6748ff
 }
 
 .ri-relateditems {
   display: flex;
   flex-direction: column;
   align-items: baseline;
+  background-color: #5e6748ff;;
 }
 
 .ri-youroutfit {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: baseline;
+  background-color: #5e6748ff;
 }
 
 /* .ri-item {
@@ -25,13 +28,12 @@
   margin: 10px;
 } */
 
-.ri-eachitem {
+/* .ri-eachitem {
   border:  5px solid green;
   border-radius: 5px;
-  /* height:  100px; */
   width: 66%;
   margin: 10px;
-}
+} */
 
 .ri-slider {
   position: relative;
@@ -41,6 +43,13 @@
   align-items: center;
   width: 90%;
   min-width: 50%
+}
+
+.headerText {
+  position: center;
+  font-size: 1.8rem;
+  text-align: center;
+  font-family:'Courier New', Courier, monospace
 }
 
 .yo-slider {
@@ -59,11 +68,18 @@
   width: 90%;
   position: relative;
   text-align: center;
-  color: rebeccapurple;
+  color: #5a3b16ff;
   border: solid;
   margin: 5rem;
   object-fit: cover;
   object-position: bottom;
+  background-color: #d8cba7ff;
+}
+
+.ri-product-card {
+  object-fit:cover;
+  object-position:center;
+  position: relative
 }
 
 .yo-container {
@@ -71,24 +87,27 @@
   width: 90%;
   position: relative;
   text-align: center;
-  color: rebeccapurple;
+  color: #5a3b16ff;
+  border-radius: 10px;
   border: solid;
   margin: 5rem;
   object-fit: cover;
   object-position: bottom;
+  background-color: #d8cba7ff;
 }
 
 .yo-button-container {
   height: 400px;
-  /* width: 90%; */
-  width: 400px;
+  width: 300px;
   position: static;
   text-align: center;
-  color: rebeccapurple;
+  border-radius: 10px;
+  color: #5a3b16ff;
   border: solid;
   margin: 5rem;
   object-fit: cover;
   object-position: bottom;
+  background-color: #d8cba7ff;
 }
 
 .bottom-left {
@@ -96,26 +115,30 @@
   text-align: left;
   bottom: 40px;
   left: 10px;
+  color:black;
 }
 
 .ri-image {
 
-  width: 40%;
-  min-width: 75%;
+  width: 100%;
+  /* min-width: 75%; */
   max-width: 100%;
-  max-height: 70%;
-  border-radius: 10px;
-  margin: 10px;
+  max-height: 200px;
+  border-radius: 0px;
+  margin: 0px;
+  object-fit: cover;
 }
 
 .yo-image {
 
-  width: 40%;
-  min-width: 75%;
+  width: 100%;
+  /* min-width: 75%; */
   max-width: 100%;
-  max-height: 70%;
-  border-radius: 10px;
-  margin: 10px;
+  max-height: 200px;;
+  border-radius: 0px;
+  margin: 0px;
+  object-fit:cover;
+
 }
 
 .ri-thumbnails {
@@ -131,10 +154,10 @@
 
 .right-arrow {
   position: absolute;
-  top: 50%;
+  top: 255px;
   right: 0px;
   font-size: 3rem;
-  color:#000;
+  color:#5a3b16ff;
   z-index: 10;
   cursor: pointer;
   user-select: none;
@@ -142,10 +165,10 @@
 
 .left-arrow {
   position: absolute;
-  top: 50%;
+  top: 255px;
   left: 100px;
   font-size: 3rem;
-  color:#000;
+  color:#5a3b16ff;
   z-index: 10;
   cursor: pointer;
   user-select: none;
@@ -160,16 +183,16 @@
   cursor: pointer;
 }
 
-.comp-additem {
+/* .comp-additem {
   position: static;
   font-size: 6rem;
   color: rebeccapurple;
-}
+} */
 
 .yo-additem {
   position: static;
   font-size: 6rem;
-  color: rebeccapurple;
+  color: #5a3b16ff;
 }
 
 .ri-modal-Background {
@@ -195,6 +218,7 @@
   display: flex;
   flex-direction: column;
   padding: 25px;
+  background-color: #d8cba7ff;
 }
 
 
@@ -217,17 +241,19 @@
   font-size: 25px;
   cursor: pointer;
 }
-
 .yo-item-Close-Button {
   display: flex;
   justify-content: flex-end;
 }
-
-.yo-item-Close-Button {
+.yo-item-Close-Button button {
+  position: absolute;
   background-color: transparent;
   border: none;
   font-size: 25px;
   cursor: pointer;
+  color: #283618ff;
+  /* right: 10px; */
+  /* top:10px; */
 }
 
 .ri-modal-Container .ri-modal-Body {
@@ -252,7 +278,7 @@
   height: 45px;
   margin: 10px;
   border: none;
-  background-color: cornflowerblue;
+  background-color: #4f3517ff;
   color: white;
   border-radius: 8px;
   font-size: 20px;

@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useContext } from 'react';
 import ProductContext from '../../Context';
+import { FaWindowClose } from 'react-icons/fa'
 import '../style.css';
 
 function YourOutfitCard({ product, removeItem }) {
@@ -10,7 +11,7 @@ function YourOutfitCard({ product, removeItem }) {
     <>
       <div className="yo-item-Close-Button">
         <button type="button" onClick={() => removeItem(product.product_id)}>
-          X
+          <FaWindowClose />
         </button>
       </div>
       <div>
