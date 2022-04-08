@@ -3,6 +3,7 @@ import axios from 'axios';
 import { escapeValue } from 'Utilities';
 import WriteReviewCharacteristic from './WriteReviewCharacteristic';
 import WriteReviewStar from './WriteReviewStar';
+import WriteReviewPhoto from './WriteReviewPhoto';
 
 function WriteReview({
   showWriteReview,
@@ -18,6 +19,7 @@ function WriteReview({
   const [emailRating, setEmailRating] = useState(null);
   const [photoRating, setPhotoRating] = useState([]);
   const [characteristicRating, setCharacteristicRating] = useState(null);
+  const [showUploadPhoto, setShowUploadPhoto] = useState(false);
 
   const query = {
     product_id: productId,
@@ -169,14 +171,19 @@ function WriteReview({
                   />
                 </div>
                 <div className="RR-wr-photo">
-                  <input
-                    placeholder="Link to photos"
-                    type="text"
-                    name="photo"
-                    onChange={(event) =>
-                      setPhotoRating([...photoRating, event.target.value])
-                    }
-                  />
+                  <button
+                    className="RR-wr-upload-photo"
+                    type="button"
+                    onClick={() => setShowUploadPhoto(true)}
+                  >
+                    Upload Photos
+                  </button>
+                   <WriteReviewPhoto
+                      photoRating={photoRating}
+                      setPhotoRating={setPhotoRating}
+                      showUploadPhoto={showUploadPhoto}
+                      setShowUploadPhoto={setShowUploadPhoto}
+                    />
                 </div>
               </div>
               <button className="RR-wr-submit-button" type="submit">

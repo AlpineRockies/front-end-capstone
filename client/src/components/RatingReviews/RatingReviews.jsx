@@ -29,7 +29,7 @@ function RatingReviews() {
       .all([getReviewAPI, getMetaDataAPI])
       .then(
         axios.spread((...allData) => {
-          setSortedList(allData[0].data.results), setMetaData(allData[1].data)
+          setSortedList(allData[0].data.results), setMetaData(allData[1].data);
         })
       )
       .catch((err) => {
@@ -47,11 +47,6 @@ function RatingReviews() {
 
   const handleViewClick = (event) => {
     event.preventDefault();
-  };
-
-  const handleWriteReviewClick = (event) => {
-    event.preventDefault();
-    setShowWriteReview((value) => !value);
   };
 
   const handleStarReviewClick = (event) => {
@@ -88,7 +83,7 @@ function RatingReviews() {
         <button
           className="RR-write-review-button"
           type="button"
-          onClick={handleWriteReviewClick}
+          onClick={() => setShowWriteReview(true)}
         >
           Write Review
         </button>
