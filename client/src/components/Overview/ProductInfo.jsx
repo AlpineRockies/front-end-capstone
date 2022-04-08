@@ -12,19 +12,19 @@ import { CgTwitter } from 'react-icons/cg';
 import PropTypes from 'prop-types';
 
 function ProductInfo(props) {
-  const { styles, description } = props;
+  const { styles, description, styleSelector } = props;
   let price;
-  if (styles[0] && styles[0].sale_price !== null) {
+  if (styles[styleSelector] && styles[styleSelector].sale_price !== null) {
     price = (
       <span className="ov-price">
         <p style={{ color: 'red' }}>
           $
-          {styles[0].sale_price}
+          {styles[styleSelector].sale_price}
         </p>
         &ensp;
         <p style={{ textDecorationLine: 'line-through', textDecorationStyle: 'solid' }}>
           $
-          {styles[0].original_price}
+          {styles[styleSelector].original_price}
         </p>
       </span>
     );
@@ -33,7 +33,7 @@ function ProductInfo(props) {
       <span>
         <p>
           $
-          {styles[0] && styles[0].original_price}
+          {styles[styleSelector] && styles[styleSelector].original_price}
         </p>
       </span>
     );
@@ -54,11 +54,10 @@ function ProductInfo(props) {
       <br />
       {/* Change to Uppercase */}
       {description.category && description.category.toUpperCase()}
-      {/* <h1>{description && description.name}</h1> */}
       <br />
       <br />
       <br />
-      <div className="ov-product-name">Expanded Product Name</div>
+      <div className="ov-product-name">{description && description.name}</div>
       <br />
       <p>
         {price}
