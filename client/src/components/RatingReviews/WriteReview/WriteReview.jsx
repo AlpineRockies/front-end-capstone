@@ -103,10 +103,22 @@ function WriteReview({
                 <div className="RR-wr-recommend">
                   <span>Would you recommend?</span>
                   <label>
-                    <HiThumbUp onClick={() => setRecommendRating(true)} />
+                    <input
+                      type="radio"
+                      value="yes"
+                      name="recommend"
+                      onClick={() => setRecommendRating(true)}
+                    />
+                    Yes
                   </label>
                   <label>
-                    <HiThumbDown onClick={() => setRecommendRating(false)} />
+                    <input
+                      type="radio"
+                      value="no"
+                      name="recommend"
+                      onClick={() => setRecommendRating(false)}
+                    />
+                    No
                   </label>
                 </div>
                 <div className="RR-wr-characteristic">
@@ -120,7 +132,9 @@ function WriteReview({
                     placeholder="Name"
                     type="text"
                     name="name"
-                    onChange={(event) => setNameRating(escapeValue(event.target.value))}
+                    onChange={(event) =>
+                      setNameRating(escapeValue(event.target.value))
+                    }
                   />
                 </div>
                 <div className="RR-wr-email">
@@ -128,7 +142,9 @@ function WriteReview({
                     placeholder="Email"
                     type="text"
                     name="email"
-                    onChange={(event) => setEmailRating(escapeValue(event.target.value))}
+                    onChange={(event) =>
+                      setEmailRating(escapeValue(event.target.value))
+                    }
                   />
                 </div>
                 <div className="RR-wr-summary">
@@ -137,7 +153,9 @@ function WriteReview({
                     type="text"
                     name="summary"
                     maxLength="60"
-                    onChange={(event) => setSummaryRating(escapeValue(event.target.value))}
+                    onChange={(event) =>
+                      setSummaryRating(escapeValue(event.target.value))
+                    }
                   />
                 </div>
                 <div className="RR-wr-body">
@@ -146,7 +164,9 @@ function WriteReview({
                     type="text"
                     name="body"
                     maxLength="250"
-                    onChange={(event) => setBodyRating(escapeValue(event.target.value))}
+                    onChange={(event) =>
+                      setBodyRating(escapeValue(event.target.value))
+                    }
                   />
                 </div>
                 <div className="RR-wr-photo">
