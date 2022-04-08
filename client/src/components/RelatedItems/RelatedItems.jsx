@@ -92,12 +92,13 @@ function RelatedItems() {
 
   return (
     <div className="ri-parent">
+      <p className="headerText"> Related Items </p>
       <div className="ri-relateditems">
-        <h3>Related Items</h3>
+
         <Related />
       </div>
+      <p className="headerText">Your Outfit</p>
       <div className="ri-youroutfit">
-        <h3>Your Outfit</h3>
         <YourOutfit setYourOutfitId={setYourOutfitId} />
       </div>
     </div>
