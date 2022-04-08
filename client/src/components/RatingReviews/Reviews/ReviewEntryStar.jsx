@@ -5,7 +5,7 @@ import { FaStar, FaStarHalf } from 'react-icons/fa';
 
 function ReviewEntryStar({ rating }) {
   const starsInner = {
-    background: `linear-gradient(100deg, #ff0000 ${starFillPercentage(rating)}%, #0000ff ${100 - starFillPercentage(rating)}%)`,
+    background: `linear-gradient(90deg, green ${starFillPercentage(rating)}%, grey 0.1%, grey ${100 - starFillPercentage(rating)}%)`,
   };
 
   return (
