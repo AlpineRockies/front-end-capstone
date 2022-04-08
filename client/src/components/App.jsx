@@ -46,8 +46,8 @@ function App() {
       <ProductContext.Provider value={memoizedState}>
         <Overview />
         <RelatedItems />
-        {/* <QuestionAnswers />
-        <RatingReviews /> */}
+        <QuestionAnswers />
+        <RatingReviews />
       </ProductContext.Provider>
     </div>
   );
