@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { escapeValue } from 'Utilities';
 import WriteReviewCharacteristic from './WriteReviewCharacteristic';
 import WriteReviewStar from './WriteReviewStar';
-import { escapeValue } from 'Utilities';
 
 function WriteReview({
   showWriteReview,
@@ -43,7 +43,7 @@ function WriteReview({
         console.log('review post', response);
       })
       .catch((err) => {
-        console.log('err', err);
+        console.log('err in RR POST', err);
       });
   };
 

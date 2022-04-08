@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import _ from 'underscore';
 import { starFillPercentage } from 'Utilities';
-import { FaStar, FaStarHalf } from 'react-icons/fa';
+import { FaStar } from 'react-icons/fa';
 
 function ReviewEntryStar({ rating }) {
   const starsInner = {

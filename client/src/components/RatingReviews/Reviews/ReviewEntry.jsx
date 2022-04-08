@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import ReviewPhotos from './ReviewPhotos';
-import ReviewEntryStar from './ReviewEntryStar';
 import moment from 'moment';
 import { HiThumbUp, HiThumbDown } from 'react-icons/hi';
-
+import ReviewPhotos from './ReviewPhotos';
+import ReviewEntryStar from './ReviewEntryStar';
 
 function ReviewEntry({ eachReview }) {
   const [helpfulClick, setHelpfulClick] = useState(false);
@@ -18,7 +17,7 @@ function ReviewEntry({ eachReview }) {
         .then((response) => console.log(response))
         .then(() => setHelpfulClick(true))
         .catch((err) => {
-          console.log('err in RR helpful PUT');
+          console.log('err in RR helpful PUT', err);
         });
     } else {
       setNotHelpfulClick(true);
@@ -42,8 +41,14 @@ function ReviewEntry({ eachReview }) {
       </div>
       <div className="RR-review-header">
         <ReviewEntryStar rating={eachReview.rating} />
-        <p>Summary: {eachReview.summary}</p>
-        <p>Date: {moment(eachReview.date).format('MMM Do YY')}</p>
+        <p>
+          Summary:
+          {eachReview.summary}
+        </p>
+        <p>
+          Date:
+          {moment(eachReview.date).format('MMM Do YY')}
+        </p>
       </div>
       <div className="RR-review-body">
         <p>{eachReview.body}</p>
@@ -51,7 +56,10 @@ function ReviewEntry({ eachReview }) {
       <div className="RR-review-person-response">
         <p>{eachReview.reviewer_name}</p>
         {eachReview.response && (
-          <p>Response from seller:{eachReview.response}</p>
+          <p>
+            Response from seller:
+            {eachReview.response}
+          </p>
         )}
       </div>
       <div className="RR-helpful">
