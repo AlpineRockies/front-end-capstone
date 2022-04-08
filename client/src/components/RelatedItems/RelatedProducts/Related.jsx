@@ -1,8 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import {
-  FaArrowAltCircleRight,
-  FaArrowAltCircleLeft,
-} from 'react-icons/fa';
 import ComparisonModal from '../Modal/ComparisonModal';
 import ProductCard from './ProductCard';
 import ProductCardInfo from './ProductCardInfo';
@@ -12,7 +8,7 @@ import '../style.css';
 import ProductContext from '../../Context';
 
 function Related() {
-  const { setProductId, joinedAPIDetails } = useContext(ProductContext);
+  const { joinedAPIDetails } = useContext(ProductContext);
   const referenceArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   const [shownImagesArray, setShownImagesArray] = useState([]);
@@ -28,6 +24,7 @@ function Related() {
   if (!joinedAPIDetails || joinedAPIDetails.length === 0) {
     return <div>Sorry, no data to display. Please wait.</div>;
   }
+  // eslint-disable-next-line prefer-destructuring
   const length = joinedAPIDetails.length;
 
   const visibleSlide = () => {
@@ -50,13 +47,13 @@ function Related() {
     visibleSlide();
   };
 
-  const handleModalClick = (e) => {
+  const handleModalClick = (compareProduct) => {
     setOpenModal(!openModal);
-    setSelectedComparisonItem(e);
+    setSelectedComparisonItem(compareProduct);
   };
 
   const ProductCarousel = joinedAPIDetails.map((product, index) => (
-    <div key={index}>
+    <div key={product.id}>
       {shownImagesArray.includes(index) && (
         <div className="ri-container">
           <ProductCard handleModalClick={handleModalClick} product={product} />
@@ -70,24 +67,23 @@ function Related() {
 
   return (
     <div>
-
       <div>
         {openModal && (
           <ComparisonModal
-          setOpenModal={setOpenModal}
-          selectedComparisonItem={selectedComparisonItem}
+            setOpenModal={setOpenModal}
+            selectedComparisonItem={selectedComparisonItem}
           />
-          )}
+        )}
       </div>
-      <ArrowNav />
       <section className="ri-slider">
-        {shownImagesArray[0] !== 0 ? (
-          <FaArrowAltCircleLeft className="left-arrow" onClick={prevSlide} />
-        ) : null}
-        {shownImagesArray[3] < length - 1 ? (
-          <FaArrowAltCircleRight className="right-arrow" onClick={nextSlide} />
-        ) : null}
-
+        <ArrowNav
+          nextSlide={nextSlide}
+          prevSlide={prevSlide}
+          shownImagesArray={shownImagesArray}
+          length={length}
+          // productArray={joinedAPIDetails}
+          // setShownImagesArray={setShownImagesArray}
+        />
         {ProductCarousel}
       </section>
     </div>

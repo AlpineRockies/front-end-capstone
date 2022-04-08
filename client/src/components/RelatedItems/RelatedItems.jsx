@@ -30,7 +30,7 @@ function RelatedItems() {
         axios
           .get(`/products/${product}/styles`)
           .then((response) => response.data)
-          .catch((err) => <div>There was an API error: {err}</div>)
+          .catch((err) => console.error(err))
       )
     )
       .then((response) => setRelatedItemsImg(response))
@@ -55,48 +55,19 @@ function RelatedItems() {
     ).then((res) => setRelatedReviews(res));
   }, [relatedItems]);
 
-  // useEffect(() => {
-  //   Promise.all(
-  //     relatedItems.map((product) =>
-  //       axios
-  //         .get(`/products/${product}`)
-  //         .then((response) => response.data)
-  //         .catch((err) => console.error(err))
-  //     )
-  //   ).then((res) => setRelatedItemsDetails(res));
-  // }, [relatedItems]);
-  ////////////////////////
-  // useEffect(() => {
-  //   Promise.all(
-  //     relatedItems.map((product) =>
-  //       axios
-  //         .get(`/reviews/?product_id=${product}`)
-  //         .then((response) => response.data)
-  //         .catch((err) => console.error(err))
-  //     )
-  //   ).then((res) => setRelatedReviews(res));
-  // }, [relatedItems]);
-
-  // useEffect(() => {
-  //   console.log('We are RelatedReviews: ', relatedReviews)
-  //   //update rating for product and store in object
-
-  // }, [relatedReviews])
-
   useEffect(() => {
     const aveRating = _.map(relatedReviews, (product) => ({
       aveRating:
         _.reduce(product.results, (sum, num) => (sum + num.rating), 0) /
         product.results.length,
     }));
-    console.log('aveRating: ', aveRating);
 
     const accArr = _.map(relatedItems, (ea, index) =>
       _.extend(
         {},
         relatedItemsImg[index],
         relatedItemsDetails[index],
-        aveRating[index]
+        aveRating[index],
       )
     );
     setJoinedAPIDetails(accArr);
@@ -106,14 +77,20 @@ function RelatedItems() {
     if (yourOutfitId) {
       const getYOImages = axios.get(`/products/${yourOutfitId}/styles`);
       const getYODetails = axios.get(`/products/${yourOutfitId}`);
+      const getYOReviews = axios.get(`/reviews/?product_id=${yourOutfitId}`)
       axios
-        .all([getYOImages, getYODetails])
-        .then((response) =>
+        .all([getYOImages, getYODetails, getYOReviews])
+        .then((response) => {
+          const aveRating = {
+            aveRating: _.reduce(response[2].data.results, (sum, num) => (
+              sum + num.rating
+            ), 0) / response[2].data.results.length
+          }
           setYourOutfit([
             ...yourOutfit,
-            { ...response[0].data, ...response[1].data },
-          ])
-        )
+            { ...response[0].data, ...response[1].data, ...aveRating },
+          ]);
+        })
         .catch((err) => console.log(err));
     }
   }, [yourOutfitId]);

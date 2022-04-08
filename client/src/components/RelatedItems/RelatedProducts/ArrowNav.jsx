@@ -1,12 +1,19 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-//import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
+import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
 
-function ArrowNav() {
+
+function ArrowNav({ shownImagesArray, nextSlide, prevSlide, length }) {
   return (
-    <div>
-      <h3>Arrows</h3>
-    </div>
-  )
+    <>
+      {shownImagesArray[0] !== 0 ? (
+        <FaArrowAltCircleLeft className="left-arrow" onClick={prevSlide} />
+      ) : null}
+      {shownImagesArray[3] < length - 1 ? (
+        <FaArrowAltCircleRight className="right-arrow" onClick={nextSlide} />
+      ) : null}
+    </>
+  );
 }
 
 export default ArrowNav;

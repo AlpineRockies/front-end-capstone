@@ -1,13 +1,21 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React, { useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import _ from 'underscore';
 import { FaPlusSquare } from 'react-icons/fa';
+import ArrowNav from '../RelatedProducts/ArrowNav';
+import YourOutfitCard from './YourOutfitCard';
+import YourOutfitCardInfo from './YourOutfitCardInfo';
 
 import ProductContext from '../../Context';
 
 function YourOutfit({ setYourOutfitId }) {
-  const { productId, yourOutfit, setYourOutfit, setProductId } =
+  const { productId, yourOutfit, setYourOutfit } =
     useContext(ProductContext);
+
+  const referenceArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const [shownImagesArray, setShownImagesArray] = useState([0, 1, 2, 3]);
+  const [shownImagesOffset, setShownImagesOffset] = useState(0);
 
   const removeItem = (product) => {
     const copyYourOutfit = yourOutfit.slice();
@@ -20,14 +28,52 @@ function YourOutfit({ setYourOutfitId }) {
     }
   };
 
+  const visibleSlide = () => {
+    setShownImagesArray(
+      referenceArray.slice(shownImagesOffset, shownImagesOffset + 4)
+    );
+  };
+
+  const nextSlide = () => {
+    if (shownImagesOffset < yourOutfit.length - 4) {
+      setShownImagesOffset((prevState) => prevState + 1);
+    }
+    visibleSlide();
+  };
+
+  const prevSlide = () => {
+    if (shownImagesOffset > 0) {
+      setShownImagesOffset((prevState) => prevState - 1);
+    }
+    visibleSlide();
+  };
 
   useEffect(() => {
-    localStorage.setItem('yourOutfit', JSON.stringify(yourOutfit))
-  }, [yourOutfit])
+    localStorage.setItem('yourOutfit', JSON.stringify(yourOutfit));
+  }, [yourOutfit]);
+
+  const YourOutfitCarousel = yourOutfit.length
+    ? yourOutfit.map((product, index) => (
+      <div>
+        {shownImagesArray.includes(index) && (
+          <div key={product.id} className="yo-container">
+            <YourOutfitCard product={product} removeItem={removeItem} />
+            <YourOutfitCardInfo product={product} />
+          </div>
+        )}
+      </div>
+    ))
+    : null;
 
   return (
     <div>
       <section className="yo-slider">
+        <ArrowNav
+          shownImagesArray={shownImagesArray}
+          nextSlide={nextSlide}
+          prevSlide={prevSlide}
+          length={yourOutfit.length}
+        />
         <div className="yo-button-container">
           <FaPlusSquare
             className="yo-additem"
@@ -35,31 +81,7 @@ function YourOutfit({ setYourOutfitId }) {
           />
           <h3>Add to Your Outfit!</h3>
         </div>
-        {yourOutfit.length > 0 &&
-          yourOutfit.map((product, index) => (
-            <div key={index} className="yo-container">
-              <div className="yo-item-Close-Button">
-                <button
-                  type="button"
-                  onClick={() => removeItem(product.product_id)}
-                >
-                  X
-                </button>
-              </div>
-              <div>
-                <div>
-                  <img
-                    className="yo-image"
-                    src={product.results[0] && product.results[0].photos[0].thumbnail_url}
-                    alt="clothing"
-                    key={product.product_id}
-                    onClick={() => setProductId(product.product_id)}
-                    onKeyDown={() => setProductId(product.product_id)}
-                  />
-                </div>
-              </div>
-            </div>
-          ))}
+        {YourOutfitCarousel}
       </section>
     </div>
   );
