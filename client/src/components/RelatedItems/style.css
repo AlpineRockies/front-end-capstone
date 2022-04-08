@@ -100,22 +100,22 @@
 
 .ri-image {
 
-  width: 70%;
-  min-width: 50%;
+  width: 40%;
+  min-width: 75%;
   max-width: 100%;
-  max-height: 60%;
+  max-height: 70%;
   border-radius: 10px;
-  margin: 20px;
+  margin: 10px;
 }
 
 .yo-image {
 
-  width: 70%;
-  min-width: 50%;
+  width: 40%;
+  min-width: 75%;
   max-width: 100%;
-  max-height: 60%;
+  max-height: 70%;
   border-radius: 10px;
-  margin: 20px;
+  margin: 10px;
 }
 
 .ri-thumbnails {

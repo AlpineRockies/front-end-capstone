@@ -2,11 +2,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import {
   FaArrowAltCircleRight,
   FaArrowAltCircleLeft,
-  FaStar,
 } from 'react-icons/fa';
 import ComparisonModal from '../Modal/ComparisonModal';
-import ReviewEntryStar from '../../RatingReviews/Reviews/ReviewEntryStar'
 import ProductCard from './ProductCard';
+import ProductCardInfo from './ProductCardInfo';
+import ArrowNav from './ArrowNav';
+import '../style.css';
 
 import ProductContext from '../../Context';
 
@@ -54,19 +55,31 @@ function Related() {
     setSelectedComparisonItem(e);
   };
 
-  console.log('JOINEDAPIDETAILS: ', joinedAPIDetails)
+  const ProductCarousel = joinedAPIDetails.map((product, index) => (
+    <div key={index}>
+      {shownImagesArray.includes(index) && (
+        <div className="ri-container">
+          <ProductCard handleModalClick={handleModalClick} product={product} />
+          <ProductCardInfo product={product} />
+        </div>
+      )}
+    </div>
+  ));
+
+  console.log('JOINEDAPIDETAILS: ', joinedAPIDetails);
 
   return (
     <div>
-      <ProductCard />
+
       <div>
         {openModal && (
           <ComparisonModal
-            setOpenModal={setOpenModal}
-            selectedComparisonItem={selectedComparisonItem}
+          setOpenModal={setOpenModal}
+          selectedComparisonItem={selectedComparisonItem}
           />
-        )}
+          )}
       </div>
+      <ArrowNav />
       <section className="ri-slider">
         {shownImagesArray[0] !== 0 ? (
           <FaArrowAltCircleLeft className="left-arrow" onClick={prevSlide} />
@@ -75,51 +88,7 @@ function Related() {
           <FaArrowAltCircleRight className="right-arrow" onClick={nextSlide} />
         ) : null}
 
-        {joinedAPIDetails.map((ea, idx) => (
-          <div key={idx}>
-            {shownImagesArray.includes(idx) && (
-              <div className="ri-container">
-                <FaStar
-                  onClick={() => handleModalClick(ea.product_id)}
-                  className="ri-star"
-                />
-                <img
-                  role="button"
-                  className="ri-image"
-                  src={ea.results[0] && ea.results[0].photos[0].thumbnail_url}
-                  alt="clothing"
-                  key={ea.product_id}
-                  onClick={() => setProductId(ea.product_id)}
-                  onKeyDown={() => setProductId(ea.product_id)}
-                />
-                <ul className="bottom-left">
-                  <li>
-                    Category:
-                    {ea.category}
-                  </li>
-                  <li>
-                    Name:
-                    {ea.name}
-                  </li>
-                  {ea.results[0].sale_price ? (
-                    <>
-                      <li style={{ textDecorationLine: 'line-through' }}>
-                        {ea.results[0].original_price}
-                      </li>
-                      <li style={{ color: 'red', font_size: '1.2rem' }}>
-                        <span>OnSale!! </span>
-                        {ea.results[0].sale_price}
-                      </li>
-                    </>
-                  ) : (
-                    <li>{ea.results[0].original_price}</li>
-                  )}
-                  <li><ReviewEntryStar rating={ea.aveRating} /></li>
-                </ul>
-              </div>
-            )}
-          </div>
-        ))}
+        {ProductCarousel}
       </section>
     </div>
   );
