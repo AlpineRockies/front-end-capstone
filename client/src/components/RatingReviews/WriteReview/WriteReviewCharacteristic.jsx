@@ -28,21 +28,21 @@ function WriteReviewCharacteristic({ handleCharacteristic, metaData }) {
   };
 
   return (
-    <div className="RR-wrc">
-      <div className="RR-wrc-allArr">
+    <div className='RR-wrc'>
+      <div className='RR-wrc-allArr'>
         {arrAllCharacteristic.map((eachCharacteristic) => (
           <div
-            className="RR-wrc-each-type"
+            className='RR-wrc-each-type'
             key={JSON.stringify(eachCharacteristic)}
           >
             <span>{eachCharacteristic.header}</span>
-            <div className="RR-wrc-each-choice">
+            <div className='RR-wrc-each-choice'>
               {eachCharacteristic.type.map((choice) => (
                 <label key={choice.id}>
                   <input
                     value={choice.id}
                     name={eachCharacteristic.header}
-                    type="radio"
+                    type='radio'
                     onChange={(event) => handleSetCharacteristicChange(event)}
                   />
                   {choice.des}

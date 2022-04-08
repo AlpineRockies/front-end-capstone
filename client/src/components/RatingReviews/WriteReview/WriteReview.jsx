@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { escapeValue } from 'Utilities';
 import WriteReviewCharacteristic from './WriteReviewCharacteristic';
 import WriteReviewStar from './WriteReviewStar';
-import { HiThumbUp, HiThumbDown } from 'react-icons/hi';
+import WriteReviewPhoto from './WriteReviewPhoto';
 
 function WriteReview({
   showWriteReview,
@@ -18,6 +19,7 @@ function WriteReview({
   const [emailRating, setEmailRating] = useState(null);
   const [photoRating, setPhotoRating] = useState([]);
   const [characteristicRating, setCharacteristicRating] = useState(null);
+  const [showUploadPhoto, setShowUploadPhoto] = useState(false);
 
   const query = {
     product_id: productId,
@@ -42,9 +44,8 @@ function WriteReview({
       .then((response) => {
         console.log('review post', response);
       })
-      .then(() => setShowWriteReview(false))
       .catch((err) => {
-        console.log('err', err);
+        console.log('err in RR POST', err);
       });
   };
 
@@ -73,7 +74,7 @@ function WriteReview({
     width: '45rem',
     maxWidth: 'calc(100vw - 2rem)',
     maxHeight: 'calc(100vh - 2rem)',
-    overflow: 'auto',
+    overflowY: 'auto',
     position: 'relative',
     border: '1px solid #ccc',
     borderRadius: '0.3rem',
@@ -103,10 +104,22 @@ function WriteReview({
                 <div className="RR-wr-recommend">
                   <span>Would you recommend?</span>
                   <label>
-                    <HiThumbUp onClick={() => setRecommendRating(true)} />
+                    <input
+                      type="radio"
+                      value="yes"
+                      name="recommend"
+                      onClick={() => setRecommendRating(true)}
+                    />
+                    Yes
                   </label>
                   <label>
-                    <HiThumbDown onClick={() => setRecommendRating(false)} />
+                    <input
+                      type="radio"
+                      value="no"
+                      name="recommend"
+                      onClick={() => setRecommendRating(false)}
+                    />
+                    No
                   </label>
                 </div>
                 <div className="RR-wr-characteristic">
@@ -120,7 +133,9 @@ function WriteReview({
                     placeholder="Name"
                     type="text"
                     name="name"
-                    onChange={(event) => setNameRating(event.target.value)}
+                    onChange={(event) =>
+                      setNameRating(escapeValue(event.target.value))
+                    }
                   />
                 </div>
                 <div className="RR-wr-email">
@@ -128,7 +143,9 @@ function WriteReview({
                     placeholder="Email"
                     type="text"
                     name="email"
-                    onChange={(event) => setEmailRating(event.target.value)}
+                    onChange={(event) =>
+                      setEmailRating(escapeValue(event.target.value))
+                    }
                   />
                 </div>
                 <div className="RR-wr-summary">
@@ -137,7 +154,9 @@ function WriteReview({
                     type="text"
                     name="summary"
                     maxLength="60"
-                    onChange={(event) => setSummaryRating(event.target.value)}
+                    onChange={(event) =>
+                      setSummaryRating(escapeValue(event.target.value))
+                    }
                   />
                 </div>
                 <div className="RR-wr-body">
@@ -146,18 +165,25 @@ function WriteReview({
                     type="text"
                     name="body"
                     maxLength="250"
-                    onChange={(event) => setBodyRating(event.target.value)}
+                    onChange={(event) =>
+                      setBodyRating(escapeValue(event.target.value))
+                    }
                   />
                 </div>
                 <div className="RR-wr-photo">
-                  <input
-                    placeholder="Link to photos"
-                    type="text"
-                    name="photo"
-                    onChange={(event) =>
-                      setPhotoRating([...photoRating, event.target.value])
-                    }
-                  />
+                  <button
+                    className="RR-wr-upload-photo"
+                    type="button"
+                    onClick={() => setShowUploadPhoto(true)}
+                  >
+                    Upload Photos
+                  </button>
+                   <WriteReviewPhoto
+                      photoRating={photoRating}
+                      setPhotoRating={setPhotoRating}
+                      showUploadPhoto={showUploadPhoto}
+                      setShowUploadPhoto={setShowUploadPhoto}
+                    />
                 </div>
               </div>
               <button className="RR-wr-submit-button" type="submit">
