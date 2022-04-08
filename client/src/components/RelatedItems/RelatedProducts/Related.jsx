@@ -63,8 +63,6 @@ function Related() {
     </div>
   ));
 
-  console.log('JOINEDAPIDETAILS: ', joinedAPIDetails);
-
   return (
     <div>
       <div>
