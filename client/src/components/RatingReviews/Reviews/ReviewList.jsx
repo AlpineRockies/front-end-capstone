@@ -13,11 +13,11 @@ function ReviewList({ sortedList, sortStarFilter }) {
     <div className="RR-review-list">
       <h4>Review List </h4>
       {sortedList
-        .slice(0, showMoreReview)
         .filter(
           (eachReviewObj) =>
             sortStarFilter === 0 || eachReviewObj.rating === sortStarFilter
         )
+        .slice(0, showMoreReview)
         .map((eachReview) => (
           <ReviewEntry key={eachReview.review_id} eachReview={eachReview} />
         ))}
