@@ -186,4 +186,6 @@ li.ov-description:not(:last-child) {
     .ov-price {
       display: flex;
       flex-direction: row;
+
     }
+

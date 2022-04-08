@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable react/jsx-tag-spacing */
 /* eslint-disable no-unused-vars */
 /* eslint-disable arrow-body-style */
 import React, {
@@ -14,12 +16,14 @@ import ImageGallery from './ImageGallery';
 import StyleSelector from './StyleSelector';
 
 function Overview() {
-  // const [productId, setProductId] = useState(Math.floor(Math.random() * (38321 - 37311) + 37311));
-  const [productId, setProductId] = useState(38108)
+  const [productId, setProductId] = useState(Math.floor(Math.random() * (38321 - 37311) + 37311));
+  // const [productId, setProductId] = useState(productId)
   const [styles, setStyles] = useState([]);
   const [description, setDescription] = useState([]);
   const [count, setCount] = useState(0);
   const [thumbnailIndex, setThumbnailIndex] = useState(0);
+  const [resultCount, setResultCount] = useState(0);
+  const [styleSelector, selectStyleSelector] = useState(0);
 
   useEffect(() => {
     axios
@@ -41,9 +45,10 @@ function Overview() {
         <ImageGallery styles={styles} count={count} setCount={setCount} />
       </div>
       <div className="ov-cart">
-        <ProductInfo styles={styles} description={description} />
-        <StyleSelector styles={styles} />
-        <AddToCart styles={styles} />
+        <ProductInfo styles={styles} description={description} styleSelector={styleSelector} selectStyleSelector={selectStyleSelector}/>
+        <StyleSelector styles={styles} styleSelector={styleSelector} selectStyleSelector={selectStyleSelector} />
+
+        <AddToCart styles={styles} count={count} setCount={setCount} resultCount={resultCount} setResultCount={setResultCount} styleSelector={styleSelector}/>
       </div>
       <div className="ov-description">
         {/* Extract to component */}

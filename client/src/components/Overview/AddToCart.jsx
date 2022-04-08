@@ -1,44 +1,53 @@
+/* eslint-disable max-len */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable guard-for-in */
 import React, {
-// useState,
-// useEffect,
-// useContext
+  useState,
+  useEffect,
+  // useContext
 } from 'react';
 // import Select from 'react-select';
+import _ from 'underscore';
 import PropTypes from 'prop-types';
 
 function AddToCart(props) {
-  // if (props.styles.results !== undefined) {
+  const {
+    styles, count, resultCount, setResultCount, styleSelector
+  } = props;
 
-  // }
-  // eslint-disable-next-line no-unused-vars
-  const { styles } = props;
-  // const sizes = [{ label: 'pick a size' }, { label: 's' }];
-  // const qty = [{ label: 'how many do you want?' }, { label: '1' }];
+  const [quantityOptions, setQuantityOptions] = useState([]);
+  const [sizeSelection, setSizeSelection] = useState(null);
+
+  const handleSizeChange = (e) => {
+    const sku = e.target.value;
+
+    setSizeSelection(sku);
+  };
+
+  useEffect(() => {
+    if (!styles || !styles[styleSelector]) {
+      return;
+    }
+
+    const quantity = Math.min(styles[styleSelector].skus[sizeSelection].quantity, 15);
+
+    setQuantityOptions(
+      _.range(quantity + 1).map((amount) => (
+        <option key={amount} value={amount}>{amount}</option>
+      ))
+    );
+  }, [sizeSelection]);
+
   return (
     <>
-      {/* <div className="ov-dropdown-sizes">
-
-        <select> */}
-      {/* {styles[0].skus.map((option) => {
-            <option value={option.size}>{option.size}</option>
-          })} */}
-      {/* <Select options={sizes} />
-        </select>
-      </div>
-      <div className="ov-qty">
-        <Select options={qty} />
-      </div> */}
       <span>
-        <select className="ov-style-sizes">
-          <option value="Select a size">
-            SELECT A SIZE
-          </option>
+        <select className="ov-style-sizes" onChange={(e) => handleSizeChange(e)}>
+          {styles && styles[count] && Object.entries(styles[styleSelector].skus).map(([sku, { quantity, size }]) => (<option key={sku} value={sku}>{size}</option>))}
         </select>
         {' '}
         <select className="ov-style-qty">
-          <option value="1">
-            1
-          </option>
+          {quantityOptions}
         </select>
       </span>
       <br />

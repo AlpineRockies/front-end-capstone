@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable react/no-unused-prop-types */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/no-array-index-key */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, {
 // useState,
 // useEffect,
@@ -19,13 +20,17 @@ function ImageGallery(props) {
   // ] = useState(0);
   let galleryThumbnails;
   let mainImage;
+  const handleMainClick = () => {
+    console.log('Hello World');
+  };
+
   if (styles[count]) {
     if (count < 7) {
-      galleryThumbnails = styles.slice(0, 6).map((image, index) => <img alt="a beautiful flower" className="ov-thumbnail-gallery" key={index} src={image.photos[0].thumbnail_url} />);
+      galleryThumbnails = styles.slice(0, 6).map((image, index) => <img alt="a beautiful flower" className="ov-thumbnail-gallery" onClick={() => setCount(index)} key={index} src={image.photos[0].thumbnail_url} />);
     } else {
-      galleryThumbnails = styles.slice(count - 6, count).map((image, index) => <img alt="a playfull cat" className="ov-thumbnail-gallery" key={index} src={image.photos[0].thumbnail_url} />);
+      galleryThumbnails = styles.slice(count - 6, count).map((image, index) => <img alt="a playfull cat" className="ov-thumbnail-gallery" onClick={() => setCount(index)} key={index} src={image.photos[0].thumbnail_url} />);
     }
-    mainImage = <img alt="placeholder text" className="ov-main-img" key={count} src={styles[count].photos[0].url} />;
+    mainImage = <img alt="placeholder text" className="ov-main-img" onClick={handleMainClick} key={count} src={styles[count].photos[0].url} />;
   }
 
   let leftRight;
