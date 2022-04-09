@@ -20,7 +20,7 @@ export default function QuestionAnswers() {
 }
 
 const QAMainDiv = styled.div`
-  background-color: var(--dutch-white);
+  background-color: var(--ebony);
   position: relative;
   left: 50%;
   transform: translateX(-50%);

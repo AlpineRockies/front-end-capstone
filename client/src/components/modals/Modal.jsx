@@ -28,8 +28,8 @@ const StyledModal = styled.div`
   transform: translate(-50%, -50%);
   padding: 1em;
   border-radius: 8px;
-  /* dutch-white, but 93% opacity */
-  background-color: #d8cba7ee;
+  /* artichoke, but 93% opacity */
+  background-color: #939878ee;
   /* kombu-green, but 31% opacity */
   box-shadow: 0 8px 32px 0 #28361850;
   z-index: 255;

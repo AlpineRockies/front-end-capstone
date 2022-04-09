@@ -26,11 +26,16 @@ export default function Search({ onSearch }) {
 }
 
 const QASearch = styled.input`
-  border: 1px solid var(--cafe-noir);
+  border: 2px solid var(--cafe-noir);
+  background-color: var(--dutch-white);
   width: 100%;
   height: 2rem;
   outline: none;
   box-sizing: border-box;
   padding: 1rem;
   margin-bottom: 1rem;
+
+  &:focus {
+    box-shadow: 0 0 5px 1px var(--kombu-green);
+  }
 `;

@@ -98,18 +98,29 @@ const CloseButton = styled.button`
   justify-self: end;
   background: none;
   border: none;
+
+  &:hover {
+    text-shadow: 0 0 1px #00000077;
+  }
 `;
 
 const StyledButton = styled.button`
-  border: 1px solid var(--cafe-noir);
+  border: 2px solid var(--cafe-noir);
   color: var(--cafe-noir);
+  background-color: var(--dutch-white);
   text-transform: capitalize;
   cursor: pointer;
   padding: 1em;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const StyledTextArea = styled.textarea`
-  border: 1px solid var(--cafe-noir);
+  border: 2px solid var(--cafe-noir);
+  background-color: var(--dutch-white);
+
   &:focus {
     outline-style: solid;
     outline-color: var(--cafe-noir);
@@ -119,8 +130,10 @@ const StyledTextArea = styled.textarea`
 `;
 
 const StyledInput = styled.input`
-  border: 1px solid var(--cafe-noir);
-  padding: .5em;
+  border: 2px solid var(--cafe-noir);
+  padding: 0.5em;
+  background-color: var(--dutch-white);
+
   &:focus {
     outline-style: solid;
     outline-color: var(--cafe-noir);
@@ -130,6 +143,6 @@ const StyledInput = styled.input`
 `;
 
 const StyledDisclaimer = styled.span`
-  font-size: .87em;
+  font-size: 0.87em;
   justify-self: right;
 `;

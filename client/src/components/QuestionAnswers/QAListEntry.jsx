@@ -52,7 +52,7 @@ export default function QAListEntry({ questionData }) {
 
 const StyledEntry = styled.div`
   margin-bottom: 0.5em;
-  border-bottom: 2px solid var(--artichoke);
+  border-bottom: 2px solid var(--pullman-brown-ups-brown);
 `;
 
 const StyledAnswer = styled.div`
@@ -62,13 +62,17 @@ const StyledAnswer = styled.div`
 
 // TODO: lift this into a styled components file
 const StyledButton = styled.button`
-  border: 1px solid var(--cafe-noir);
+  border: 2px solid var(--cafe-noir);
   color: var(--cafe-noir);
+  background-color: var(--dutch-white);
   max-width: 300px;
   text-transform: capitalize;
   cursor: pointer;
   padding: 1em;
-  margin-right: 1rem;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const StyledMoreAnswers = styled(StyledButton)`

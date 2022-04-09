@@ -85,11 +85,16 @@ export default function QAList({ filter }) {
 }
 
 const StyledButton = styled.button`
-  border: 1px solid var(--cafe-noir);
+  border: 2px solid var(--cafe-noir);
   color: var(--cafe-noir);
-  max-width: 300px;
+  background-color: var(--dutch-white);
   text-transform: capitalize;
   cursor: pointer;
+  min-width: 200px;
   padding: 1em;
   margin-right: 1rem;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
