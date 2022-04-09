@@ -3,6 +3,8 @@ import ReviewEntry from './ReviewEntry';
 
 function ReviewList({ sortedList, sortStarFilter }) {
   const [showMoreReview, setShowMoreReview] = useState(2);
+  const [showMoreButton, setShowMoreButton] = useState(true);
+  const [listLength, setListLength] = useState(sortedList.length);
 
   const handleMoreReviewsClick = (event) => {
     event.preventDefault();
@@ -21,13 +23,15 @@ function ReviewList({ sortedList, sortStarFilter }) {
         .map((eachReview) => (
           <ReviewEntry key={eachReview.review_id} eachReview={eachReview} />
         ))}
-      <button
-        className="RR-more-reviews-button"
-        type="button"
-        onClick={handleMoreReviewsClick}
-      >
-        More Reviews
-      </button>
+      {showMoreReview < listLength && (
+        <button
+          className="RR-more-reviews-button"
+          type="button"
+          onClick={handleMoreReviewsClick}
+        >
+          More Reviews
+        </button>
+      )}
     </div>
   );
 }
