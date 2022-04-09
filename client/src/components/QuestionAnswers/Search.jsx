@@ -1,21 +1,11 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import styled from 'styled-components';
 
 // eslint-disable-next-line import/no-unresolved
 import { escapeValue } from 'Utilities';
 
-function Search({ onSearch }) {
-  const searchStyle = {
-    border: '1px solid gray',
-    width: '100%',
-    height: '2em',
-    outline: 'none',
-    boxSizing: 'border-box',
-    paddingLeft: '1em',
-    marginBottom: '1em',
-    /* background-color: #f5f5f5; /* some kinda gray */
-  };
-
+export default function Search({ onSearch }) {
   const handleChange = (event) => {
     const newQuery = escapeValue(event.target.value);
 
@@ -27,13 +17,25 @@ function Search({ onSearch }) {
   };
 
   return (
-    <input
+    <QASearch
       className="qa-search search-field"
-      style={searchStyle}
       placeholder="Have a question? Search for answers..."
       onChange={handleChange}
     />
   );
 }
 
-export default Search;
+const QASearch = styled.input`
+  border: 2px solid var(--cafe-noir);
+  background-color: var(--dutch-white);
+  width: 100%;
+  height: 2rem;
+  outline: none;
+  box-sizing: border-box;
+  padding: 1rem;
+  margin-bottom: 1rem;
+
+  &:focus {
+    box-shadow: 0 0 5px 1px var(--kombu-green);
+  }
+`;
