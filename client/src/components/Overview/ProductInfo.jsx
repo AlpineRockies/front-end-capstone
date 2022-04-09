@@ -10,6 +10,7 @@ import React, {
 import { FaFacebook, FaPinterest } from 'react-icons/fa';
 import { CgTwitter } from 'react-icons/cg';
 import PropTypes from 'prop-types';
+import ReviewEntryStar from '../RatingReviews/Reviews/ReviewEntryStar';
 
 function ProductInfo(props) {
   const { styles, description, styleSelector } = props;
@@ -17,15 +18,15 @@ function ProductInfo(props) {
   if (styles[styleSelector] && styles[styleSelector].sale_price !== null) {
     price = (
       <span className="ov-price">
-        <p style={{ color: 'red' }}>
+        <span style={{ color: 'red' }}>
           $
           {styles[styleSelector].sale_price}
-        </p>
+        </span>
         &ensp;
-        <p style={{ textDecorationLine: 'line-through', textDecorationStyle: 'solid' }}>
+        <span style={{ textDecorationLine: 'line-through', textDecorationStyle: 'solid' }}>
           $
           {styles[styleSelector].original_price}
-        </p>
+        </span>
       </span>
     );
   } else {
@@ -42,7 +43,7 @@ function ProductInfo(props) {
     <div className="ov-product-info">
       {/* Extract to component */}
       <span className="ov-review-stars">
-        ✭ ✩ ✩ ✩ ✩
+      <ReviewEntryStar rating={3.8} />
       </span>
       &ensp;
       <span className="ov-review-link">

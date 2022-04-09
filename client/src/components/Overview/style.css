@@ -73,6 +73,8 @@ li.ov-description:not(:last-child) {
 
 .ov-review-stars {
   font-size: medium;
+  color: blue;
+  background-color: purple !important;
 }
 
 .ov-review-link {
@@ -102,6 +104,19 @@ li.ov-description:not(:last-child) {
   border-radius: 50px;
   padding: 10px;
   flex: 1 20%;
+  flex: 1;
+}
+
+.ov-Checkmark {
+  color: white;
+  background-color: black;
+  border-radius: 50px;
+  position: absolute;
+  z-index: 2;
+  margin-left: -35px;
+  margin-top: 10px;
+  border: 1px solid black;
+  border-radius: 50px;
 }
 
 .ov-style-sizes {
@@ -186,6 +201,16 @@ li.ov-description:not(:last-child) {
     .ov-price {
       display: flex;
       flex-direction: row;
+    }
 
+    .ov-thumbnail-gallery-Special {
+      height: 70px;
+      width: 70px;
+      padding-left: 20px;
+      margin-bottom: 5px;
+      margin-right: 5px;
+      float: left;
+      position: relative;
+      border-right: 5px solid #39FF14;
     }
 
