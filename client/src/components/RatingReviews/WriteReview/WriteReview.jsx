@@ -4,6 +4,7 @@ import { escapeValue } from 'Utilities';
 import WriteReviewCharacteristic from './WriteReviewCharacteristic';
 import WriteReviewStar from './WriteReviewStar';
 import WriteReviewPhoto from './WriteReviewPhoto';
+import { StyledOverlay, StyledModal, CloseButton } from '../Style/RatingReviewStyle';
 
 function WriteReview({
   showWriteReview,
@@ -56,46 +57,19 @@ function WriteReview({
     setCharacteristicRating(characteristics);
   };
 
-  const overlayStyle = {
-    position: 'fixed',
-    zIndex: 1020,
-    top: 0,
-    left: 0,
-    width: '100vw',
-    height: '100vh',
-    background: 'rgba(255, 255, 255, 0.75)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  };
-  const modalStyle = {
-    background: 'white',
-    width: '45rem',
-    maxWidth: 'calc(100vw - 2rem)',
-    maxHeight: 'calc(100vh - 2rem)',
-    overflowY: 'auto',
-    position: 'relative',
-    border: '1px solid #ccc',
-    borderRadius: '0.3rem',
-  };
-
   return (
     <div className="RR-wr-form">
       {showWriteReview ? (
-        <div style={overlayStyle}>
-          <div style={modalStyle}>
+        <StyledOverlay>
+          <StyledModal>
             <form onSubmit={handleReviewInputSubmit}>
               <h4>Write Your Review</h4>
-              <div className="RR-wr-exit">
-                <button
-                  className="RR-wr-exit-button"
+                <CloseButton
                   type="button"
                   onClick={() => setShowWriteReview(false)}
                 >
                   X
-                </button>
-              </div>
-
+                </CloseButton>
               <div className="RR-wr-content">
                 <div className="RR-wr-stars">
                   <WriteReviewStar handleStar={handleStar} />
@@ -180,8 +154,8 @@ function WriteReview({
                 Submit Review
               </button>
             </form>
-          </div>
-        </div>
+          </StyledModal>
+        </StyledOverlay>
       ) : null}
     </div>
   );

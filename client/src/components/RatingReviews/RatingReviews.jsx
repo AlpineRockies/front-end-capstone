@@ -1,27 +1,19 @@
 /* eslint-disable import/extensions */
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
 import ReviewList from './Reviews/ReviewList';
 import WriteReview from './WriteReview/WriteReview';
 import Breakdown from './Breakdown/Breakdown';
-
 import ProductContext from '../Context';
-
-const MainRRContent = styled.div`
-  background-color: #5e6748ff;
-  color: #d8cba7ff;
-  flex: 1;
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-`;
+import {
+  MainRRContent,
+  RightContainer,
+  LeftContainer,
+  StyledButton,
+} from './Style/RatingReviewStyle';
 
 function RatingReviews() {
   const { productId } = useContext(ProductContext);
-
   const [sortView, setSortView] = useState('relevant');
   const [sortedList, setSortedList] = useState(null);
   const [sortStarFilter, setSortStarFilter] = useState(0);
@@ -67,49 +59,52 @@ function RatingReviews() {
 
   return (
     <MainRRContent>
-    {/* <div className="RR-review-list"> */}
       <h2>Rating And Reviews</h2>
+      <LeftContainer>
+        <div className="RR-breakdown">
+          {metaData && (
+            <Breakdown
+              metaData={metaData}
+              handleStarReviewClick={handleStarReviewClick}
+            />
+          )}
+        </div>
+      </LeftContainer>
 
-      {metaData && (
-        <Breakdown
-          metaData={metaData}
-          handleStarReviewClick={handleStarReviewClick}
-        />
-      )}
+      <RightContainer>
+        <div className="RR-reviews">
+          <form onClick={handleViewClick}>
+            <label>
+              Sort:
+              <select value={sortView} onChange={handleViewChange}>
+                <option value="relevant">Relevant</option>
+                <option value="newest">Newest</option>
+                <option value="helpful">Helpful</option>
+              </select>
+            </label>
+          </form>
+          {sortedList && (
+            <ReviewList
+              sortedList={sortedList}
+              sortStarFilter={sortStarFilter}
+            />
+          )}
+        </div>
 
-      <form onClick={handleViewClick}>
-        <label>
-          Sort:
-          <select value={sortView} onChange={handleViewChange}>
-            <option value="relevant">Relevant</option>
-            <option value="newest">Newest</option>
-            <option value="helpful">Helpful</option>
-          </select>
-        </label>
-      </form>
-
-      {sortedList && (
-        <ReviewList sortedList={sortedList} sortStarFilter={sortStarFilter} />
-      )}
-
-      <div className="RR-write-review">
-        <button
-          className="RR-write-review-button"
-          type="button"
-          onClick={() => setShowWriteReview(true)}
-        >
-          Write Review
-        </button>
-        {metaData && (
-          <WriteReview
-            showWriteReview={showWriteReview}
-            setShowWriteReview={setShowWriteReview}
-            productId={productId}
-            metaData={metaData}
-          />
-        )}
-      </div>
-    {/* </div> */}
+        <div className="RR-write-review">
+          <StyledButton type="button" onClick={() => setShowWriteReview(true)}>
+            Write Review
+          </StyledButton>
+          {metaData && (
+            <WriteReview
+              showWriteReview={showWriteReview}
+              setShowWriteReview={setShowWriteReview}
+              productId={productId}
+              metaData={metaData}
+            />
+          )}
+        </div>
+      </RightContainer>
     </MainRRContent>
   );
 }

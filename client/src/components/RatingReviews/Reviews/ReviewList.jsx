@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ReviewEntry from './ReviewEntry';
+import { StyledButton } from '../Style/RatingReviewStyle';
 
 function ReviewList({ sortedList, sortStarFilter }) {
   const [showMoreReview, setShowMoreReview] = useState(2);
@@ -24,13 +25,12 @@ function ReviewList({ sortedList, sortStarFilter }) {
           <ReviewEntry key={eachReview.review_id} eachReview={eachReview} />
         ))}
       {showMoreReview < listLength && (
-        <button
-          className="RR-more-reviews-button"
+        <StyledButton
           type="button"
           onClick={handleMoreReviewsClick}
         >
           More Reviews
-        </button>
+        </StyledButton>
       )}
     </div>
   );

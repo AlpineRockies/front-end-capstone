@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import ReviewEntryStar from '../Reviews/ReviewEntryStar.jsx';
 import { arrAllCharacteristic } from './BreakdownCharacteristic';
 import { ratingPercentage } from 'Utilities';
+import { Input } from '../Style/RatingReviewStyle';
 import { FaStar } from 'react-icons/fa';
-
-const Input = styled.input
-`
-`;
 
 function Breakdown({ metaData, handleStarReviewClick }) {
   const [mdCharArray, setMDCharArray] = useState(null);
@@ -56,7 +52,7 @@ function Breakdown({ metaData, handleStarReviewClick }) {
 
   const handleStarBreakdownClick = (star) => {
     event.preventDefault();
-    handleStarReviewClick(Number(star))
+    handleStarReviewClick(Number(star));
   };
 
   return (
@@ -94,13 +90,16 @@ function Breakdown({ metaData, handleStarReviewClick }) {
               </output>
               <br /> <br />
               {handleDesDisplay(eachChar.name, 1)}
-              <Input
-                type="range"
-                min="0"
-                max="5"
-                value={Math.floor(eachChar.valueObj.value)}
-                readOnly
-              />
+              <Input>
+                <input
+                  type="range"
+                  min="0"
+                  max="5"
+                  value={Math.floor(eachChar.valueObj.value)}
+                  className="slider"
+                  readOnly
+                />
+              </Input>
               {handleDesDisplay(eachChar.name, 5)}
               <br /> <br />
             </label>

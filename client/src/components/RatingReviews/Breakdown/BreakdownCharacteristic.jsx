@@ -31,7 +31,7 @@ const lengthArr = [
   { id: 2, des: 'Runs slightly short' },
   { id: 3, des: 'Perfect' },
   { id: 4, des: 'Runs slightly long' },
-  { id: 5, des: 'runs long' },
+  { id: 5, des: 'Runs long' },
 ];
 const fitArr = [
   { id: 1, des: 'Runs tight' },
