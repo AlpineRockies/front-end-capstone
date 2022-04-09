@@ -1,6 +1,8 @@
+/* eslint-disable max-len */
 import React, { useState, useEffect, useContext } from 'react';
 import '../style.css';
 import ProductContext from '../../Context';
+import { FaWindowClose } from 'react-icons/fa'
 import _ from 'underscore';
 import { FaCheck } from 'react-icons/fa';
 
@@ -21,14 +23,10 @@ function Comparison({ setOpenModal, selectedComparisonItem }) {
         setCompareItemFeatures([
           ...new Set(
             product.features.map((item) => {
-              if (item.feature) {
-                if (item.value) {
-                  return `${item.feature} : ${item.value}`;
-                }
-                return item.feature;
-              }
-              return item.value;
-            })
+              if (item.feature && item.value) return `${item.feature} : ${item.value}`;
+              if (item.feature) return item.feature;
+              if (item.value) return item.value;
+            }),
           ),
         ]);
       }
@@ -36,33 +34,21 @@ function Comparison({ setOpenModal, selectedComparisonItem }) {
   }, [selectedComparisonItem]);
 
   useEffect(() => {
-    const productFeaturesArray = [
+    let productFeaturesArray = [
       ...new Set(
         productInfo.features.map((item) => {
-          if (item.feature) {
-            if (item.value) {
-              return `${item.feature} : ${item.value}`;
-            }
-            return item.feature;
-          }
-          return item.value;
-        })
+          if (item.feature && item.value) return `${item.feature} : ${item.value}`;
+          if (item.feature) return item.feature;
+          if (item.value) return item.value;
+        }),
       ),
     ];
 
-    // check for any similar items in both arrays
-    const copyCompareItemFeatures = compareItemFeatures.slice();
-    const similarFeaturesArray = [];
-    _.each(productFeaturesArray, (feature1, index1) => {
-      _.each(copyCompareItemFeatures, (feature2, index2) => {
-        if (feature1 === feature2) {
-          similarFeaturesArray.push(feature1);
-          productFeaturesArray.splice(index1, 1);
-          copyCompareItemFeatures.splice(index2, 1);
-        }
-      });
-    });
-    setSimilarFeatures(similarFeaturesArray);
+    const intersection = new Set(_.intersection(productFeaturesArray, compareItemFeatures));
+    productFeaturesArray = _.filter(productFeaturesArray, ((element) => !intersection.has(element)));
+    const copyCompareItemFeatures = _.filter(compareItemFeatures, ((element) => !intersection.has(element)));
+
+    setSimilarFeatures([...intersection]);
     setProductFeatures(productFeaturesArray);
     setSelectedItemFeatures(copyCompareItemFeatures);
   }, [compareItemFeatures]);
@@ -72,7 +58,7 @@ function Comparison({ setOpenModal, selectedComparisonItem }) {
       <div className="ri-modal-Container">
         <div className="ri-modal-Title-Close-Button">
           <button type="button" onClick={() => setOpenModal(false)}>
-            X
+          <FaWindowClose />
           </button>
         </div>
         <div className="ri-modal-Title">
