@@ -1,19 +1,22 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import moment from 'moment';
 import axios from 'axios';
 
-export default function Answer({ answer }) {
-  const [markedHelpful, setMarkedHelpful] = useState(false);
-  const [reported, setReported] = useState(false);
-
-  const {
+export default function Answer({
+  answer: {
     id,
     body,
-    answerer_name: answererName,
+    answerer_name: answerer,
     date,
     helpfulness,
-  } = answer;
+    photos,
+  },
+}) {
+  const [markedHelpful, setMarkedHelpful] = useState(false);
+  const [reported, setReported] = useState(false);
+  const [photosOrNah, setPhotosOrNah] = useState(null);
 
   const handleMarkHelpful = () => markedHelpful || axios
     .put(`/qa/answers/${id}/helpful`)
@@ -39,12 +42,26 @@ export default function Answer({ answer }) {
     }
   };
 
+  useEffect(() => {
+    if (photos && photos.length) {
+      setPhotosOrNah(
+        <>
+          {photos.map((url) => (
+            <Thumbnail key={url} src={url} alt="An answer worth a thousand words" />
+          ))}
+          <br />
+        </>,
+      );
+    }
+  }, []);
+
   return (
     <span key={id}>
       <span>{body}</span>
       <br />
+      {photosOrNah}
       <span>by </span>
-      {answererName}
+      {answerer}
       <span>, </span>
       {moment(date).format('MMM Do, YYYY')}
       <span> | Helpful? </span>
@@ -73,3 +90,10 @@ export default function Answer({ answer }) {
     </span>
   );
 }
+
+const Thumbnail = styled.img`
+  object-fit: cover;
+  width: 90px;
+  height: 60px;
+  margin-right: 1em;
+`;
