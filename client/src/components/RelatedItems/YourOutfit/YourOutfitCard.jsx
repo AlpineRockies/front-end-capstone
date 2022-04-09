@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useContext } from 'react';
+import { FaWindowClose } from 'react-icons/fa';
 import ProductContext from '../../Context';
-import { FaWindowClose } from 'react-icons/fa'
 import '../style.css';
 
 function YourOutfitCard({ product, removeItem }) {

@@ -23,6 +23,6 @@ function ProductCard({ handleModalClick, product }) {
         onKeyDown={() => setProductId(product.product_id)}
       />
     </div>
-  )
+  );
 }
 export default ProductCard;
