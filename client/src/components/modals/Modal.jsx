@@ -10,7 +10,7 @@ export default function Modal({ showModal, onClose, ModalForm, formData }) {
 
   return createPortal(
     <>
-      <StyledOverlay />
+      <StyledOverlay onClick={onClose} />
       <StyledModal>
         <ModalForm onClose={onClose} formData={formData} />
       </StyledModal>
