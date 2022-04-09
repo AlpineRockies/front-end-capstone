@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 function WriteReviewPhoto({
   photoRating,
@@ -7,25 +6,52 @@ function WriteReviewPhoto({
   showUploadPhoto,
   setShowUploadPhoto,
 }) {
-  const [uploaded, setUploaded] = useState(0);
+  const [imageArray, setImageArray] = useState([]);
+  const [showUploadButton, setShowUploadButton] = useState(true);
 
   useEffect(() => {
-
-  }, []);
+    handleUploadButton();
+    if (imageArray.length < 1) {
+      return;
+    }
+    imageArray.map((image) => setPhotoRating([...photoRating, URL.createObjectURL(image)]));
+  }, [imageArray]);
 
   const handleImgInput = (event) => {
-    setPhotoRating([...photoRating, event.target.files]);
+    setImageArray([...event.target.files]);
+  };
+
+  const handleUploadButton = () => {
+    if (photoRating.length >= 4) {
+      setShowUploadButton(false);
+    }
+  };
+
+  const imgThumb = {
+    height: '60px',
+    width: '60px',
+    borderRadius: '50px',
+    padding: '10px',
+    flex: '1 20%',
   };
 
   return (
     <div>
       {showUploadPhoto ? (
         <div>
-          <input
-          type='file'
-          multiple accept='image/*'
-          onChange={handleImgInput}
-          />
+          {showUploadButton && (
+            <input
+              type="file"
+              multiple
+              accept="image/*"
+              onChange={handleImgInput}
+            />
+          )}
+          {photoRating.map((imgSrc) => (
+            <label key={imgSrc}>
+              <img src={imgSrc} alt='imgSrc' style={imgThumb} />
+            </label>
+          ))}
         </div>
       ) : null}
     </div>

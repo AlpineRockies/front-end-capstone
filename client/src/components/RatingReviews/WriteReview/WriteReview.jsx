@@ -178,12 +178,12 @@ function WriteReview({
                   >
                     Upload Photos
                   </button>
-                   <WriteReviewPhoto
-                      photoRating={photoRating}
-                      setPhotoRating={setPhotoRating}
-                      showUploadPhoto={showUploadPhoto}
-                      setShowUploadPhoto={setShowUploadPhoto}
-                    />
+                  <WriteReviewPhoto
+                    photoRating={photoRating}
+                    setPhotoRating={setPhotoRating}
+                    showUploadPhoto={showUploadPhoto}
+                    setShowUploadPhoto={setShowUploadPhoto}
+                  />
                 </div>
               </div>
               <button className="RR-wr-submit-button" type="submit">
