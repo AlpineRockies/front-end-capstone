@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
+import styled from 'styled-components';
 
 // eslint-disable-next-line import/no-unresolved
 import { compareHelpfulness } from 'Utilities';
@@ -7,7 +8,7 @@ import { compareHelpfulness } from 'Utilities';
 import Question from './Question';
 import Answer from './Answer';
 
-function QAListEntry({ questionData }) {
+export default function QAListEntry({ questionData }) {
   const [shownAnswerCount, setShownAnswerCount] = useState(2);
   const [showMoreAnswers, setShowMoreAnswers] = useState(true);
 
@@ -18,24 +19,6 @@ function QAListEntry({ questionData }) {
     answers,
   } = questionData;
 
-  const entryStyle = {
-    marginBottom: '.5em',
-  };
-
-  const answerStyle = {
-    display: 'inline-flex',
-    flexDirection: 'column',
-  };
-
-  const moreAnswersStyle = {
-    border: '1px solid gray',
-    maxWidth: '300px',
-    textTransform: 'capitalize',
-    cursor: 'pointer',
-    padding: '.5em',
-    backgroundColor: '#fff',
-  };
-
   const sortedAnswers = Object.values(answers).sort(compareHelpfulness);
 
   const handleMoreAnswers = () => {
@@ -44,7 +27,7 @@ function QAListEntry({ questionData }) {
   };
 
   return (
-    <div className="qa-list-entry" style={entryStyle}>
+    <StyledEntry>
       <Question
         questionId={questionId}
         questionBody={questionBody}
@@ -53,19 +36,45 @@ function QAListEntry({ questionData }) {
       <span>
         <strong>A: </strong>
       </span>
-      <div className="qa-answer" style={answerStyle}>
+      <StyledAnswer>
         {sortedAnswers.slice(0, shownAnswerCount).map((answer) => (
           <Answer key={answer.id} answer={answer} />
         ))}
         {sortedAnswers.length > 2 && (
-          <button onClick={handleMoreAnswers} type="button" style={moreAnswersStyle}>
+          <StyledMoreAnswers onClick={handleMoreAnswers} type="button">
             {showMoreAnswers ? 'See more answers' : 'Collapse'}
-          </button>
+          </StyledMoreAnswers>
         )}
-      </div>
-      <hr style={{ border: '1px solid lightgray' }} />
-    </div>
+      </StyledAnswer>
+    </StyledEntry>
   );
 }
 
-export default QAListEntry;
+const StyledEntry = styled.div`
+  margin-bottom: 0.5em;
+  border-bottom: 2px solid var(--pullman-brown-ups-brown);
+`;
+
+const StyledAnswer = styled.div`
+  display: inline-flex;
+  flex-direction: column;
+`;
+
+// TODO: lift this into a styled components file
+const StyledButton = styled.button`
+  border: 2px solid var(--cafe-noir);
+  color: var(--cafe-noir);
+  background-color: var(--dutch-white);
+  max-width: 300px;
+  text-transform: capitalize;
+  cursor: pointer;
+  padding: 1em;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const StyledMoreAnswers = styled(StyledButton)`
+  margin-bottom: 1rem;
+`;

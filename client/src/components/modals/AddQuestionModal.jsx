@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/prop-types */
 import React, { useState, useContext } from 'react';
+import styled from 'styled-components';
 import axios from 'axios';
 
 import ProductContext from '../Context';
@@ -31,15 +33,15 @@ export default function AddQuestionModal({ onClose }) {
 
   return (
     <form style={{ display: 'grid' }} ref={formRef} onSubmit={(e) => e.preventDefault()}>
-      <button type="button" onClick={onClose}>
+      <CloseButton type="button" onClick={onClose}>
         ✖️
-      </button>
-      <h2>Ask Your Question</h2>
+      </CloseButton>
+      <h2 style={{ margin: 0 }}>Ask Your Question</h2>
       <h3>{`About the ${productInfo.name}`}</h3>
       <label htmlFor="your-question" style={{ display: 'contents' }}>
         Your Question *
         <br />
-        <textarea
+        <StyledTextArea
           name="your-question"
           rows={5}
           maxLength={1000}
@@ -52,7 +54,7 @@ export default function AddQuestionModal({ onClose }) {
       <label htmlFor="your-nickname" style={{ display: 'contents' }}>
         What is your nickname *
         <br />
-        <input
+        <StyledInput
           type="text"
           name="your-nickname"
           maxLength={60}
@@ -62,14 +64,14 @@ export default function AddQuestionModal({ onClose }) {
           required
         />
       </label>
-      <span style={{ fontSize: '.87em' }}>
+      <StyledDisclaimer style={{ fontSize: '.87em' }}>
         <em>For privacy reasons, do not use your full name or email address</em>
-      </span>
+      </StyledDisclaimer>
       <br />
       <label htmlFor="your-email" style={{ display: 'contents' }}>
         Your email *
         <br />
-        <input
+        <StyledInput
           type="email"
           name="your-email"
           maxLength={60}
@@ -79,13 +81,68 @@ export default function AddQuestionModal({ onClose }) {
           required
         />
       </label>
-      <span style={{ fontSize: '.87em' }}>
+      <StyledDisclaimer style={{ fontSize: '.87em' }}>
         <em>For authentication reasons, you will not be emailed</em>
-      </span>
+      </StyledDisclaimer>
       <br />
-      <button type="button" onClick={(e) => handleSubmit(e)}>
+      <StyledButton type="button" onClick={(e) => handleSubmit(e)}>
         Submit Question
-      </button>
+      </StyledButton>
     </form>
   );
 }
+
+const CloseButton = styled.button`
+  width: fit-content;
+  position: fixed;
+  justify-self: end;
+  background: none;
+  border: none;
+
+  &:hover {
+    text-shadow: 0 0 1px #00000077;
+  }
+`;
+
+const StyledButton = styled.button`
+  border: 2px solid var(--cafe-noir);
+  color: var(--cafe-noir);
+  background-color: var(--dutch-white);
+  text-transform: capitalize;
+  cursor: pointer;
+  padding: 1em;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const StyledTextArea = styled.textarea`
+  border: 2px solid var(--cafe-noir);
+  background-color: var(--dutch-white);
+
+  &:focus {
+    outline-style: solid;
+    outline-color: var(--cafe-noir);
+    outline-width: 1px;
+    transition-duration: 100ms;
+  }
+`;
+
+const StyledInput = styled.input`
+  border: 2px solid var(--cafe-noir);
+  padding: 0.5em;
+  background-color: var(--dutch-white);
+
+  &:focus {
+    outline-style: solid;
+    outline-color: var(--cafe-noir);
+    outline-width: 1px;
+    transition-duration: 100ms;
+  }
+`;
+
+const StyledDisclaimer = styled.span`
+  font-size: 0.87em;
+  justify-self: right;
+`;

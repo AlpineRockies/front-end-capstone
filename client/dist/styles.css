@@ -1,0 +1,15 @@
+* {
+  /* fix some mis-alignment issues */
+  box-sizing: border-box;
+}
+
+:root {
+  /* Color Palette variables */
+  --kombu-green: #283618ff;
+  --ebony: #5e6748ff;
+  --artichoke: #939878ff;
+  --dutch-white: #d8cba7ff;
+  --french-bistre: #866c46ff;
+  --pullman-brown-ups-brown: #5a3b16ff;
+  --cafe-noir: #4f3517ff;
+}

@@ -1,22 +1,17 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useContext } from 'react';
+import styled from 'styled-components';
 import axios from 'axios';
 
 import AddAnswerModal from '../modals/AddAnswerModal';
 import ProductContext from '../Context';
 import Modal from '../modals/Modal';
 
-function Question({ questionId, questionBody, questionHelpfulness }) {
+export default function Question({ questionId, questionBody, questionHelpfulness }) {
   const [markedHelpful, setMarkedHelpful] = useState(false);
   const [showAddAnswer, setShowAddAnswer] = useState(false);
 
   const productName = useContext(ProductContext).productInfo.name;
-
-  const questionStyle = {
-    display: 'flex',
-    justifyContent: 'space-between',
-    marginBottom: '.5em',
-  };
 
   const handleMarkHelpful = () => markedHelpful || axios
     .put(`/qa/questions/${questionId}/helpful`)
@@ -32,10 +27,10 @@ function Question({ questionId, questionBody, questionHelpfulness }) {
 
   return (
     <>
-      <div className="qa-question" style={questionStyle}>
+      <StyledQuestion>
         <span>
-          <strong>Q: </strong>
-          <strong>{questionBody}</strong>
+          {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+          <strong>Q: {questionBody}</strong>
         </span>
         <span>
           Helpful?
@@ -61,8 +56,7 @@ function Question({ questionId, questionBody, questionHelpfulness }) {
             <u>Add Answer</u>
           </span>
         </span>
-      </div>
-      {/* TODO: is this the best place for the modal? */}
+      </StyledQuestion>
       <Modal
         showModal={showAddAnswer}
         onClose={() => setShowAddAnswer(false)}
@@ -73,4 +67,8 @@ function Question({ questionId, questionBody, questionHelpfulness }) {
   );
 }
 
-export default Question;
+const StyledQuestion = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5em;
+`;
