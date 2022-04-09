@@ -2,12 +2,8 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 
-export default function Modal({
-  showModal,
-  onClose,
-  ModalForm,
-  formData,
-}) {
+// eslint-disable-next-line object-curly-newline
+export default function Modal({ showModal, onClose, ModalForm, formData }) {
   if (!showModal) {
     return null;
   }
@@ -32,8 +28,10 @@ const StyledModal = styled.div`
   transform: translate(-50%, -50%);
   padding: 1em;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.87);
-  box-shadow: 0 8px 32px 0 rgba(32, 32, 32, 0.32);
+  /* dutch-white, but 93% opacity */
+  background-color: #d8cba7ee;
+  /* kombu-green, but 31% opacity */
+  box-shadow: 0 8px 32px 0 #28361850;
   z-index: 255;
 `;
 
@@ -43,7 +41,8 @@ const StyledOverlay = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(50, 50, 50, 0.5);
+  /* kombu-green, but 50% opacity */
+  background-color: #28361877;
   backdrop-filter: blur(10px);
   z-index: 254;
 `;

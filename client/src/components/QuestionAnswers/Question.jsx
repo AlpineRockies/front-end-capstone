@@ -67,7 +67,7 @@ export default function Question({ questionId, questionBody, questionHelpfulness
   );
 }
 
-const StyledQuestion = styled.StyledOverlay`
+const StyledQuestion = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.5em;
