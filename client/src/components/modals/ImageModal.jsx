@@ -3,11 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 export default function ImageModal({ onClose, formData }) {
-  return (
-    <div  onClick={onClose}>
-      <Image src={formData} alt="Worth a thousand words" />
-    </div>
-  );
+  return <Image onClick={onClose} src={formData} alt="Worth a thousand words" />;
 }
 
 const Image = styled.img`
