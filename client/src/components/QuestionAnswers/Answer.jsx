@@ -115,9 +115,10 @@ export default function Answer({
 }
 
 const Thumbnail = styled.img`
-  object-fit: cover;
+  object-fit: contain;
   width: 90px;
   height: 60px;
   margin-right: 1em;
   border: 2px solid var(--kombu-green);
+  background-color: var(--artichoke);
 `;
