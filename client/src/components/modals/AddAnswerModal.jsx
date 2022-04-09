@@ -1,13 +1,17 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+
+import ProductContext from '../Context';
 
 export default function AddAnswerModal({ onClose, formData }) {
   const formRef = React.createRef();
 
   const { productName, questionId, questionBody } = formData;
+
+  const { handleNewQorA } = useContext(ProductContext);
 
   const [newAnswerBody, setNewAnswerBody] = useState('');
   const [newAnswerName, setNewAnswerName] = useState('');
@@ -33,6 +37,7 @@ export default function AddAnswerModal({ onClose, formData }) {
           email: newAnswerEmail,
           photos: newAnswerPhotos,
         })
+        .then(() => handleNewQorA())
         .then(() => onClose())
         // eslint-disable-next-line no-console
         .catch(console.error);
