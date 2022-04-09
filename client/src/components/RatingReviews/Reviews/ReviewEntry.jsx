@@ -73,7 +73,7 @@ function ReviewEntry({ eachReview }) {
         </label>
         <label>
           {notHelpfulClick ? (
-            eachReview.helpfulness - 1
+            - 1
           ) : (
             <HiThumbDown onClick={() => handleHelpful(false)} />
           )}

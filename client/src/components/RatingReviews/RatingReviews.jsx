@@ -1,11 +1,23 @@
 /* eslint-disable import/extensions */
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import ReviewList from './Reviews/ReviewList';
 import WriteReview from './WriteReview/WriteReview';
 import Breakdown from './Breakdown/Breakdown';
 
 import ProductContext from '../Context';
+
+const MainRRContent = styled.div`
+  background-color: #5e6748ff;
+  color: #d8cba7ff;
+  flex: 1;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+`;
 
 function RatingReviews() {
   const { productId } = useContext(ProductContext);
@@ -54,7 +66,8 @@ function RatingReviews() {
   };
 
   return (
-    <div className="RR-review-list">
+    <MainRRContent>
+    {/* <div className="RR-review-list"> */}
       <h2>Rating And Reviews</h2>
 
       {metaData && (
@@ -96,7 +109,8 @@ function RatingReviews() {
           />
         )}
       </div>
-    </div>
+    {/* </div> */}
+    </MainRRContent>
   );
 }
 

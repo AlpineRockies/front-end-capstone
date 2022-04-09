@@ -35,7 +35,6 @@ function WriteReview({
 
   const handleReviewInputSubmit = (event) => {
     event.preventDefault();
-
     axios({
       method: 'post',
       url: '/reviews',
@@ -44,6 +43,7 @@ function WriteReview({
       .then((response) => {
         console.log('review post', response);
       })
+      .then(() => setShowWriteReview(false))
       .catch((err) => {
         console.log('err in RR POST', err);
       });
@@ -178,12 +178,12 @@ function WriteReview({
                   >
                     Upload Photos
                   </button>
-                   <WriteReviewPhoto
-                      photoRating={photoRating}
-                      setPhotoRating={setPhotoRating}
-                      showUploadPhoto={showUploadPhoto}
-                      setShowUploadPhoto={setShowUploadPhoto}
-                    />
+                  <WriteReviewPhoto
+                    photoRating={photoRating}
+                    setPhotoRating={setPhotoRating}
+                    showUploadPhoto={showUploadPhoto}
+                    setShowUploadPhoto={setShowUploadPhoto}
+                  />
                 </div>
               </div>
               <button className="RR-wr-submit-button" type="submit">
