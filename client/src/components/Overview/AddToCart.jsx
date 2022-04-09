@@ -18,7 +18,7 @@ function AddToCart(props) {
 
   const [quantityOptions, setQuantityOptions] = useState([]);
   const [sizeSelection, setSizeSelection] = useState(null);
-
+  const [quantity, setQuantity] = useState(16);
   const handleSizeChange = (e) => {
     const sku = e.target.value;
 
@@ -38,23 +38,38 @@ function AddToCart(props) {
       ))
     );
   }, [sizeSelection]);
-
+let buttonNoButton;
+var alertMe;
+ if(sizeSelection !== null && quantity > 0){
+ buttonNoButton = <button className="ov-checkout-button" type="button">
+  ADD TO CART  &emsp; &emsp; &emsp; &emsp; &ensp; ➕
+</button>
+ } else if(quantity === 0){
+   buttonNoButton = <h4>Out of Stock</h4>
+ } else if (sizeSelection === null && quantity === 16){
+   buttonNoButton =  <button className="ov-checkout-button" type="button" onClick={() => alertMe = "Please select a size and quantity"}>
+   ADD TO CART  &emsp; &emsp; &emsp; &emsp; &ensp; ➕
+ </button>
+ } else {
+   buttonNoButton = <button className="ov-checkout-button" type="button" onClick={() => alertMe = "added to cart"}>
+   ADD TO CART  &emsp; &emsp; &emsp; &emsp; &ensp; ➕
+ </button>
+ }
   return (
     <>
       <span>
-        <select className="ov-style-sizes" onChange={(e) => handleSizeChange(e)}>
-          {styles && styles[count] && Object.entries(styles[styleSelector].skus).map(([sku, { quantity, size }]) => (<option key={sku} value={sku}>{size}</option>))}
+        <select className="ov-style-sizes" onChange={(e) => handleSizeChange(e)}><option>Pick a size</option>
+          {styles && styles[count] && Object.entries(styles[styleSelector].skus).map(([sku, { quantity, size }]) => (<option default="Pick a size" key={sku} value={sku}>{size}</option>))}
         </select>
         {' '}
-        <select className="ov-style-qty">
+        <select className="ov-style-qty" onChange={(e) => setQuantity(e.target.value)}>
           {quantityOptions}
         </select>
       </span>
       <br />
       <br />
-      <button className="ov-checkout-button" type="button">
-        ADD TO CART  &emsp; &emsp; &emsp; &emsp; &ensp; ➕
-      </button>
+{alertMe}
+  {buttonNoButton}
     </>
   );
 }

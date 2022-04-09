@@ -46,7 +46,7 @@ function Overview() {
       </div>
       <div className="ov-cart">
         <ProductInfo styles={styles} description={description} styleSelector={styleSelector} selectStyleSelector={selectStyleSelector}/>
-        <StyleSelector styles={styles} styleSelector={styleSelector} selectStyleSelector={selectStyleSelector} />
+        <StyleSelector styles={styles} styleSelector={styleSelector} selectStyleSelector={selectStyleSelector} setCount={setCount}/>
 
         <AddToCart styles={styles} count={count} setCount={setCount} resultCount={resultCount} setResultCount={setResultCount} styleSelector={styleSelector}/>
       </div>

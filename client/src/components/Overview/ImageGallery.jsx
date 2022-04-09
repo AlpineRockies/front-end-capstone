@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/no-array-index-key */
@@ -26,9 +27,13 @@ function ImageGallery(props) {
 
   if (styles[count]) {
     if (count < 7) {
-      galleryThumbnails = styles.slice(0, 6).map((image, index) => <img alt="a beautiful flower" className="ov-thumbnail-gallery" onClick={() => setCount(index)} key={index} src={image.photos[0].thumbnail_url} />);
+      galleryThumbnails = styles.slice(0, 7).map((image, index) => (count === index
+        ? <img alt="a beautiful flower" className="ov-thumbnail-gallery-Special" onClick={() => setCount(index)} key={index} src={image.photos[0].thumbnail_url} />
+        : <img alt="a beautiful flower" className="ov-thumbnail-gallery" onClick={() => setCount(index)} key={index} src={image.photos[0].thumbnail_url} />));
     } else {
-      galleryThumbnails = styles.slice(count - 6, count).map((image, index) => <img alt="a playfull cat" className="ov-thumbnail-gallery" onClick={() => setCount(index)} key={index} src={image.photos[0].thumbnail_url} />);
+      galleryThumbnails = styles.slice(count - 6, count).map((image, index) => ((count-7) === index
+        ? <img alt="a playfull cat" className="ov-thumbnail-gallery-Special" onClick={() => setCount(index)} key={index+6} src={image.photos[0].thumbnail_url} />
+        : <img alt="a playfull cat" className="ov-thumbnail-gallery" onClick={() => setCount(index)} key={index} src={image.photos[0].thumbnail_url} />));
     }
     mainImage = <img alt="placeholder text" className="ov-main-img" onClick={handleMainClick} key={count} src={styles[count].photos[0].url} />;
   }
@@ -62,9 +67,9 @@ function ImageGallery(props) {
   return (
     <div className="ov-img-carousel">
       <div className="ov-thumbnail-img-nav">
-        <FaArrowUp className="ov-up-icon" />
+        <FaArrowUp className="ov-up-icon" onClick={() => setCount(count - 1)}/>
         {galleryThumbnails}
-        <FaArrowDown className="ov-down-icon" />
+        <FaArrowDown className="ov-down-icon" onClick={() => setCount(count + 1)}/>
       </div>
       <div className="ov-main-img-nav" />
       {leftRight}
