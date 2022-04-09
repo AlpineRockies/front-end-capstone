@@ -1,13 +1,14 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect, useContext } from 'react';
 import '../style.css';
-import ProductContext from '../../Context';
-import { FaWindowClose } from 'react-icons/fa'
+import { FaWindowClose, FaCheck } from 'react-icons/fa';
 import _ from 'underscore';
-import { FaCheck } from 'react-icons/fa';
+import ProductContext from '../../Context';
+import { StyledButton } from '../StyledComponents';
+
 
 /* eslint-disable react/prop-types */
-function Comparison({ setOpenModal, selectedComparisonItem }) {
+function ComparisonModal({ setOpenModal, selectedComparisonItem }) {
   const { productInfo, joinedAPIDetails } = useContext(ProductContext);
 
   const [compareItemName, setCompareItemName] = useState('');
@@ -105,12 +106,10 @@ function Comparison({ setOpenModal, selectedComparisonItem }) {
           </table>
         </div>
         <div className="ri-modal-Footer">
-          <button type="button" onClick={() => setOpenModal(false)}>
-            Close
-          </button>
+          <StyledButton onClick={() => setOpenModal(false)}>CLOSE</StyledButton>
         </div>
       </div>
     </div>
   );
 }
-export default Comparison;
+export default ComparisonModal;

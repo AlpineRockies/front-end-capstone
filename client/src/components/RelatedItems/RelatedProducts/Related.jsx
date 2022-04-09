@@ -79,8 +79,6 @@ function Related() {
           prevSlide={prevSlide}
           shownImagesArray={shownImagesArray}
           length={length}
-          // productArray={joinedAPIDetails}
-          // setShownImagesArray={setShownImagesArray}
         />
         {ProductCarousel}
       </section>
