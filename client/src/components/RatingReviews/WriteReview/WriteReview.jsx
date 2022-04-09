@@ -19,7 +19,6 @@ function WriteReview({
   const [emailRating, setEmailRating] = useState(null);
   const [photoRating, setPhotoRating] = useState([]);
   const [characteristicRating, setCharacteristicRating] = useState(null);
-  const [showUploadPhoto, setShowUploadPhoto] = useState(false);
 
   const query = {
     product_id: productId,
@@ -171,18 +170,9 @@ function WriteReview({
                   />
                 </div>
                 <div className="RR-wr-photo">
-                  <button
-                    className="RR-wr-upload-photo"
-                    type="button"
-                    onClick={() => setShowUploadPhoto(true)}
-                  >
-                    Upload Photos
-                  </button>
                   <WriteReviewPhoto
                     photoRating={photoRating}
                     setPhotoRating={setPhotoRating}
-                    showUploadPhoto={showUploadPhoto}
-                    setShowUploadPhoto={setShowUploadPhoto}
                   />
                 </div>
               </div>
