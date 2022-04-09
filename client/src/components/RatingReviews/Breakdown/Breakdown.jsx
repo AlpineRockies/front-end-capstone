@@ -1,8 +1,29 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import ReviewEntryStar from '../Reviews/ReviewEntryStar.jsx';
 import { arrAllCharacteristic } from './BreakdownCharacteristic';
 import { ratingPercentage } from 'Utilities';
 import { FaStar } from 'react-icons/fa';
+
+const Input = styled.input
+`
+  background: #00aec9;
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: 0;
+  text-transform: uppercase;
+  width: 100%;
+  border-radius: 5px;
+  height: 35px;
+  border-color: transparent;
+  box-shadow: 0px;
+  outline: none;
+  transition: 0.15s;
+  text-align: center;
+  &:active {
+    background-color: #f1ac15;
+  }
+`;
 
 function Breakdown({ metaData, handleStarReviewClick }) {
   const [mdCharArray, setMDCharArray] = useState(null);
@@ -89,7 +110,7 @@ function Breakdown({ metaData, handleStarReviewClick }) {
               </output>
               <br /> <br />
               {handleDesDisplay(eachChar.name, 1)}
-              <input
+              <Input
                 type="range"
                 min="0"
                 max="5"
