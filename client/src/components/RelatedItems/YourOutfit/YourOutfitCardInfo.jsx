@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import ReviewEntryStar from '../../RatingReviews/Reviews/ReviewEntryStar';
-import '../style.css'
+import '../style.css';
 
 function YourOutfitCardInfo({ product }) {
   return (

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
 
 export const StyledButton = styled.button`
@@ -35,4 +35,4 @@ export const StyledLeftArrow = styled(FaArrowAltCircleLeft)`
   z-index: 10;
   cursor: pointer;
   user-select: none;
-`
+`;

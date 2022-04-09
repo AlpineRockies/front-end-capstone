@@ -3,7 +3,7 @@
 import React, { useContext } from 'react';
 import { FaStar } from 'react-icons/fa';
 import ProductContext from '../../Context';
-import '../style.css'
+import '../style.css';
 
 function ProductCard({ handleModalClick, product }) {
   const { setProductId } = useContext(ProductContext);

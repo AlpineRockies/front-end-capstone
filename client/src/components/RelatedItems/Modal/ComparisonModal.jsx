@@ -1,3 +1,6 @@
+/* eslint-disable react/self-closing-comp */
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable array-callback-return */
 /* eslint-disable max-len */
 import React, { useState, useEffect, useContext } from 'react';
 import '../style.css';
@@ -5,7 +8,6 @@ import { FaWindowClose, FaCheck } from 'react-icons/fa';
 import _ from 'underscore';
 import ProductContext from '../../Context';
 import { StyledButton } from '../StyledComponents';
-
 
 /* eslint-disable react/prop-types */
 function ComparisonModal({ setOpenModal, selectedComparisonItem }) {
@@ -23,6 +25,7 @@ function ComparisonModal({ setOpenModal, selectedComparisonItem }) {
         setCompareItemName(product.name);
         setCompareItemFeatures([
           ...new Set(
+            // eslint-disable-next-line consistent-return
             product.features.map((item) => {
               if (item.feature && item.value) return `${item.feature} : ${item.value}`;
               if (item.feature) return item.feature;
@@ -37,6 +40,7 @@ function ComparisonModal({ setOpenModal, selectedComparisonItem }) {
   useEffect(() => {
     let productFeaturesArray = [
       ...new Set(
+        // eslint-disable-next-line consistent-return
         productInfo.features.map((item) => {
           if (item.feature && item.value) return `${item.feature} : ${item.value}`;
           if (item.feature) return item.feature;
@@ -59,7 +63,7 @@ function ComparisonModal({ setOpenModal, selectedComparisonItem }) {
       <div className="ri-modal-Container">
         <div className="ri-modal-Title-Close-Button">
           <button type="button" onClick={() => setOpenModal(false)}>
-          <FaWindowClose />
+            <FaWindowClose />
           </button>
         </div>
         <div className="ri-modal-Title">

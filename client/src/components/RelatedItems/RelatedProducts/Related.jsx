@@ -29,7 +29,7 @@ function Related() {
 
   const visibleSlide = () => {
     setShownImagesArray(
-      referenceArray.slice(shownImagesOffset, shownImagesOffset + 4)
+      referenceArray.slice(shownImagesOffset, shownImagesOffset + 4),
     );
   };
 
