@@ -1,10 +1,10 @@
 /* eslint-disable react/no-array-index-key */
 import React, { useState, useEffect, useContext } from 'react';
 import '../style.css';
-import { FaWindowClose, FaCheck } from 'react-icons/fa';
 import _ from 'underscore';
+import ComparisonModalTable from './ComparisonModalTable';
 import ProductContext from '../../Context';
-import { StyledButton } from '../StyledComponents';
+import { StyledButton, StyledFaWindowClose } from '../StyledComponents';
 
 /* eslint-disable react/prop-types */
 function ComparisonModal({ setOpenModal, selectedComparisonItem }) {
@@ -24,11 +24,12 @@ function ComparisonModal({ setOpenModal, selectedComparisonItem }) {
           ...new Set(
             // eslint-disable-next-line consistent-return
             product.features.map((item) => {
-              if (item.feature && item.value) return `${item.feature} : ${item.value}`;
+              if (item.feature && item.value)
+                return `${item.feature} : ${item.value}`;
               if (item.feature) return item.feature;
               if (item.value) return item.value;
               return null;
-            }),
+            })
           ),
         ]);
       }
@@ -40,22 +41,25 @@ function ComparisonModal({ setOpenModal, selectedComparisonItem }) {
       ...new Set(
         // eslint-disable-next-line consistent-return
         productInfo.features.map((item) => {
-          if (item.feature && item.value) return `${item.feature} : ${item.value}`;
+          if (item.feature && item.value)
+            return `${item.feature} : ${item.value}`;
           if (item.feature) return item.feature;
           if (item.value) return item.value;
           return null;
-        }),
+        })
       ),
     ];
 
-    const intersection = new Set(_.intersection(productFeaturesArray, compareItemFeatures));
+    const intersection = new Set(
+      _.intersection(productFeaturesArray, compareItemFeatures)
+    );
     productFeaturesArray = _.filter(
       productFeaturesArray,
-      (element) => !intersection.has(element),
+      (element) => !intersection.has(element)
     );
     const copyCompareItemFeatures = _.filter(
       compareItemFeatures,
-      (element) => !intersection.has(element),
+      (element) => !intersection.has(element)
     );
 
     setSimilarFeatures([...intersection]);
@@ -68,52 +72,18 @@ function ComparisonModal({ setOpenModal, selectedComparisonItem }) {
       <div className="ri-modal-Container">
         <div className="ri-modal-Title-Close-Button">
           <button type="button" onClick={() => setOpenModal(false)}>
-            <FaWindowClose />
+            <StyledFaWindowClose />
           </button>
         </div>
         <div className="ri-modal-Title">
           <h3>Comparing</h3>
         </div>
-        <div className="ri-modal-Body">
-          <table>
-            <tbody>
-              <tr>
-                <th>{compareItemName}</th>
-                <th>Feature/Value</th>
-                <th>{productInfo.name}</th>
-              </tr>
-              {similarFeatures.map((item, index) => (
-                <tr key={index}>
-                  <td>
-                    <FaCheck />
-                  </td>
-                  <td>{item}</td>
-                  <td>
-                    <FaCheck />
-                  </td>
-                </tr>
-              ))}
-              {selectedItemFeatures.map((item, index) => (
-                <tr key={index}>
-                  <td>
-                    <FaCheck />
-                  </td>
-                  <td>{item}</td>
-                  <td />
-                </tr>
-              ))}
-              {productFeatures.map((item, index) => (
-                <tr key={index}>
-                  <td />
-                  <td>{item}</td>
-                  <td>
-                    <FaCheck />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <ComparisonModalTable
+          compareItemName={compareItemName}
+          similarFeatures={similarFeatures}
+          selectedItemFeatures={selectedItemFeatures}
+          productFeatures={productFeatures}
+        />
         <div className="ri-modal-Footer">
           <StyledButton onClick={() => setOpenModal(false)}>CLOSE</StyledButton>
         </div>

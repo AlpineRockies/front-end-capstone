@@ -101,7 +101,7 @@ function RelatedItems() {
     <div className="ri-parent">
       <p className="headerText"> Related Items </p>
       <div className="ri-relateditems">
-        <Related />
+        <Related setYourOutfitId={setYourOutfitId}/>
       </div>
       <p className="headerText">Your Outfit</p>
       <div className="ri-youroutfit">
