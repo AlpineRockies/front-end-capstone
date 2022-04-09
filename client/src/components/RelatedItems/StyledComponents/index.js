@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
 
 export const StyledButton = styled.button`
-  border: 2px solid ##d8cba7ff;
+  border: 2px solid #d8cba7ff;
   background-color: #283618ff;
   color: white;
   padding: 15px 32 px;

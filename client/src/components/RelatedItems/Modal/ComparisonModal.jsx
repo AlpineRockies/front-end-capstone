@@ -1,7 +1,4 @@
-/* eslint-disable react/self-closing-comp */
 /* eslint-disable react/no-array-index-key */
-/* eslint-disable array-callback-return */
-/* eslint-disable max-len */
 import React, { useState, useEffect, useContext } from 'react';
 import '../style.css';
 import { FaWindowClose, FaCheck } from 'react-icons/fa';
@@ -30,6 +27,7 @@ function ComparisonModal({ setOpenModal, selectedComparisonItem }) {
               if (item.feature && item.value) return `${item.feature} : ${item.value}`;
               if (item.feature) return item.feature;
               if (item.value) return item.value;
+              return null;
             }),
           ),
         ]);
@@ -45,13 +43,20 @@ function ComparisonModal({ setOpenModal, selectedComparisonItem }) {
           if (item.feature && item.value) return `${item.feature} : ${item.value}`;
           if (item.feature) return item.feature;
           if (item.value) return item.value;
+          return null;
         }),
       ),
     ];
 
     const intersection = new Set(_.intersection(productFeaturesArray, compareItemFeatures));
-    productFeaturesArray = _.filter(productFeaturesArray, ((element) => !intersection.has(element)));
-    const copyCompareItemFeatures = _.filter(compareItemFeatures, ((element) => !intersection.has(element)));
+    productFeaturesArray = _.filter(
+      productFeaturesArray,
+      (element) => !intersection.has(element),
+    );
+    const copyCompareItemFeatures = _.filter(
+      compareItemFeatures,
+      (element) => !intersection.has(element),
+    );
 
     setSimilarFeatures([...intersection]);
     setProductFeatures(productFeaturesArray);
@@ -94,12 +99,12 @@ function ComparisonModal({ setOpenModal, selectedComparisonItem }) {
                     <FaCheck />
                   </td>
                   <td>{item}</td>
-                  <td></td>
+                  <td />
                 </tr>
               ))}
               {productFeatures.map((item, index) => (
                 <tr key={index}>
-                  <td></td>
+                  <td />
                   <td>{item}</td>
                   <td>
                     <FaCheck />
