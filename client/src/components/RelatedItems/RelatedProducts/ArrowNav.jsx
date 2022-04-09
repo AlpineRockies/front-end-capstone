@@ -6,10 +6,10 @@ import { StyledRightArrow, StyledLeftArrow } from '../StyledComponents';
 function ArrowNav({ shownImagesArray, nextSlide, prevSlide, length }) {
   return (
     <>
-      {shownImagesArray[0] !== 0 ? (
+      {shownImagesArray[0] > 0 ? (
         <StyledLeftArrow onClick={prevSlide} />
       ) : null}
-      {shownImagesArray[3] < length - 1 ? (
+      {shownImagesArray.slice(-1) < length - 1 ? (
         <StyledRightArrow onClick={nextSlide} />
       ) : null}
     </>
