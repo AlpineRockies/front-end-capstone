@@ -12,7 +12,7 @@ export default function AddQuestionModal({ onClose }) {
   const [newQuestionBody, setNewQuestionBody] = useState('');
   const [newQuestionName, setNewQuestionName] = useState('');
   const [newQuestionEmail, setNewQuestionEmail] = useState('');
-  const { productId, productInfo } = useContext(ProductContext);
+  const { productId, productInfo, handleNewQorA } = useContext(ProductContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -25,6 +25,7 @@ export default function AddQuestionModal({ onClose }) {
           email: newQuestionEmail,
           product_id: +productId,
         })
+        .then(() => handleNewQorA())
         .then(() => onClose())
         // eslint-disable-next-line no-console
         .catch(console.error);

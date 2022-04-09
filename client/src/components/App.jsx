@@ -11,11 +11,13 @@ function App() {
   const [productId, setProductId] = useState(38320);
   const [productInfo, setProductInfo] = useState({});
   const [yourOutfit, setYourOutfit] = useState(() => {
+    // eslint-disable-next-line no-undef
     const savedYourOutfit = localStorage.getItem('yourOutfit');
     const initialYourOutfit = JSON.parse(savedYourOutfit);
     return initialYourOutfit || [];
   });
-  const [joinedAPIDetails, setJoinedAPIDetails] = useState([])
+  const [joinedAPIDetails, setJoinedAPIDetails] = useState([]);
+  const [handleNewQorA, setHandleNewQorA] = useState(() => {});
 
   const memoizedState = useMemo(
     () => ({
@@ -27,6 +29,8 @@ function App() {
       setYourOutfit,
       joinedAPIDetails,
       setJoinedAPIDetails,
+      handleNewQorA,
+      setHandleNewQorA,
     }),
     [productId, productInfo, yourOutfit, joinedAPIDetails],
   );
