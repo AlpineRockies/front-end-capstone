@@ -11,7 +11,7 @@ import AddQuestionModal from '../modals/AddQuestionModal';
 import Modal from '../modals/Modal';
 
 export default function QAList({ filter }) {
-  const { productId } = useContext(ProductContext);
+  const { productId, setHandleNewQorA } = useContext(ProductContext);
 
   // § 1.3.1: "on page load up to four questions should be displayed"
   // § 1.3.4: "The list will by default only display up to 2 questions asked"
@@ -56,6 +56,8 @@ export default function QAList({ filter }) {
           <QAListEntry key={question.question_id} questionData={question} />
         )),
       );
+
+      setHandleNewQorA(() => () => fetchQuestions(questions.length + 1));
     }
   }, [questions, shownQuestionCount, filter]);
 

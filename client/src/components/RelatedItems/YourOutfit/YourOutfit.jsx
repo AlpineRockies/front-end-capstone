@@ -13,7 +13,7 @@ function YourOutfit({ setYourOutfitId }) {
   const { productId, yourOutfit, setYourOutfit } = useContext(ProductContext);
 
   const referenceArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  const [shownImagesArray, setShownImagesArray] = useState([0, 1, 2, 3]);
+  const [shownImagesArray, setShownImagesArray] = useState([0, 1, 2]);
   const [shownImagesOffset, setShownImagesOffset] = useState(0);
 
   const removeItem = (product) => {
@@ -29,12 +29,12 @@ function YourOutfit({ setYourOutfitId }) {
 
   const visibleSlide = () => {
     setShownImagesArray(
-      referenceArray.slice(shownImagesOffset, shownImagesOffset + 4),
+      referenceArray.slice(shownImagesOffset, shownImagesOffset + 3),
     );
   };
 
   const nextSlide = () => {
-    if (shownImagesOffset < yourOutfit.length - 4) {
+    if (shownImagesOffset < yourOutfit.length - 3) {
       setShownImagesOffset((prevState) => prevState + 1);
     }
     visibleSlide();
@@ -53,16 +53,17 @@ function YourOutfit({ setYourOutfitId }) {
   }, [yourOutfit]);
 
   const YourOutfitCarousel = yourOutfit.length
-    ? yourOutfit.map((product, index) => (
-      <div>
-        {shownImagesArray.includes(index) && (
+    ? yourOutfit.map((product, index) => {
+      if (shownImagesArray.includes(index)) {
+        return (
           <div key={product.id} className="yo-container">
             <YourOutfitCard product={product} removeItem={removeItem} />
             <YourOutfitCardInfo product={product} />
           </div>
-        )}
-      </div>
-    ))
+        );
+      }
+      return null;
+    })
     : null;
 
   return (
@@ -74,11 +75,13 @@ function YourOutfit({ setYourOutfitId }) {
           prevSlide={prevSlide}
           length={yourOutfit.length}
         />
-        <div className="yo-button-container">
-          <FaPlusSquare
-            className="yo-additem"
-            onClick={() => addYourOutfit(productId)}
-          />
+        <div className="yo-container">
+          <div className="yo-plusSqure">
+            <FaPlusSquare
+              className="yo-additem"
+              onClick={() => addYourOutfit(productId)}
+            />
+          </div>
           <h3>Add to Your Outfit!</h3>
         </div>
         {YourOutfitCarousel}

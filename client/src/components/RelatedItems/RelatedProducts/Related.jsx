@@ -52,16 +52,17 @@ function Related() {
     setSelectedComparisonItem(compareProduct);
   };
 
-  const ProductCarousel = joinedAPIDetails.map((product, index) => (
-    <div key={product.id}>
-      {shownImagesArray.includes(index) && (
+  const ProductCarousel = joinedAPIDetails.map((product, index) => {
+    if (shownImagesArray.includes(index)) {
+      return (
         <div className="ri-container">
           <ProductCard handleModalClick={handleModalClick} product={product} />
           <ProductCardInfo product={product} />
         </div>
-      )}
-    </div>
-  ));
+      );
+    }
+    return null;
+  });
 
   return (
     <div>

@@ -1,13 +1,17 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+
+import ProductContext from '../Context';
 
 export default function AddAnswerModal({ onClose, formData }) {
   const formRef = React.createRef();
 
   const { productName, questionId, questionBody } = formData;
+
+  const { handleNewQorA } = useContext(ProductContext);
 
   const [newAnswerBody, setNewAnswerBody] = useState('');
   const [newAnswerName, setNewAnswerName] = useState('');
@@ -17,7 +21,7 @@ export default function AddAnswerModal({ onClose, formData }) {
   const handleUploadPhotos = (event) => {
     const newPhotoUrl = event.target.value;
 
-    if (newPhotoUrl && newPhotoUrl.length) {
+    if (newPhotoUrl && newPhotoUrl.length && newAnswerPhotos.length <= 5) {
       setNewAnswerPhotos((photos) => [...photos, newPhotoUrl]);
     }
   };
@@ -33,6 +37,7 @@ export default function AddAnswerModal({ onClose, formData }) {
           email: newAnswerEmail,
           photos: newAnswerPhotos,
         })
+        .then(() => handleNewQorA())
         .then(() => onClose())
         // eslint-disable-next-line no-console
         .catch(console.error);
@@ -94,16 +99,20 @@ export default function AddAnswerModal({ onClose, formData }) {
         <em>For authentication reasons, you will not be emailed</em>
       </StyledDisclaimer>
       <br />
-      <label htmlFor="your-photos" style={{ display: 'contents' }}>
-        Upload your photos
-        <StyledInput
-          type="url"
-          name="your-photos"
-          placeholder="Example: https://images.unsplash.com/photo-1574201635302-388dd92a4c3f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1965&q=80"
-          onChange={handleUploadPhotos}
-          style={{ marginBottom: '1rem' }}
-        />
-      </label>
+      {newAnswerPhotos.length < 5 ? (
+        <label htmlFor="your-photos" style={{ display: 'contents' }}>
+          Upload your photos
+          <StyledInput
+            type="url"
+            name="your-photos"
+            placeholder="Example: https://images.unsplash.com/photo-1574201635302-388dd92a4c3f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1965&q=80"
+            onChange={handleUploadPhotos}
+            style={{ marginBottom: '1rem' }}
+          />
+        </label>
+      ) : (
+        <div>Uploaded Photos</div>
+      )}
       {newAnswerPhotos && newAnswerPhotos.length ? (
         <div>
           {newAnswerPhotos.map((url) => (
