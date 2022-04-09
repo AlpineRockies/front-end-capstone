@@ -1,3 +1,5 @@
+/* eslint-disable operator-linebreak */
+/* eslint-disable no-console */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable no-return-assign */
 import React, { useState, useEffect, useContext } from 'react';
@@ -10,7 +12,9 @@ import YourOutfit from './YourOutfit/YourOutfit';
 import ProductContext from '../Context';
 
 function RelatedItems() {
-  const { productId, yourOutfit, setYourOutfit, setJoinedAPIDetails } = useContext(ProductContext);
+  // eslint-disable-next-line object-curly-newline
+  const { productId, yourOutfit, setYourOutfit, setJoinedAPIDetails } =
+    useContext(ProductContext);
 
   const [relatedItems, setRelatedItems] = useState([]);
   const [relatedItemsImg, setRelatedItemsImg] = useState([]);
@@ -28,46 +32,46 @@ function RelatedItems() {
   useEffect(() => {
     Promise.all(
       relatedItems.map((product) =>
+        // eslint-disable-next-line implicit-arrow-linebreak
         axios
           .get(`/products/${product}/styles`)
           .then((response) => response.data)
-          .catch((err) => console.error(err)),
-      ),
-    )
-      .then((response) => setRelatedItemsImg(response))
+          .catch((err) => console.error(err))),
+    ).then((response) => setRelatedItemsImg(response))
       .catch((err) => console.error(err));
 
     Promise.all(
       relatedItems.map((product) =>
+        // eslint-disable-next-line implicit-arrow-linebreak
         axios
           .get(`/products/${product}`)
           .then((response) => response.data)
-          .catch((err) => console.error(err)),
-      ),
+          .catch((err) => console.error(err))),
     ).then((res) => setRelatedItemsDetails(res));
 
     Promise.all(
       relatedItems.map((product) =>
+        // eslint-disable-next-line implicit-arrow-linebreak
         axios
           .get(`/reviews/?product_id=${product}`)
           .then((response) => response.data)
-          .catch((err) => console.error(err)),
-      ),
+          .catch((err) => console.error(err))),
     ).then((res) => setRelatedReviews(res));
   }, [relatedItems]);
 
   useEffect(() => {
-    const aveRatingArray = _.map(relatedReviews, (product) => (
-      { aveRating: aveRating(product.results) }));
+    const aveRatingArray = _.map(relatedReviews, (product) => ({
+      aveRating: aveRating(product.results),
+    }));
 
     const accArr = _.map(relatedItems, (ea, index) =>
+      // eslint-disable-next-line implicit-arrow-linebreak
       _.extend(
         {},
         relatedItemsImg[index],
         relatedItemsDetails[index],
         aveRatingArray[index],
-      )
-    );
+      ));
     setJoinedAPIDetails(accArr);
   }, [relatedReviews]);
 
@@ -82,7 +86,11 @@ function RelatedItems() {
           const ratingsArray = response[2].data.results;
           setYourOutfit([
             ...yourOutfit,
-            { ...response[0].data, ...response[1].data, ...{ aveRating: aveRating(ratingsArray) } },
+            {
+              ...response[0].data,
+              ...response[1].data,
+              ...{ aveRating: aveRating(ratingsArray) },
+            },
           ]);
         })
         .catch((err) => console.log(err));
@@ -93,7 +101,6 @@ function RelatedItems() {
     <div className="ri-parent">
       <p className="headerText"> Related Items </p>
       <div className="ri-relateditems">
-
         <Related />
       </div>
       <p className="headerText">Your Outfit</p>

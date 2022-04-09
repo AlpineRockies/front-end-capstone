@@ -29,7 +29,7 @@ function Related() {
 
   const visibleSlide = () => {
     setShownImagesArray(
-      referenceArray.slice(shownImagesOffset, shownImagesOffset + 4)
+      referenceArray.slice(shownImagesOffset, shownImagesOffset + 4),
     );
   };
 
@@ -79,8 +79,6 @@ function Related() {
           prevSlide={prevSlide}
           shownImagesArray={shownImagesArray}
           length={length}
-          // productArray={joinedAPIDetails}
-          // setShownImagesArray={setShownImagesArray}
         />
         {ProductCarousel}
       </section>

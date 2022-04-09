@@ -10,8 +10,7 @@ import YourOutfitCardInfo from './YourOutfitCardInfo';
 import ProductContext from '../../Context';
 
 function YourOutfit({ setYourOutfitId }) {
-  const { productId, yourOutfit, setYourOutfit } =
-    useContext(ProductContext);
+  const { productId, yourOutfit, setYourOutfit } = useContext(ProductContext);
 
   const referenceArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   const [shownImagesArray, setShownImagesArray] = useState([0, 1, 2, 3]);
@@ -30,7 +29,7 @@ function YourOutfit({ setYourOutfitId }) {
 
   const visibleSlide = () => {
     setShownImagesArray(
-      referenceArray.slice(shownImagesOffset, shownImagesOffset + 4)
+      referenceArray.slice(shownImagesOffset, shownImagesOffset + 4),
     );
   };
 
@@ -49,6 +48,7 @@ function YourOutfit({ setYourOutfitId }) {
   };
 
   useEffect(() => {
+    // eslint-disable-next-line no-undef
     localStorage.setItem('yourOutfit', JSON.stringify(yourOutfit));
   }, [yourOutfit]);
 

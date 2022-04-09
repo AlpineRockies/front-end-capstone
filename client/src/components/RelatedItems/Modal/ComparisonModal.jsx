@@ -1,11 +1,13 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useState, useEffect, useContext } from 'react';
 import '../style.css';
-import ProductContext from '../../Context';
+import { FaWindowClose, FaCheck } from 'react-icons/fa';
 import _ from 'underscore';
-import { FaCheck } from 'react-icons/fa';
+import ProductContext from '../../Context';
+import { StyledButton } from '../StyledComponents';
 
 /* eslint-disable react/prop-types */
-function Comparison({ setOpenModal, selectedComparisonItem }) {
+function ComparisonModal({ setOpenModal, selectedComparisonItem }) {
   const { productInfo, joinedAPIDetails } = useContext(ProductContext);
 
   const [compareItemName, setCompareItemName] = useState('');
@@ -20,15 +22,13 @@ function Comparison({ setOpenModal, selectedComparisonItem }) {
         setCompareItemName(product.name);
         setCompareItemFeatures([
           ...new Set(
+            // eslint-disable-next-line consistent-return
             product.features.map((item) => {
-              if (item.feature) {
-                if (item.value) {
-                  return `${item.feature} : ${item.value}`;
-                }
-                return item.feature;
-              }
-              return item.value;
-            })
+              if (item.feature && item.value) return `${item.feature} : ${item.value}`;
+              if (item.feature) return item.feature;
+              if (item.value) return item.value;
+              return null;
+            }),
           ),
         ]);
       }
@@ -36,33 +36,29 @@ function Comparison({ setOpenModal, selectedComparisonItem }) {
   }, [selectedComparisonItem]);
 
   useEffect(() => {
-    const productFeaturesArray = [
+    let productFeaturesArray = [
       ...new Set(
+        // eslint-disable-next-line consistent-return
         productInfo.features.map((item) => {
-          if (item.feature) {
-            if (item.value) {
-              return `${item.feature} : ${item.value}`;
-            }
-            return item.feature;
-          }
-          return item.value;
-        })
+          if (item.feature && item.value) return `${item.feature} : ${item.value}`;
+          if (item.feature) return item.feature;
+          if (item.value) return item.value;
+          return null;
+        }),
       ),
     ];
 
-    // check for any similar items in both arrays
-    const copyCompareItemFeatures = compareItemFeatures.slice();
-    const similarFeaturesArray = [];
-    _.each(productFeaturesArray, (feature1, index1) => {
-      _.each(copyCompareItemFeatures, (feature2, index2) => {
-        if (feature1 === feature2) {
-          similarFeaturesArray.push(feature1);
-          productFeaturesArray.splice(index1, 1);
-          copyCompareItemFeatures.splice(index2, 1);
-        }
-      });
-    });
-    setSimilarFeatures(similarFeaturesArray);
+    const intersection = new Set(_.intersection(productFeaturesArray, compareItemFeatures));
+    productFeaturesArray = _.filter(
+      productFeaturesArray,
+      (element) => !intersection.has(element),
+    );
+    const copyCompareItemFeatures = _.filter(
+      compareItemFeatures,
+      (element) => !intersection.has(element),
+    );
+
+    setSimilarFeatures([...intersection]);
     setProductFeatures(productFeaturesArray);
     setSelectedItemFeatures(copyCompareItemFeatures);
   }, [compareItemFeatures]);
@@ -72,7 +68,7 @@ function Comparison({ setOpenModal, selectedComparisonItem }) {
       <div className="ri-modal-Container">
         <div className="ri-modal-Title-Close-Button">
           <button type="button" onClick={() => setOpenModal(false)}>
-            X
+            <FaWindowClose />
           </button>
         </div>
         <div className="ri-modal-Title">
@@ -103,12 +99,12 @@ function Comparison({ setOpenModal, selectedComparisonItem }) {
                     <FaCheck />
                   </td>
                   <td>{item}</td>
-                  <td></td>
+                  <td />
                 </tr>
               ))}
               {productFeatures.map((item, index) => (
                 <tr key={index}>
-                  <td></td>
+                  <td />
                   <td>{item}</td>
                   <td>
                     <FaCheck />
@@ -119,12 +115,10 @@ function Comparison({ setOpenModal, selectedComparisonItem }) {
           </table>
         </div>
         <div className="ri-modal-Footer">
-          <button type="button" onClick={() => setOpenModal(false)}>
-            Close
-          </button>
+          <StyledButton onClick={() => setOpenModal(false)}>CLOSE</StyledButton>
         </div>
       </div>
     </div>
   );
 }
-export default Comparison;
+export default ComparisonModal;

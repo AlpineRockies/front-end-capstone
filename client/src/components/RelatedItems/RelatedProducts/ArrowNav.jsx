@@ -1,16 +1,16 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
+import { StyledRightArrow, StyledLeftArrow } from '../StyledComponents';
 
-
+// eslint-disable-next-line object-curly-newline
 function ArrowNav({ shownImagesArray, nextSlide, prevSlide, length }) {
   return (
     <>
       {shownImagesArray[0] !== 0 ? (
-        <FaArrowAltCircleLeft className="left-arrow" onClick={prevSlide} />
+        <StyledLeftArrow onClick={prevSlide} />
       ) : null}
       {shownImagesArray[3] < length - 1 ? (
-        <FaArrowAltCircleRight className="right-arrow" onClick={nextSlide} />
+        <StyledRightArrow onClick={nextSlide} />
       ) : null}
     </>
   );
