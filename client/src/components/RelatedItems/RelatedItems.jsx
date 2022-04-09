@@ -10,8 +10,7 @@ import YourOutfit from './YourOutfit/YourOutfit';
 import ProductContext from '../Context';
 
 function RelatedItems() {
-  const { productId, yourOutfit, setYourOutfit, setJoinedAPIDetails } =
-    useContext(ProductContext);
+  const { productId, yourOutfit, setYourOutfit, setJoinedAPIDetails } = useContext(ProductContext);
 
   const [relatedItems, setRelatedItems] = useState([]);
   const [relatedItemsImg, setRelatedItemsImg] = useState([]);
@@ -32,8 +31,8 @@ function RelatedItems() {
         axios
           .get(`/products/${product}/styles`)
           .then((response) => response.data)
-          .catch((err) => console.error(err))
-      )
+          .catch((err) => console.error(err)),
+      ),
     )
       .then((response) => setRelatedItemsImg(response))
       .catch((err) => console.error(err));
@@ -43,8 +42,8 @@ function RelatedItems() {
         axios
           .get(`/products/${product}`)
           .then((response) => response.data)
-          .catch((err) => console.error(err))
-      )
+          .catch((err) => console.error(err)),
+      ),
     ).then((res) => setRelatedItemsDetails(res));
 
     Promise.all(
@@ -52,8 +51,8 @@ function RelatedItems() {
         axios
           .get(`/reviews/?product_id=${product}`)
           .then((response) => response.data)
-          .catch((err) => console.error(err))
-      )
+          .catch((err) => console.error(err)),
+      ),
     ).then((res) => setRelatedReviews(res));
   }, [relatedItems]);
 
@@ -76,7 +75,7 @@ function RelatedItems() {
     if (yourOutfitId) {
       const getYOImages = axios.get(`/products/${yourOutfitId}/styles`);
       const getYODetails = axios.get(`/products/${yourOutfitId}`);
-      const getYOReviews = axios.get(`/reviews/?product_id=${yourOutfitId}`)
+      const getYOReviews = axios.get(`/reviews/?product_id=${yourOutfitId}`);
       axios
         .all([getYOImages, getYODetails, getYOReviews])
         .then((response) => {
