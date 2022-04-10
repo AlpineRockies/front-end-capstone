@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import ReviewEntryStar from '../Reviews/ReviewEntryStar.jsx';
 import { arrAllCharacteristic } from './BreakdownCharacteristic';
-import { ratingPercentage } from 'Utilities';
-import { Input } from '../Style/RatingReviewStyle';
+import { lowercase, ratingPercentage } from 'Utilities';
+import { BreakdownCharacter, Range } from '../Style/RatingReviewStyle';
 import { FaStar } from 'react-icons/fa';
 
 function Breakdown({ metaData, handleStarReviewClick }) {
@@ -80,31 +80,37 @@ function Breakdown({ metaData, handleStarReviewClick }) {
             </label>
           ))}
       </div>
-      <div className="RR-breakdown-char">
+      <BreakdownCharacter>
         {mdCharArray &&
           mdCharArray.map((eachChar) => (
             <label key={eachChar.name}>
               <output>
-                {eachChar.name} feedback is{' '}
-                {Math.floor(eachChar.valueObj.value)}
+                Average response for {lowercase(eachChar.name)} is{' '}
+                {lowercase(
+                  handleDesDisplay(
+                    eachChar.name,
+                    Math.floor(eachChar.valueObj.value)
+                  )
+                )}
               </output>
               <br /> <br />
-              {handleDesDisplay(eachChar.name, 1)}
-              <Input>
+                {handleDesDisplay(eachChar.name, 1)}
+                <Range>
                 <input
+                  className="slider"
                   type="range"
-                  min="0"
+                  min="1"
                   max="5"
                   value={Math.floor(eachChar.valueObj.value)}
-                  className="slider"
+
                   readOnly
                 />
-              </Input>
-              {handleDesDisplay(eachChar.name, 5)}
+                </Range>
+                {handleDesDisplay(eachChar.name, 5)}
               <br /> <br />
             </label>
           ))}
-      </div>
+      </BreakdownCharacter>
     </div>
   );
 }

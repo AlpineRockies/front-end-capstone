@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
 export const MainRRContent = styled.div`
-  background-color: var(--kombu-green);
+  background-color: var(--ebony);
   position: relative;
   left: 50%;
   transform: translateX(-50%);
   max-width: 960px;
   width: 87vw;
+  display: inline-block;
 `;
 
 export const LeftContainer = styled.div`
@@ -22,20 +23,23 @@ export const RightContainer = styled.div`
 `;
 
 export const StarWrapper = styled.div`
-  background-color: var(--kombu-green);
+  background-color: var(--ebony);
   color: var(--french-bistre);
 `;
 
 export const WriteEntryWrapper = styled.div`
-  background-color: var(--kombu-green);
-  border: 2px solid var(--pullman-brown-ups-brown);
+  background-color: var(--ebony);
+  border: 2px solid var(--artichoke);
   color: var(--french-bistre);
 `;
 
 export const BreakdownWrapper = styled.div`
-  background-color: var(--kombu-green);
-  border: 2px solid var(--pullman-brown-ups-brown);
-  color: var(--french-bistre);
+  color: var(--cafe-noir);
+`;
+
+export const BreakdownCharacter = styled.div`
+  display: inline;
+  float: left;
 `;
 
 export const StyledOverlay = styled.div`
@@ -65,31 +69,38 @@ export const StyledModal = styled.div`
   z-index: 255;
 `;
 
-const sliderThumbStyles = (props) => `
-  width: 25px;
-  height: 25px;
-  background: #866c46ff;
+const sliderThumbStyles = (props) => (`
+  width: 5px;
+  height: 5px;
+  background: var(--dutch-white);
   cursor: pointer;
-  outline: 5px solid #333;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
-`;
+  border-radius: 3px;
+  outline: 3px solid var(--dutch-white);
+`);
 
-export const Input = styled.div`
-  display: flex;
+export const Range = styled.div`
+  display: inline;
   align-items: center;
-  color: #d8cba7ff;
+  color: #888;
   margin-top: 2rem;
   margin-bottom: 2rem;
   .value {
+    flex: 1;
     font-size: 2rem;
   }
   .slider {
     -webkit-appearance: none;
-    width: 25%;
-    height: 5px;
-    background: #d8cba7ff;
+    border-radius: 5px;
+    background: var(--french-bistre);
     outline: none;
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      ${props => sliderThumbStyles(props)}
+    }
+    &::-moz-range-thumb {
+      ${props => sliderThumbStyles(props)}
+    }
   }
 `;
 
@@ -99,21 +110,19 @@ export const CloseButton = styled.button`
   justify-self: end;
   background: none;
   border: none;
-
-  &:hover {
+  --cafe-noir &:hover {
     text-shadow: 0 0 1px #00000077;
   }
 `;
 
 export const StyledButton = styled.button`
-  border: 2px solid var(--pullman-brown-ups-brown);
-  color: var(--dutch-white);
-  background-color: var(--french-bistre);
+  border: 2px solid var(--french-bistre);
+  color: var(--cafe-noir);
+  background-color: var(--ebony);
   text-transform: capitalize;
   cursor: pointer;
   min-width: 200px;
   padding: 1em;
-  margin-right: 1rem;
 `;
 
 export const PhotoWrapper = styled.div`
