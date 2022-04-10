@@ -6,9 +6,10 @@ import WriteReview from './WriteReview/WriteReview';
 import Breakdown from './Breakdown/Breakdown';
 import ProductContext from '../Context';
 import {
-  MainRRContent,
-  RightContainer,
   LeftContainer,
+  RightContainer,
+  MainRRContent,
+  Select,
   StyledButton,
 } from './Style/RatingReviewStyle';
 
@@ -76,11 +77,11 @@ function RatingReviews() {
           <form onClick={handleViewClick}>
             <label>
               Sort:
-              <select value={sortView} onChange={handleViewChange}>
+              <Select value={sortView} onChange={handleViewChange}>
                 <option value="relevant">Relevant</option>
                 <option value="newest">Newest</option>
                 <option value="helpful">Helpful</option>
-              </select>
+              </Select>
             </label>
           </form>
           {sortedList && (

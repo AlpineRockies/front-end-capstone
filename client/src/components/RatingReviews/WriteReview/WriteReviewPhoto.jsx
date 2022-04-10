@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import _ from 'underscore';
+import { ThumbnailImg } from '../Style/RatingReviewStyle'
 
 function WriteReviewPhoto({ photoRating, setPhotoRating }) {
   const [showUploadPhoto, setShowUploadPhoto] = useState(false);
@@ -10,14 +11,6 @@ function WriteReviewPhoto({ photoRating, setPhotoRating }) {
     if (imageUrl && imageUrl.length) {
       setPhotoRating((url) => [...url, imageUrl]);
     }
-  };
-
-  const imgThumb = {
-    height: '60px',
-    width: '60px',
-    borderRadius: '50px',
-    padding: '10px',
-    flex: '1 20%',
   };
 
   return (
@@ -41,7 +34,7 @@ function WriteReviewPhoto({ photoRating, setPhotoRating }) {
           ))}
           {photoRating.map((img) => (
             <label key={img}>
-              <img src={img} alt="imgSrc" style={imgThumb} />
+              <ThumbnailImg src={img} alt="imgSrc" />
             </label>
           ))}
         </div>
@@ -53,7 +46,8 @@ function WriteReviewPhoto({ photoRating, setPhotoRating }) {
 export default WriteReviewPhoto;
 
 
-// import React, { useState, useEffect, useRef } from 'react';
+// import React, { useState, useEffect } from 'react';
+// import { ThumbnailImg } from '../Style/RatingReviewStyle'
 
 // function WriteReviewPhoto({ photoRating, setPhotoRating }) {
 //   const [showUploadPhoto, setShowUploadPhoto] = useState(false);
@@ -81,14 +75,6 @@ export default WriteReviewPhoto;
 //     }
 //   };
 
-//   const imgThumb = {
-//     height: '60px',
-//     width: '60px',
-//     borderRadius: '50px',
-//     padding: '10px',
-//     flex: '1 20%',
-//   };
-
 //   return (
 //     <div>
 //       <button
@@ -110,7 +96,7 @@ export default WriteReviewPhoto;
 //           )}
 //           {photoRating.map((imgSrc) => (
 //             <label key={imgSrc}>
-//               <img src={imgSrc} alt="imgSrc" style={imgThumb} />
+//               <ThumbnailImg src={imgSrc} alt="imgSrc" />
 //             </label>
 //           ))}
 

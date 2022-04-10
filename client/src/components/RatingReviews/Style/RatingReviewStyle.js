@@ -145,3 +145,22 @@ export const ExpandImg = styled.img`
   max-height: 75vh;
   object-fit: cover;
 `;
+
+export const Select = styled.select`
+  width: 40%;
+  height: 30px;
+  background: var(--artichoke);
+  color: white;
+  padding-left: 5px;
+  font-size: 14px;
+  border: none;
+  margin-left: 10px;
+
+  option {
+    color: black;
+    background: var(--kombu-green);
+    display: inline;
+    white-space: pre;
+    min-height: 20px;
+  }
+`;
