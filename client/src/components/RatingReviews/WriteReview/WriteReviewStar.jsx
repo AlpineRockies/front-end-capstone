@@ -32,8 +32,7 @@ function WriteReviewStar({ handleStar }) {
         <label key={count}>
           <FaStar
             value={count}
-            color={count <= starWR  ? "#939878ff" : "#d8cba7ff"}
-
+            color={count <= starWR  ? 'var(--kombu-green)' : 'var(--dutch-white)'}
             onClick={() => handleSetStarChange(count)}
           />
         </label>
