@@ -34,7 +34,7 @@ export const StyledRightArrow = styled(FaArrowAltCircleRight)`
 
 export const StyledLeftArrow = styled(FaArrowAltCircleLeft)`
   position: absolute;
-  top: 255px;
+  top:300px;
   left: 100px;
   font-size: 3rem;
   color: #5a3b16ff;

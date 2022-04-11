@@ -20,6 +20,12 @@ function Carousel({
   const [shownImagesOffset, setShownImagesOffset] = useState(0);
 
   useEffect(() => {
+    setShownImagesArray(
+      referenceArray.slice(shownImagesOffset, shownImagesOffset + numToDisplay)
+    );
+  }, [shownImagesOffset]);
+
+  useEffect(() => {
     setShownImagesArray(_.range(0, numToDisplay));
     setShownImagesOffset(0);
   }, [imagesArray]);
@@ -27,27 +33,20 @@ function Carousel({
   if (!imagesArray || imagesArray.length === 0) {
     return <div>Sorry, no data to display. Please wait.</div>;
   }
-
   const { length } = imagesArray;
 
-  const visibleSlide = () => {
-    setShownImagesArray(
-      referenceArray.slice(shownImagesOffset, shownImagesOffset + numToDisplay),
-    );
-  };
-
   const nextSlide = () => {
+    console.log('NextSlide shownImagesOffset ', shownImagesOffset);
     if (shownImagesOffset < length - numToDisplay) {
       setShownImagesOffset((prevState) => prevState + 1);
     }
-    visibleSlide();
   };
 
   const prevSlide = () => {
+    console.log('prevSlide shownImagesOffset ', shownImagesOffset);
     if (shownImagesOffset > 0) {
       setShownImagesOffset((prevState) => prevState - 1);
     }
-    visibleSlide();
   };
 
   const ProductCarousel = imagesArray.map((product, index) => {
