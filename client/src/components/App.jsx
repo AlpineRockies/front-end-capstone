@@ -18,6 +18,7 @@ function App() {
   });
   const [joinedAPIDetails, setJoinedAPIDetails] = useState([]);
   const [handleNewQorA, setHandleNewQorA] = useState(() => {});
+  const [avgRating, setAvgRating] = useState(null);
 
   const memoizedState = useMemo(
     () => ({
@@ -31,6 +32,8 @@ function App() {
       setJoinedAPIDetails,
       handleNewQorA,
       setHandleNewQorA,
+      avgRating,
+      setAvgRating,
     }),
     [productId, productInfo, yourOutfit, joinedAPIDetails],
   );
