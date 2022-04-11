@@ -1,5 +1,11 @@
 import styled from 'styled-components';
-import { FaArrowAltCircleRight, FaArrowAltCircleLeft, FaCheck, FaWindowClose } from 'react-icons/fa';
+import {
+  FaArrowAltCircleRight,
+  FaArrowAltCircleLeft,
+  FaCheck,
+  FaWindowClose,
+  FaStar,
+} from 'react-icons/fa';
 
 export const StyledButton = styled.button`
   border: 2px solid #d8cba7ff;
@@ -19,7 +25,7 @@ export const StyledRightArrow = styled(FaArrowAltCircleRight)`
   top: 255px;
   right: 0px;
   font-size: 3rem;
-  color:#5a3b16ff;
+  color: #5a3b16ff;
   z-index: 10;
   cursor: pointer;
   user-select: none;
@@ -31,7 +37,7 @@ export const StyledLeftArrow = styled(FaArrowAltCircleLeft)`
   top: 255px;
   left: 100px;
   font-size: 3rem;
-  color:#5a3b16ff;
+  color: #5a3b16ff;
   z-index: 10;
   cursor: pointer;
   user-select: none;
@@ -39,7 +45,7 @@ export const StyledLeftArrow = styled(FaArrowAltCircleLeft)`
 `;
 
 export const StyledCheck = styled(FaCheck)`
-  color:#5a3b16ff;
+  color: #5a3b16ff;
   font-size: 1.8rem;
 `;
 
@@ -51,5 +57,16 @@ export const StyledFaWindowClose = styled(FaWindowClose)`
   border: none;
   font-size: 25px;
   cursor: pointer;
-  color: #283618ff
+  color: #283618ff;
+`;
+
+export const StyledFaStar = styled(FaStar)`
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  top: 1px;
+  right: -30px;
+  font-size: 3rem;
+  z-index: 10;
+  cursor: pointer;
 `;
