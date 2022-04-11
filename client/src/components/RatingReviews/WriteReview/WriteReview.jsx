@@ -4,6 +4,7 @@ import { escapeValue } from 'Utilities';
 import WriteReviewCharacteristic from './WriteReviewCharacteristic';
 import WriteReviewStar from './WriteReviewStar';
 import WriteReviewPhoto from './WriteReviewPhoto';
+import { StyledOverlay, StyledModal, CloseButton } from '../Style/RatingReviewStyle';
 
 function WriteReview({
   showWriteReview,
@@ -19,7 +20,6 @@ function WriteReview({
   const [emailRating, setEmailRating] = useState(null);
   const [photoRating, setPhotoRating] = useState([]);
   const [characteristicRating, setCharacteristicRating] = useState(null);
-  const [showUploadPhoto, setShowUploadPhoto] = useState(false);
 
   const query = {
     product_id: productId,
@@ -57,46 +57,19 @@ function WriteReview({
     setCharacteristicRating(characteristics);
   };
 
-  const overlayStyle = {
-    position: 'fixed',
-    zIndex: 1020,
-    top: 0,
-    left: 0,
-    width: '100vw',
-    height: '100vh',
-    background: 'rgba(255, 255, 255, 0.75)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  };
-  const modalStyle = {
-    background: 'white',
-    width: '45rem',
-    maxWidth: 'calc(100vw - 2rem)',
-    maxHeight: 'calc(100vh - 2rem)',
-    overflowY: 'auto',
-    position: 'relative',
-    border: '1px solid #ccc',
-    borderRadius: '0.3rem',
-  };
-
   return (
     <div className="RR-wr-form">
       {showWriteReview ? (
-        <div style={overlayStyle}>
-          <div style={modalStyle}>
+        <StyledOverlay>
+          <StyledModal>
             <form onSubmit={handleReviewInputSubmit}>
               <h4>Write Your Review</h4>
-              <div className="RR-wr-exit">
-                <button
-                  className="RR-wr-exit-button"
+                <CloseButton
                   type="button"
                   onClick={() => setShowWriteReview(false)}
                 >
                   X
-                </button>
-              </div>
-
+                </CloseButton>
               <div className="RR-wr-content">
                 <div className="RR-wr-stars">
                   <WriteReviewStar handleStar={handleStar} />
@@ -130,7 +103,7 @@ function WriteReview({
                 </div>
                 <div className="RR-wr-name">
                   <input
-                    placeholder="Name"
+                    placeholder="Example: jackson11!"
                     type="text"
                     name="name"
                     onChange={(event) =>
@@ -140,7 +113,7 @@ function WriteReview({
                 </div>
                 <div className="RR-wr-email">
                   <input
-                    placeholder="Email"
+                    placeholder="Example: jackson11@email.com"
                     type="text"
                     name="email"
                     onChange={(event) =>
@@ -152,7 +125,7 @@ function WriteReview({
                   <input
                     placeholder="Summary"
                     type="text"
-                    name="summary"
+                    name="Example: Best purchase ever!"
                     maxLength="60"
                     onChange={(event) =>
                       setSummaryRating(escapeValue(event.target.value))
@@ -161,28 +134,19 @@ function WriteReview({
                 </div>
                 <div className="RR-wr-body">
                   <input
-                    placeholder="Review"
+                    placeholder="Why did you like the product or not?"
                     type="text"
                     name="body"
-                    maxLength="250"
+                    maxLength="1000"
                     onChange={(event) =>
                       setBodyRating(escapeValue(event.target.value))
                     }
                   />
                 </div>
                 <div className="RR-wr-photo">
-                  <button
-                    className="RR-wr-upload-photo"
-                    type="button"
-                    onClick={() => setShowUploadPhoto(true)}
-                  >
-                    Upload Photos
-                  </button>
                   <WriteReviewPhoto
                     photoRating={photoRating}
                     setPhotoRating={setPhotoRating}
-                    showUploadPhoto={showUploadPhoto}
-                    setShowUploadPhoto={setShowUploadPhoto}
                   />
                 </div>
               </div>
@@ -190,8 +154,8 @@ function WriteReview({
                 Submit Review
               </button>
             </form>
-          </div>
-        </div>
+          </StyledModal>
+        </StyledOverlay>
       ) : null}
     </div>
   );

@@ -14,6 +14,7 @@ import ProductInfo from './ProductInfo';
 import AddToCart from './AddToCart';
 import ImageGallery from './ImageGallery';
 import StyleSelector from './StyleSelector';
+import MainImage from './MainImage';
 
 function Overview() {
   const [productId, setProductId] = useState(Math.floor(Math.random() * (38321 - 37311) + 37311));
@@ -24,6 +25,8 @@ function Overview() {
   const [thumbnailIndex, setThumbnailIndex] = useState(0);
   const [resultCount, setResultCount] = useState(0);
   const [styleSelector, selectStyleSelector] = useState(0);
+  const [selectedThumbnail, setSelectedThumbnail] = useState(count);
+  const [view, setView] = useState('default')
 
   useEffect(() => {
     axios
@@ -42,11 +45,13 @@ function Overview() {
   return (
     <div className="ov-overview">
       <div className="ov-gallery">
-        <ImageGallery styles={styles} count={count} setCount={setCount} />
+        <ImageGallery styles={styles} count={count} setCount={setCount} description={description} selectedThumbnail={selectedThumbnail} setSelectedThumbnail={setSelectedThumbnail} view={view} setView={setView}/>
       </div>
+
       <div className="ov-cart">
         <ProductInfo styles={styles} description={description} styleSelector={styleSelector} selectStyleSelector={selectStyleSelector}/>
-        <StyleSelector styles={styles} styleSelector={styleSelector} selectStyleSelector={selectStyleSelector} setCount={setCount}/>
+
+        <StyleSelector styles={styles} styleSelector={styleSelector} selectStyleSelector={selectStyleSelector} setCount={setCount} selectedThumbnail={selectedThumbnail} selectedThumbnail={setSelectedThumbnail}/>
 
         <AddToCart styles={styles} count={count} setCount={setCount} resultCount={resultCount} setResultCount={setResultCount} styleSelector={styleSelector}/>
       </div>

@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import ReviewEntryStar from '../Reviews/ReviewEntryStar.jsx';
 import { arrAllCharacteristic } from './BreakdownCharacteristic';
-import { ratingPercentage } from 'Utilities';
+import { lowercase, ratingPercentage } from 'Utilities';
+import { BreakdownCharacter, Range } from '../Style/RatingReviewStyle';
 import { FaStar } from 'react-icons/fa';
-
-const Input = styled.input
-`
-`;
 
 function Breakdown({ metaData, handleStarReviewClick }) {
   const [mdCharArray, setMDCharArray] = useState(null);
@@ -56,7 +52,7 @@ function Breakdown({ metaData, handleStarReviewClick }) {
 
   const handleStarBreakdownClick = (star) => {
     event.preventDefault();
-    handleStarReviewClick(Number(star))
+    handleStarReviewClick(Number(star));
   };
 
   return (
@@ -84,28 +80,37 @@ function Breakdown({ metaData, handleStarReviewClick }) {
             </label>
           ))}
       </div>
-      <div className="RR-breakdown-char">
+      <BreakdownCharacter>
         {mdCharArray &&
           mdCharArray.map((eachChar) => (
             <label key={eachChar.name}>
               <output>
-                {eachChar.name} feedback is{' '}
-                {Math.floor(eachChar.valueObj.value)}
+                Average response for {lowercase(eachChar.name)} is{' '}
+                {lowercase(
+                  handleDesDisplay(
+                    eachChar.name,
+                    Math.floor(eachChar.valueObj.value)
+                  )
+                )}
               </output>
               <br /> <br />
-              {handleDesDisplay(eachChar.name, 1)}
-              <Input
-                type="range"
-                min="0"
-                max="5"
-                value={Math.floor(eachChar.valueObj.value)}
-                readOnly
-              />
-              {handleDesDisplay(eachChar.name, 5)}
+                {handleDesDisplay(eachChar.name, 1)}
+                <Range>
+                <input
+                  className="slider"
+                  type="range"
+                  min="1"
+                  max="5"
+                  value={Math.floor(eachChar.valueObj.value)}
+
+                  readOnly
+                />
+                </Range>
+                {handleDesDisplay(eachChar.name, 5)}
               <br /> <br />
             </label>
           ))}
-      </div>
+      </BreakdownCharacter>
     </div>
   );
 }
