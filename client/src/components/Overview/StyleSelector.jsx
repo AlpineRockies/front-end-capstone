@@ -10,18 +10,20 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import {
-  FaCheckCircle
+  FaCheckCircle,
 } from 'react-icons/fa';
 
 function StyleSelector(props) {
-  const { styles, styleSelector, selectStyleSelector, setCount } = props;
+  const {
+    styles, styleSelector, selectStyleSelector, setCount, selectedThumbnail, setSelectedThumbnail,
+  } = props;
   let stylesThumbnail;
 
   if (styles !== undefined) {
     stylesThumbnail = styles.map((image, index) => (styleSelector === index
       ? (
         <a key={index}>
-          <img alt="placeholder text" className="ov-style-selector-thumbnails" onClick={() => (selectStyleSelector(index), setCount(index))} src={image.photos[0].thumbnail_url} />
+          <img alt="placeholder text" className="ov-style-selector-thumbnails" onClick={() => (selectStyleSelector(index), setCount(index), setSelectedThumbnail(index))} src={image.photos[0].thumbnail_url} />
           <FaCheckCircle className="ov-Checkmark" />
         </a>
       )

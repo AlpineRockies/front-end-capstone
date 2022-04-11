@@ -94,13 +94,13 @@ li.ov-description:not(:last-child) {
 
 .ov-style-selector {
   font-size: small;
-  width: 450px;
-  /* border: 1px solid gray; */
+  width: 450px !important;
+  border: 1px solid gray;
 }
 
 .ov-style-selector-thumbnails {
-  height: 75px;
-  width: 75px;
+  height: 90px !important;
+  width: 90px !important;
   border-radius: 50px;
   padding: 10px;
   flex: 1 20%;
@@ -154,9 +154,18 @@ li.ov-description:not(:last-child) {
       margin-top: -2.5em;
     }
 
-    .ov-up-icon, .ov-down-icon {
+    .ov-down-icon {
       margin: auto;
       display: block;
+      margin-top: 30px;
+      margin-left: 15px;
+     }
+
+     .ov-up-icon {
+      margin: auto;
+      display: block;
+       margin-bottom: 30px;
+       margin-left: 15px;
      }
 
      .ov-img-carousel {
@@ -168,6 +177,7 @@ li.ov-description:not(:last-child) {
       display: flex;
       flex-direction: column;
       -webkit-line-clamp: 7;
+      margin-top: 5%;
     }
 
     .ov-main-img-nav {
@@ -189,8 +199,8 @@ li.ov-description:not(:last-child) {
     }
 
     .ov-thumbnail-gallery {
-      height: 70px;
-      width: 70px;
+      height: 75px ;
+      width: 80px;
       padding-left: 20px;
       margin-bottom: 5px;
       margin-right: 5px;
@@ -203,9 +213,9 @@ li.ov-description:not(:last-child) {
       flex-direction: row;
     }
 
-    .ov-thumbnail-gallery-Special {
-      height: 70px;
-      width: 70px;
+    .ov-thumbnail-gallery-selected {
+      height: 75px;
+      width: 80px;
       padding-left: 20px;
       margin-bottom: 5px;
       margin-right: 5px;
