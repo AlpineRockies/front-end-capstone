@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const MainRRContent = styled.div`
-  background-color: var(--dutch-white);
-  color: var(--cafe-noir);
+  background-color: var(--ebony);
   position: relative;
   left: 50%;
   transform: translateX(-50%);
@@ -25,20 +24,11 @@ export const RightContainer = styled.div`
   vertical-align: top;
 `;
 
-export const StarWrapper = styled.div`
-  background-color: var(--ebony);
-  color: var(--cafe-noir);
-`;
-
 export const WriteEntryWrapper = styled.div`
   background-color: var(--ebony);
-  border: 2px solid var(--artichoke);
-  color: var(--cafe-noir);
+  border: 2px solid var(--pullman-brown-ups-brown);
 `;
 
-export const BreakdownWrapper = styled.div`
-  color: var(--cafe-noir);
-`;
 
 export const BreakdownCharacter = styled.div`
   display: inline;
@@ -64,7 +54,6 @@ export const StyledModal = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 1em;
-  border-radius: 8px;
   /* artichoke, but 93% opacity */
   background-color: #939878ee;
   /* kombu-green, but 31% opacity */
@@ -119,9 +108,8 @@ export const CloseButton = styled.button`
 `;
 
 export const StyledButton = styled.button`
-  border: 2px solid var(--french-bistre);
-  color: var(--cafe-noir);
-  background-color: var(--ebony);
+  border: 2px solid var(--pullman-brown-ups-brow);
+  background-color: var(--dutch-white);
   text-transform: capitalize;
   cursor: pointer;
   min-width: 200px;
@@ -152,15 +140,12 @@ export const ExpandImg = styled.img`
 export const Select = styled.select`
   width: 40%;
   height: 30px;
-  background: var(--artichoke);
-  color: white;
+  background: var(--ebony);
   padding-left: 5px;
   font-size: 14px;
-  border: none;
+  border: 1px solid;
   margin-left: 10px;
-
   option {
-    color: black;
     background: var(--kombu-green);
     display: inline;
     white-space: pre;
