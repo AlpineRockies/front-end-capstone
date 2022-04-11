@@ -22,6 +22,19 @@ export function capitalize(string) {
   return string[0].toUpperCase() + string.slice(1);
 }
 
+/**
+ * @param {String} string
+ * @returns {String} a string with the first letter lowercased
+ */
+export function lowercase(string) {
+  return string[0].toLowerCase() + string.slice(1);
+}
+
+/**
+ * @param {Number} numFalse
+ * * @param {Number} numTrue
+ * @returns {Number} a number rounded down to the nearest integer
+ */
 export function ratingPercentage(numFalse, numTrue) {
   if (Number.isNaN(numFalse) || Number.isNaN(numTrue)) {
     return 0;
@@ -31,7 +44,6 @@ export function ratingPercentage(numFalse, numTrue) {
   if (totalNumberReviews === 0) {
     return 0;
   }
-
   const finalPercent = Math.floor((numTrue / totalNumberReviews) * 100);
 
   return finalPercent;
@@ -52,10 +64,15 @@ export function questionFilterTest(question, filter) {
   );
 }
 
+/**
+ * @param {Number} num
+ * @returns {Number} a number rounded to the nearest quarter
+ */
 export function starFillPercentage(num) {
   if (num === 0) {
     return 0;
   }
+
   const roundedNum = Math.round(num / 0.25) * 0.25;
   const fillPercentage = (roundedNum / 5) * 100;
 

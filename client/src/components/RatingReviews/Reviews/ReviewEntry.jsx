@@ -4,6 +4,7 @@ import moment from 'moment';
 import { HiThumbUp, HiThumbDown } from 'react-icons/hi';
 import ReviewPhotos from './ReviewPhotos';
 import ReviewEntryStar from './ReviewEntryStar';
+import { WriteEntryWrapper } from '../Style/RatingReviewStyle';
 
 function ReviewEntry({ eachReview }) {
   const [helpfulClick, setHelpfulClick] = useState(false);
@@ -35,7 +36,7 @@ function ReviewEntry({ eachReview }) {
   };
 
   return (
-    <div className="RR-review-entry">
+    <WriteEntryWrapper>
       <div className="RR-review-photos">
         {eachReview.photos[0] && <ReviewPhotos photos={eachReview.photos} />}
       </div>
@@ -89,7 +90,7 @@ function ReviewEntry({ eachReview }) {
           {reportClick ? 'Reported' : 'Report'}
         </span>
       </div>
-    </div>
+    </WriteEntryWrapper>
   );
 }
 
