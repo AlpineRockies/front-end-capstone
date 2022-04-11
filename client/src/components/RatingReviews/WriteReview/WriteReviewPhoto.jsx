@@ -45,9 +45,8 @@ function WriteReviewPhoto({ photoRating, setPhotoRating }) {
 
 export default WriteReviewPhoto;
 
-
 // import React, { useState, useEffect } from 'react';
-// import { ThumbnailImg } from '../Style/RatingReviewStyle'
+// import { ThumbnailImg } from '../Style/RatingReviewStyle';
 
 // function WriteReviewPhoto({ photoRating, setPhotoRating }) {
 //   const [showUploadPhoto, setShowUploadPhoto] = useState(false);

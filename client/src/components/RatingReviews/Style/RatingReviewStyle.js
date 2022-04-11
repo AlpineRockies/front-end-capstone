@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const MainRRContent = styled.div`
-  background-color: var(--ebony);
+  background-color: var(--dutch-white);
+  color: var(--cafe-noir);
   position: relative;
   left: 50%;
   transform: translateX(-50%);
@@ -24,13 +25,13 @@ export const RightContainer = styled.div`
 
 export const StarWrapper = styled.div`
   background-color: var(--ebony);
-  color: var(--french-bistre);
+  color: var(--cafe-noir);
 `;
 
 export const WriteEntryWrapper = styled.div`
   background-color: var(--ebony);
   border: 2px solid var(--artichoke);
-  color: var(--french-bistre);
+  color: var(--cafe-noir);
 `;
 
 export const BreakdownWrapper = styled.div`
