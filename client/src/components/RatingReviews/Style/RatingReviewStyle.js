@@ -15,12 +15,14 @@ export const LeftContainer = styled.div`
   display: inline-block;
   width: 45%;
   padding: 20px;
+  vertical-align: top;
 `;
 
 export const RightContainer = styled.div`
   display: inline-block;
   width: 45%;
   padding: 10px;
+  vertical-align: top;
 `;
 
 export const StarWrapper = styled.div`

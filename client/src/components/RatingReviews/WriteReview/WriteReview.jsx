@@ -103,7 +103,7 @@ function WriteReview({
                 </div>
                 <div className="RR-wr-name">
                   <input
-                    placeholder="Name"
+                    placeholder="Example: jackson11!"
                     type="text"
                     name="name"
                     onChange={(event) =>
@@ -113,7 +113,7 @@ function WriteReview({
                 </div>
                 <div className="RR-wr-email">
                   <input
-                    placeholder="Email"
+                    placeholder="Example: jackson11@email.com"
                     type="text"
                     name="email"
                     onChange={(event) =>
@@ -125,7 +125,7 @@ function WriteReview({
                   <input
                     placeholder="Summary"
                     type="text"
-                    name="summary"
+                    name="Example: Best purchase ever!"
                     maxLength="60"
                     onChange={(event) =>
                       setSummaryRating(escapeValue(event.target.value))
@@ -134,10 +134,10 @@ function WriteReview({
                 </div>
                 <div className="RR-wr-body">
                   <input
-                    placeholder="Review"
+                    placeholder="Why did you like the product or not?"
                     type="text"
                     name="body"
-                    maxLength="250"
+                    maxLength="1000"
                     onChange={(event) =>
                       setBodyRating(escapeValue(event.target.value))
                     }
