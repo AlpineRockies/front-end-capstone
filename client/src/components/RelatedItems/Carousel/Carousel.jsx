@@ -10,6 +10,8 @@ function Carousel({
   numToDisplay,
   handleClickIcon,
   handleClickImg,
+  handleMouseOver,
+  handleMouseOut,
   icon,
 }) {
   const referenceArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -30,7 +32,7 @@ function Carousel({
 
   const visibleSlide = () => {
     setShownImagesArray(
-      referenceArray.slice(shownImagesOffset, shownImagesOffset + numToDisplay)
+      referenceArray.slice(shownImagesOffset, shownImagesOffset + numToDisplay),
     );
   };
 
@@ -55,7 +57,9 @@ function Carousel({
           <ProductCard
             handleClickImg={handleClickImg}
             product={product}
-            handleModalClick={handleClickIcon}
+            handleClick={handleClickIcon}
+            handleMouseOver={handleMouseOver}
+            handleMouseOut={handleMouseOut}
             icon={icon}
           />
           <ProductCardInfo product={product} />

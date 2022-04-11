@@ -1,11 +1,9 @@
-/* eslint-disable operator-linebreak */
 /* eslint-disable no-console */
-/* eslint-disable import/no-unresolved */
-/* eslint-disable no-return-assign */
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import _ from 'underscore';
 import './style.css';
+// eslint-disable-next-line import/no-unresolved
 import { aveRating } from 'Utilities';
 import Related from './RelatedProducts/Related';
 import YourOutfit from './YourOutfit/YourOutfit';
@@ -13,8 +11,7 @@ import ProductContext from '../Context';
 
 function RelatedItems() {
   // eslint-disable-next-line object-curly-newline
-  const { productId, yourOutfit, setYourOutfit, setJoinedAPIDetails } =
-    useContext(ProductContext);
+  const { productId, yourOutfit, setYourOutfit, setJoinedAPIDetails } = useContext(ProductContext);
 
   const [relatedItems, setRelatedItems] = useState([]);
   const [relatedItemsImg, setRelatedItemsImg] = useState([]);
@@ -101,7 +98,7 @@ function RelatedItems() {
     <div className="ri-parent">
       <p className="headerText"> Related Items </p>
       <div className="ri-relateditems">
-        <Related setYourOutfitId={setYourOutfitId}/>
+        <Related setYourOutfitId={setYourOutfitId} />
       </div>
       <p className="headerText">Your Outfit</p>
       <div className="ri-youroutfit">
