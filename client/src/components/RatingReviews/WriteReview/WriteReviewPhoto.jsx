@@ -6,7 +6,7 @@ import {
   listAll,
   list,
 } from 'firebase/storage';
-import { storage } from './indexFirebase';
+import { storage } from '../../../Firebase/indexFirebase';
 import { ThumbnailImg } from '../Style/RatingReviewStyle';
 
 function WriteReviewPhoto({ photoRating, setPhotoRating }) {

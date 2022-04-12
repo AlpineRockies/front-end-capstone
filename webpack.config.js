@@ -1,4 +1,5 @@
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 require('dotenv').config();
 
 module.exports = {
@@ -28,4 +29,7 @@ module.exports = {
     ],
   },
   devtool: 'eval-cheap-module-source-map',
+  plugins: [
+    new Dotenv()
+  ],
 };
