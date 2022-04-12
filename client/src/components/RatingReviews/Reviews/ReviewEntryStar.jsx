@@ -3,7 +3,7 @@ import { starFillPercentage } from 'Utilities';
 
 function ReviewEntryStar({ rating }) {
   const starsInner = {
-    background: `linear-gradient(90deg, var(--dutch-white) ${starFillPercentage(rating)}%, var(--ebony) 0.1%, var(--ebony) ${100 - starFillPercentage(rating)}%)`,
+    backgroundImage: `linear-gradient(90deg, var(--dutch-white) ${starFillPercentage(rating)}%, var(--ebony) 0.1%, var(--ebony) ${100 - starFillPercentage(rating)}%)`,
     backgroundClip: 'text',
     WebkitBackgroundClip: 'text',
     color: 'transparent',
