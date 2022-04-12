@@ -13,6 +13,7 @@ function Carousel({
   handleMouseOver,
   handleMouseOut,
   icon,
+  classNameInfo
 }) {
   const referenceArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -52,13 +53,13 @@ function Carousel({
   const ProductCarousel = imagesArray.map((product, index) => {
     if (shownImagesArray.includes(index)) {
       return (
-        <div className="ri-container">
+        <div className={classNameInfo}>
           <ProductCard
             handleClickImg={handleClickImg}
             product={product}
-            handleClick={handleClickIcon}
+            handleClickIcon={handleClickIcon}
             handleMouseOver={handleMouseOver}
-            handleMouseOut={handleMouseOut}
+            // handleMouseOut={handleMouseOut}
             icon={icon}
           />
           <ProductCardInfo product={product} />

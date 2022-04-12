@@ -6,15 +6,9 @@ import '../style.css';
 function ProductCardInfo({ product }) {
   return (
     <ul className="bottom-left">
-      <li>
-        Category:
-        {product.category}
-      </li>
-      <li>
-        Name:
-        {product.name}
-      </li>
-      {product.results[0].sale_price ? (
+        {product.category && <li>Category: {product.category}</li>}
+        {product.name && <li>Name: {product.name}</li>}
+      {product.results[0].sale_price && product.category ? (
         <>
           <li style={{ textDecorationLine: 'line-through' }}>
             {product.results[0].original_price}
@@ -25,11 +19,12 @@ function ProductCardInfo({ product }) {
           </li>
         </>
       ) : (
-        <li>{product.results[0].original_price}</li>
+        <>{product.category && <li>product.results[0].original_price </li> }</>
       )}
-      <li>
-        <ReviewEntryStar rating={product.aveRating} />
-      </li>
+      {product.aveRating && <li><ReviewEntryStar rating={product.aveRating} /></li>}
+      {/* <li>
+
+      </li> */}
     </ul>
   );
 }

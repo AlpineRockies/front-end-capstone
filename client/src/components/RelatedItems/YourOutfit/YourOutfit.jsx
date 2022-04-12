@@ -6,11 +6,10 @@ import { FaPlusSquare } from 'react-icons/fa';
 import { StyledFaWindowClose } from '../StyledComponents';
 
 import Carousel from '../Carousel/Carousel';
-
 import ProductContext from '../../Context';
 
 function YourOutfit({ setYourOutfitId }) {
-  const { productId, yourOutfit, setYourOutfit } = useContext(ProductContext);
+  const { productId, setProductId, yourOutfit, setYourOutfit } = useContext(ProductContext);
 
   const removeItem = (product) => {
     const copyYourOutfit = yourOutfit.slice();
@@ -49,6 +48,8 @@ function YourOutfit({ setYourOutfitId }) {
           handleClickIcon={removeItem}
           handleMouseOver={handleMouseOver}
           icon={<StyledFaWindowClose />}
+          classNameInfo={"ri-container"}
+          handleClickImg={(id => setProductId(id))}
         />
       </section>
     </div>

@@ -7,10 +7,10 @@ function ArrowNav({ shownImagesArray, nextSlide, prevSlide, length }) {
   return (
     <>
       {shownImagesArray[0] > 0 ? (
-        <StyledLeftArrow onClick={() => prevSlide()} />
+        <StyledLeftArrow onClick={prevSlide} />
       ) : null}
       {shownImagesArray.slice(-1) < length - 1 ? (
-        <StyledRightArrow onClick={() => nextSlide()} />
+        <StyledRightArrow onClick={nextSlide} />
       ) : null}
     </>
   );
