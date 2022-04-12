@@ -1,3 +1,8 @@
+html {
+  background-color: #5e6748ff;
+/* Font-family: 'Candara', 'Calibri', 'Segoe', 'Segoe UI', 'Optima', Arial, sans-serif; */
+}
+
 .ov-overview {
   display: grid;
   grid-template-areas:
@@ -5,26 +10,64 @@
   'info info info info info info';
   grid-template-rows: 80% 20%;
   min-width: 100%;
-  height: 97vh;
-  border: 1px solid black;
+  height: 98vh;
+  /* border: 1px solid black; */
+  margin: 30px;
+}
+
+.ov-overview-expanded {
+  display: block;
+  width: 95%;
+  height: 95vh;
+  position: relative;
+}
+
+.ov-main-expanded {
+  width: 1300px;
+  height: 700px;
+  object-fit: cover;
+  margin-left: auto;
+  margin-right: auto;
+  margin-left: 150px;
+}
+
+.ov-main-expanded:hover {
+  cursor: cell;
+}
+
+.ov-main-zoom {
+  width: 1300px;
+  height: 700px;
+  object-fit: cover;
+  margin-left: auto;
+  margin-right: auto;
+  margin-left: 150px;
+}
+
+.ov-main-zoom {
+  cursor: zoom-out;
 }
 
 .ov-gallery {
-  border:  1px solid green;
+  /* border:  1px solid green; */
   grid-area: gallery;
   width: 1100px;
+  background-color: #d8cba7ff;
+  margin-right: 10px;
 }
 
 .ov-cart {
-  border: 1px solid red;
-  margin: 30px 0px 35px;
+  /* border: 1px solid red; */
+  margin: 20px 0px 35px;
   width: 570px;
   grid-area: cart;
+  padding-right: 20px;
+  margin-left: 20px;
 }
 
 .ov-description {
   grid-area: info;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   display: flex;
   flex-direction: row;
 }
@@ -71,11 +114,6 @@ li.ov-description:not(:last-child) {
   font-weight: bolder;
 }
 
-.ov-review-stars {
-  font-size: medium;
-  color: blue;
-  background-color: purple !important;
-}
 
 .ov-review-link {
   font-size: xx-small;
@@ -95,12 +133,12 @@ li.ov-description:not(:last-child) {
 .ov-style-selector {
   font-size: small;
   width: 450px !important;
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
 }
 
 .ov-style-selector-thumbnails {
-  height: 90px !important;
-  width: 90px !important;
+  height: 95px !important;
+  width: 95px !important;
   border-radius: 50px;
   padding: 10px;
   flex: 1 20%;
@@ -117,6 +155,17 @@ li.ov-description:not(:last-child) {
   margin-top: 10px;
   border: 1px solid black;
   border-radius: 50px;
+}
+
+.ov-expanded-icon {
+  color: pink;
+  position: absolute;
+  z-index: 2;
+  margin-left: 90%;
+  margin-top: 20px;
+  color: rgb(24, 190, 193);
+  height: 20px;
+  width: 20px;
 }
 
 .ov-style-sizes {
@@ -142,14 +191,14 @@ li.ov-description:not(:last-child) {
 
     .ov-left-icon{
       position: absolute;
-      right: 91%;
+      margin-right: 95%;
       top: 47%;
       margin-top: -2.5em;
     }
 
     .ov-right-icon {
       position: absolute;
-      right: 38%;
+      margin-left: 105%;
       top: 47%;
       margin-top: -2.5em;
     }
@@ -159,6 +208,7 @@ li.ov-description:not(:last-child) {
       display: block;
       margin-top: 30px;
       margin-left: 15px;
+      color: antiquewhite;
      }
 
      .ov-up-icon {
@@ -166,6 +216,7 @@ li.ov-description:not(:last-child) {
       display: block;
        margin-bottom: 30px;
        margin-left: 15px;
+       color: antiquewhite;
      }
 
      .ov-img-carousel {
@@ -175,12 +226,16 @@ li.ov-description:not(:last-child) {
 
     .ov-thumbnail-img-nav {
       display: flex;
+      justify-content: center;
       flex-direction: column;
       -webkit-line-clamp: 7;
       margin-top: 5%;
+      background-image: url('https://previews.123rf.com/images/kalinavova/kalinavova1603/kalinavova160300012/55215766-arbres-de-la-for%C3%AAt-de-printemps-nature-bois-vert-soleil-horizons-ciel.jpg');
+      margin-left: 10px;
     }
 
     .ov-main-img-nav {
+      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -188,10 +243,12 @@ li.ov-description:not(:last-child) {
 
      .ov-main-img{
       display: block;
-      width: 80%;
+      width: 900px;
       height: 650px;
+      object-fit: cover;
+      margin-left: 55px;
       margin-top: 15px;
-      margin-left: 50px;
+      margin-right: auto;
     }
 
     .ov-main-img:hover {
@@ -224,3 +281,16 @@ li.ov-description:not(:last-child) {
       border-right: 5px solid #39FF14;
     }
 
+    .ov-product-info-extended {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .ov-review-stars {
+      font-size: small;
+    }
+
+    .ov-Reviews {
+      display: flex;
+      flex-direction: row;
+    }

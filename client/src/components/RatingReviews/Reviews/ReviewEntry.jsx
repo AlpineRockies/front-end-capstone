@@ -43,12 +43,12 @@ function ReviewEntry({ eachReview }) {
       <div className="RR-review-header">
         <ReviewEntryStar rating={eachReview.rating} />
         <p>
-          Summary:
-          {eachReview.summary}
-        </p>
-        <p>
           Date:
           {moment(eachReview.date).format('MMM Do YY')}
+        </p>
+        <p>
+          Summary:
+          {eachReview.summary}
         </p>
       </div>
       <div className="RR-review-body">
