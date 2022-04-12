@@ -16,10 +16,11 @@ import {
   FaArrowDown, FaArrowLeft, FaArrowRight, FaArrowUp,
 } from 'react-icons/fa';
 import PropTypes from 'prop-types';
+import MainImage from './MainImage';
 
 function ImageGallery(props) {
   const {
-    styles, count, setCount, description, setSelectedThumbnail, selectedThumbnail,
+    styles, count, setCount, description, setSelectedThumbnail, selectedThumbnail, view, setView,
   } = props;
 
   const [start, setStart] = useState(0);
@@ -50,6 +51,7 @@ function ImageGallery(props) {
       setStart(start + 1);
       setEnd(end + 1);
     }
+    setCount(count + 1)
   };
 
   const handleUpClick = () => {
@@ -68,17 +70,19 @@ function ImageGallery(props) {
       setStart(start - 1);
       setEnd(end - 1);
     }
+    setCount(count -1)
   };
 
   const handleThumbnailSelect = (index) => {
     setSelectedThumbnail(index);
+    setCount(index);
   };
 
   if (styles[count]) {
     const photoUrl = styles[count].photos[0].url;
 
     galleryThumbnails = styles.map((style, index) => {
-      const altTxt = `${style.name} ${description.category}`;
+      const altTxt = `${style.name && style.name} ${description && description.category}`;
       const thumbnailUrl = style.photos[0].thumbnail_url;
       const thumbnailClass = selectedThumbnail === index ? 'ov-thumbnail-gallery-selected' : 'ov-thumbnail-gallery';
       const thumbnailKey = `TN-${style.style_id}`;
@@ -87,22 +91,21 @@ function ImageGallery(props) {
         return (<img alt={altTxt} className={thumbnailClass} key={thumbnailKey} src={thumbnailUrl} onClick={() => handleThumbnailSelect(index)} />);
       }
     });
-
-    mainImage = <img alt="placeholder text" className="ov-main-img" onClick={handleMainClick} key={count} src={photoUrl} />;
   }
 
   return (
     <div className="ov-img-carousel">
+
       <div className="ov-thumbnail-img-nav">
-        {(selectedThumbnail > 0) && (<FaArrowUp className="ov-up-icon" onClick={handleUpClick} />)}
+        {(selectedThumbnail > 0 && view === 'default') && (<div><FaArrowUp className="ov-up-icon" onClick={handleUpClick} /></div>)}
         { galleryThumbnails}
-        {(selectedThumbnail < styles.length - 1) && (<FaArrowDown className="ov-down-icon" onClick={handleDownClick} />)}
+        {(selectedThumbnail < styles.length - 1 && view === 'default') && (<div><FaArrowDown className="ov-down-icon" onClick={handleDownClick} /></div>)}
       </div>
       <div className="ov-main-img-nav">
-        {(count > 0) && (<FaArrowLeft className="ov-left-icon" onClick={() => setCount(count - 1)} />)}
-        { mainImage}
+        {(count > 0) && (<FaArrowLeft className="ov-left-icon" onClick={() => (setCount(count - 1),setSelectedThumbnail(selectedThumbnail + 1))} />)}
+        <MainImage styles={styles} count={count} setCount={setCount} view={view} setView={setView} />
         {(count < styles.length - 1)
-        && (<FaArrowRight className="ov-right-icon" onClick={() => setCount(count + 1)} />)}
+        && (<FaArrowRight className="ov-right-icon" onClick={() => (setCount(count + 1), setSelectedThumbnail(selectedThumbnail + 1))} />)}
       </div>
     </div>
   );

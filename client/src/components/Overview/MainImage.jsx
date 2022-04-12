@@ -5,51 +5,53 @@ import React, {
 } from 'react';
 import {
   FaArrowLeft, FaArrowRight,
+  FaExpand,
 } from 'react-icons/fa';
 import PropTypes from 'prop-types';
+import Zoom from 'react-img-zoom';
 
 function MainImage(props) {
   const {
-    styles, count, view, setView,
+    styles, count, setCount, view, setView,
   } = props;
 
   const handleMainClick = () => {
     if (view === 'default') {
       setView('expanded');
-    } else {
+    } else if (view === 'expanded') {
       setView('zoom');
     }
   };
 
-  var mainImage;
-  if(styles[count]){
-  mainImage = <img alt="placeholder text" className="ov-main-img" onClick={handleMainClick} key={count} src={styles[count].photos[0].url} />;
+  let mainImage;
+  if (styles[count] && view === 'default') {
+    mainImage = <img alt="pretty Kitty" className="ov-main-img" onClick={handleMainClick} key={count} src={styles[count].photos[0].url} />;
+  } else if (styles[count] && view === 'expanded') {
+    mainImage = <img alt="pretty Kitty" className="ov-main-expanded" onClick={handleMainClick} key={count} src={styles[count].photos[0].url} />;
+  } else if (styles[count] && view === 'zoom') { mainImage =
+  <Zoom
+  img={styles[count].photos[0].url}
+  zoomScale={2.5}
+  height={700}
+  width={1300}
+  className="ov-main-zoom"
+  />
+}
+
+  function expandOrNot() {
+    if (view === 'zoom') {
+      setView('expanded');
+    } else if (view === 'expanded') {
+      setView('default');
+    }
   }
 
   return (
-    <div className="ov-main-img-nav">
-      {(count > 0) && (<FaArrowLeft className="ov-left-icon" onClick={() => setCount(count - 1)} />)}
+    <div>
+      <FaExpand className="ov-expanded-icon" onClick={expandOrNot} />
       { mainImage}
-      {(count < styles.length - 1)
-        && (<FaArrowRight className="ov-right-icon" onClick={() => setCount(count + 1)} />)}
     </div>
   );
 }
-
-MainImage.propTypes = {
-  count: PropTypes.number,
-  styles: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-    PropTypes.array,
-  ]),
-};
-
-MainImage.defaultProps = {
-  count: 0,
-  styles: [],
-};
 
 export default MainImage;
