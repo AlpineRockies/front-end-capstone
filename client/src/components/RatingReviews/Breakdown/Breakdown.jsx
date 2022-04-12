@@ -35,7 +35,7 @@ function Breakdown({ metaData, handleStarReviewClick }) {
   const handleRecommended = () => {
     const recFalse = Number(mdRecArray[0]?.valueObj);
     const recTrue = Number(mdRecArray[1]?.valueObj);
-    return ratingPercentage(recFalse, recTrue) + '% Recommended';
+    return ratingPercentage(recFalse, recTrue) + '%';
   };
 
   const handleDesDisplay = (characteristic, value) => {
@@ -63,10 +63,10 @@ function Breakdown({ metaData, handleStarReviewClick }) {
         {handleObjToArray(metaData.recommended)}
       </div>
       <div className="RR-breakdown-recommend">
-        {mdRecArray && handleRecommended()}
+        {mdRecArray && <h5>Percent users who recommend this product {handleRecommended()}</h5>}
       </div>
-      <br /> <br />
       <div className="RR-breakdown-star">
+        <h5>Star Breakdown</h5>
         {mdStarArray &&
           mdStarArray.map((eachStar) => (
             <label key={JSON.stringify(eachStar)}>
@@ -81,6 +81,7 @@ function Breakdown({ metaData, handleStarReviewClick }) {
           ))}
       </div>
       <BreakdownCharacter>
+        <h5>Characteristic Breakdown</h5>
         {mdCharArray &&
           mdCharArray.map((eachChar) => (
             <label key={eachChar.name}>

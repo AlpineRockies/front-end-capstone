@@ -120,7 +120,7 @@ export const PhotoWrapper = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 `;
 
-export const ThumbnailImg = styled.img`
+export const ThumbnailImg = styled.img`f
   object-fit: contain;
   width: 90px;
   height: 60px;
@@ -148,4 +148,12 @@ export const Select = styled.select`
     white-space: pre;
     min-height: 20px;
   }
+`;
+
+export const InputFields = styled.input`
+  border: 1px solid var(--kombu-green);
+  padding: 0.5em;
+  background-color: var(--artichoke);
+
+
 `;
