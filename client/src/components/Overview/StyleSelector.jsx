@@ -27,7 +27,7 @@ function StyleSelector(props) {
           <FaCheckCircle className="ov-Checkmark" />
         </a>
       )
-      : <a key={index}><img alt="placeholder text" className="ov-style-selector-thumbnails" onClick={() => (selectStyleSelector(index), setCount(index))} src={image.photos[0].thumbnail_url} /></a>));
+      : <a key={index}><img alt="placeholder text" className="ov-style-selector-thumbnails" onClick={() => (selectStyleSelector(index), setCount(index), setSelectedThumbnail(index))} src={image.photos[0].thumbnail_url} /></a>));
   }
 
   return (

@@ -40,15 +40,19 @@ function ProductInfo(props) {
     );
   }
   return (
+
     <div className="ov-product-info">
+        <br />  <br />
       {/* Extract to component */}
-      <span className="ov-review-stars">
-      <ReviewEntryStar rating={3.8} />
-      </span>
+      <div className="ov-Reviews">
+        <span className="ov-review-stars">
+          <ReviewEntryStar rating={3.8} />
+        </span>
       &ensp;
-      <span className="ov-review-link">
-        <a href="#">Read all reviews</a>
-      </span>
+        <span className="ov-review-link">
+          <a href="#">Read all reviews</a>
+        </span>
+      </div>
       {/* End Extraction */}
       <br />
       <br />

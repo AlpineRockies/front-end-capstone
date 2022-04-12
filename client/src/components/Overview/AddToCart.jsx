@@ -30,8 +30,7 @@ function AddToCart(props) {
       return;
     }
 
-    const quantity = Math.min(styles[styleSelector].skus[sizeSelection].quantity, 15);
-
+    const quantity = styles[styleSelector].skus[sizeSelection] && Math.min(styles[styleSelector].skus[sizeSelection].quantity, 15);
     setQuantityOptions(
       _.range(quantity + 1).map((amount) => (
         <option key={amount} value={amount}>{amount}</option>
@@ -39,7 +38,7 @@ function AddToCart(props) {
     );
   }, [sizeSelection]);
 let buttonNoButton;
-var alertMe;
+let alertMe;
  if(sizeSelection !== null && quantity > 0){
  buttonNoButton = <button className="ov-checkout-button" type="button">
   ADD TO CART  &emsp; &emsp; &emsp; &emsp; &ensp; ➕
