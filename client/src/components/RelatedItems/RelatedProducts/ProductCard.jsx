@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import ProductContext from '../../Context';
 import '../style.css';
 
-function ProductCard({ handleClick, handleMouseOver, handleMouseOut, product, icon }) {
+function ProductCard({ handleClickIcon, handleClickImg, handleMouseOver, handleMouseOut, product, icon }) {
   const { setProductId } = useContext(ProductContext);
 
   return (
@@ -14,8 +14,8 @@ function ProductCard({ handleClick, handleMouseOver, handleMouseOut, product, ic
         className="ri-star"
         type="button"
         icon={icon}
-        onKeyDown={() => handleClick(product.product_id)}
-        onClick={() => handleClick(product.product_id)}
+        onKeyDown={() => handleClickIcon(product.product_id)}
+        onClick={() => handleClickIcon(product.product_id)}
       >
         {icon}
       </span>
@@ -23,9 +23,9 @@ function ProductCard({ handleClick, handleMouseOver, handleMouseOut, product, ic
         role="button"
         tabIndex="0"
         key={product.product_id}
-        onClick={() => setProductId(product.product_id)}
-        onKeyDown={() => setProductId(product.product_id)}
-        onMouseOver={() => handleMouseOver(product.product_id)}
+        onClick={() => handleClickImg(product.product_id, product.style_id)}
+        onKeyDown={() => handleClickImg(product.product_id)}
+        onMouseOver={() => handleMouseOver(product.product_id || product.style_id)}
         onFocus={() => handleMouseOver(product.product_id)}
         // onMouseOut={handleMouseOut}
         // onBlur={handleMouseOut}

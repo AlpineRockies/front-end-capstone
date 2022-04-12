@@ -13,11 +13,18 @@ function Carousel({
   handleMouseOver,
   handleMouseOut,
   icon,
+  classNameInfo
 }) {
   const referenceArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   const [shownImagesArray, setShownImagesArray] = useState([]);
   const [shownImagesOffset, setShownImagesOffset] = useState(0);
+
+  useEffect(() => {
+    setShownImagesArray(
+      referenceArray.slice(shownImagesOffset, shownImagesOffset + numToDisplay)
+    );
+  }, [shownImagesOffset]);
 
   useEffect(() => {
     setShownImagesArray(_.range(0, numToDisplay));
@@ -27,39 +34,32 @@ function Carousel({
   if (!imagesArray || imagesArray.length === 0) {
     return <div>Sorry, no data to display. Please wait.</div>;
   }
-
   const { length } = imagesArray;
 
-  const visibleSlide = () => {
-    setShownImagesArray(
-      referenceArray.slice(shownImagesOffset, shownImagesOffset + numToDisplay),
-    );
-  };
-
   const nextSlide = () => {
+    console.log('NextSlide shownImagesOffset ', shownImagesOffset);
     if (shownImagesOffset < length - numToDisplay) {
       setShownImagesOffset((prevState) => prevState + 1);
     }
-    visibleSlide();
   };
 
   const prevSlide = () => {
+    console.log('prevSlide shownImagesOffset ', shownImagesOffset);
     if (shownImagesOffset > 0) {
       setShownImagesOffset((prevState) => prevState - 1);
     }
-    visibleSlide();
   };
 
   const ProductCarousel = imagesArray.map((product, index) => {
     if (shownImagesArray.includes(index)) {
       return (
-        <div className="ri-container">
+        <div className={classNameInfo}>
           <ProductCard
             handleClickImg={handleClickImg}
             product={product}
-            handleClick={handleClickIcon}
+            handleClickIcon={handleClickIcon}
             handleMouseOver={handleMouseOver}
-            handleMouseOut={handleMouseOut}
+            // handleMouseOut={handleMouseOut}
             icon={icon}
           />
           <ProductCardInfo product={product} />

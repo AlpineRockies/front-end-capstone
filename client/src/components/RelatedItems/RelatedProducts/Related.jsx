@@ -1,5 +1,5 @@
 /* eslint-disable babel/camelcase */
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import _ from 'underscore';
 import { StyledFaStar } from '../StyledComponents';
 import ComparisonModal from '../Modal/ComparisonModal';
@@ -21,39 +21,44 @@ function Related() {
   };
 
   // eslint-disable-next-line babel/camelcase
-  const handleClickImg = (product_id) => {
+  const handleClickImg = (product_id, style_id) => {
+    console.log('product_id: ', product_id, 'style_id :', style_id)
     setProductId(product_id);
   };
 
+  const handleClickThumbnailImages = (style_id) => {
+    console.log('handleClickThumbnailImages', style_id);
+    setOpenThumbnails(false)
+  };
+
   const handleMouseOver = (product_id) => {
-    const filter = _.filter(joinedAPIDetails, (product) => product.id === +product_id);
+    const filter = _.filter(
+      joinedAPIDetails,
+      (product) => product.id === +product_id
+    );
     setThumbnailCarousel(
-      _.map(filter[0].results, (item) => item),
+      _.map(filter[0].results, (item) => {
+        console.log('map item ', item);
+        return { product_id: item.style_id, results: [item] };
+      })
     );
 
     setOpenThumbnails(true);
   };
 
+  useEffect(() => {
+    console.log('thumbnailCarousel ', thumbnailCarousel);
+    console.log('joinedAPIDetails ', joinedAPIDetails);
+  }, [thumbnailCarousel]);
 
   const handleMouseOut = () => {
+    console.log('handleMouseOut')
     setOpenThumbnails(false);
   };
 
-  const ThumbnailCarousel = thumbnailCarousel.map((item, index) => {
-    if (item) {
-      return (
-        <div key={index}>
-          <img
-            className="ri-thumbnail-carousel"
-            src={item.photos[0].thumbnail_url}
-            alt={item}
-            onClick={() => setOpenThumbnails(false)}
-          />
-        </div>
-      );
-    }
-    return null;
-  });
+  const handleTEST = (product_id) => {
+    console.log('handleTest', product_id);
+  }
 
   return (
     <div>
@@ -65,7 +70,19 @@ function Related() {
           />
         )}
       </div>
-      <div>{openThumbnails && ThumbnailCarousel}</div>
+      {openThumbnails && (
+        <div className="ri-thumbnail-slider-background">
+          <div className="ri-thumbnail-slider">
+            <Carousel
+              imagesArray={thumbnailCarousel}
+              numToDisplay={4}
+              handleClickImg={handleClickThumbnailImages}
+              handleMouseOver={handleTEST}
+              classNameInfo={'ri-thumbnail-slider-img'}
+            />
+          </div>
+        </div>
+      )}
       <div className="ri-slider">
         <Carousel
           imagesArray={joinedAPIDetails}
@@ -73,8 +90,9 @@ function Related() {
           handleClickIcon={handleModalClick}
           handleClickImg={handleClickImg}
           handleMouseOver={handleMouseOver}
-          handleMouseOut={handleMouseOut}
+          //handleMouseOut={handleMouseOut}
           icon={<StyledFaStar />}
+          classNameInfo={'ri-container'}
         />
       </div>
     </div>
