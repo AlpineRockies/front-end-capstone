@@ -94,19 +94,18 @@ function Breakdown({ metaData, handleStarReviewClick }) {
                 )}
               </output>
               <br /> <br />
-                {handleDesDisplay(eachChar.name, 1)}
-                <Range>
+              {handleDesDisplay(eachChar.name, 1)}
+              <Range>
                 <input
                   className="slider"
                   type="range"
                   min="1"
                   max="5"
                   value={Math.floor(eachChar.valueObj.value)}
-
                   readOnly
                 />
-                </Range>
-                {handleDesDisplay(eachChar.name, 5)}
+              </Range>
+              {handleDesDisplay(eachChar.name, 5)}
               <br /> <br />
             </label>
           ))}
