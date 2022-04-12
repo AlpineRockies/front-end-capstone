@@ -20,7 +20,7 @@
   position: center;
   font-size: 1.8rem;
   text-align: center;
-  font-family:'Courier New', Courier, monospace
+  font-family: 'Noto Sans'
 }
 
 .yo-slider {
@@ -36,6 +36,28 @@
   /* overflow-x:visible; */
 }
 
+.ri-thumbnail-slider-background {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 100%;
+    z-index: 250;
+}
+
+.ri-thumbnail-slider {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  position: relative;
+  height: 60vh;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  /* min-width: 50% */
+}
+
 .ri-container {
   height: 100%;
   width: 90%;
@@ -48,7 +70,7 @@
   margin: 5rem;
   object-fit: cover;
   object-position: bottom;
-  background-color: #d8cba7ff;
+  background-color: #939878ff
 }
 
 .ri-product-card {
@@ -94,6 +116,7 @@
   bottom: 40px;
   left: 10px;
   color:black;
+  font-family: 'Noto Sans'
 }
 
 .ri-image {
@@ -162,12 +185,6 @@
   cursor: pointer;
 }
 
-/* .comp-additem {
-  position: static;
-  font-size: 6rem;
-  color: rebeccapurple;
-} */
-
 .yo-additem {
   position: static;
   font-size: 6rem;
@@ -190,7 +207,7 @@
 }
 
 .ri-modal-Container {
-  width: 500px;
+  width: 540px;
   height: 500px;
   border-radius: 12px;
   background-color: white;
@@ -199,12 +216,15 @@
   flex-direction: column;
   padding: 25px;
   background-color: #d8cba7ff;
+  font-family: 'Noto Sans'
 }
 
 .ri-modal-Title {
+  font-family: 'Noto Sans';
+  font-size: 1.8rem;
   display: inline-block;
   text-align: center;
-  margin-top: 10px;
+  margin-top: -20px;
   color: black
 }
 
@@ -267,7 +287,7 @@
 }
 
 .ri-modal-item-name {
-  font-family:'Arial Narrow', Arial, sans-serif;
+  font-family: 'Noto Sans';
   font-size: 1.5rem;
 }
 
