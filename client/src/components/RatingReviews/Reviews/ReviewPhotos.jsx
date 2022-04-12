@@ -1,6 +1,7 @@
 import React from 'react';
 import ReviewEntryPhoto from './ReviewEntryPhoto';
 import { PhotoWrapper } from '../Style/RatingReviewStyle'
+
 function ReviewPhotos({ photos }) {
   return (
 
