@@ -7,7 +7,7 @@ import {
   list,
 } from 'firebase/storage';
 import { storage } from '../../../Firebase/indexFirebase';
-import { ThumbnailImg } from '../Style/RatingReviewStyle';
+import { PhotoWrapper, ThumbnailImg } from '../Style/RatingReviewStyle';
 
 function WriteReviewPhoto({ photoRating, setPhotoRating }) {
   const [showUploadPhoto, setShowUploadPhoto] = useState(false);
@@ -52,7 +52,9 @@ function WriteReviewPhoto({ photoRating, setPhotoRating }) {
           {showUploadButton && <input type="file" onChange={handleImgInput} />}
           {photoRating.map((imgURL) => (
             <label key={imgURL}>
-              <ThumbnailImg src={imgURL} alt="imgSrc" />
+              <PhotoWrapper>
+                <ThumbnailImg src={imgURL} alt="imgSrc" />
+              </PhotoWrapper>
             </label>
           ))}
         </div>
