@@ -82,7 +82,7 @@ function ImageGallery(props) {
     const photoUrl = styles[count].photos[0].url;
 
     galleryThumbnails = styles.map((style, index) => {
-      const altTxt = `${style.name && style.name} ${description && description.category}`;
+      const altTxt = `${style && style.name} ${description && description.category}`;
       const thumbnailUrl = style.photos[0].thumbnail_url;
       const thumbnailClass = selectedThumbnail === index ? 'ov-thumbnail-gallery-selected' : 'ov-thumbnail-gallery';
       const thumbnailKey = `TN-${style.style_id}`;
