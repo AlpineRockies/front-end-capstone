@@ -38,7 +38,7 @@ function AddToCart(props) {
     );
   }, [sizeSelection]);
 let buttonNoButton;
-var alertMe
+let alertMe;
  if(sizeSelection !== null && quantity > 0){
  buttonNoButton = <button className="ov-checkout-button" type="button">
   ADD TO CART  &emsp; &emsp; &emsp; &emsp; &ensp; ➕
