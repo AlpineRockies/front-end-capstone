@@ -29,7 +29,6 @@ export const WriteEntryWrapper = styled.div`
   border: 2px solid var(--pullman-brown-ups-brown);
 `;
 
-
 export const BreakdownCharacter = styled.div`
   display: inline;
   float: left;
@@ -117,16 +116,14 @@ export const StyledButton = styled.button`
 `;
 
 export const PhotoWrapper = styled.div`
-  display: inline-block;
-  float: left;
-  margin-right: 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 `;
 
 export const ThumbnailImg = styled.img`
   object-fit: contain;
   width: 90px;
   height: 60px;
-  margin-right: 1em;
   border: 2px solid var(--kombu-green);
   background-color: var(--artichoke);
 `;
