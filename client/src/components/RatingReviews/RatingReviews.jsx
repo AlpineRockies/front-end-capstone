@@ -1,6 +1,7 @@
 /* eslint-disable import/extensions */
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { aveRating } from 'Utilities';
 import ReviewList from './Reviews/ReviewList';
 import WriteReview from './WriteReview/WriteReview';
 import Breakdown from './Breakdown/Breakdown';
@@ -14,7 +15,7 @@ import {
 } from './Style/RatingReviewStyle';
 
 function RatingReviews() {
-  const { productId } = useContext(ProductContext);
+  const { productId, setAvgRating } = useContext(ProductContext);
   const [sortView, setSortView] = useState('relevant');
   const [sortedList, setSortedList] = useState(null);
   const [sortStarFilter, setSortStarFilter] = useState(0);
@@ -35,6 +36,7 @@ function RatingReviews() {
       .then(
         axios.spread((...allData) => {
           setSortedList(allData[0].data.results), setMetaData(allData[1].data);
+          setAvgRating(aveRating(allData[0].data.results));
         })
       )
       .catch((err) => {

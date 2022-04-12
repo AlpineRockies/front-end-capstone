@@ -3,6 +3,11 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: var(--ebony);
+  font-family: 'Noto Sans', sans-serif;
+}
+
 :root {
   /* Color Palette variables */
   --kombu-green: #283618ff;
