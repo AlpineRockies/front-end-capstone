@@ -130,6 +130,10 @@
   object-fit: cover;
 }
 
+.ri-stars {
+  font-size: 1.7rem;
+}
+
 .yo-image {
 
   width: 100%;

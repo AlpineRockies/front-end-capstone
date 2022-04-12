@@ -21,7 +21,7 @@ function ProductCardInfo({ product }) {
       ) : (
         <>{product.category && <li>product.results[0].original_price </li> }</>
       )}
-      {product.aveRating && <li><ReviewEntryStar rating={product.aveRating} /></li>}
+      {product.aveRating && <li className="ri-stars"><ReviewEntryStar rating={product.aveRating} /></li>}
       {/* <li>
 
       </li> */}
