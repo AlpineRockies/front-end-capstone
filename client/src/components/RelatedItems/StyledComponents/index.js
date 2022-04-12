@@ -23,7 +23,7 @@ export const StyledButton = styled.button`
 export const StyledRightArrow = styled(FaArrowAltCircleRight)`
   position: absolute;
   top: 300px;
-  right: 0px;
+  right: -20px;
   font-size: 3rem;
   color: #5a3b16ff;
   z-index: 10;
@@ -35,7 +35,7 @@ export const StyledRightArrow = styled(FaArrowAltCircleRight)`
 export const StyledLeftArrow = styled(FaArrowAltCircleLeft)`
   position: absolute;
   top:300px;
-  left: 100px;
+  left: 30px;
   font-size: 3rem;
   color: #5a3b16ff;
   z-index: 10;
@@ -58,6 +58,7 @@ export const StyledFaWindowClose = styled(FaWindowClose)`
   font-size: 25px;
   cursor: pointer;
   color: #283618ff;
+  z-index:20
 `;
 
 export const StyledFaStar = styled(FaStar)`
