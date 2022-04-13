@@ -1,16 +1,42 @@
 /* eslint-disable react/prop-types */
-import React, { useContext } from 'react';
-import ProductContext from '../../Context';
+import React, { useState, useContext } from 'react';
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
+import _ from 'underscore';
 import '../style.css';
 
 function ProductCard({
   handleClickIcon,
   handleClickImg,
-  handleMouseOver,
+  // handleMouseOver,
   product,
   icon,
   classNameImg,
 }) {
+  const [current, setCurrent] = useState(0);
+
+  const ThumbnailGallery = _.map(product.results, (item, index) => {
+    return (
+      <div className={index === current ? 'slide active' : 'slide'} key={index}>
+        {index === current && (
+          <img className="ri-image" src={item.photos[0].thumbnail_url} alt="" />
+        )}
+      </div>
+    );
+  });
+  const { length } = ThumbnailGallery;
+
+  if (!Array.isArray(ThumbnailGallery) || length <= 0) {
+    return null;
+  }
+
+  const nextImage = () => {
+    setCurrent(current === length - 1 ? 0 : current + 1);
+  };
+
+  const prevImage = () => {
+    setCurrent(current === 0 ? length - 1 : current - 1);
+  };
+
   return (
     <div className="ri-product-card">
       <span
@@ -24,21 +50,30 @@ function ProductCard({
       >
         {icon}
       </span>
-      <div
-        role="button"
-        tabIndex="0"
-        key={product.product_id}
-        onClick={() => handleClickImg(product.product_id, product.style_id)}
-        onKeyDown={() => handleClickImg(product.product_id)}
-        onMouseEnter={() => handleMouseOver(product.product_id || product.style_id)}
-        onFocus={() => handleMouseOver(product.product_id)}
-      >
-        <img
-          className={classNameImg}
-          src={product.results[0] && product.results[0].photos[0].thumbnail_url}
-          alt="clothing"
+      <section className="thumbnail-slider">
+        <FaAngleLeft
+          className="thumbnail-slider-left-arrow"
+          onClick={prevImage}
         />
-      </div>
+        <div
+          role="button"
+          tabIndex="0"
+          key={product.product_id}
+          onClick={() => handleClickImg(product.product_id)}
+          onKeyDown={() => handleClickImg(product.product_id)}
+          // onMouseOver={() => handleMouseOver(product.product_id || product.style_id)}
+          // onMouseOver={handleMouseOver}
+          // onMouseOut={handleMouseOut}
+          // onFocus={() => handleMouseOver(product.product_id)}
+        >
+          {ThumbnailGallery}
+        </div>
+        <FaAngleRight
+          className="thumbnail-slider-right-arrow"
+          onClick={nextImage}
+        />
+      </section>
+      {/* {openThumbnails && ThumbnailHover} */}
     </div>
   );
 }

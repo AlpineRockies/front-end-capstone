@@ -46,11 +46,12 @@ function YourOutfit({ setYourOutfitId }) {
           imagesArray={yourOutfit}
           numToDisplay={3}
           handleClickIcon={removeItem}
-          handleMouseOver={handleMouseOver}
+          //handleMouseOver={handleMouseOver}
           icon={<StyledFaWindowClose />}
           classNameInfo={"ri-container"}
           classNameImg={"ri-image"}
           handleClickImg={(id => setProductId(id))}
+
         />
       </section>
     </div>

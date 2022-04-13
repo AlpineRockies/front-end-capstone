@@ -32,7 +32,8 @@ function Carousel({
   }, [imagesArray]);
 
   if (!imagesArray || imagesArray.length === 0) {
-    return <div>Sorry, no data to display. Please wait.</div>;
+    return null;
+    //<div>Sorry, no data to display. Please wait.</div>;
   }
   const { length } = imagesArray;
 
@@ -59,6 +60,7 @@ function Carousel({
             handleMouseOver={handleMouseOver}
             classNameImg={classNameImg}
             icon={icon}
+
           />
           <ProductCardInfo product={product} />
         </div>
