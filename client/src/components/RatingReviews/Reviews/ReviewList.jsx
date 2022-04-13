@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import ReviewEntry from './ReviewEntry';
 import { StyledButton } from '../Style/RatingReviewStyle';
@@ -14,6 +15,7 @@ function ReviewList({ sortedList, sortStarFilter }) {
 
   return (
     <div className="RR-review-list">
+      <div id='ov-Anchor'></div>
       <h4>Review List </h4>
       {sortedList
         .filter(
