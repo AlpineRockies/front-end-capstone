@@ -11,9 +11,9 @@ function Carousel({
   handleClickIcon,
   handleClickImg,
   handleMouseOver,
-  handleMouseOut,
   icon,
-  classNameInfo
+  classNameInfo,
+  classNameImg,
 }) {
   const referenceArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -37,14 +37,12 @@ function Carousel({
   const { length } = imagesArray;
 
   const nextSlide = () => {
-    console.log('NextSlide shownImagesOffset ', shownImagesOffset);
     if (shownImagesOffset < length - numToDisplay) {
       setShownImagesOffset((prevState) => prevState + 1);
     }
   };
 
   const prevSlide = () => {
-    console.log('prevSlide shownImagesOffset ', shownImagesOffset);
     if (shownImagesOffset > 0) {
       setShownImagesOffset((prevState) => prevState - 1);
     }
@@ -53,13 +51,13 @@ function Carousel({
   const ProductCarousel = imagesArray.map((product, index) => {
     if (shownImagesArray.includes(index)) {
       return (
-        <div className={classNameInfo}>
+        <div key={ index } className={classNameInfo}>
           <ProductCard
             handleClickImg={handleClickImg}
             product={product}
             handleClickIcon={handleClickIcon}
             handleMouseOver={handleMouseOver}
-            // handleMouseOut={handleMouseOut}
+            classNameImg={classNameImg}
             icon={icon}
           />
           <ProductCardInfo product={product} />

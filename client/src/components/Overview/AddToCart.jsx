@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-restricted-syntax */
@@ -13,7 +15,7 @@ import PropTypes from 'prop-types';
 
 function AddToCart(props) {
   const {
-    styles, count, resultCount, setResultCount, styleSelector
+    styles, count, resultCount, setResultCount, styleSelector,
   } = props;
 
   const [quantityOptions, setQuantityOptions] = useState([]);
@@ -30,34 +32,40 @@ function AddToCart(props) {
       return;
     }
 
-    const quantity = styles[styleSelector].skus[sizeSelection] && Math.min(styles[styleSelector].skus[sizeSelection].quantity, 15);
+    const quantity = styles[styleSelector].skus[sizeSelection] ? Math.min(styles[styleSelector].skus[sizeSelection].quantity, 15)
+      : 0;
     setQuantityOptions(
-      _.range(quantity + 1).map((amount) => (
+      _.range(1, quantity + 1).map((amount) => (
         <option key={amount} value={amount}>{amount}</option>
-      ))
+      )),
     );
   }, [sizeSelection]);
-let buttonNoButton;
-let alertMe;
- if(sizeSelection !== null && quantity > 0){
- buttonNoButton = <button className="ov-checkout-button" type="button">
-  ADD TO CART  &emsp; &emsp; &emsp; &emsp; &ensp; ➕
-</button>
- } else if(quantity === 0){
-   buttonNoButton = <h4>Out of Stock</h4>
- } else if (sizeSelection === null && quantity === 16){
-   buttonNoButton =  <button className="ov-checkout-button" type="button" onClick={() => alertMe = "Please select a size and quantity"}>
-   ADD TO CART  &emsp; &emsp; &emsp; &emsp; &ensp; ➕
- </button>
- } else {
-   buttonNoButton = <button className="ov-checkout-button" type="button" onClick={() => alertMe = "added to cart"}>
-   ADD TO CART  &emsp; &emsp; &emsp; &emsp; &ensp; ➕
- </button>
- }
+
+  let buttonNoButton;
+
+  const [alertMe, setAlert] = useState(null);
+
+  if (sizeSelection !== null && quantity > 0) {
+    buttonNoButton = (
+      <button className="ov-checkout-button" type="button" onClick={() => setAlert('Added to cart')}>
+        ADD TO CART  &emsp; &emsp; &emsp; &emsp; &ensp; ➕
+      </button>
+    );
+  } else if (quantity === 0) {
+    buttonNoButton = <h3>Out of Stock</h3>;
+  } else if (sizeSelection === null && quantity === 16) {
+    buttonNoButton = (
+      <button className="ov-checkout-button" type="button" onClick={() => setAlert('Please select a size and quantity')}>
+        ADD TO CART  &emsp; &emsp; &emsp; &emsp; &ensp; ➕
+      </button>
+    );
+  }
+
   return (
     <>
       <span>
-        <select className="ov-style-sizes" onChange={(e) => handleSizeChange(e)}><option>Pick a size</option>
+        <select className="ov-style-sizes" onChange={(e) => handleSizeChange(e)}>
+          <option>Pick a size</option>
           {styles && styles[count] && Object.entries(styles[styleSelector].skus).map(([sku, { quantity, size }]) => (<option default="Pick a size" key={sku} value={sku}>{size}</option>))}
         </select>
         {' '}
@@ -67,8 +75,9 @@ let alertMe;
       </span>
       <br />
       <br />
-{alertMe}
-  {buttonNoButton}
+      {alertMe}
+      <br />
+      {buttonNoButton}
     </>
   );
 }

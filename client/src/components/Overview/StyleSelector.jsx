@@ -1,3 +1,5 @@
+/* eslint-disable babel/no-unused-expressions */
+/* eslint-disable no-sequences */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -15,7 +17,9 @@ import {
 
 function StyleSelector(props) {
   const {
-    styles, styleSelector, selectStyleSelector, setCount, selectedThumbnail, setSelectedThumbnail,
+    styles, styleSelector, selectStyleSelector, setCount,
+    //  selectedThumbnail,
+    setSelectedThumbnail,
   } = props;
   let stylesThumbnail;
 
@@ -23,11 +27,33 @@ function StyleSelector(props) {
     stylesThumbnail = styles.map((image, index) => (styleSelector === index
       ? (
         <a key={index}>
-          <img alt="placeholder text" className="ov-style-selector-thumbnails" onClick={() => (selectStyleSelector(index), setCount(index), setSelectedThumbnail(index))} src={image.photos[0].thumbnail_url} />
+          <img
+            alt="placeholder text"
+            className="ov-style-selector-thumbnails"
+            onClick={() => {
+              selectStyleSelector(index);
+              setCount(index);
+              setSelectedThumbnail(index);
+            }}
+            src={image.photos[0].thumbnail_url}
+          />
           <FaCheckCircle className="ov-Checkmark" />
         </a>
       )
-      : <a key={index}><img alt="placeholder text" className="ov-style-selector-thumbnails" onClick={() => (selectStyleSelector(index), setCount(index), setSelectedThumbnail(index))} src={image.photos[0].thumbnail_url} /></a>));
+      : (
+        <a key={index}>
+          <img
+            alt="placeholder text"
+            className="ov-style-selector-thumbnails"
+            onClick={() => {
+              selectStyleSelector(index);
+              setCount(index);
+              setSelectedThumbnail(index);
+            }}
+            src={image.photos[0].thumbnail_url}
+          />
+        </a>
+      )));
   }
 
   return (

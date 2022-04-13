@@ -51,7 +51,7 @@ function App() {
     <div className="app">
       <h1>Team Alpine Rockies!</h1>
       <ProductContext.Provider value={memoizedState}>
-        <Overview />
+        <Overview avgRating={avgRating} />
         <RelatedItems />
         <QuestionAnswers />
         <RatingReviews />

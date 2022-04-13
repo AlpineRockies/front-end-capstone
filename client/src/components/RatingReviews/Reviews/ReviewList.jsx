@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
+=======
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react';
+>>>>>>> 22404a98d908f1ced3693dad67dd1b3371aa5e8c
 import ReviewEntry from './ReviewEntry';
 import ReviewSearch from './ReviewSearch';
 import { StyledButton } from '../Style/RatingReviewStyle';
@@ -22,6 +27,7 @@ function ReviewList({ sortedList, sortStarFilter }) {
   return (
     <div className="RR-review-list">
       <ReviewSearch searchedWord={searchedWord} setSearchWord={setSearchWord}/>
+      <div id='ov-Anchor'></div>
       <h4>Review List </h4>
       {sortedList
         .filter(
