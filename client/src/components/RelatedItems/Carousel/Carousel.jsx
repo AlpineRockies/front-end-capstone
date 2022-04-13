@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import _ from 'underscore';
@@ -10,10 +11,8 @@ function Carousel({
   numToDisplay,
   handleClickIcon,
   handleClickImg,
-  handleMouseOver,
   icon,
   classNameInfo,
-  classNameImg,
 }) {
   const referenceArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -22,7 +21,7 @@ function Carousel({
 
   useEffect(() => {
     setShownImagesArray(
-      referenceArray.slice(shownImagesOffset, shownImagesOffset + numToDisplay)
+      referenceArray.slice(shownImagesOffset, shownImagesOffset + numToDisplay),
     );
   }, [shownImagesOffset]);
 
@@ -32,7 +31,7 @@ function Carousel({
   }, [imagesArray]);
 
   if (!imagesArray || imagesArray.length === 0) {
-    return <div>Sorry, no data to display. Please wait.</div>;
+    return null;
   }
   const { length } = imagesArray;
 
@@ -51,13 +50,11 @@ function Carousel({
   const ProductCarousel = imagesArray.map((product, index) => {
     if (shownImagesArray.includes(index)) {
       return (
-        <div key={ index } className={classNameInfo}>
+        <div key={index} className={classNameInfo}>
           <ProductCard
             handleClickImg={handleClickImg}
             product={product}
             handleClickIcon={handleClickIcon}
-            handleMouseOver={handleMouseOver}
-            classNameImg={classNameImg}
             icon={icon}
           />
           <ProductCardInfo product={product} />

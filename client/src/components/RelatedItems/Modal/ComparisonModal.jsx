@@ -68,12 +68,16 @@ function ComparisonModal({ setOpenModal, selectedComparisonItem }) {
   }, [compareItemFeatures]);
 
   return (
-    <div className="ri-modal-Background">
+    <div>
       <div className="ri-modal-Container">
-        <div className="ri-modal-Title-Close-Button">
-          <button type="button" onClick={() => setOpenModal(false)}>
-            <StyledFaWindowClose />
-          </button>
+        <div
+          className="ri-modal-Title-Close-Button"
+          role="button"
+          tabIndex={0}
+          onClick={() => setOpenModal(false)}
+          onKeyDown={() => setOpenModal(false)}
+        >
+          <StyledFaWindowClose />
         </div>
         <div className="ri-modal-Title">
           <h3>Comparing</h3>
