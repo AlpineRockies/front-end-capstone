@@ -22,7 +22,7 @@ function YourOutfit({ setYourOutfitId }) {
     }
   };
   const handleMouseOver = (product_id) => {
-    console.log('handleMouseOver ', product_id)
+    //console.log('handleMouseOver ', product_id)
   }
 
   useEffect(() => {
@@ -49,6 +49,7 @@ function YourOutfit({ setYourOutfitId }) {
           handleMouseOver={handleMouseOver}
           icon={<StyledFaWindowClose />}
           classNameInfo={"ri-container"}
+          classNameImg={"ri-image"}
           handleClickImg={(id => setProductId(id))}
         />
       </section>

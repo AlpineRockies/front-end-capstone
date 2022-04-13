@@ -22,7 +22,7 @@ function Related() {
 
   // eslint-disable-next-line babel/camelcase
   const handleClickImg = (product_id, style_id) => {
-    console.log('product_id: ', product_id, 'style_id :', style_id)
+    //console.log('product_id: ', product_id, 'style_id :', style_id)
     setProductId(product_id);
   };
 
@@ -38,27 +38,17 @@ function Related() {
     );
     setThumbnailCarousel(
       _.map(filter[0].results, (item) => {
-        console.log('map item ', item);
+        //console.log('map item ', item);
         return { product_id: item.style_id, results: [item] };
       })
     );
-
     setOpenThumbnails(true);
   };
 
   useEffect(() => {
-    console.log('thumbnailCarousel ', thumbnailCarousel);
-    console.log('joinedAPIDetails ', joinedAPIDetails);
+    // console.log('thumbnailCarousel ', thumbnailCarousel);
+    // console.log('joinedAPIDetails ', joinedAPIDetails);
   }, [thumbnailCarousel]);
-
-  const handleMouseOut = () => {
-    console.log('handleMouseOut')
-    setOpenThumbnails(false);
-  };
-
-  const handleTEST = (product_id) => {
-    console.log('handleTest', product_id);
-  }
 
   return (
     <div>
@@ -79,20 +69,22 @@ function Related() {
               handleClickImg={handleClickThumbnailImages}
               handleMouseOver={handleTEST}
               classNameInfo={'ri-thumbnail-slider-img'}
+              classNameImg={'ri-thumbnail-hover'}
             />
           </div>
         </div>
       )}
+      <p />
       <div className="ri-slider">
         <Carousel
           imagesArray={joinedAPIDetails}
           numToDisplay={4}
           handleClickIcon={handleModalClick}
           handleClickImg={handleClickImg}
-          handleMouseOver={handleMouseOver}
-          //handleMouseOut={handleMouseOut}
+          handleMouseOver={() => null}
           icon={<StyledFaStar />}
           classNameInfo={'ri-container'}
+          classNameImg={'ri-image'}
         />
       </div>
     </div>
