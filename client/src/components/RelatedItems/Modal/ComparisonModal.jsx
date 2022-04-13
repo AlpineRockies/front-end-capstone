@@ -7,7 +7,7 @@ import ProductContext from '../../Context';
 import { StyledButton, StyledFaWindowClose } from '../StyledComponents';
 
 /* eslint-disable react/prop-types */
-function ComparisonModal({ openModal, setOpenModal, selectedComparisonItem }) {
+function ComparisonModal({ setOpenModal, selectedComparisonItem }) {
   const { productInfo, joinedAPIDetails } = useContext(ProductContext);
 
   const [compareItemName, setCompareItemName] = useState('');
@@ -67,9 +67,7 @@ function ComparisonModal({ openModal, setOpenModal, selectedComparisonItem }) {
     setSelectedItemFeatures(copyCompareItemFeatures);
   }, [compareItemFeatures]);
 
-
   return (
-    // <div className="ri-modal-Container">
     <div>
       <div className="ri-modal-Container">
         <div

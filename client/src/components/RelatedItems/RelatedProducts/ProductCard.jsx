@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
 import _ from 'underscore';
 import '../style.css';
@@ -7,10 +7,8 @@ import '../style.css';
 function ProductCard({
   handleClickIcon,
   handleClickImg,
-  // handleMouseOver,
   product,
   icon,
-  classNameImg,
 }) {
   const [current, setCurrent] = useState(0);
 
@@ -61,10 +59,6 @@ function ProductCard({
           key={product.product_id}
           onClick={() => handleClickImg(product.product_id)}
           onKeyDown={() => handleClickImg(product.product_id)}
-          // onMouseOver={() => handleMouseOver(product.product_id || product.style_id)}
-          // onMouseOver={handleMouseOver}
-          // onMouseOut={handleMouseOut}
-          // onFocus={() => handleMouseOver(product.product_id)}
         >
           {ThumbnailGallery}
         </div>

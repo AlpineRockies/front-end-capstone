@@ -21,9 +21,6 @@ function YourOutfit({ setYourOutfitId }) {
       setYourOutfitId(product);
     }
   };
-  const handleMouseOver = (product_id) => {
-    //console.log('handleMouseOver ', product_id)
-  }
 
   useEffect(() => {
     // eslint-disable-next-line no-undef
@@ -46,11 +43,10 @@ function YourOutfit({ setYourOutfitId }) {
           imagesArray={yourOutfit}
           numToDisplay={3}
           handleClickIcon={removeItem}
-          //handleMouseOver={handleMouseOver}
           icon={<StyledFaWindowClose />}
-          classNameInfo={"ri-container"}
-          classNameImg={"ri-image"}
-          handleClickImg={(id => setProductId(id))}
+          classNameInfo="ri-container"
+          // classNameImg="ri-image"
+          handleClickImg={((id) => setProductId(id))}
 
         />
       </section>

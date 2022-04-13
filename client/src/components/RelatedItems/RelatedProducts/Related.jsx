@@ -1,5 +1,5 @@
 /* eslint-disable babel/camelcase */
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import _ from 'underscore';
 import { StyledFaStar } from '../StyledComponents';
 import ComparisonModal from '../Modal/ComparisonModal';
@@ -12,8 +12,6 @@ function Related() {
   const { joinedAPIDetails, setProductId } = useContext(ProductContext);
   const [selectedComparisonItem, setSelectedComparisonItem] = useState();
   const [openModal, setOpenModal] = useState(false);
-  const [openThumbnails, setOpenThumbnails] = useState(false);
-  const [thumbnailCarousel, setThumbnailCarousel] = useState([]);
 
   const handleModalClick = (compareProduct) => {
     setOpenModal(!openModal);
@@ -48,10 +46,8 @@ function Related() {
           numToDisplay={4}
           handleClickIcon={handleModalClick}
           handleClickImg={handleClickImg}
-          //handleMouseOver={handleMouseOver}
           icon={<StyledFaStar />}
           classNameInfo={'ri-container'}
-          classNameImg={'ri-image'}
         />
       </div>
     </div>
