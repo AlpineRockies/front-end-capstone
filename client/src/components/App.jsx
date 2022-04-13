@@ -6,6 +6,7 @@ import RelatedItems from './RelatedItems/RelatedItems';
 import QuestionAnswers from './QuestionAnswers/QuestionAnswers';
 import RatingReviews from './RatingReviews/RatingReviews';
 import ProductContext from './Context';
+import Header from './Header/Header';
 
 function App() {
   const [productId, setProductId] = useState(38320);
@@ -49,7 +50,7 @@ function App() {
 
   return (
     <div className="app">
-      <h1>Team Alpine Rockies!</h1>
+      <Header />
       <ProductContext.Provider value={memoizedState}>
         <Overview avgRating={avgRating} />
         <RelatedItems />
