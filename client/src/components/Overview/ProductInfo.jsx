@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/prop-types */
 /* eslint-disable arrow-body-style */
@@ -13,7 +14,9 @@ import PropTypes from 'prop-types';
 import ReviewEntryStar from '../RatingReviews/Reviews/ReviewEntryStar';
 
 function ProductInfo(props) {
-  const { styles, description, styleSelector } = props;
+  const {
+    styles, description, styleSelector, avgRating,
+  } = props;
   let price;
   if (styles[styleSelector] && styles[styleSelector].sale_price !== null) {
     price = (
@@ -42,16 +45,14 @@ function ProductInfo(props) {
   return (
 
     <div className="ov-product-info">
-        <br />  <br />
+      <br />
+      {' '}
+      <br />
       {/* Extract to component */}
       <div className="ov-Reviews">
-        <span className="ov-review-stars">
-          <ReviewEntryStar rating={3.8} />
-        </span>
+        <ReviewEntryStar rating={avgRating} />
       &ensp;
-        <span className="ov-review-link">
-          <a href="#">Read all reviews</a>
-        </span>
+        <a href="/#ov-Anchor">Read all reviews</a>
       </div>
       {/* End Extraction */}
       <br />

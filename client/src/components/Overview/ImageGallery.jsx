@@ -1,3 +1,4 @@
+/* eslint-disable no-sequences */
 /* eslint-disable no-useless-return */
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
@@ -31,13 +32,10 @@ function ImageGallery(props) {
   let galleryThumbnails;
   let mainImage;
 
-  const handleMainClick = () => {
-    console.log('Hello World');
-  };
-
   const handleDownClick = () => {
     if (selectedThumbnail < styles.length - 1) {
       setSelectedThumbnail(selectedThumbnail + 1);
+      setCount(count + 1);
     }
 
     if (styles.length > 7) {
@@ -51,12 +49,13 @@ function ImageGallery(props) {
       setStart(start + 1);
       setEnd(end + 1);
     }
-    setCount(count + 1)
+    setCount(count + 1);
   };
 
   const handleUpClick = () => {
     if (selectedThumbnail > 0) {
       setSelectedThumbnail(selectedThumbnail - 1);
+      setCount(count - 1);
     }
 
     if (styles.length > 7) {
@@ -70,7 +69,7 @@ function ImageGallery(props) {
       setStart(start - 1);
       setEnd(end - 1);
     }
-    setCount(count -1)
+    setCount(count - 1);
   };
 
   const handleThumbnailSelect = (index) => {
@@ -102,10 +101,10 @@ function ImageGallery(props) {
         {(selectedThumbnail < styles.length - 1 && view === 'default') && (<div><FaArrowDown className="ov-down-icon" onClick={handleDownClick} /></div>)}
       </div>
       <div className="ov-main-img-nav">
-        {(count > 0) && (<FaArrowLeft className="ov-left-icon" onClick={() => (setCount(count - 1),setSelectedThumbnail(selectedThumbnail + 1))} />)}
+        {(count > 0) && (<FaArrowLeft className="ov-left-icon" onClick={handleUpClick} />)}
         <MainImage styles={styles} count={count} setCount={setCount} view={view} setView={setView} />
         {(count < styles.length - 1)
-        && (<FaArrowRight className="ov-right-icon" onClick={() => (setCount(count + 1), setSelectedThumbnail(selectedThumbnail + 1))} />)}
+        && (<FaArrowRight className="ov-right-icon" onClick={handleDownClick} />)}
       </div>
     </div>
   );

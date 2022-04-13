@@ -1,11 +1,14 @@
 * {
   /* fix some mis-alignment issues */
   box-sizing: border-box;
+
 }
 
 body {
-  background-color: var(--ebony);
+  /* background-color: var(--ebony); */
   font-family: 'Noto Sans', sans-serif;
+  background-color: #f5f5f5;
+  color: var(--ebony);
 }
 
 :root {
@@ -18,3 +21,5 @@ body {
   --pullman-brown-ups-brown: #5a3b16ff;
   --cafe-noir: #4f3517ff;
 }
+
+

@@ -1,8 +1,3 @@
-html {
-  background-color: #5e6748ff;
-/* Font-family: 'Candara', 'Calibri', 'Segoe', 'Segoe UI', 'Optima', Arial, sans-serif; */
-}
-
 .ov-overview {
   display: grid;
   grid-template-areas:
@@ -51,8 +46,7 @@ html {
 .ov-gallery {
   /* border:  1px solid green; */
   grid-area: gallery;
-  width: 1100px;
-  background-color: #d8cba7ff;
+  width: 1200px;
   margin-right: 10px;
 }
 
@@ -67,7 +61,6 @@ html {
 
 .ov-description {
   grid-area: info;
-  /* border: 1px solid blue; */
   display: flex;
   flex-direction: row;
 }
@@ -76,7 +69,8 @@ html {
   grid-area: details;
   overflow-wrap: wrap;
   width: 65%;
-  padding: 0px 70px 0px;
+  padding: 0px 90px 0px;
+  font-size: x-large;
 
 }
 
@@ -87,7 +81,7 @@ html {
 .ov-description-ul {
   grid-area: checklist;
   font-size: x-small;
-  border-left: 1px solid purple;
+  border-left: 1px solid green;
   width: 35%;
   padding-top: 20px;
 }
@@ -139,6 +133,7 @@ li.ov-description:not(:last-child) {
 .ov-style-selector-thumbnails {
   height: 95px !important;
   width: 95px !important;
+  object-fit: cover;
   border-radius: 50px;
   padding: 10px;
   flex: 1 20%;
@@ -158,12 +153,11 @@ li.ov-description:not(:last-child) {
 }
 
 .ov-expanded-icon {
-  color: pink;
   position: absolute;
   z-index: 2;
-  margin-left: 90%;
-  margin-top: 20px;
-  color: rgb(24, 190, 193);
+  margin-left: 95%;
+  margin-top: 4%;
+  color: rgb(208, 71, 41);
   height: 20px;
   width: 20px;
 }
@@ -191,7 +185,7 @@ li.ov-description:not(:last-child) {
 
     .ov-left-icon{
       position: absolute;
-      margin-right: 95%;
+      margin-right: 78%;
       top: 47%;
       margin-top: -2.5em;
     }
@@ -230,7 +224,6 @@ li.ov-description:not(:last-child) {
       flex-direction: column;
       -webkit-line-clamp: 7;
       margin-top: 5%;
-      background-image: url('https://previews.123rf.com/images/kalinavova/kalinavova1603/kalinavova160300012/55215766-arbres-de-la-for%C3%AAt-de-printemps-nature-bois-vert-soleil-horizons-ciel.jpg');
       margin-left: 10px;
     }
 
@@ -246,7 +239,7 @@ li.ov-description:not(:last-child) {
       width: 900px;
       height: 650px;
       object-fit: cover;
-      margin-left: 55px;
+      margin-left: 150px;
       margin-top: 15px;
       margin-right: auto;
     }
@@ -258,6 +251,7 @@ li.ov-description:not(:last-child) {
     .ov-thumbnail-gallery {
       height: 75px ;
       width: 80px;
+      object-fit: cover;
       padding-left: 20px;
       margin-bottom: 5px;
       margin-right: 5px;
@@ -293,4 +287,16 @@ li.ov-description:not(:last-child) {
     .ov-Reviews {
       display: flex;
       flex-direction: row;
+    }
+
+    .Facebook {
+      color: #3b5998;
+    }
+
+    .Twitter {
+      color: #00acee;
+    }
+
+    .Pinterest {
+      color: #c8232c ;
     }
