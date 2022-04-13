@@ -150,5 +150,3 @@ export const StyledSearchBar = styled.div`
     height: 30px;
   }
 `;
-
-

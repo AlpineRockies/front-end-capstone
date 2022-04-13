@@ -10,7 +10,6 @@ import {
   LeftContainer,
   RightContainer,
   StyledMain,
-  SelectWrapper,
 } from './Style/RatingReviewStyle';
 
 function RatingReviews() {
@@ -78,11 +77,11 @@ function RatingReviews() {
           <form onClick={handleViewClick}>
             <label>
               Sort:
-              <SelectWrapper value={sortView} onChange={handleViewChange}>
+              <select value={sortView} onChange={handleViewChange}>
                 <option value="relevant">Relevant</option>
                 <option value="newest">Newest</option>
                 <option value="helpful">Helpful</option>
-              </SelectWrapper>
+              </select>
             </label>
           </form>
           {sortedList && (
