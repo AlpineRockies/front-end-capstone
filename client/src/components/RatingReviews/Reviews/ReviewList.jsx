@@ -1,25 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReviewEntry from './ReviewEntry';
 import ReviewSearch from './ReviewSearch';
 import { StyledButton } from '../Style/RatingReviewStyle';
-import { lowercase } from 'Utilities';
 
 function ReviewList({ sortedList, sortStarFilter }) {
   const [showMoreReview, setShowMoreReview] = useState(2);
   const [showMoreButton, setShowMoreButton] = useState(true);
   const [listLength, setListLength] = useState(sortedList.length);
   const [searchedWord, setSearchWord] = useState('');
+  const [filterSearch, setFilterSearch] = useState(/.*/);
 
   const handleMoreReviewsClick = (event) => {
     event.preventDefault();
     setShowMoreReview(showMoreReview + 2);
   };
 
-  const handleSearchList = (eachReviewObjBody) => {
-    const reviewBodyArray = lowercase(eachReviewObjBody).replace(/\./i, '').split(' ');
-    console.log('filter', reviewBodyArray.filter((reviewBody) => reviewBody === searchedWord))
-
-  }
+  useEffect(() => {
+    setFilterSearch(new RegExp(searchedWord, 'i'));
+  }, [searchedWord])
 
   return (
     <div className="RR-review-list">
@@ -32,7 +30,7 @@ function ReviewList({ sortedList, sortStarFilter }) {
         )
         .filter(
           (eachReviewObj) =>
-          searchedWord === '' || handleSearchList(eachReviewObj.body)
+          searchedWord === '' || filterSearch.test(eachReviewObj.body)
         )
         .slice(0, showMoreReview)
         .map((eachReview) => (
