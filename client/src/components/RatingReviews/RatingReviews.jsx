@@ -9,9 +9,7 @@ import ProductContext from '../Context';
 import {
   LeftContainer,
   RightContainer,
-  MainRRContent,
-  Select,
-  StyledButton,
+  StyledMain,
 } from './Style/RatingReviewStyle';
 
 function RatingReviews() {
@@ -61,7 +59,7 @@ function RatingReviews() {
   };
 
   return (
-    <MainRRContent>
+    <StyledMain>
       <h2>Rating And Reviews</h2>
       <LeftContainer>
         <div className="RR-breakdown">
@@ -79,11 +77,11 @@ function RatingReviews() {
           <form onClick={handleViewClick}>
             <label>
               Sort:
-              <Select value={sortView} onChange={handleViewChange}>
+              <select value={sortView} onChange={handleViewChange}>
                 <option value="relevant">Relevant</option>
                 <option value="newest">Newest</option>
                 <option value="helpful">Helpful</option>
-              </Select>
+              </select>
             </label>
           </form>
           {sortedList && (
@@ -95,9 +93,9 @@ function RatingReviews() {
         </div>
 
         <div className="RR-write-review">
-          <StyledButton type="button" onClick={() => setShowWriteReview(true)}>
+          <button type="button" onClick={() => setShowWriteReview(true)}>
             Write Review
-          </StyledButton>
+          </button>
           {metaData && (
             <WriteReview
               showWriteReview={showWriteReview}
@@ -108,7 +106,7 @@ function RatingReviews() {
           )}
         </div>
       </RightContainer>
-    </MainRRContent>
+    </StyledMain>
   );
 }
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReviewEntryStar from '../Reviews/ReviewEntryStar.jsx';
 import { arrAllCharacteristic } from './BreakdownCharacteristic';
 import { lowercase, ratingPercentage } from 'Utilities';
-import { BreakdownCharacter, Range } from '../Style/RatingReviewStyle';
+import { CharacterWrapper, Range } from '../Style/RatingReviewStyle';
 import { FaStar } from 'react-icons/fa';
 
 function Breakdown({ metaData, handleStarReviewClick }) {
@@ -80,7 +80,7 @@ function Breakdown({ metaData, handleStarReviewClick }) {
             </label>
           ))}
       </div>
-      <BreakdownCharacter>
+      <CharacterWrapper>
         <h5>Characteristic Breakdown</h5>
         {mdCharArray &&
           mdCharArray.map((eachChar) => (
@@ -110,7 +110,7 @@ function Breakdown({ metaData, handleStarReviewClick }) {
               <br /> <br />
             </label>
           ))}
-      </BreakdownCharacter>
+      </CharacterWrapper>
     </div>
   );
 }

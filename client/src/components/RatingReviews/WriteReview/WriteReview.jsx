@@ -4,7 +4,11 @@ import { escapeValue } from 'Utilities';
 import WriteReviewCharacteristic from './WriteReviewCharacteristic';
 import WriteReviewStar from './WriteReviewStar';
 import WriteReviewPhoto from './WriteReviewPhoto';
-import { StyledOverlay, StyledModal, CloseButton } from '../Style/RatingReviewStyle';
+import {
+  StyledOverlay,
+  StyledWriteModal,
+  StyledCloseButton,
+} from '../Style/RatingReviewStyle';
 
 function WriteReview({
   showWriteReview,
@@ -61,16 +65,16 @@ function WriteReview({
     <div className="RR-wr-form">
       {showWriteReview ? (
         <StyledOverlay>
-          <StyledModal>
+          <StyledWriteModal>
             <form onSubmit={handleReviewInputSubmit}>
-              <h4>Write Your Review</h4>
-                <CloseButton
-                  type="button"
-                  onClick={() => setShowWriteReview(false)}
-                >
-                  X
-                </CloseButton>
+              <StyledCloseButton
+                type="button"
+                onClick={() => setShowWriteReview(false)}
+              >
+                X
+              </StyledCloseButton>
               <div className="RR-wr-content">
+                <h4>Write Your Review</h4>
                 <div className="RR-wr-stars">
                   <WriteReviewStar handleStar={handleStar} />
                 </div>
@@ -154,7 +158,7 @@ function WriteReview({
                 Submit Review
               </button>
             </form>
-          </StyledModal>
+          </StyledWriteModal>
         </StyledOverlay>
       ) : null}
     </div>
