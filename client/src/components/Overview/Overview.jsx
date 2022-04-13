@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-duplicate-props */
+/* eslint-disable react/prop-types */
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-tag-spacing */
 /* eslint-disable no-unused-vars */
@@ -16,7 +18,7 @@ import ImageGallery from './ImageGallery';
 import StyleSelector from './StyleSelector';
 import MainImage from './MainImage';
 
-function Overview() {
+function Overview(props) {
   const [productId, setProductId] = useState(Math.floor(Math.random() * (38321 - 37311) + 37311));
   // const [productId, setProductId] = useState(productId)
   const [styles, setStyles] = useState([]);
@@ -27,6 +29,7 @@ function Overview() {
   const [styleSelector, selectStyleSelector] = useState(0);
   const [selectedThumbnail, setSelectedThumbnail] = useState(count);
   const [view, setView] = useState('default');
+  const { avgRating } = props;
 
   useEffect(() => {
     axios
@@ -50,7 +53,7 @@ function Overview() {
         </div>
 
         <div className="ov-cart">
-          <ProductInfo styles={styles} description={description} styleSelector={styleSelector} selectStyleSelector={selectStyleSelector}/>
+          <ProductInfo styles={styles} description={description} styleSelector={styleSelector} selectStyleSelector={selectStyleSelector} avgRating={avgRating}/>
 
           <StyleSelector styles={styles} styleSelector={styleSelector} selectStyleSelector={selectStyleSelector} setCount={setCount} selectedThumbnail={selectedThumbnail} selectedThumbnail={setSelectedThumbnail}/>
 

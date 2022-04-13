@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-export const MainRRContent = styled.div`
-  background-color: var(--ebony);
+export const StyledMain = styled.div`
+  background-color: #f5f5f5;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
   max-width: 960px;
-  width: 87vw;
+  width: 100%;
   display: inline-block;
 `;
 
@@ -24,12 +24,11 @@ export const RightContainer = styled.div`
   vertical-align: top;
 `;
 
-export const WriteEntryWrapper = styled.div`
-  background-color: var(--ebony);
-  border: 2px solid var(--pullman-brown-ups-brown);
+export const ReviewWrapper = styled.div`
+  border-bottom: 2px solid var(--kombu-green);
 `;
 
-export const BreakdownCharacter = styled.div`
+export const CharacterWrapper = styled.div`
   display: inline;
   float: left;
 `;
@@ -60,14 +59,19 @@ export const StyledModal = styled.div`
   z-index: 255;
 `;
 
-const sliderThumbStyles = (props) => (`
+export const StyledWriteModal = styled(StyledModal)`
+  width: 700px;
+  color: var(--cafe-noir);
+`;
+
+const sliderThumbStyles = (props) => `
   width: 5px;
   height: 5px;
-  background: var(--dutch-white);
+  background: var(--kombu-green);
   cursor: pointer;
   border-radius: 3px;
-  outline: 3px solid var(--dutch-white);
-`);
+  outline: 3px solid var(--kombu-green);
+`;
 
 export const Range = styled.div`
   display: inline;
@@ -87,32 +91,20 @@ export const Range = styled.div`
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      ${props => sliderThumbStyles(props)}
+      ${(props) => sliderThumbStyles(props)}
     }
     &::-moz-range-thumb {
-      ${props => sliderThumbStyles(props)}
+      ${(props) => sliderThumbStyles(props)}
     }
   }
 `;
 
-export const CloseButton = styled.button`
-  width: fit-content;
+export const StyledCloseButton = styled.button`
+  vertical-align: top;
+  float: right;
   position: relative;
   justify-self: end;
   background: none;
-  border: none;
-  --cafe-noir &:hover {
-    text-shadow: 0 0 1px #00000077;
-  }
-`;
-
-export const StyledButton = styled.button`
-  border: 2px solid var(--pullman-brown-ups-brow);
-  background-color: var(--dutch-white);
-  text-transform: capitalize;
-  cursor: pointer;
-  min-width: 200px;
-  padding: 1em;
 `;
 
 export const PhotoWrapper = styled.div`
@@ -134,26 +126,27 @@ export const ExpandImg = styled.img`
   object-fit: cover;
 `;
 
-export const Select = styled.select`
+export const SelectWrapper = styled.select`
   width: 40%;
   height: 30px;
-  background: var(--ebony);
+  background: #f5f5f5;
   padding-left: 5px;
   font-size: 14px;
   border: 1px solid;
   margin-left: 10px;
   option {
-    background: var(--kombu-green);
+    background: #f5f5f5;
     display: inline;
     white-space: pre;
     min-height: 20px;
   }
 `;
 
-export const InputFields = styled.input`
-  border: 1px solid var(--kombu-green);
-  padding: 0.5em;
-  background-color: var(--artichoke);
-
-
+export const StyledSearchBar = styled.div`
+  vertical-align: top;
+  float: right;
+  position: relative;
+  input {
+    height: 30px;
+  }
 `;
