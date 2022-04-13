@@ -107,15 +107,6 @@ export const StyledCloseButton = styled.button`
   background: none;
 `;
 
-export const StyledButton = styled.button`
-  float: right;
-  text-transform: capitalize;
-  cursor: pointer;
-  margin-right: 45px;
-  background: rgba( 94, 103, 72, 0.5 );
-  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-`;
-
 export const PhotoWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -155,4 +146,9 @@ export const StyledSearchBar = styled.div`
   vertical-align: top;
   float: right;
   position: relative;
+  input {
+    height: 30px;
+  }
 `;
+
+

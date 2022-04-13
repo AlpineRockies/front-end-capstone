@@ -11,7 +11,6 @@ import {
   RightContainer,
   StyledMain,
   SelectWrapper,
-  StyledButton,
 } from './Style/RatingReviewStyle';
 
 function RatingReviews() {
@@ -95,9 +94,9 @@ function RatingReviews() {
         </div>
 
         <div className="RR-write-review">
-          <StyledButton type="button" onClick={() => setShowWriteReview(true)}>
+          <button type="button" onClick={() => setShowWriteReview(true)}>
             Write Review
-          </StyledButton>
+          </button>
           {metaData && (
             <WriteReview
               showWriteReview={showWriteReview}
