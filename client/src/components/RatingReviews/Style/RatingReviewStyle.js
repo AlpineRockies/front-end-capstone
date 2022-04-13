@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const MainRRContent = styled.div`
-  background-color: var(--ebony);
+  background-color: #f5f5f5;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
@@ -25,8 +25,8 @@ export const RightContainer = styled.div`
 `;
 
 export const WriteEntryWrapper = styled.div`
-  background-color: var(--ebony);
-  border: 2px solid var(--pullman-brown-ups-brown);
+  background-color: #f5f5f5;
+  border: 2px solid var(--ebony);
 `;
 
 export const BreakdownCharacter = styled.div`
@@ -63,10 +63,10 @@ export const StyledModal = styled.div`
 const sliderThumbStyles = (props) => (`
   width: 5px;
   height: 5px;
-  background: var(--dutch-white);
+  background: var(--kombu-green);
   cursor: pointer;
   border-radius: 3px;
-  outline: 3px solid var(--dutch-white);
+  outline: 3px solid var(--kombu-green);
 `);
 
 export const Range = styled.div`
@@ -97,6 +97,8 @@ export const Range = styled.div`
 
 export const CloseButton = styled.button`
   width: fit-content;
+  vertical-align: top;
+  float: left;
   position: relative;
   justify-self: end;
   background: none;
@@ -107,12 +109,12 @@ export const CloseButton = styled.button`
 `;
 
 export const StyledButton = styled.button`
-  border: 2px solid var(--pullman-brown-ups-brow);
-  background-color: var(--dutch-white);
+  float: right;
+  border: 2px solid var(--kombu-green);
+  background-color: #f5f5f5;
   text-transform: capitalize;
   cursor: pointer;
-  min-width: 200px;
-  padding: 1em;
+  margin-right: 45px;
 `;
 
 export const PhotoWrapper = styled.div`
@@ -137,23 +139,15 @@ export const ExpandImg = styled.img`
 export const Select = styled.select`
   width: 40%;
   height: 30px;
-  background: var(--ebony);
+  background: #f5f5f5;
   padding-left: 5px;
   font-size: 14px;
   border: 1px solid;
   margin-left: 10px;
   option {
-    background: var(--kombu-green);
+    background: #f5f5f5;
     display: inline;
     white-space: pre;
     min-height: 20px;
   }
-`;
-
-export const InputFields = styled.input`
-  border: 1px solid var(--kombu-green);
-  padding: 0.5em;
-  background-color: var(--artichoke);
-
-
 `;
