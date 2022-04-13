@@ -17,7 +17,7 @@ function ReviewList({ sortedList, sortStarFilter }) {
 
   useEffect(() => {
     setFilterSearch(new RegExp(searchedWord, 'i'));
-  }, [searchedWord])
+  }, [searchedWord]);
 
   return (
     <div className="RR-review-list">

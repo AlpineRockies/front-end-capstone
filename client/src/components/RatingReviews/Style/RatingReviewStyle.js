@@ -60,14 +60,14 @@ export const StyledModal = styled.div`
   z-index: 255;
 `;
 
-const sliderThumbStyles = (props) => (`
+const sliderThumbStyles = (props) => `
   width: 5px;
   height: 5px;
   background: var(--kombu-green);
   cursor: pointer;
   border-radius: 3px;
   outline: 3px solid var(--kombu-green);
-`);
+`;
 
 export const Range = styled.div`
   display: inline;
@@ -87,25 +87,20 @@ export const Range = styled.div`
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      ${props => sliderThumbStyles(props)}
+      ${(props) => sliderThumbStyles(props)}
     }
     &::-moz-range-thumb {
-      ${props => sliderThumbStyles(props)}
+      ${(props) => sliderThumbStyles(props)}
     }
   }
 `;
 
 export const CloseButton = styled.button`
-  width: fit-content;
   vertical-align: top;
-  float: left;
+  float: right;
   position: relative;
   justify-self: end;
   background: none;
-  border: none;
-  --cafe-noir &:hover {
-    text-shadow: 0 0 1px #00000077;
-  }
 `;
 
 export const StyledButton = styled.button`

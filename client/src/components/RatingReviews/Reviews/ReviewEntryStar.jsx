@@ -2,6 +2,7 @@ import React from 'react';
 import { starFillPercentage } from 'Utilities';
 
 function ReviewEntryStar({ rating }) {
+
   const starsInner = {
     backgroundImage: `linear-gradient(90deg, var(--ebony) ${starFillPercentage(rating)}%, var(--dutch-white) 0.1%, var(--dutch-white) ${100 - starFillPercentage(rating)}%)`,
     backgroundClip: 'text',
