@@ -50,15 +50,12 @@ export const StyledCheck = styled(FaCheck)`
 `;
 
 export const StyledFaWindowClose = styled(FaWindowClose)`
-  display: flex;
-  justify-content: flex-end;
-  postion: absolute;
   background-color: transparent;
   border: none;
   font-size: 25px;
   cursor: pointer;
   color: #283618ff;
-  z-index:20
+  z-index:20;
 `;
 
 export const StyledFaStar = styled(FaStar)`
