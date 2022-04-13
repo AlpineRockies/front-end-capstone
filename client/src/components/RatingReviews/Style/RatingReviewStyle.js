@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-export const MainRRContent = styled.div`
+export const StyledMain = styled.div`
   background-color: #f5f5f5;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
   max-width: 960px;
-  width: 87vw;
+  width: 100%;
   display: inline-block;
 `;
 
@@ -24,12 +24,11 @@ export const RightContainer = styled.div`
   vertical-align: top;
 `;
 
-export const WriteEntryWrapper = styled.div`
-  background-color: #f5f5f5;
-  border: 2px solid var(--ebony);
+export const ReviewWrapper = styled.div`
+  border-bottom: 2px solid var(--kombu-green);
 `;
 
-export const BreakdownCharacter = styled.div`
+export const CharacterWrapper = styled.div`
   display: inline;
   float: left;
 `;
@@ -58,6 +57,11 @@ export const StyledModal = styled.div`
   /* kombu-green, but 31% opacity */
   box-shadow: 0 8px 32px 0 #28361850;
   z-index: 255;
+`;
+
+export const StyledWriteModal = styled(StyledModal)`
+  width: 700px;
+  color: var(--cafe-noir);
 `;
 
 const sliderThumbStyles = (props) => `
@@ -95,7 +99,7 @@ export const Range = styled.div`
   }
 `;
 
-export const CloseButton = styled.button`
+export const StyledCloseButton = styled.button`
   vertical-align: top;
   float: right;
   position: relative;
@@ -105,11 +109,11 @@ export const CloseButton = styled.button`
 
 export const StyledButton = styled.button`
   float: right;
-  border: 2px solid var(--kombu-green);
-  background-color: #f5f5f5;
   text-transform: capitalize;
   cursor: pointer;
   margin-right: 45px;
+  background: rgba( 94, 103, 72, 0.5 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
 `;
 
 export const PhotoWrapper = styled.div`
@@ -131,7 +135,7 @@ export const ExpandImg = styled.img`
   object-fit: cover;
 `;
 
-export const Select = styled.select`
+export const SelectWrapper = styled.select`
   width: 40%;
   height: 30px;
   background: #f5f5f5;
@@ -145,4 +149,10 @@ export const Select = styled.select`
     white-space: pre;
     min-height: 20px;
   }
+`;
+
+export const StyledSearchBar = styled.div`
+  vertical-align: top;
+  float: right;
+  position: relative;
 `;

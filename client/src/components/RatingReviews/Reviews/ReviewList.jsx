@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReviewEntry from './ReviewEntry';
 import ReviewSearch from './ReviewSearch';
-import { StyledButton } from '../Style/RatingReviewStyle';
+import { StyledSearchBar, StyledButton } from '../Style/RatingReviewStyle';
 
 function ReviewList({ sortedList, sortStarFilter }) {
   const [showMoreReview, setShowMoreReview] = useState(2);
@@ -21,7 +21,9 @@ function ReviewList({ sortedList, sortStarFilter }) {
 
   return (
     <div className="RR-review-list">
+      <StyledSearchBar>
       <ReviewSearch searchedWord={searchedWord} setSearchWord={setSearchWord}/>
+      </StyledSearchBar>
       <div id='ov-Anchor'></div>
       <h4>Review List </h4>
       {sortedList

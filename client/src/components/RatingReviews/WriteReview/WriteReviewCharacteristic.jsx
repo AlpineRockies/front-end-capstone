@@ -49,6 +49,7 @@ function WriteReviewCharacteristic({ handleCharacteristic, metaData }) {
                 </label>
               ))}
             </div>
+            <br /> <br />
           </div>
         ))}
       </div>

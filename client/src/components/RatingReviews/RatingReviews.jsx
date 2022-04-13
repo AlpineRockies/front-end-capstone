@@ -9,8 +9,8 @@ import ProductContext from '../Context';
 import {
   LeftContainer,
   RightContainer,
-  MainRRContent,
-  Select,
+  StyledMain,
+  SelectWrapper,
   StyledButton,
 } from './Style/RatingReviewStyle';
 
@@ -61,7 +61,7 @@ function RatingReviews() {
   };
 
   return (
-    <MainRRContent>
+    <StyledMain>
       <h2>Rating And Reviews</h2>
       <LeftContainer>
         <div className="RR-breakdown">
@@ -79,11 +79,11 @@ function RatingReviews() {
           <form onClick={handleViewClick}>
             <label>
               Sort:
-              <Select value={sortView} onChange={handleViewChange}>
+              <SelectWrapper value={sortView} onChange={handleViewChange}>
                 <option value="relevant">Relevant</option>
                 <option value="newest">Newest</option>
                 <option value="helpful">Helpful</option>
-              </Select>
+              </SelectWrapper>
             </label>
           </form>
           {sortedList && (
@@ -108,7 +108,7 @@ function RatingReviews() {
           )}
         </div>
       </RightContainer>
-    </MainRRContent>
+    </StyledMain>
   );
 }
 
