@@ -174,4 +174,5 @@ export const StyledButton = styled.button`
   background-color: var(--ebony);
   color: #faebd7;
   font-weight: 700;
+  margin-bottom: 1%;
 `;
