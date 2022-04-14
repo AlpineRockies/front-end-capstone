@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
 export const StyledMain = styled.div`
-  background-color: #f5f5f5;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
   display: inline-block;
-  max-width: 960px;
-  width: 90vw;
+  max-width: 1280px;
+  width: 87vw;
 `;
 
 export const LeftContainer = styled.div`
@@ -68,10 +67,10 @@ export const StyledWriteModal = styled(StyledModal)`
 const sliderThumbStyles = (props) => `
   width: 5px;
   height: 5px;
-  background: var(--kombu-green);
+  background: var(--artichoke);
   cursor: pointer;
   border-radius: 3px;
-  outline: 3px solid var(--kombu-green);
+  outline: 5px solid var(--artichoke);
 `;
 
 export const Range = styled.div`
@@ -135,9 +134,9 @@ export const StyledSearchBar = styled.div`
     height: 35px;
     font-size: small;
     background: var(--ebony);
-    color: #f5f5f5;
+    color: #faebd7;
     &::placeholder {
-      color:#f5f5f5;
+      color: #faebd7;
     }
   }
 `;
