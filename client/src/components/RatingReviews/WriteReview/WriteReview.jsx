@@ -8,6 +8,7 @@ import {
   StyledOverlay,
   StyledWriteModal,
   StyledCloseButton,
+  WriteWrapper,
 } from '../Style/RatingReviewStyle';
 
 function WriteReview({
@@ -74,7 +75,7 @@ function WriteReview({
                 X
               </StyledCloseButton>
               <div className="RR-wr-content">
-                <h4>Write Your Review</h4>
+                <h2>Write Your Review</h2>
                 <div className="RR-wr-stars">
                   <WriteReviewStar handleStar={handleStar} />
                 </div>
@@ -98,6 +99,7 @@ function WriteReview({
                     />
                     No
                   </label>
+                  <br /> <br />
                 </div>
                 <div className="RR-wr-characteristic">
                   <WriteReviewCharacteristic
@@ -105,7 +107,8 @@ function WriteReview({
                     metaData={metaData}
                   />
                 </div>
-                <div className="RR-wr-name">
+                <WriteWrapper>
+                  <span>Name</span>
                   <input
                     placeholder="Example: jackson11!"
                     type="text"
@@ -114,8 +117,9 @@ function WriteReview({
                       setNameRating(escapeValue(event.target.value))
                     }
                   />
-                </div>
-                <div className="RR-wr-email">
+                </WriteWrapper>
+                <WriteWrapper>
+                  <span>Email</span>
                   <input
                     placeholder="Example: jackson11@email.com"
                     type="text"
@@ -124,19 +128,21 @@ function WriteReview({
                       setEmailRating(escapeValue(event.target.value))
                     }
                   />
-                </div>
-                <div className="RR-wr-summary">
+                </WriteWrapper>
+                <WriteWrapper>
+                  <span>Summary</span>
                   <input
-                    placeholder="Summary"
+                    placeholder="Example: Best purchase ever!"
                     type="text"
-                    name="Example: Best purchase ever!"
+                    name='summary'
                     maxLength="60"
                     onChange={(event) =>
                       setSummaryRating(escapeValue(event.target.value))
                     }
                   />
-                </div>
-                <div className="RR-wr-body">
+                </WriteWrapper>
+                <WriteWrapper>
+                  <span>Review</span>
                   <input
                     placeholder="Why did you like the product or not?"
                     type="text"
@@ -146,7 +152,7 @@ function WriteReview({
                       setBodyRating(escapeValue(event.target.value))
                     }
                   />
-                </div>
+                </WriteWrapper>
                 <div className="RR-wr-photo">
                   <WriteReviewPhoto
                     photoRating={photoRating}

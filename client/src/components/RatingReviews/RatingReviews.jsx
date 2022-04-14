@@ -10,6 +10,7 @@ import {
   LeftContainer,
   RightContainer,
   StyledMain,
+  StyledSelect,
 } from './Style/RatingReviewStyle';
 
 function RatingReviews() {
@@ -76,12 +77,11 @@ function RatingReviews() {
         <div className="RR-reviews">
           <form onClick={handleViewClick}>
             <label>
-              Sort:
-              <select value={sortView} onChange={handleViewChange}>
+              <StyledSelect value={sortView} onChange={handleViewChange}>
                 <option value="relevant">Relevant</option>
                 <option value="newest">Newest</option>
                 <option value="helpful">Helpful</option>
-              </select>
+              </StyledSelect>
             </label>
           </form>
           {sortedList && (

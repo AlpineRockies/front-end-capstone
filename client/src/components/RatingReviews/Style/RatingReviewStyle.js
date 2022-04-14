@@ -5,21 +5,21 @@ export const StyledMain = styled.div`
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  max-width: 960px;
-  width: 100%;
   display: inline-block;
+  max-width: 960px;
+  width: 90vw;
 `;
 
 export const LeftContainer = styled.div`
   display: inline-block;
-  width: 45%;
+  width: 50%;
   padding: 20px;
   vertical-align: top;
 `;
 
 export const RightContainer = styled.div`
   display: inline-block;
-  width: 45%;
+  width: 50%;
   padding: 10px;
   vertical-align: top;
 `;
@@ -31,6 +31,7 @@ export const ReviewWrapper = styled.div`
 export const CharacterWrapper = styled.div`
   display: inline;
   float: left;
+  border-top 2px solid var(--pullman-brown-ups-brown);
 `;
 
 export const StyledOverlay = styled.div`
@@ -126,27 +127,39 @@ export const ExpandImg = styled.img`
   object-fit: cover;
 `;
 
-export const SelectWrapper = styled.select`
-  width: 40%;
-  height: 30px;
-  background: #f5f5f5;
-  padding-left: 5px;
-  font-size: 14px;
-  border: 1px solid;
-  margin-left: 10px;
-  option {
-    background: #f5f5f5;
-    display: inline;
-    white-space: pre;
-    min-height: 20px;
-  }
-`;
-
 export const StyledSearchBar = styled.div`
   vertical-align: top;
   float: right;
   position: relative;
   input {
-    height: 30px;
+    height: 35px;
+    font-size: small;
+    background: var(--ebony);
+    color: #f5f5f5;
+    &::placeholder {
+      color:#f5f5f5;
+    }
   }
+`;
+
+export const StyledSelect = styled.select`
+  width: 130px;
+  height: 40px;
+  font-size: small;
+`;
+
+export const WriteWrapper = styled.div`
+  position: relative;
+  span {
+    position: absolute;
+    left: 2px;
+  }
+  input {
+    width: 50%;
+    padding-left: 76px;
+  }
+`;
+
+export const WriteStarWrapper = styled.div`
+  font-size: 1.2em;
 `;
