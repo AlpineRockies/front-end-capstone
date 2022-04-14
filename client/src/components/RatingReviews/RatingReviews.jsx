@@ -14,7 +14,7 @@ import {
 } from './Style/RatingReviewStyle';
 
 function RatingReviews() {
-  const { productId, setAvgRating } = useContext(ProductContext);
+  const { productId, avgRating, setAvgRating } = useContext(ProductContext);
   const [sortView, setSortView] = useState('relevant');
   const [sortedList, setSortedList] = useState(null);
   const [sortStarFilter, setSortStarFilter] = useState(0);
@@ -45,7 +45,7 @@ function RatingReviews() {
 
   useEffect(() => {
     fetchDataRR();
-  }, [sortView, countUrl]);
+  }, [sortView, countUrl, productId]);
 
   const handleViewChange = (event) => {
     setSortView(event.target.value);
