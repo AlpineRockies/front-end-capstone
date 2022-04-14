@@ -4,13 +4,6 @@
 
 }
 
-body {
-  /* background-color: var(--ebony); */
-  font-family: 'Noto Sans', sans-serif;
-  background-color: #f5f5f5;
-  /* color: var(--ebony); */
-}
-
 :root {
   /* Color Palette variables */
   --kombu-green: #283618ff;
@@ -20,6 +13,18 @@ body {
   --french-bistre: #866c46ff;
   --pullman-brown-ups-brown: #5a3b16ff;
   --cafe-noir: #4f3517ff;
+}
+
+[data-color-mode="light"] {
+  font-family: 'Noto Sans', sans-serif;
+  color: var(--kombu-green);
+  background-color: #f5f5f5;
+}
+
+[data-color-mode="dark"] {
+  font-family: 'Noto Sans', sans-serif;
+  background-color: #283618ff;
+  color: #f5f5f5;
 }
 
 

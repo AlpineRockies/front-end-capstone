@@ -1,26 +1,22 @@
 /* eslint-disable no-shadow */
-/* eslint-disable react/prop-types */
-/* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable guard-for-in */
 import React, {
   useState,
   useEffect,
-  // useContext
 } from 'react';
-// import Select from 'react-select';
 import _ from 'underscore';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 function AddToCart(props) {
   const {
-    styles, count, resultCount, setResultCount, styleSelector,
+    styles, count, styleSelector,
   } = props;
 
   const [quantityOptions, setQuantityOptions] = useState([]);
   const [sizeSelection, setSizeSelection] = useState(null);
   const [quantity, setQuantity] = useState(16);
+
   const handleSizeChange = (e) => {
     const sku = e.target.value;
 
@@ -31,8 +27,9 @@ function AddToCart(props) {
     if (!styles || !styles[styleSelector]) {
       return;
     }
-
-    const quantity = styles[styleSelector].skus[sizeSelection] ? Math.min(styles[styleSelector].skus[sizeSelection].quantity, 15)
+    const { skus } = styles[styleSelector];
+    const selectedSize = skus[sizeSelection];
+    const quantity = selectedSize ? Math.min(styles[styleSelector].skus[sizeSelection].quantity, 15)
       : 0;
     setQuantityOptions(
       _.range(1, quantity + 1).map((amount) => (
@@ -45,9 +42,16 @@ function AddToCart(props) {
 
   const [alertMe, setAlert] = useState(null);
 
+  const addItemToCart = () => {
+    axios
+      .post('/cart', { sku_id: sizeSelection })
+      .then(() => setAlert('Added to cart'))
+      .catch((err) => console.error(err));
+  };
+
   if (sizeSelection !== null && quantity > 0) {
     buttonNoButton = (
-      <button className="ov-checkout-button" type="button" onClick={() => setAlert('Added to cart')}>
+      <button className="ov-checkout-button" type="button" onClick={addItemToCart}>
         ADD TO CART  &emsp; &emsp; &emsp; &emsp; &ensp; ➕
       </button>
     );
@@ -90,6 +94,8 @@ AddToCart.propTypes = {
     PropTypes.bool,
     PropTypes.array,
   ]),
+  count: PropTypes.number.isRequired,
+  styleSelector: PropTypes.number.isRequired,
 };
 
 AddToCart.defaultProps = {
