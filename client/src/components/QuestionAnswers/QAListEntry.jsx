@@ -58,9 +58,11 @@ const StyledEntry = styled.div`
 const StyledAnswer = styled.div`
   display: inline-flex;
   flex-direction: column;
+  max-height: 50vh;
+  overflow-y: auto;
+  width: 95%;
 `;
 
-// TODO: lift this into a styled components file
 const StyledButton = styled.button`
   border: 2px solid var(--cafe-noir);
   color: var(--cafe-noir);
