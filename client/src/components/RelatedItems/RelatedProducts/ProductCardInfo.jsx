@@ -15,11 +15,11 @@ function ProductCardInfo({ product }) {
           </li>
           <li style={{ font: 'Noto Sans', color: 'red', font_size: '1.2rem' }}>
             <span>OnSale!! </span>
-            {product.results[0].sale_price}
+            {product.results[0] && product.results[0].sale_price}
           </li>
         </>
       ) : (
-        product.category && <li>{product.results[0].original_price }</li>
+        product.category && <li>{product.results[0] && product.results[0].original_price }</li>
       )}
       {product.aveRating && <span className="ri-stars"><ReviewEntryStar rating={product.aveRating} /></span> }
     </ul>
