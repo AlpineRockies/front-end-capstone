@@ -8,22 +8,24 @@ import {
 } from 'react-icons/fa';
 
 export const StyledButton = styled.button`
-  border: 2px solid #d8cba7ff;
-  background-color: #283618ff;
-  color: white;
-  padding: 15px 32 px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
   cursor: pointer;
   transition: 0.5s all ease-out;
+  border: 2px solid var(--cafe-noir);
+  text-transform: capitalize;
+  font-variant-caps: small-caps;
+  cursor: pointer;
+  min-width: 200px;
+  padding: 1em;
+  margin-right: 1rem;
+  background-color: var(--ebony);
+  color: #faebd7;
+  font-weight: 700;
 `;
 
 export const StyledRightArrow = styled(FaArrowAltCircleRight)`
   position: absolute;
   top: 300px;
-  right: -20px;
+  right: -100px;
   font-size: 3rem;
   color: #5a3b16ff;
   z-index: 10;
@@ -35,7 +37,7 @@ export const StyledRightArrow = styled(FaArrowAltCircleRight)`
 export const StyledLeftArrow = styled(FaArrowAltCircleLeft)`
   position: absolute;
   top:300px;
-  left: 30px;
+  left: 20px;
   font-size: 3rem;
   color: #5a3b16ff;
   z-index: 10;

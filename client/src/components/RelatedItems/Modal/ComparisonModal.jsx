@@ -89,7 +89,7 @@ function ComparisonModal({ setOpenModal, selectedComparisonItem }) {
           productFeatures={productFeatures}
         />
         <div className="ri-modal-Footer">
-          <StyledButton onClick={() => setOpenModal(false)}>CLOSE</StyledButton>
+          <StyledButton onClick={() => setOpenModal(false)}>Close</StyledButton>
         </div>
       </div>
     </div>
