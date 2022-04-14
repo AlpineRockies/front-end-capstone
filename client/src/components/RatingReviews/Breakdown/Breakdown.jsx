@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ReviewEntryStar from '../Reviews/ReviewEntryStar.jsx';
 import { arrAllCharacteristic } from './BreakdownCharacteristic';
+import ProductContext from '../../Context';
 import { lowercase, ratingPercentage } from 'Utilities';
 import { CharacterWrapper, Range } from '../Style/RatingReviewStyle';
 import { FaStar } from 'react-icons/fa';
 
 function Breakdown({ metaData, handleStarReviewClick }) {
+  const { avgRating } = useContext(ProductContext);
   const [mdCharArray, setMDCharArray] = useState(null);
   const [mdStarArray, setMDStarArray] = useState(null);
   const [mdRecArray, setMDRecArray] = useState(null);
@@ -54,7 +56,6 @@ function Breakdown({ metaData, handleStarReviewClick }) {
     event.preventDefault();
     handleStarReviewClick(Number(star));
   };
-
   return (
     <div className="RR-breakdown">
       <div className="RR-breakdown-invoke">
@@ -63,10 +64,13 @@ function Breakdown({ metaData, handleStarReviewClick }) {
         {handleObjToArray(metaData.recommended)}
       </div>
       <div className="RR-breakdown-recommend">
-        {mdRecArray && <h5>Percent users who recommend this product {handleRecommended()}</h5>}
+        {mdRecArray && <h4>Percent users who recommend this product {handleRecommended()}</h4>}
       </div>
       <div className="RR-breakdown-star">
-        <h5>Star Breakdown</h5>
+        <h4>Star Breakdown</h4>
+        {avgRating && <h5> Average Stars {avgRating.toFixed(1)}</h5>}
+        {avgRating && <ReviewEntryStar rating={avgRating} />}
+        <br /> <br />
         {mdStarArray &&
           mdStarArray.map((eachStar) => (
             <label key={JSON.stringify(eachStar)}>
@@ -81,7 +85,7 @@ function Breakdown({ metaData, handleStarReviewClick }) {
           ))}
       </div>
       <CharacterWrapper>
-        <h5>Characteristic Breakdown</h5>
+        <h4>Characteristic Breakdown</h4>
         {mdCharArray &&
           mdCharArray.map((eachChar) => (
             <label key={eachChar.name}>

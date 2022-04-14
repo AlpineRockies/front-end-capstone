@@ -14,7 +14,8 @@ function ReviewSearch({ searchWord, setSearchWord }) {
     <div>
       <input type="text"
       placeholder="Search the reviews"
-      onChange={handleSearchQuery} />
+      onChange={handleSearchQuery}
+      />
     </div>
   );
 }

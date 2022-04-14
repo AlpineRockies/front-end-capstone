@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import _ from 'underscore';
 import { FaStar } from 'react-icons/fa';
+import { WriteStarWrapper } from '../Style/RatingReviewStyle'
 
 function WriteReviewStar({ handleStar }) {
   const [starWR, setStarWR] = useState(starWR);
@@ -27,7 +28,7 @@ function WriteReviewStar({ handleStar }) {
   };
 
   return (
-    <div className="RR-wrs-star">
+    <WriteStarWrapper>
       {_.range(1, 6).map((count) => (
         <label key={count}>
           <FaStar
@@ -40,7 +41,7 @@ function WriteReviewStar({ handleStar }) {
       <div className="RR-wr-star-characteristic">
         {handleStarCharacteristic(starWR)}
       </div>
-    </div>
+    </WriteStarWrapper>
   );
 }
 
