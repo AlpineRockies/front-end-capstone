@@ -131,6 +131,7 @@ export const StyledSearchBar = styled.div`
   float: right;
   position: relative;
   input {
+    width: 200px;
     height: 35px;
     font-size: small;
     background: var(--ebony);
@@ -161,4 +162,16 @@ export const WriteWrapper = styled.div`
 
 export const WriteStarWrapper = styled.div`
   font-size: 1.2em;
+`;
+
+export const StyledButton = styled.button`
+  border: 2px solid var(--cafe-noir);
+  text-transform: capitalize;
+  font-variant-caps: small-caps;
+  cursor: pointer;
+  min-width: 200px;
+  padding: 1em;
+  background-color: var(--ebony);
+  color: #faebd7;
+  font-weight: 700;
 `;
