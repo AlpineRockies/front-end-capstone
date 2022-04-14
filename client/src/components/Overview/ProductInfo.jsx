@@ -45,14 +45,9 @@ function ProductInfo(props) {
         <a href="/#ov-Anchor">Read all reviews</a>
       </div>
       <br />
-      <br />
-      <br />
       {description.category && description.category.toUpperCase()}
       <br />
-      <br />
-      <br />
       <div className="ov-product-name">{description && description.name}</div>
-      <br />
       <p>
         {price}
       </p>
