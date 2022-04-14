@@ -1,12 +1,5 @@
 /* eslint-disable no-undef */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable react/prop-types */
-/* eslint-disable arrow-body-style */
-/* eslint-disable react/destructuring-assignment */
 import React, {
-// useState,
-// useEffect,
-// useContext
 } from 'react';
 import { FaFacebook, FaPinterest } from 'react-icons/fa';
 import { CgTwitter } from 'react-icons/cg';
@@ -35,10 +28,8 @@ function ProductInfo(props) {
   } else {
     price = (
       <span>
-        <p>
-          $
-          {styles[styleSelector] && styles[styleSelector].original_price}
-        </p>
+        $
+        {styles[styleSelector] && styles[styleSelector].original_price}
       </span>
     );
   }
@@ -48,17 +39,14 @@ function ProductInfo(props) {
       <br />
       {' '}
       <br />
-      {/* Extract to component */}
       <div className="ov-Reviews">
         <ReviewEntryStar rating={avgRating} />
       &ensp;
         <a href="/#ov-Anchor">Read all reviews</a>
       </div>
-      {/* End Extraction */}
       <br />
       <br />
       <br />
-      {/* Change to Uppercase */}
       {description.category && description.category.toUpperCase()}
       <br />
       <br />
@@ -91,10 +79,20 @@ ProductInfo.propTypes = {
     PropTypes.bool,
     PropTypes.array,
   ]),
+  description: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+    PropTypes.array,
+  ]).isRequired,
+  styleSelector: PropTypes.number.isRequired,
+  avgRating: PropTypes.number,
 };
 
 ProductInfo.defaultProps = {
   styles: [],
+  avgRating: 3.8,
 };
 
 export default ProductInfo;

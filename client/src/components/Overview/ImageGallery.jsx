@@ -1,17 +1,10 @@
-/* eslint-disable no-sequences */
-/* eslint-disable no-useless-return */
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
 /* eslint-disable no-unused-vars */
-/* eslint-disable max-len */
-/* eslint-disable react/prop-types */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+
 import React, {
   useState,
-  // useEffect,
-  useContext,
 } from 'react';
 import {
   FaArrowDown, FaArrowLeft, FaArrowRight, FaArrowUp,
@@ -87,7 +80,16 @@ function ImageGallery(props) {
       const thumbnailKey = `TN-${style.style_id}`;
 
       if (displayedThumbnails.includes(index)) {
-        return (<img alt={altTxt} className={thumbnailClass} key={thumbnailKey} src={thumbnailUrl} onClick={() => handleThumbnailSelect(index)} />);
+        return (
+          <img
+            alt={altTxt}
+            className={thumbnailClass}
+            key={thumbnailKey}
+            src={thumbnailUrl}
+            onClick={() => handleThumbnailSelect(index)}
+            onKeyPress={() => handleThumbnailSelect(index)}
+          />
+        );
       }
     });
   }
@@ -96,13 +98,19 @@ function ImageGallery(props) {
     <div className="ov-img-carousel">
 
       <div className="ov-thumbnail-img-nav">
-        {(selectedThumbnail > 0 && view === 'default') && (<div><FaArrowUp className="ov-up-icon" onClick={handleUpClick} /></div>)}
+        <div className="ov-arrow">{(selectedThumbnail > 0 && view === 'default') && (<FaArrowUp className="ov-up-icon" onClick={handleUpClick} />)}</div>
         { galleryThumbnails}
-        {(selectedThumbnail < styles.length - 1 && view === 'default') && (<div><FaArrowDown className="ov-down-icon" onClick={handleDownClick} /></div>)}
+        <div className="ov-arrow">{(selectedThumbnail < styles.length - 1 && view === 'default') && (<FaArrowDown className="ov-down-icon" onClick={handleDownClick} />)}</div>
       </div>
       <div className="ov-main-img-nav">
         {(count > 0) && (<FaArrowLeft className="ov-left-icon" onClick={handleUpClick} />)}
-        <MainImage styles={styles} count={count} setCount={setCount} view={view} setView={setView} />
+        <MainImage
+          styles={styles}
+          count={count}
+          setCount={setCount}
+          view={view}
+          setView={setView}
+        />
         {(count < styles.length - 1)
         && (<FaArrowRight className="ov-right-icon" onClick={handleDownClick} />)}
       </div>
@@ -119,6 +127,18 @@ ImageGallery.propTypes = {
     PropTypes.bool,
     PropTypes.array,
   ]),
+  setCount: PropTypes.func.isRequired,
+  description: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+    PropTypes.array,
+  ]).isRequired,
+  setSelectedThumbnail: PropTypes.func.isRequired,
+  selectedThumbnail: PropTypes.number.isRequired,
+  view: PropTypes.string.isRequired,
+  setView: PropTypes.func.isRequired,
 };
 
 ImageGallery.defaultProps = {

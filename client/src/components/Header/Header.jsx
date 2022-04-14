@@ -1,7 +1,10 @@
 import React from 'react';
 import { FcSearch } from 'react-icons/fc';
+import { BsToggleOn } from 'react-icons/bs';
 
-function Header() {
+
+function Header(props) {
+  const {toggleColorMode} = props;
   return (
     <>
       <div className="header-container">
@@ -13,6 +16,7 @@ function Header() {
         </span>
         <span className="header-searchIcon">
           <FcSearch />
+          <BsToggleOn onClick={toggleColorMode}/>
         </span>
       </div>
       <div className="header-alerts">
