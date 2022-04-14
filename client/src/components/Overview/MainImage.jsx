@@ -36,7 +36,7 @@ function MainImage(props) {
           img={styles[count].photos[0].url}
           zoomScale={2.5}
           height={700}
-          width={1300}
+          width={1600}
         />
       </div>
     );

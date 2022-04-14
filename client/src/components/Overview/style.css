@@ -18,7 +18,7 @@
 }
 
 .ov-main-expanded {
-  width: 1300px;
+  width: 80vw;
   height: 700px;
   object-fit: cover;
   margin-left: auto;
@@ -32,7 +32,7 @@
 
 .ov-main-zoom {
   width: 1300px;
-  height: 700px;
+  height: 650px;
   object-fit: cover;
   margin-left: auto;
   margin-right: auto;
@@ -232,7 +232,7 @@ li.ov-description:not(:last-child) {
 
      .ov-main-img{
       display: block;
-      width: 900px;
+      width: 45vw;
       height: 650px;
       object-fit: cover;
       margin-left: 150px;
@@ -387,7 +387,6 @@ button{
   text-transform: capitalize;
   font-variant-caps: small-caps;
   cursor: pointer;
-  min-width: 200px;
   padding: 1em;
   margin-right: 1rem;
   background-color: var(--ebony);
