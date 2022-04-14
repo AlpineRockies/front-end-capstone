@@ -48,9 +48,16 @@ function App() {
       .catch(console.error);
   }, [productId]);
 
+  const [mode, setMode] = useState('light')
+
+  const toggleColorMode = () => {
+    const nextMode = mode === "light" ? "dark" : "light";
+    setMode(nextMode);
+  };
+
   return (
-    <div className="app">
-      <Header />
+    <div className="app" data-color-mode={mode}>
+      <Header toggleColorMode={toggleColorMode}/>
       <ProductContext.Provider value={memoizedState}>
         <Overview avgRating={avgRating} />
         <RelatedItems />
