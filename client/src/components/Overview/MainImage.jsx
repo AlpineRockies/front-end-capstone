@@ -1,21 +1,18 @@
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable react/prop-types */
+
 import React, {
-// useState,
-// useEffect,
-// useContext,
 } from 'react';
 import {
   FaExpandAlt,
 } from 'react-icons/fa';
 import Zoom from 'react-img-zoom';
+import PropTypes from 'prop-types';
 
 function MainImage(props) {
   const {
     styles, count,
-    // setCount,
     view, setView,
   } = props;
 
@@ -62,3 +59,16 @@ function MainImage(props) {
 }
 
 export default MainImage;
+
+MainImage.propTypes = {
+  styles: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+    PropTypes.array,
+  ]).isRequired,
+  count: PropTypes.number.isRequired,
+  view: PropTypes.string.isRequired,
+  setView: PropTypes.func.isRequired,
+};

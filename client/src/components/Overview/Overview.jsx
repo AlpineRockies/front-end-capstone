@@ -1,22 +1,16 @@
-/* eslint-disable react/jsx-no-duplicate-props */
-/* eslint-disable react/prop-types */
-/* eslint-disable max-len */
-/* eslint-disable react/jsx-tag-spacing */
 /* eslint-disable no-unused-vars */
-/* eslint-disable arrow-body-style */
+
 import React, {
   useState,
   useEffect,
-  useContext,
-  Component,
 } from 'react';
 import axios from 'axios';
 import './style.css';
+import PropTypes from 'prop-types';
 import ProductInfo from './ProductInfo';
 import AddToCart from './AddToCart';
 import ImageGallery from './ImageGallery';
 import StyleSelector from './StyleSelector';
-import MainImage from './MainImage';
 
 function Overview(props) {
   const [productId, setProductId] = useState(Math.floor(Math.random() * (38321 - 37311) + 37311));
@@ -49,15 +43,44 @@ function Overview(props) {
     return (
       <div className="ov-overview">
         <div className="ov-gallery">
-          <ImageGallery styles={styles} count={count} setCount={setCount} description={description} selectedThumbnail={selectedThumbnail} setSelectedThumbnail={setSelectedThumbnail} view={view} setView={setView}/>
+          <ImageGallery
+            styles={styles}
+            count={count}
+            setCount={setCount}
+            description={description}
+            selectedThumbnail={selectedThumbnail}
+            setSelectedThumbnail={setSelectedThumbnail}
+            view={view}
+            setView={setView}
+          />
         </div>
 
         <div className="ov-cart">
-          <ProductInfo styles={styles} description={description} styleSelector={styleSelector} selectStyleSelector={selectStyleSelector} avgRating={avgRating}/>
+          <ProductInfo
+            styles={styles}
+            description={description}
+            styleSelector={styleSelector}
+            selectStyleSelector={selectStyleSelector}
+            avgRating={avgRating}
+          />
 
-          <StyleSelector styles={styles} styleSelector={styleSelector} selectStyleSelector={selectStyleSelector} setCount={setCount} selectedThumbnail={selectedThumbnail} selectedThumbnail={setSelectedThumbnail}/>
+          <StyleSelector
+            styles={styles}
+            styleSelector={styleSelector}
+            selectStyleSelector={selectStyleSelector}
+            setCount={setCount}
+            selectedThumbnail={selectedThumbnail}
+            setSelectedThumbnail={setSelectedThumbnail}
+          />
 
-          <AddToCart styles={styles} count={count} setCount={setCount} resultCount={resultCount} setResultCount={setResultCount} styleSelector={styleSelector}/>
+          <AddToCart
+            styles={styles}
+            count={count}
+            setCount={setCount}
+            resultCount={resultCount}
+            setResultCount={setResultCount}
+            styleSelector={styleSelector}
+          />
         </div>
         <div className="ov-description">
           {/* Extract to component */}
@@ -82,7 +105,15 @@ function Overview(props) {
   return (
     <div>
       <div className="ov-overview-expanded">
-        <ImageGallery styles={styles} count={count} setCount={setCount} view={view} setView={setView} setSelectedThumbnail={setSelectedThumbnail} selectedThumbnail={selectedThumbnail} />
+        <ImageGallery
+          styles={styles}
+          count={count}
+          setCount={setCount}
+          view={view}
+          setView={setView}
+          setSelectedThumbnail={setSelectedThumbnail}
+          selectedThumbnail={selectedThumbnail}
+        />
       </div>
       <div className="ov-product-info-extended">
         <span className="ov-description-details">
@@ -104,3 +135,11 @@ function Overview(props) {
 }
 
 export default Overview;
+
+Overview.propTypes = {
+  avgRating: PropTypes.number,
+};
+
+Overview.defaultProps = {
+  avgRating: 3.8,
+};
