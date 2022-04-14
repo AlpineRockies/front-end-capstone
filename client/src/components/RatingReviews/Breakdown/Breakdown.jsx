@@ -68,7 +68,7 @@ function Breakdown({ metaData, handleStarReviewClick }) {
       </div>
       <div className="RR-breakdown-star">
         <h4>Star Breakdown</h4>
-        {avgRating && <h5> Average Stars {avgRating.toFixed(1)}</h5>}
+        {avgRating && <h5> Average Stars {(Math.round(avgRating * 4) / 4).toFixed(2)}</h5>}
         {avgRating && <ReviewEntryStar rating={avgRating} />}
         <br /> <br />
         {mdStarArray &&
