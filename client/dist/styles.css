@@ -23,8 +23,34 @@
 
 [data-color-mode="dark"] {
   font-family: 'Noto Sans', sans-serif;
-  background-color: #283618ff;
+  background-color: var(--kombu-green);
   color: #f5f5f5;
+}
+
+[data-color-mode="dark"] .header-container {
+  display: grid;
+  grid-template-areas:
+  'name name name search search searchIcon'
+  'alert alert alert alert alert alert';
+  grid-template-rows: 80% 20%;
+  min-width: 100%;
+  height: 100px;
+  font-size: 0px;
+  margin-top: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 251;
+  background: var(--ebony);
+  box-shadow: 0 8px 32px 0 #516e58;
+  backdrop-filter: blur( 20px );
+  -webkit-backdrop-filter: blur( 4px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  font-family: 'Marker Felt';
+}
+
+[data-color-mode="dark"] a {
+  color:yellow;
 }
 
 

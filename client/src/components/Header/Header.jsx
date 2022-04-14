@@ -1,10 +1,10 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { FcSearch } from 'react-icons/fc';
 import { BsToggleOn } from 'react-icons/bs';
 
-
 function Header(props) {
-  const {toggleColorMode} = props;
+  const { toggleColorMode } = props;
   return (
     <>
       <div className="header-container">
@@ -14,10 +14,12 @@ function Header(props) {
         <span className="header-search">
           <input type="text" name="name" className="header-searchbox" />
         </span>
-        <span className="header-searchIcon">
-          <FcSearch />
-          <BsToggleOn onClick={toggleColorMode}/>
-        </span>
+        <div className="stayput">
+          <span className="header-searchIcon">
+            <FcSearch />
+            <BsToggleOn onClick={toggleColorMode} />
+          </span>
+        </div>
       </div>
       <div className="header-alerts">
         <br />
