@@ -65,13 +65,13 @@ export default function QAList({ filter }) {
     <>
       <div className="QA-list">{renderedItems}</div>
       {shownQuestionCount < questions.length ? (
-        <button type="button" onClick={() => setShownQuestionCount((count) => count + 2)}>
+        <StyledButton type="button" onClick={() => setShownQuestionCount((count) => count + 2)}>
           More Answered Questions
-        </button>
+        </StyledButton>
       ) : null}
-      <button type="button" onClick={() => setShowAddQuestion(true)}>
+      <StyledButton type="button" onClick={() => setShowAddQuestion(true)}>
         Add a question
-      </button>
+      </StyledButton>
       <Modal
         showModal={showAddQuestion}
         onClose={() => setShowAddQuestion(false)}
@@ -83,13 +83,15 @@ export default function QAList({ filter }) {
 
 const StyledButton = styled.button`
   border: 2px solid var(--cafe-noir);
-  color: var(--cafe-noir);
-  background-color: var(--dutch-white);
+  color: #faebd7;
+  background-color: var(--ebony);
   text-transform: capitalize;
+  font-variant-caps: small-caps;
   cursor: pointer;
   min-width: 200px;
   padding: 1em;
   margin-right: 1rem;
+  font-weight: 700;
 
   &:hover {
     text-decoration: underline;

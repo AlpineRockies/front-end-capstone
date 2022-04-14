@@ -41,9 +41,9 @@ export default function QAListEntry({ questionData }) {
           <Answer key={answer.id} answer={answer} />
         ))}
         {sortedAnswers.length > 2 && (
-          <button style={{ marginBottom: '1rem' }} onClick={handleMoreAnswers} type="button">
+          <StyledMoreAnswers onClick={handleMoreAnswers} type="button">
             {showMoreAnswers ? 'See more answers' : 'Collapse'}
-          </button>
+          </StyledMoreAnswers>
         )}
       </StyledAnswer>
     </StyledEntry>
@@ -65,12 +65,14 @@ const StyledAnswer = styled.div`
 
 const StyledButton = styled.button`
   border: 2px solid var(--cafe-noir);
-  color: var(--cafe-noir);
-  background-color: var(--dutch-white);
+  color: #faebd7;
+  background-color: var(--ebony);
   max-width: 300px;
   text-transform: capitalize;
+  font-variant-caps: small-caps;
   cursor: pointer;
   padding: 1em;
+  font-weight: 700;
 
   &:hover {
     text-decoration: underline;
