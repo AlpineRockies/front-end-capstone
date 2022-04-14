@@ -20,10 +20,9 @@ export default function QuestionAnswers() {
 }
 
 const QAMainDiv = styled.div`
-  background-color: var(--ebony);
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  max-width: 960px;
+  max-width: 1280px;
   width: 87vw;
 `;

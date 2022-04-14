@@ -58,17 +58,21 @@ const StyledEntry = styled.div`
 const StyledAnswer = styled.div`
   display: inline-flex;
   flex-direction: column;
+  max-height: 50vh;
+  overflow-y: auto;
+  width: 95%;
 `;
 
-// TODO: lift this into a styled components file
 const StyledButton = styled.button`
   border: 2px solid var(--cafe-noir);
-  color: var(--cafe-noir);
-  background-color: var(--dutch-white);
+  color: #faebd7;
+  background-color: var(--ebony);
   max-width: 300px;
   text-transform: capitalize;
+  font-variant-caps: small-caps;
   cursor: pointer;
   padding: 1em;
+  font-weight: 700;
 
   &:hover {
     text-decoration: underline;

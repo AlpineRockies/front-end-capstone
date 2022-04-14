@@ -63,20 +63,15 @@ export default function QAList({ filter }) {
 
   return (
     <>
-      <div className="QA-list">
-        {renderedItems}
-        {shownQuestionCount < questions.length ? (
-          <StyledButton
-            type="button"
-            onClick={() => setShownQuestionCount((count) => count + 2)}
-          >
-            More Answered Questions
-          </StyledButton>
-        ) : null}
-        <StyledButton type="button" onClick={() => setShowAddQuestion(true)}>
-          Add a question
+      <div className="QA-list">{renderedItems}</div>
+      {shownQuestionCount < questions.length ? (
+        <StyledButton type="button" onClick={() => setShownQuestionCount((count) => count + 2)}>
+          More Answered Questions
         </StyledButton>
-      </div>
+      ) : null}
+      <StyledButton type="button" onClick={() => setShowAddQuestion(true)}>
+        Add a question
+      </StyledButton>
       <Modal
         showModal={showAddQuestion}
         onClose={() => setShowAddQuestion(false)}
@@ -88,13 +83,15 @@ export default function QAList({ filter }) {
 
 const StyledButton = styled.button`
   border: 2px solid var(--cafe-noir);
-  color: var(--cafe-noir);
-  background-color: var(--dutch-white);
+  color: #faebd7;
+  background-color: var(--ebony);
   text-transform: capitalize;
+  font-variant-caps: small-caps;
   cursor: pointer;
   min-width: 200px;
   padding: 1em;
   margin-right: 1rem;
+  font-weight: 700;
 
   &:hover {
     text-decoration: underline;
