@@ -9,6 +9,7 @@ import ProductContext from '../Context';
 import {
   LeftContainer,
   RightContainer,
+  StyledButton,
   StyledMain,
   StyledSelect,
 } from './Style/RatingReviewStyle';
@@ -93,9 +94,9 @@ function RatingReviews() {
         </div>
 
         <div className="RR-write-review">
-          <button type="button" onClick={() => setShowWriteReview(true)}>
+          <StyledButton onClick={() => setShowWriteReview(true)}>
             Write Review
-          </button>
+          </StyledButton>
           {metaData && (
             <WriteReview
               showWriteReview={showWriteReview}

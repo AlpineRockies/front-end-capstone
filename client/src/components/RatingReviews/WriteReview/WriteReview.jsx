@@ -69,7 +69,6 @@ function WriteReview({
           <StyledWriteModal>
             <form onSubmit={handleReviewInputSubmit}>
               <StyledCloseButton
-                type="button"
                 onClick={() => setShowWriteReview(false)}
               >
                 X

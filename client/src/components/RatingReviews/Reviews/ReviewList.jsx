@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReviewEntry from './ReviewEntry';
 import ReviewSearch from './ReviewSearch';
-import { StyledSearchBar } from '../Style/RatingReviewStyle';
+import { StyledButton, StyledSearchBar } from '../Style/RatingReviewStyle';
 
 function ReviewList({ sortedList, sortStarFilter }) {
   const [showMoreReview, setShowMoreReview] = useState(2);
@@ -40,12 +40,11 @@ function ReviewList({ sortedList, sortStarFilter }) {
           <ReviewEntry key={eachReview.review_id} eachReview={eachReview} />
         ))}
       {showMoreReview < listLength && (
-        <button
-          type="button"
+        <StyledButton
           onClick={handleMoreReviewsClick}
         >
           More Reviews
-        </button>
+        </StyledButton>
       )}
     </div>
   );
