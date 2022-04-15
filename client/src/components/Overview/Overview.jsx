@@ -1,41 +1,31 @@
-/* eslint-disable no-unused-vars */
-
 import React, {
   useState,
   useEffect,
+  useContext,
 } from 'react';
 import axios from 'axios';
 import './style.css';
-import PropTypes from 'prop-types';
 import ProductInfo from './ProductInfo';
 import AddToCart from './AddToCart';
 import ImageGallery from './ImageGallery';
 import StyleSelector from './StyleSelector';
+import ProductContext from '../Context';
 
-function Overview(props) {
-  const [productId, setProductId] = useState(Math.floor(Math.random() * (38321 - 37311) + 37311));
-  // const [productId, setProductId] = useState(productId)
+function Overview() {
+  const { productId, productInfo, avgRating } = useContext(ProductContext);
+
   const [styles, setStyles] = useState([]);
-  const [description, setDescription] = useState([]);
   const [count, setCount] = useState(0);
-  const [thumbnailIndex, setThumbnailIndex] = useState(0);
   const [resultCount, setResultCount] = useState(0);
   const [styleSelector, selectStyleSelector] = useState(0);
   const [selectedThumbnail, setSelectedThumbnail] = useState(count);
   const [view, setView] = useState('default');
-  const { avgRating } = props;
 
   useEffect(() => {
     axios
       .get(`/products/${productId}/styles`)
       .then((res) => setStyles(res.data.results))
-      .catch((err) => console.error(err));
-  }, [productId]);
-
-  useEffect(() => {
-    axios
-      .get(`/products/${productId}`)
-      .then((res) => setDescription(res.data))
+      // eslint-disable-next-line no-console
       .catch((err) => console.error(err));
   }, [productId]);
 
@@ -47,7 +37,7 @@ function Overview(props) {
             styles={styles}
             count={count}
             setCount={setCount}
-            description={description}
+            description={productInfo}
             selectedThumbnail={selectedThumbnail}
             setSelectedThumbnail={setSelectedThumbnail}
             view={view}
@@ -58,7 +48,7 @@ function Overview(props) {
         <div className="ov-cart">
           <ProductInfo
             styles={styles}
-            description={description}
+            description={productInfo}
             styleSelector={styleSelector}
             selectStyleSelector={selectStyleSelector}
             avgRating={avgRating}
@@ -85,8 +75,8 @@ function Overview(props) {
         <div className="ov-description">
           {/* Extract to component */}
           <span className="ov-description-details">
-            <h5>{description.slogan}</h5>
-            <p>{description.description}</p>
+            <h5>{productInfo.slogan}</h5>
+            <p>{productInfo.description}</p>
           </span>
           <span className="ov-description-ul">
             <ul>
@@ -117,8 +107,8 @@ function Overview(props) {
       </div>
       <div className="ov-product-info-extended">
         <span className="ov-description-details">
-          <h5>{description.slogan}</h5>
-          <p>{description.description}</p>
+          <h5>{productInfo.slogan}</h5>
+          <p>{productInfo.description}</p>
         </span>
         <span className="ov-description-ul">
           <ul>
@@ -135,11 +125,3 @@ function Overview(props) {
 }
 
 export default Overview;
-
-Overview.propTypes = {
-  avgRating: PropTypes.number,
-};
-
-Overview.defaultProps = {
-  avgRating: 3.8,
-};
