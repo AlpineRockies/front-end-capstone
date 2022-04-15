@@ -8,7 +8,7 @@ import RatingReviews from './RatingReviews/RatingReviews';
 import ProductContext from './Context';
 import Header from './Header/Header';
 
-function App() {
+export default function App() {
   const [productId, setProductId] = useState(38320);
   const [productInfo, setProductInfo] = useState({});
   const [yourOutfit, setYourOutfit] = useState(() => {
@@ -20,23 +20,29 @@ function App() {
   const [joinedAPIDetails, setJoinedAPIDetails] = useState([]);
   const [handleNewQorA, setHandleNewQorA] = useState(() => {});
   const [avgRating, setAvgRating] = useState(null);
+  const [mode, setMode] = useState('light');
 
   const memoizedState = useMemo(
     () => ({
       productId,
       setProductId,
+
       productInfo,
       setProductInfo,
+
       yourOutfit,
       setYourOutfit,
+
       joinedAPIDetails,
       setJoinedAPIDetails,
+
       handleNewQorA,
       setHandleNewQorA,
+
       avgRating,
       setAvgRating,
     }),
-    [productId, productInfo, yourOutfit, joinedAPIDetails],
+    [productId, productInfo, yourOutfit, joinedAPIDetails, handleNewQorA, avgRating],
   );
 
   // update the context store when a new product is selected
@@ -48,18 +54,13 @@ function App() {
       .catch(console.error);
   }, [productId]);
 
-  const [mode, setMode] = useState('light')
-
-  const toggleColorMode = () => {
-    const nextMode = mode === "light" ? "dark" : "light";
-    setMode(nextMode);
-  };
-
   return (
     <div className="app" data-color-mode={mode}>
-      <Header toggleColorMode={toggleColorMode}/>
+      <Header
+        toggleColorMode={() => setMode((oldMode) => (oldMode === 'light' ? 'dark' : 'light'))}
+      />
       <ProductContext.Provider value={memoizedState}>
-        <Overview avgRating={avgRating} />
+        <Overview />
         <RelatedItems />
         <QuestionAnswers />
         <RatingReviews />
@@ -67,5 +68,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
