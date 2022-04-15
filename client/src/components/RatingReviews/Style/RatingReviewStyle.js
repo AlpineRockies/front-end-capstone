@@ -57,8 +57,6 @@ export const StyledModal = styled.div`
   /* kombu-green, but 31% opacity */
   box-shadow: 0 8px 32px 0 #28361850;
   z-index: 255;
-  max-height: 100vh;
-  overflow-y: auto;
 `;
 
 export const StyledWriteModal = styled(StyledModal)`

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { createPortal } from 'react-dom';
 import { escapeValue } from 'Utilities';
 import WriteReviewCharacteristic from './WriteReviewCharacteristic';
 import WriteReviewStar from './WriteReviewStar';
@@ -63,7 +62,7 @@ function WriteReview({
     setCharacteristicRating(characteristics);
   };
 
-  return createPortal(
+  return (
     <div className="RR-wr-form">
       {showWriteReview ? (
         <StyledOverlay>
@@ -165,9 +164,8 @@ function WriteReview({
           </StyledWriteModal>
         </StyledOverlay>
       ) : null}
-    </div>,
-    document.getElementById('portal'),
-  );
+    </div>
+  )
 }
 
 export default WriteReview;
