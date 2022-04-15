@@ -40,7 +40,8 @@ app.all('/*', (req, res) => {
       res.status(200).send(response.data);
     })
     .catch((err) => {
-      res.status(500).send(err);
+      res.status(500).end();
+      console.error(err);
     });
 });
 
