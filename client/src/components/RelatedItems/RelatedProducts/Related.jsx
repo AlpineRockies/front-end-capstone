@@ -1,6 +1,7 @@
 /* eslint-disable babel/camelcase */
 import React, { useState, useContext } from 'react';
 import _ from 'underscore';
+import { createPortal } from 'react-dom';
 import { StyledFaStar } from '../StyledComponents';
 import ComparisonModal from '../Modal/ComparisonModal';
 import Carousel from '../Carousel/Carousel';
@@ -25,20 +26,22 @@ function Related() {
 
   return (
     <div>
-      <div
-        className={
-          openModal ? 'ri-modal-Background active' : 'ri-modal-Background'
-        }
-      >
-        {openModal && (
-          <ComparisonModal
-            closeTimeoutMS={1000}
-            openModal={openModal}
-            setOpenModal={setOpenModal}
-            selectedComparisonItem={selectedComparisonItem}
-          />
+      {openModal &&
+        createPortal(
+          <div
+            className={
+              openModal ? 'ri-modal-Background active' : 'ri-modal-Background'
+            }
+          >
+            <ComparisonModal
+              closeTimeoutMS={1000}
+              openModal={openModal}
+              setOpenModal={setOpenModal}
+              selectedComparisonItem={selectedComparisonItem}
+            />
+          </div>,
+          document.getElementById('portal'),
         )}
-      </div>
       <p />
       <div className="ri-slider">
         <Carousel
