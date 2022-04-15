@@ -319,17 +319,18 @@ li.ov-description:not(:last-child) {
         border-radius: 10px;
         border: 1px solid rgba( 255, 255, 255, 0.18 );
         font-family: 'Marker Felt';
+        justify-content: space-between;
       }
 
       .header-name {
         /* border:  1px solid green; */
         grid-area: name;
         width: 75%;
-        font-size: 20px;
+        font-size: 52px;
         margin-left: 35px;
         padding-left: 10px;
         margin-right: 500px;
-        text-align: center;
+        position: fixed;
       }
 
       .header-search {
@@ -392,4 +393,12 @@ button{
   background-color: var(--ebony);
   color: #faebd7;
   font-weight: 700;
+}
+
+.logo {
+  height: 60px;
+  width: 50px;
+  margin-top: 15px;
+  font-weight: bolder;
+  color: #283618ff;
 }

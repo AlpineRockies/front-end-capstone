@@ -53,4 +53,8 @@
   color:yellow;
 }
 
+[data-color-mode="dark"] .logo {
+  color:#f5f5f5;
+}
+
 
