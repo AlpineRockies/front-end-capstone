@@ -9,7 +9,7 @@ import ProductContext from './Context';
 import Header from './Header/Header';
 
 export default function App() {
-  const [productId, setProductId] = useState(38320);
+  const [productId, setProductId] = useState(37765);
   const [productInfo, setProductInfo] = useState({});
   const [yourOutfit, setYourOutfit] = useState(() => {
     // eslint-disable-next-line no-undef
