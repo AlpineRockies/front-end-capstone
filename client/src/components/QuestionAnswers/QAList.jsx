@@ -63,7 +63,7 @@ export default function QAList({ filter }) {
 
   return (
     <>
-      <div className="QA-list">{renderedItems}</div>
+      <StyledQAList className="QA-list">{renderedItems}</StyledQAList>
       {shownQuestionCount < questions.length ? (
         <StyledButton type="button" onClick={() => setShownQuestionCount((count) => count + 2)}>
           More Answered Questions
@@ -96,4 +96,9 @@ const StyledButton = styled.button`
   &:hover {
     text-decoration: underline;
   }
+`;
+
+const StyledQAList = styled.div`
+  max-height: 85vh;
+  overflow-y: auto;
 `;
