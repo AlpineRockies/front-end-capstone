@@ -65,13 +65,13 @@ export default function QAList({ filter }) {
     <>
       <div className="QA-list">{renderedItems}</div>
       {shownQuestionCount < questions.length ? (
-        <StyledButton type="button" onClick={() => setShownQuestionCount((count) => count + 2)}>
+        <button type="button" onClick={() => setShownQuestionCount((count) => count + 2)}>
           More Answered Questions
-        </StyledButton>
+        </button>
       ) : null}
-      <StyledButton type="button" onClick={() => setShowAddQuestion(true)}>
+      <button type="button" onClick={() => setShowAddQuestion(true)}>
         Add a question
-      </StyledButton>
+      </button>
       <Modal
         showModal={showAddQuestion}
         onClose={() => setShowAddQuestion(false)}
