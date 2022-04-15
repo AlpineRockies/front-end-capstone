@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { StyledOverlay, StyledModal, ThumbnailImg, ExpandImg } from '../Style/RatingReviewStyle';
+import { createPortal } from 'react-dom';
+import {
+  StyledOverlay,
+  StyledModal,
+  ThumbnailImg,
+  ExpandImg,
+} from '../Style/RatingReviewStyle';
 
 function ReviewEntryPhoto({ photo }) {
   const [photoModal, setPhotoModal] = useState(false);
@@ -9,18 +15,18 @@ function ReviewEntryPhoto({ photo }) {
       <div>
         <ThumbnailImg src={photo} onClick={() => setPhotoModal(true)} />
       </div>
-      <div>
-        {photoModal ? (
-          <StyledOverlay>
-            <StyledModal>
-              <ExpandImg
-                src={photo}
-                onClick={() => setPhotoModal(false)}
-              />
-            </StyledModal>
-          </StyledOverlay>
-        ) : null}
-      </div>
+      {createPortal(
+        <div>
+          {photoModal ? (
+            <StyledOverlay>
+              <StyledModal>
+                <ExpandImg src={photo} onClick={() => setPhotoModal(false)} />
+              </StyledModal>
+            </StyledOverlay>
+          ) : null}
+        </div>,
+        document.getElementById('portal'),
+      )}
     </div>
   );
 }

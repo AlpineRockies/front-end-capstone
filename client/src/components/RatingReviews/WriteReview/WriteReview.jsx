@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { createPortal } from 'react-dom';
 import { escapeValue } from 'Utilities';
 import WriteReviewCharacteristic from './WriteReviewCharacteristic';
 import WriteReviewStar from './WriteReviewStar';
@@ -62,15 +63,13 @@ function WriteReview({
     setCharacteristicRating(characteristics);
   };
 
-  return (
+  return createPortal(
     <div className="RR-wr-form">
       {showWriteReview ? (
         <StyledOverlay>
           <StyledWriteModal>
             <form onSubmit={handleReviewInputSubmit}>
-              <StyledCloseButton
-                onClick={() => setShowWriteReview(false)}
-              >
+              <StyledCloseButton onClick={() => setShowWriteReview(false)}>
                 X
               </StyledCloseButton>
               <div className="RR-wr-content">
@@ -133,7 +132,7 @@ function WriteReview({
                   <input
                     placeholder="Example: Best purchase ever!"
                     type="text"
-                    name='summary'
+                    name="summary"
                     maxLength="60"
                     onChange={(event) =>
                       setSummaryRating(escapeValue(event.target.value))
@@ -166,7 +165,8 @@ function WriteReview({
           </StyledWriteModal>
         </StyledOverlay>
       ) : null}
-    </div>
+    </div>,
+    document.getElementById('portal'),
   );
 }
 
