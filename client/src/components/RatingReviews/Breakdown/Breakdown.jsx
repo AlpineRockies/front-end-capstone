@@ -3,7 +3,7 @@ import ReviewEntryStar from '../Reviews/ReviewEntryStar.jsx';
 import { arrAllCharacteristic } from './BreakdownCharacteristic';
 import ProductContext from '../../Context';
 import { lowercase, ratingPercentage } from 'Utilities';
-import { BreakStarWrapper, CharacterWrapper, Range } from '../Style/RatingReviewStyle';
+import { AvgStarWrapper, BreakStarWrapper, CharacterWrapper, Range } from '../Style/RatingReviewStyle';
 import { FaStar } from 'react-icons/fa';
 
 function Breakdown({ metaData, handleStarReviewClick }) {
@@ -69,15 +69,15 @@ function Breakdown({ metaData, handleStarReviewClick }) {
       <div className="RR-breakdown-star">
         <h4>Star Breakdown</h4>
         {avgRating && <h5> Average Stars {(Math.round(avgRating * 4) / 4).toFixed(2)}</h5>}
-        {avgRating && <BreakStarWrapper><ReviewEntryStar rating={avgRating} /></BreakStarWrapper> }
+        {avgRating && <AvgStarWrapper><ReviewEntryStar rating={avgRating} /></AvgStarWrapper> }
         {mdStarArray &&
           mdStarArray.map((eachStar) => (
             <label key={JSON.stringify(eachStar)}>
               {eachStar.name} Star
-              <span onClick={() => handleStarBreakdownClick(eachStar.name)}>
+              <BreakStarWrapper onClick={() => handleStarBreakdownClick(eachStar.name)}>
                 {' '}
                 <ReviewEntryStar rating={Number(eachStar.name)} />
-              </span>
+              </BreakStarWrapper>
               {eachStar.valueObj} Reviews
               <br /> <br />
             </label>

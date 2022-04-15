@@ -177,7 +177,10 @@ export const StyledButton = styled.button`
   margin-bottom: 1%;
 `;
 
-export const BreakStarWrapper = styled.span`
+export const AvgStarWrapper = styled.span`
   font-size: 2.0rem;
+`;
+
+export const BreakStarWrapper = styled.span`
   cursor: pointer;
 `;
