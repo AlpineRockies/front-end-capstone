@@ -156,7 +156,7 @@ export const WriteWrapper = styled.div`
   }
   input {
     width: 50%;
-    padding-left: 76px;
+    padding-left: 102px;
   }
 `;
 
@@ -175,4 +175,9 @@ export const StyledButton = styled.button`
   color: #faebd7;
   font-weight: 700;
   margin-bottom: 1%;
+`;
+
+export const BreakStarWrapper = styled.span`
+  font-size: 2.0rem;
+  cursor: pointer;
 `;
