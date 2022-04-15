@@ -1,7 +1,9 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { FcSearch } from 'react-icons/fc';
 import { BsToggleOn } from 'react-icons/bs';
+import { FaBiohazard } from 'react-icons/fa';
 
 function Header(props) {
   const { toggleColorMode } = props;
@@ -9,7 +11,11 @@ function Header(props) {
     <>
       <div className="header-container">
         <span className="header-name">
-          <h1>Brick & Morty</h1>
+          <a href="#">
+            <FaBiohazard className="logo" />
+          </a>
+          &nbsp;
+          Brick & Morty
         </span>
         <span className="header-search">
           <input type="text" name="name" className="header-searchbox" />

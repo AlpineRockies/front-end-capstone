@@ -52,7 +52,7 @@ function AddToCart(props) {
   if (sizeSelection !== null && quantity > 0) {
     buttonNoButton = (
       <button className="ov-checkout-button" type="button" onClick={addItemToCart}>
-        ADD TO CART 
+        ADD TO CART
       </button>
     );
   } else if (quantity === 0) {
