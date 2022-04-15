@@ -6,8 +6,8 @@ import '../style.css';
 function ProductCardInfo({ product }) {
   return (
     <ul className="bottom-left">
-        {product.category && <li>Category: {product.category}</li>}
-        {product.name && <li>Name: {product.name}</li>}
+      {product.category && <li>Category: {product.category}</li>}
+      {product.name && <li>Name: {product.name}</li>}
       {product.results[0].sale_price && product.category ? (
         <>
           <li style={{ textDecorationLine: 'line-through' }}>
