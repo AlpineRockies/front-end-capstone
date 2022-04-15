@@ -41,9 +41,9 @@ export default function QAListEntry({ questionData }) {
           <Answer key={answer.id} answer={answer} />
         ))}
         {sortedAnswers.length > 2 && (
-          <button style={{ marginBottom: '1rem' }} onClick={handleMoreAnswers} type="button">
+          <StyledMoreAnswers onClick={handleMoreAnswers} type="button">
             {showMoreAnswers ? 'See more answers' : 'Collapse'}
-          </button>
+          </StyledMoreAnswers>
         )}
       </StyledAnswer>
     </StyledEntry>
