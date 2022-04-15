@@ -7,7 +7,7 @@
   min-width: 100%;
   height: 98vh;
   /* border: 1px solid black; */
-  margin: 30px;
+  margin: 50px;
 }
 
 .ov-overview-expanded {
@@ -60,6 +60,7 @@
   grid-area: info;
   display: flex;
   flex-direction: row;
+  margin-top: 30px;
 }
 
 .ov-description-details {
@@ -80,7 +81,7 @@
   font-size: x-small;
   border-left: 1px solid green;
   width: 35%;
-  padding-top: 20px;
+  padding-top: 40px;
 }
 
 .ov-description ul {
@@ -277,13 +278,14 @@ li.ov-description:not(:last-child) {
       flex-direction: row;
     }
 
-    .ov-review-stars {
-      font-size: small;
-    }
-
     .ov-Reviews {
       display: flex;
       flex-direction: row;
+      font-size: x-small;
+    }
+
+    .ov-read {
+      font-size: xx-small;
     }
 
     .Facebook {
@@ -382,6 +384,7 @@ li.ov-description:not(:last-child) {
 
 .ov-checkout-button {
   width: 250px;
+  z-index: 100;
 }
 button{
   border: 2px solid var(--cafe-noir);

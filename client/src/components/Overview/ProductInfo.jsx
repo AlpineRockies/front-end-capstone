@@ -42,7 +42,7 @@ function ProductInfo(props) {
       <div className="ov-Reviews">
         <ReviewEntryStar rating={avgRating} />
       &ensp;
-        <a href="/#ov-Anchor">Read all reviews</a>
+        <a className="ov-read" href="/#ov-Anchor">Read all reviews</a>
       </div>
       <br />
       {description.category && description.category.toUpperCase()}
