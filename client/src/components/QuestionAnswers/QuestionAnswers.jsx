@@ -25,4 +25,5 @@ const QAMainDiv = styled.div`
   transform: translateX(-50%);
   max-width: 1280px;
   width: 87vw;
+  margin: 2rem 0;
 `;

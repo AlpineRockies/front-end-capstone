@@ -112,6 +112,7 @@ const StyledButton = styled.button`
   text-transform: capitalize;
   cursor: pointer;
   padding: 1em;
+  margin-right: 0;
 
   &:hover {
     text-decoration: underline;
