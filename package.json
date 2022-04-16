@@ -11,6 +11,7 @@
   },
   "scripts": {
     "build": "webpack --mode=production",
+    "start": "node server/index.js",
     "client-dev": "webpack --config ./webpack.config.js --mode development -w",
     "server-dev": "nodemon server/index.js",
     "test": "jest"
