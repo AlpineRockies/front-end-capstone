@@ -101,7 +101,7 @@ You may also see any lint errors in the console.
 
 #### `npm run server-dev`
 
-Launchees the server and uses Nodemon to monitor for any file changes. If any file changes are detected with Nodemon, it will automatically restart the node server.
+Launches the server and uses Nodemon to monitor for any file changes. If any file changes are detected with Nodemon, it will automatically restart the node server.
 Server will be listening on (http://localhost:3000)
 (https://facebook.github.io/create-react-app/docs/deployment)
 
